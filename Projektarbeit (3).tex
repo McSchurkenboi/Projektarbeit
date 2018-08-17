@@ -1,0 +1,167 @@
+\documentclass[12pt]{article}
+\usepackage[ngerman]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{fancyhdr}
+\usepackage{mathrsfs}
+\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{automata,arrows}
+\usepackage{textcomp}
+
+\pagenumbering{arabic}
+\pagestyle{fancy}
+\rhead{Natural Language Processing}
+\renewcommand{\footrulewidth}{1pt}
+
+\begin{document}
+\title{Natural Language Processing und Analyse von GATE als NLP-Tool}
+\author{Aaron Schul, Felix Ritter}
+\date{\today}
+\maketitle
+
+\newpage
+\tableofcontents
+
+\newpage
+\section{Einleitung}
+Mit voranschreitender Globalisierung und immer größeren Mengen an übertragenen Informationen steigt auch die Menge an zu verarbeitender natürlicher Sprache. Während dies bisher manuell durch den Menschen geschah, kommt allmählich aufgrund der schieren Menge von Daten vor allem im unternehmerischen Kontext und im Internet die Notwendigkeit auf, die natürliche Sprache automatisiert durch Computer verarbeiten zu lassen.
+
+Dies bezeichnet man als Natural Language Processing (kurz NLP). Es hilft dabei, Texte beispielsweise nach Schlagworten zu durchsuchen, strukturell zu analysieren, Muster zu erkennen und teilweise sogar die Bedeutung von Geschriebenem zu verstehen und diese Semantiken darzustellen.
+
+Mit dem Aufkommen von NLP steigt auch das Interesse an NLP-Tools, also an Programmen, welche in der Lage sind, die für NLP notwendigen Funktionalitäten übersichtlich und praktikabel bereitzustellen. Eines der bekanntesten NLP-Tools ist das von der University Of Stanford entwickelte GATE, welches eine Vielzahl von Anwendungsbereichen im NLP abdeckt.
+
+Das Ziel dieser Arbeit ist es, eine Anforderungsanalyse für solche Tools durchzuführen und diese dann mit dem GATE-Tool abzugleichen. Somit bietet sich die Möglichkeit GATE zu analysieren und daraufhin kriterienbasiert zu evaluieren. Funktionale wie nicht-funktionale Anforderungen werden definiert.
+
+Zu diesem Zweck werden zunächst ausführlich die Grundlagen zu NLP und dessen Tools erläutert. Die Teilschritte der Textverarbeitung werden theoretisch wie praktisch anhand von Implementierungsbeispielen erläutert. Daraufhin können mit Hilfe von Use Cases Anforderung an diese Tools erhoben werden, auf denen Analyse und Evaluation des GATE-Tools beruhen sollen. Abgeschlossen wird die Arbeit von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen für NLP-relevante Domänen. 
+\newpage
+\section{Grundlagen von Natural Language Processing}
+\subsection{Einführung}
+Der folgende Abschnitt befasst sich mit den Grundlagen zu Natural Language Processing (im folgenden kurz NLP). Dazu gehört neben dessen Herkunft bzw. Motivation eine inhaltliche Wissensgrundlage, welche für den weiteren Verlauf der Ausarbeitung relevant ist. 
+
+\subsubsection{Motivation und Herkunft}
+Ein Großteil der menschlichen Kommunikation findet durch natürliche Sprache statt. Dies ist bereits seit Jahrtausenden so, jedoch hat sich die Übertragung dieser Sprache mit der Zeit verändert und weiterentwickelt. 
+
+Damals lediglich von Mund zu Mund übertragen war der erste große Schritt die Entwicklung der Schrift. Ob mit Hieroglyphen, Alphabeten oder anderen Zeichen, war man in nun in der Lage natürliche Sprache über lange Zeit und/oder weite Strecken zu vermitteln. Dies erwies sich als sehr Vorteilhaft und so setzte sich die Entwicklung fort, bis man über das Morsen und das Telefon schließlich die elektronische Nachricht erfand. 
+Im Rahmen der voranschreitenden Digitalisierung und Globalsierung stieg die Menge an übertragener natürlicher Sprache weiter rasant an, sodass heutzutage ein Leben ohne beispielsweise die E-Mail unvorstellbar scheint. Obgleich die Übertragung durch kabelgebundene oder drahtlose Kommunikation weitgehend automatisiert ist, erfolgt die Auswertung des Inhalts weiterhin manuell durch menschliche Empfänger.
+
+Die Daten selbst sind jedoch inzwischen kaum noch nur durch den Menschen effizient zu verarbeiten, sodass man nach einer neuen Möglichkeit sucht, dem Menschen diese Arbeit zu erleichtern, oder sogar abzunehmen. Mit diese Aufgabe beschäftigt sich NLP. 
+
+Bereits in den 1960er Jahren versuchte man durch Sprachcomputer bzw. Chatbots wie ELIZA (Weizenbaum 1966) die Mensch-Maschine-Kommunikation umzusetzen, indem die Textnachricht eines Benutzers automatisch durch einen Computer verarbeitet wurde und eine plausible Antwort gegeben wurde, damals jedoch noch ohne echte Wissensbasis. 
+Heutige Entwicklungen im Bereich Sprachassistenzsysteme sind alltäglicher Begleiter jedes Smartphone-Nutzers geworden; sie analysieren die Spracheingaben mithilfe von NLP-Techniken bezüglich ihrer Bedeutung in Echtzeit über Clouds.
+
+\subsubsection{NLP als Annäherung an natürlichsprachliche Probleme}
+Bereits bei der Mensch-Mensch-Kommunikation sind  Verständigungsprobleme vorhandenen und Teil der Kommunikation selbst. Die Intention einer Aussage ist etwa nicht nur abhängig von dem, was tatsächlich gesagt wird, sondern auch etwa von Gestik, Mimik und der Situation, in der kommuniziert wird. Bei der Untersuchung von geschriebenem Text in natürlicher Sprache treten diese Betrachtungen jedoch in den Hintergrund, da sich auf den Inhalt konzentriert wird und mitunter die Situation des Autoren unklar oder irrelevant ist. Wissen über die Problemdomäne ist jedoch zwingend für das Verständnis spezifischer Fachbegriffe von Nöten, daher müssen auch automatische NLP-Tools diese einbeziehen können. Zudem gibt es oft Veränderungen der Bedeutung von Sprache die stark kontextabhängig sind, wie zum Beispiel Sarkasmus oder Ironie. Hier soll nicht weiter auf Aspekte der Kommunikationswissenschaften eingegangen werden, jedoch ist beispielsweise die Ambiguität einer Aussage ganz alltäglich und hat gleichsam verschiedene Auswirkungen. Solche Mehrdeutigkeiten werden durch syntaktische und semantische Fehlinterpretationen verursacht. 
+
+Wo sich Menschen im Zweifel auf Erfahrungen und spezifische Fachkenntnisse verlassen oder bei ihrem Kommunikationspartner nachfragen können, müssen sich Computer allein auf die vorliegenden Dokumente in Schriftform verlassen; sie wissen nichts über den Autoren oder dessen Blickwinkel. Wie später gezeigt wird, kann jedoch etwa Fachwissen durch domänenspezifische Wissensbasen simuliert werden. 
+
+Die Frage nach einer intelligenten, algorithmen- und / oder wissensbasierten Auswertung durch Computer stellt sich im Angesicht der aufgezeigten Besonderheiten natürlicher Sprache. Es gilt also für NLP nicht nur die Probleme zu lösen, die generell mit präziser Automatisierung verbunden sind, sondern zusätzlich so zuverlässig wie möglich die oben genannten und der Sprache inhärenten Komplikationen zu bewältigen. 
+Bereits einfache Anfragen können computergestützte Frage-Antwort-Systeme wie SQL-Datenbanken an ihre Grenzen bringen, wie die verschiedenen Formen von Mehrdeutigkeiten zeigen können:
+
+Schon das Wort \textit{überblicken} kann das Übersehen von etwas, ebenso wie das im Blick haben (Gegenteil) bedeuten.
+
+Der Satz \textit{Die Betrachtung des Studenten} kann etwa als Student der (etwas) betrachtet, oder als ein Student, der (von jemand anderem) betrachtet wird, verstanden werden. Sätze mit solch einem Satzbau (bestehend aus nominalisiertem Verb, Bezugswort und Substantiv) verursachen unwillkürlich zwei mögliche Deutungen aufgrund der unklaren Syntax.
+
+Die Frage \textit{Verkaufen Sie Handys und Computer von Samsung?} kann als Frage nach allgemeinen Handys und nur Computern, spezifisch von Samsung oder nach Handys und Computern gleichermaßen nur von Samsung verstanden werden. Auch hier entsteht Unklarheit durch zwei mögliche Bezüge des einschränkenden Relativsatzes. Ob eine Aufzählung oder ein Unterschied (zwischen \textit{von Samsung} und \textit{nicht von Samsung} gemacht wird, ist syntaktisch unklar.)
+
+\textit{Wie schnell ist der Bus?} und \textit{Wie schnell ist der Bus da?} mögen zunächst ähnlich aussehen, fragen jedoch inhaltlich anders und haben nichts miteinander zu tun. Außerdem könnte der zweite Satz kontextabhängig etwa nach der Fahrzeit bis zum Ziel oder nach der Ankunftszeit, bis an der man einsteigen kann, fragen. Die vage Formulierung von Sätzen stellt bei der Frage nach deren Bedeutung eine Herausforderung dar, durch Untersuchung des Kontextes der Frage kann hier jedoch meist recht treffsicher geantwortet werden.
+
+Abgesehen von diesen syntaktischen Uneindeutigkeiten muss NLP auch Hürden der inhaltlichen Mehrdeutigkeit bzw. Semantik bewältigen. Aktuell beschäftigt man sich zum Beispiel mit der Aufgabe zu erkennen, ob ein Kommentar zu einem Video der Webseite Youtube eher positiv oder eher negativ gesinnt ist. Was hier für den Menschen schon beim ersten Lesen sofort erkennbar wird, stellt für den Computer ein ernstzunehmendes Problem dar. Tonalität und Stimmung des Kommentars, der unter einem Video als Reaktion entstehet, ist mitunter nicht direkt aus dem audiovisuellen Eindruck aus dem Video ersichtlich. 
+Solche scheinabr simplen Probleme sind für den Menschen scheinbar simpel zu lösen. Wie oben erwähnt existiert NLP bereits seit ca. Mitte des 20. Jahrhunderts, jedoch stellt die Behandlung natürlichsprachlicher Probleme auch heute noch eine Herausforderung bei der Implementierung dar. Wenn Systeme die oben genannte Beispiele nicht explizit ausschließen, muss die Verarbeitungslogik besondere Rücksicht auf Uneindeutigkeiten nehmen.
+
+\subsubsection{Definition}
+NLP ist grob definiert als die automatische oder halb-automatische Verarbeitung von natürlicher Sprache. Manche schließen aus dieser Definition die Erfassung der Sprache aus, da diese nicht Teil der eigentlichen Verarbeitung ist. (Der Einfachheit halber wird im weiteren Verlauf davon ausgegangen, dass die Sprache als digitale Textdatei vorliegt, wenn nicht explizit anders angegeben. Es kann sich jedoch auch um gesprochenes Wort oder Gesten handeln)
+
+NLP überschneitet sich mit vielen wichtigen Bereichen der Wissenschaft. Hauptsächlich sind dies Linguistik und Informatik, allerdings fließen auch Psychologie, Philosopie und Mathematik bzw. Logik stark mit ein. 
+
+\subsubsection{Ziel und funktionale Einordnung}
+Das Ziel von NLP ist die Extraktion von Informationen aus gegebenen Texten, also aus einem natürlichsprachigen Input einen Wissensoutput über den Inhalt des Dokumentes zu generieren. Dies geschieht praktisch mithilfe von NLP-Tools wie GATE.
+
+Dazu ist, wie im nächsten Abschnitt beschrieben, die linguistische Analyse der Dokumente der Sprachstruktur in Teilschritten erforderlich. Auf Basis der syntaktischen Analyse kann dann eine semantische Analyse durch Einsatz sogenannter Ontologien (Sammlung von Wissen aus einer Domäne) erfolgen. Letztendlich kann somit tatsächlich Wissen über die Bedeutung des Dokumenteninhalts gewonnen werden.
+
+\subsection{Linguistische Analyse}
+Der folgende Abschnitt beschäftigt sich mit der Analyse der sprachlichen Struktur eines Dokumentes. Am Anfang von NLP steht die linguistische Analyse des Textes etwa bezüglich Satzstruktur und Differenzierung von Wörtern aus der Sprache und Eigennamen. Das Ziel ist die sogenannte Annotation der Textbausteine bezüglich ihrer Bedeutung. Sachzusammenhänge und Relationen von Wörtern sollen dargestellt werden.
+
+NLP kann, wie später in dieser Arbeit beschrieben, als Zusammenfassung von 6 wesentlichen Teilbereichen verstanden werden. Begonnen bei der einfachen Wortanalyse, werden später Bedeutungen und Verknüpfungen zur Anwendbarkeit der Aussage eines Satzes oder Wortes in der realen Welt analysiert. Die Linguistik befasst sich seit jeher mit der Untersuchung von natürlicher Sprache im Hinblick auf die dahinterliegenden Konstrukte. NLP spaltet bei der Analyse der Sprachbestandteile weiter auf, etwa müssen Die folgenden Teilbereiche, die daraus bekannt sind, sind bei der natürlichsprachigen Analyse identifiziert worden:
+
+\begin{enumerate}
+\item
+Morphologische Analyse - Die Zerlegung von Wörtern bezüglich ihrer Struktur. Die Komposition aus Präfix, Wortstamm und Suffix von Wörtern wird erkannt, um Fall, Tempus, Numerus etc. des Wortes zu bestimmen. Im Englischen zeigt so die Endung -ed bei Verben die Vergangenheitsform an. Dabei ist zu beachten, dass Mehrdeutigkeiten entstehen können.
+\item
+Syntax - Zuordnung von Bedeutungen anhand sprachlicher Phrasen. Jede Sprache besitzt syntaktische Regelungen bezüglich der auftauchenden Wörter; im Deutschen folgt etwa auf einen Artikel stets ein Nomen oder bestimmte Signalwörter geben Satztyp und Tempus an. Auf Basis dieses Wissens können formale und strukturelle Analysen der Textbestandteile erfolgen.
+\item
+Semantiken - Die Identifikation einer Bedeutung von Sätzen und Begriffen. Die Semantik eines Textabschnittes wird häufig als "Logik" bezeichnet und fragt nach dessen Bedeutung bzw. Thema. Bedeutungen können anhand von Kompositionen einzelner Wörter und Sätze auf Basis der semantischen Analyse erkannt werden.
+\item
+Kontext - Darstellung von Sachzusammenhängen aus der Vereinigung von ähnlichen Bedeutungen. Textbausteine, die sich mit dem gleichen Thema beschäftigen, werden dem gleichen Sachzusammenhang zugeordnet und als Teil dessen annotiert.
+\end{enumerate}
+
+\subsection{Allgemeine NLP Architektur}
+Die Verarbeitung eines Dokumentes mittels NLP erfolgt nacheinander in einzelnen Schritten, die jeweils einen Bereich oder Teilbereich der Linguistik des Textes abbilden. Die Analyse erfolgt dabei nacheinander und wird immer feingranularer, begonnen bei einfachen grammatikalischen Analysen bis hin zu komplexen Wissensbasierten verfahren. Die folgenden Schritte stellen laut EINIGEN QUELLEN eine typische komponentenweise Architektur dar. Es ist anzumerken, dass auch mehrere Schritte gemeinsam in einem Schritt durchgeführt oder gar ganz entfallen können, abhängig von der Umsetzung anderer Stufen:
+
+\begin{enumerate}
+\item
+Input Processing - Erkennung der Dokumentensprache und Normalisierung des Textes. Im ersten Schritt geht es um das korrekte Format des Eingabedokumentes für die Verarbeitung. Dieser Vorgang stellt jedoch noch keine Analyse dar, sondern dient lediglich der Vorbereitung.
+\item
+Morphologische Analyse - Die meisten Sprachen sind im Bezug auf ihre Grammatik und syntaktische Struktur der Wörter in Systemen abbildbar, etwa durch Modellierung mittels Automaten zur Erzeugung der Worte. Auch können Vokabeln in Wörterbüchern/Lexika gesammelt und Regeln auf ihnen formuliert und gespeichert werden.
+\item
+Part-of-Speech-Tagging - Die einzelnen Wörter eines Satzes werden im Hinblick auf den Sach- oder Satzzusammenhang, wie auch auf die Stellung der Stellung im Satz hin analysiert. Basierend auf Kontext und/oder Erfahrungswerten bzw. Heuristiken können die Wörter korrekt erfasst und deren Fall getaggt werden. Subjekte, Prädikate usw. werden identifiziert. Dazu ist eine Wissensbasis mit Trainingsdaten und die Einordnung des Kontextes darin von Nöten.
+\item
+Parsing - Die Ergebnisse der  der vorherigen Schritte werden weiter verarbeitet und in ein standardisiertes Format gebracht. Syntaktische Zusammenhänge, wie etwa das Zusammenfassen von Wörtern zu einer gemeinsamen Bedeutungsphrase und das Zuordnen von Verben zu einem Nomen können nach dem Parsing dargestellt werden.
+\item
+Disambiguation - Die Entfernung von Mehrdeutigkeiten auf Basis der Ergebnisse des Parsings stellt einen entscheidenden Schritt für die semantischen Analysen dar. Nur wenn die Aussage und der Kontext eines Satzes klar erkennbar sind, kann dessen Semantik gezielt abgeleitet werden.
+\item
+Context Module - Textbausteine, deren Interpretation semantisch auf dem Kontext anderer Sätze oder Wörtern beruhen, können erfasst werden. Bei Anaphern ist etwa das Verständnis des aktuellen Kontext abhängig von einer vorherigen Deutung.
+\item
+Text Planning - Die Sachzusammenhänge und Semantiken, die aus dem zugrundeliegenden Text extrahiert wurden, werden für die Darstellung im fertigen Text definiert. Es wird festgelegt, welche der Bedeutungen übertragen und vermittelt werden sollen.
+\item
+Tactical Generation - Die Bedeutungen werden in Form konkreter Zeichenketten generiert, die die gewünschte Bedeutung enthalten. Diese Textbausteine basieren häufig direkt auf den Ergebnissen des vorherigen Parsings, da dort schon Bedeutungen zusammengefasst werden können.
+\item
+Morpholigical Generation - Die erzeugten Sätze werden morphologisch an die Rahmenbedingungen der verwendeten Sprache angepasst. Grammatiken und Regeln der Satzkonstruktion werden auf die erzeugten Wörter angewendet, sodass ein lesbarer und nachvollziehbarer Text entsteht.
+\end{enumerate}
+
+\subsection{Morpholoie in NLP}
+
+Der folgende Abschnitt befasst sich genauer mit der morphologischen Analyse von Wörtern und den dazu verwendeten Automaten. Da zu der englischen Sprache bereits die meisten Fortschritte erziehlt wurden und sie verhälnismäßig unkomplex im Vergleich zu anderen Sprachen ist, werden im Folgenden viele der Beispiele auf Englisch behandelt.
+
+Wie bereits erwähnt befasst sich die Morphologie mit der Struktur, Zusammensetzung und Korrektheit einzelner Wörter. Jedes Wort der Englischen sprache besteht aus mindestens einem Wortstamm und beliebig vielen Affixen. Affixe sind unterteilt in Präfixe und Suffixe, abhängig davon, ob sie vor oder hinter dem Wortstamm auftauchen. Es gibt Affixe, welche auch in der Mitte des Wortes eingeordnet werden. Diese existieren jedoch nicht in der englischen Sprache und sind daher künftig zu vernachlässigen. 
+
+Man betrachte beispielsweise das Wort "believe" von dem englischen Verb "to believe" (zu Deutsch: "glauben"). Hängt man das Suffix "-able" an so erhält man das Adjektiv "believable" ("glaubhaft"), fügt man nun das Präfix "un-" hinzu erhält man die Negation "unbelievable" ("unglaubhaft"). Die morphologische Analyse erkennt dies nicht nur als ein Wort, sondern als Präfix-Stamm-Suffix-Konstrukt.
+
+Es wird unterschieden zwischen ableitender und flexionaler Morphologie, wobei die Grenze jedoch nicht ganz einfach zu setzen ist. Affixe wie "anti-", "re-" und das oben verwendete "un-" gelten als ableitend und können mehrfach und sogar rekursiv zu Stämmen auftauchen. Sie fügen in der Regel eine Zusatzinformation an den Stamm an, wie z.B. Negation. Es kann auch, wie in dem Beispiel oben demonstriert, zur Änderung der Wortart kommen.  Flexionale Affixe werden normalerweise wegen grammatikalischer Regeln wie Pluralisierung hinzugefügt. Hierzu gehören das Plural-"-s" und die Endung "-ed" in der Vergangenheitsform. 
+
+\subsubsection{Buchstabierregeln mit endlichen Automaten}
+
+In der Morphologie gibt es eine Vielzahl von Regeln die bei dem Unterteilen, Interpretieren und Zusammensetzen von Wörtern zu beachten sind. Wenn man das "believe"-Beispiel aus dem obigen Abschnitt erneut betrachtet, fällt auf, dass bei dem hinzufügen des Siffixes "-able" der letzte Buchstabe des Wortstammes entfällt. Dies ist natürlich kein Tippfehler, sondern beruht auf einer der besagten Regeln. Die oben verwendete Regel lässt sich wie folgt darstellen:
+
+\begin{center}
+e $\rightarrow \varepsilon \textasciicircum \_$able
+\end{center}
+
+Das e ist in dem Falle der in Frage stehende Buchstabe, welcher, symbolisiert durch den Pfeil, in das $\varepsilon$ (das leere Wort) gewandelt wird, falls ein Affix angehängt wird ($\textasciicircum$) und es an dieser Stelle ($\_$) steht, also vor dem "able".
+
+Solche Regeln lassen sich zu morphologischen Zwecken gut mit endlichen Zustandswandlern (finite state transducers) realisieren, was im Folgenden demonstriert werden soll.
+
+Ein endlicher Zustandswandler besteht aus einer endlichen anzahl von Knoten, welche durch Kanten verbunden sind. Knoten sind unterteilt in einen Start-Knoten, eine beliebige Anzahl an normalen Knoten und mindestens einen Ziel-Knoten. Der Start-Knoten steht für das leere Wort, also ein Wort ohne Zeichen. Das Erreichen eines Ziel-Knotens heißt, dass das Wort Korrekt ist und akzeptiert werden kann. Die Kanten repräsentieren die Abbildung einer Zeichenkette auf eine andere. Endliche Zustandswandler sind bidirektional, wodurch sie sowohl zum Erstellen, als auch zum Auflösen von Wörtern verwendetet werden können. Die folgende Abbildung zeigt den eindlichen Zustandswandler, der die Umsetzung der besagten "able"-Anhangs-Regel ermöglicht:
+\\
+\\
+\begin{center}
+\begin{tikzpicture}
+
+\node[accepting] (a) at (0,0)  [circle, draw, minimum size=10ex] {1};
+\node (b) at (4,0)  [circle, draw, minimum size=10ex] {2};
+\node (c) at (4,-4) [circle, draw, minimum size=10ex] {3};
+\node[accepting] (d) at (0,-4) [circle, draw, minimum size=10ex] {4};
+\draw[thick, ->] (a) to [bend left] node[midway, above] {e :  $\varepsilon$} (b);
+\draw[thick, ->] (b) to [bend left] node[midway, below] {other: e+other} (a);
+\draw[thick, ->] (b) to [bend left] node[midway, right] {$\textasciicircum : \varepsilon $} (c);
+\draw[thick, ->] (c) to [bend left] node[midway, below] {able:able} (d);
+
+\end{tikzpicture}
+\end{center}
+
+\newpage
+\begin{thebibliography}{5}
+
+
+\end{thebibliography}
+\end{document}
