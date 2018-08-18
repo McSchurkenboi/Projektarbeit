@@ -127,11 +127,11 @@ Wie bereits erwähnt befasst sich die Morphologie mit der Struktur, Zusammensetz
 
 Man betrachte beispielsweise das Wort "believe" von dem englischen Verb "to believe" (zu Deutsch: "glauben"). Hängt man das Suffix "-able" an so erhält man das Adjektiv "believable" ("glaubhaft"), fügt man nun das Präfix "un-" hinzu erhält man die Negation "unbelievable" ("unglaubhaft"). Die morphologische Analyse erkennt dies nicht nur als ein Wort, sondern als Präfix-Stamm-Suffix-Konstrukt.
 
-Es wird unterschieden zwischen ableitender und flexionaler Morphologie, wobei die Grenze jedoch nicht ganz einfach zu setzen ist. Affixe wie "anti-", "re-" und das oben verwendete "un-" gelten als ableitend und können mehrfach und sogar rekursiv zu Stämmen auftauchen. Sie fügen in der Regel eine Zusatzinformation an den Stamm an, wie z.B. Negation. Es kann auch, wie in dem Beispiel oben demonstriert, zur Änderung der Wortart kommen.  Flexionale Affixe werden normalerweise wegen grammatikalischer Regeln wie Pluralisierung hinzugefügt. Hierzu gehören das Plural-"-s" und die Endung "-ed" in der Vergangenheitsform. 
+Es wird unterschieden zwischen ableitender und flexionaler Morphologie, wobei die Grenze jedoch nicht ganz einfach zu setzen ist. Affixe wie "anti-", "re-" und das oben verwendete "un-" gelten als ableitend und können mehrfach und sogar rekursiv zu Stämmen auftauchen. Sie fügen in der Regel eine Zusatzinformation an den Stamm an, wie z.B. Negation. Es kann auch, wie in dem Beispiel oben demonstriert, zur Änderung der Wortart kommen. Flexionale Affixe werden normalerweise wegen grammatikalischer Regeln wie Pluralisierung hinzugefügt. Hierzu gehören das Plural-"-s" und die Endung "-ed" in der Vergangenheitsform. 
 
 \subsubsection{Buchstabierregeln mit endlichen Automaten}
 
-In der Morphologie gibt es eine Vielzahl von Regeln die bei dem Unterteilen, Interpretieren und Zusammensetzen von Wörtern zu beachten sind. Wenn man das "believe"-Beispiel aus dem obigen Abschnitt erneut betrachtet, fällt auf, dass bei dem hinzufügen des Siffixes "-able" der letzte Buchstabe des Wortstammes entfällt. Dies ist natürlich kein Tippfehler, sondern beruht auf einer der besagten Regeln. Die oben verwendete Regel lässt sich wie folgt darstellen:
+In der Morphologie gibt es eine Vielzahl von Regeln die bei dem Unterteilen, Interpretieren und Zusammensetzen von Wörtern zu beachten sind. Wenn man das "believe"-Beispiel aus dem obigen Abschnitt erneut betrachtet, fällt auf, dass bei dem hinzufügen des Suffixes "-able" der letzte Buchstabe des Wortstammes entfällt. Dies ist natürlich kein Tippfehler, sondern beruht auf einer der besagten Regeln. Die oben verwendete Regel lässt sich wie folgt darstellen:
 
 \begin{center}
 e $\rightarrow \varepsilon \textasciicircum \_$able
@@ -141,7 +141,7 @@ Das e ist in dem Falle der in Frage stehende Buchstabe, welcher, symbolisiert du
 
 Solche Regeln lassen sich zu morphologischen Zwecken gut mit endlichen Zustandswandlern (finite state transducers) realisieren, was im Folgenden demonstriert werden soll.
 
-Ein endlicher Zustandswandler besteht aus einer endlichen anzahl von Knoten, welche durch Kanten verbunden sind. Knoten sind unterteilt in einen Start-Knoten, eine beliebige Anzahl an normalen Knoten und mindestens einen Ziel-Knoten. Der Start-Knoten steht für das leere Wort, also ein Wort ohne Zeichen. Das Erreichen eines Ziel-Knotens heißt, dass das Wort Korrekt ist und akzeptiert werden kann. Die Kanten repräsentieren die Abbildung einer Zeichenkette auf eine andere. Endliche Zustandswandler sind bidirektional, wodurch sie sowohl zum Erstellen, als auch zum Auflösen von Wörtern verwendetet werden können. Die folgende Abbildung zeigt den eindlichen Zustandswandler, der die Umsetzung der besagten "able"-Anhangs-Regel ermöglicht:
+Ein endlicher Zustandswandler ist ein Graph aus einer endlichen Anzahl von Knoten (Zuständen), welche durch Kanten verbunden sind. Knoten sind unterteilt in einen Start-Knoten, eine beliebige Anzahl an normalen Knoten und mindestens einen Ziel-Knoten. Der Start-Knoten als Input das zu verarbeitende Wort, welches nun in eine Abbildung der Aufbaustruktur des Wortes übertragen werden soll. Das Erreichen eines Ziel-Knotens heißt, dass das Wort korrekt ist und akzeptiert werden kann. Die Kanten repräsentieren die Abbildung einer Zeichenkette auf eine andere. Dies funktioniert bidirektional, wodurch sie sowohl zum Erstellen, als auch zum Auflösen von Wörtern verwendetet werden können. Die folgende Abbildung zeigt den eindlichen Zustandswandler, der die Umsetzung der besagten "able"-Anhangs-Regel ermöglicht:
 \\
 \\
 \begin{center}
@@ -151,13 +151,47 @@ Ein endlicher Zustandswandler besteht aus einer endlichen anzahl von Knoten, wel
 \node (b) at (4,0)  [circle, draw, minimum size=10ex] {2};
 \node (c) at (4,-4) [circle, draw, minimum size=10ex] {3};
 \node[accepting] (d) at (0,-4) [circle, draw, minimum size=10ex] {4};
-\draw[thick, ->] (a) to [bend left] node[midway, above] {e :  $\varepsilon$} (b);
-\draw[thick, ->] (b) to [bend left] node[midway, below] {other: e+other} (a);
-\draw[thick, ->] (b) to [bend left] node[midway, right] {$\textasciicircum : \varepsilon $} (c);
+\draw[thick, ->] (a) to [bend left] node[midway, above] {$\varepsilon$ : e} (b);
+\draw[thick, ->] (a) to [loop above] node[midway, above] {other : other} (a);
+%\draw[thick, ->] (b) to [bend left] node[midway, below] {e : $\varepsilon$} (a);
+\draw[thick, ->] (b) to [bend left] node[midway, right] {$\varepsilon : \textasciicircum$} (c);
 \draw[thick, ->] (c) to [bend left] node[midway, below] {able:able} (d);
 
 \end{tikzpicture}
 \end{center}
+
+Der oben abgebildete Zustandswandler ist in der Lage die beschriebene Regel umzusetzen wie folgt: In Zustand 1 erfolgt der Input des eingelesenen Wortes, also in diesem Falle "believable". Über die Schleife mit "other:other" ist die Abbildung aller nicht speziell angegebenen Zeichenfolgen auf sich selbst beschrieben. Es kann jederzeit das leere Wort auf ein "e" Übertragen werden, dies geschieht jedoch nur, falls auch ein "able" folgt. In dem Fall wird zuvor noch aus dem leeren Wort ein Affix-Zeichen ($\textasciicircum$) generiert (Es ist anzumerken, dass der Zustandswandler nicht deterministisch ist, sich jedoch über die Potenzmengenkonstruktion immer ein äquivalenter deterministischer Zustandswandler erstellen ließe). So wird also das Wort "believable" durch diesen Automaten als "believe$\textasciicircum$able" Interpretiert, und somit das "able"-Affix erkannt. Andersherum ließe sich aus dem Wortaufbau "believe$\textasciicircum$able" das korrekte Wort "believable" generieren. 
+
+\subsection{Part of speech tagging und Wortvorhersage}
+Dieses Kapitel befasst sich mit der Transformation der Ergebnisse der morphologischen Analyse einzelner Wörter in eine sinnvolle Kategorisierung der Wörter im Sachzusammenhang aus mehreren Wörtern. Part-of-speech tagging klassifiziert einzelne Worte eines Textes so, dass erfasst wird, welchen Teil der Sprache sie ausmachen. Die einzelnen Wörter des Textes werden bezüglich ihrer grammatischen Funktion und Anzahl markiert (\textit{annotiert}). Im Deutschen und Englischen sind die grammatikalischen Regeln im Verhältnis zu etwa chinesisch oder türkisch recht einfach erfassbar, da Satzbau und Wortbildung die Wortfunktion definieren. Noam Chomsky befasste sich sogar mit der Frage, wie sich das Englische formalisieren, das heißt etwa mit Hilfe von Automaten modellieren, lässt. Die Spracherfassung natürlicher Sprache durch Computer wurde somit ermöglicht. Die Identifikation einzelner Bausteine muss derart erfolgen, dass sie den Kontext des Satzes erfasst, also Sinn ergibt. Diese Kennzeichnung geht über die Analyse einzelner Wörter hinaus, sie erfasst auch die Syntax umgebender Wörter eines Satzes. 
+
+Im Deutschen ist es etwa recht wahrscheinlich, dass auf ein Nomen am Satzanfang als nächstes Wort ein Verb folgt, da dies einen typischen Satzbau darstellt. Ein part-of-speech tagger sollte daher beispielsweise im Satz \textit{"Ich fahre Fahrrad."} korrekt das "Ich" als Nomen, das "fahre" als Verb und das "Fahrrad" als Akkusativobjekt darstellen; Die isolierte "Betrachtung von "Fahrrad" ließe aber auch die Kategorisierung als Nomen zu; diese Mehrdeutigkeit einzelner Worte im Satz wird durch Analyse des syntaktischen Kontextes eliminiert.
+
+Solche syntaktischen Regeln aus einer Sprache werden in Form von sogenannten \textit{corpora} geliefert; sie stellen Trainingsdaten in Form von tatsächlicher Sprache bzw. Text dar. Im Englischen wird etwa häufig die Zeitung The Wall Street Journal genutzt, um die Repräsentation bestimmter Satzstrukturen und Wortfolgen statistisch zu erfassen. Alternativ können auch standardisierte Corpora wie der Lancaster-Oslo-Bergen Corpus verwendet werden, der etwa eine Million Wörter enthält. Corpora sind etwa für NLP auf Basis von Machine-Learning-Algorithmen erforderlich, können darüber hinaus aber auch etwa zur Rechtschreibprüfung oder Textunterteilung benutzt werden. Die meisten Textverarbeitungsprogramme können heutzutage etwa erkennen, wenn sich syntaktische Fehler in einem Satz ereignen (Kommasetzung, falscher Kasus, etc.). Es ist anzumerken, dass part-of-speech tagging nicht unbedingt vorher annotierten Texten bedarf, aber ohne diese fällt eine syntaktische Einordnung ungleich schwerer und die Fehlerquote steigt massiv. Mehrdeutigkeiten aus der Syntax heraus können somit nicht aufgeschlüsselt werden. 
+
+Die Anwendung eines Corpus auf ein natürlichsprachliches Dokument ermöglicht sogleich auch eine Vorhersage der nächsten Wörter bzw. Sprachbausteine, nachdem schon ein Teilsatz gelesen wurde. Diese \textit{prediction} kann auf Basis bekannter Regelmäßigkeiten also schon vor der Wortanalyse recht genau die nächste grammatikalische Komponente bzw. den Worttyp vorhersagen.
+
+\subsubsection{N-gram Modelle zur Sprachvorhersage und -modellierung}
+Auf Basis der vorliegenden Corpora existieren eine Vielzahl an Regeln bezüglich des Satzbaus und bekannnter Folgen von Worttypen, wenn ein neues Dokument annotiert werden soll. Zur Veranschaulichung einer möglichen Annotation soll in diesem Abschnitt die Notation von CLAWS 5 (QUELLE) für Annotationen genutzt werden.
+
+Bei erneuter Betrachtung des obigen Beispiels \textit{"Ich fahre Fahrrad."} könnte, wenn dieser Satz als minimaler Corpus vorliegt, neben der Regel Subjekt-Prädikat-Objekt eines Satzbaus auch beinhalten, dass der Punkt ein Satzende markiert und das Substantive und Personalpronomen mit einem Großbuchstaben beginnen ("Ich" und "Fahrrad" können Nomen sein und sind groß geschrieben). Sprachvorhersage nutzt diese bekannten Regeln und würde etwa aus der obigen Regel herleiten, das, wenn ein Verb gelesen wurde, darauf immer ein Substantiv bzw. das Satzobjekt folgt. Kontextfreie Bertrachtung einzelner Wörter, also ohne andere Taggings mit einzubeziehen, wird als Unigram bezeichnet. Dabei werden jedoch Regeln über den Zusammenhang von Wortketten vollständig ignoriert und das Ergebnis ist ähnlich dem der morphologischen Analyse. Vorhersage-Systeme, die sich der Annotierung des vorigen Wortes bedienen, werden als Bigramme (englisch \textit{bigrams}) bezeichnet, Trigrams dementsprechend bei Berücksichtigung der zwei vorigen Wörter und N-gramme, wenn alle n-1 zuvor gelesenen Wörter, also die gesamte Terminologie des Textes bis zum n-ten Wort, berücksichtigt werden.
+Die Wahrscheinlichkeit des Typen des Folgewortes auf Basis eines Bigrams lässt sich berechnen, indem aus einem Corpus die Worttypen an der jeweiligen Satzstelle gezählt und statistisch erfasst werden. Aus folgendem Corpus vierer Aussagen lässt sich dies wie folgt ableiten (zur Vereinfachung werden hier tatsächliche Wörter und nicht deren Annotation getaggt):
+\\
+
+(1)ich mag Züge (2)ich mag guten Tee (3)guten Morgen (4)guten Abend
+\\
+
+Zwischen einzelnen Äüßerungen wird der Platzhalter <s> als Indikator einer neuen Aussage verwendet, sodass dem Bigram nun eine Zeichenkette mit den obigen Aussagen, getrennt durch <s> zur Verfügung steht.
+Berechnet werden nun die Wahrscheinlichkeiten des Folgewortes auf Basis der vorherigen, formal ausgedrückt: $\frac{C(w_{n-1} w_{n})}{\sum{w}{}C(w_{n-1}w}$
+\\
+\begin{tabular}{lll}
+Sequenz & Anzahl & Wahrscheinlichkeit
+
+\end{tabular}
+\\
+
+Anhand des folgenden Corpus ergibt sich etwa:
+
 
 \newpage
 \begin{thebibliography}{5}
