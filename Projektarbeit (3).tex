@@ -175,23 +175,46 @@ Die Anwendung eines Corpus auf ein natürlichsprachliches Dokument ermöglicht s
 Auf Basis der vorliegenden Corpora existieren eine Vielzahl an Regeln bezüglich des Satzbaus und bekannnter Folgen von Worttypen, wenn ein neues Dokument annotiert werden soll. Zur Veranschaulichung einer möglichen Annotation soll in diesem Abschnitt die Notation von CLAWS 5 (QUELLE) für Annotationen genutzt werden.
 
 Bei erneuter Betrachtung des obigen Beispiels \textit{"Ich fahre Fahrrad."} könnte, wenn dieser Satz als minimaler Corpus vorliegt, neben der Regel Subjekt-Prädikat-Objekt eines Satzbaus auch beinhalten, dass der Punkt ein Satzende markiert und das Substantive und Personalpronomen mit einem Großbuchstaben beginnen ("Ich" und "Fahrrad" können Nomen sein und sind groß geschrieben). Sprachvorhersage nutzt diese bekannten Regeln und würde etwa aus der obigen Regel herleiten, das, wenn ein Verb gelesen wurde, darauf immer ein Substantiv bzw. das Satzobjekt folgt. Kontextfreie Bertrachtung einzelner Wörter, also ohne andere Taggings mit einzubeziehen, wird als Unigram bezeichnet. Dabei werden jedoch Regeln über den Zusammenhang von Wortketten vollständig ignoriert und das Ergebnis ist ähnlich dem der morphologischen Analyse. Vorhersage-Systeme, die sich der Annotierung des vorigen Wortes bedienen, werden als Bigramme (englisch \textit{bigrams}) bezeichnet, Trigrams dementsprechend bei Berücksichtigung der zwei vorigen Wörter und N-gramme, wenn alle n-1 zuvor gelesenen Wörter, also die gesamte Terminologie des Textes bis zum n-ten Wort, berücksichtigt werden.
-Die Wahrscheinlichkeit des Typen des Folgewortes auf Basis eines Bigrams lässt sich berechnen, indem aus einem Corpus die Worttypen an der jeweiligen Satzstelle gezählt und statistisch erfasst werden. Aus folgendem Corpus vierer Aussagen lässt sich dies wie folgt ableiten (zur Vereinfachung werden hier tatsächliche Wörter und nicht deren Annotation getaggt):
-\\
+Die Wahrscheinlichkeit des Typen des Folgewortes auf Basis eines Bigrams lässt sich berechnen, indem aus einem Corpus die Worttypen an der jeweiligen Satzstelle gezählt und statistisch erfasst werden. 
 
-(1)ich mag Züge (2)ich mag guten Tee (3)guten Morgen (4)guten Abend
-\\
-
-Zwischen einzelnen Äüßerungen wird der Platzhalter <s> als Indikator einer neuen Aussage verwendet, sodass dem Bigram nun eine Zeichenkette mit den obigen Aussagen, getrennt durch <s> zur Verfügung steht.
+Als Beispiel soll hier zunächst ein Bigram zur tatsächlichen Wortvorhersage dienen, anschließend wird diskutert, inwiefern solche Techniken auch den nächsten part-of-speech in einem Text vorhersagen können. Aus folgendem Corpus vierer Aussagen lässt sich dies wie folgt ableiten:
+\\ \tt
+<s> ich mag Züge <s> ich mag guten Tee \\
+<s> guten Morgen <s> guten Abend <s>
+\\ \rm
+Zwischen einzelnen Äüßerungen wird der Platzhalter <s> als Indikator einer neuen Aussage verwendet, sodass dem Bigram nun eine Zeichenkette mit den obigen Aussagen, getrennt durch \tt <s> \rm zur Verfügung steht.
 Berechnet werden nun die Wahrscheinlichkeiten des Folgewortes auf Basis der vorherigen, formal ausgedrückt: $\frac{C(w_{n-1} w_{n})}{\sum{w}{}C(w_{n-1}w}$
-\\
+\\ \tt
 \begin{tabular}{lll}
-Sequenz & Anzahl & Wahrscheinlichkeit
-
+Sequenz & Anzahl & $P(w_{n}|P(w_{n-1})$ \\
+<s> & 4 & \\
+<s> ich & 2 & 0,50 \\
+<s> guten & 2 & 0,50 \\ 
+ich mag & 2 & 1,0 \\ 
+mag Züge & 1 & 0,5 \\
+mag guten & 1 & 0,5 \\
+Züge & 1 & \\
+Züge <s> & 1 & 1 \\
+guten & 3 & \\
+guten Tee & 1 & $\frac{1}{3}$ \\
+guten Morgen & 1 & $\frac{1}{3}$ \\
+guten Abend & 1 & $\frac{1}{3}$ \\
+Tee & 1 & \\
+Tee <s> & 1 & 1 \\
+Morgen & 1 & \\
+Morgen <s> & 1 & 1 \\
+Abend & 1 & \\
+Abend <s> & 1 & 1\\
 \end{tabular}
-\\
+\\ \rm
 
-Anhand des folgenden Corpus ergibt sich etwa:
+Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Folgewortes nach einem Wort ablesen. Auf "ich mag" folgt insg. einmal "Züge" und einmal "guten". Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes bzw. Satzes berechnet werden.
 
+Neben der Möglichkeit, einzelne Wörter vorherzusagen, eignen sich n-Gramme wie oben erwähnt auch zur Darstellung der Wahrschinlichkeiten von Satzbausteinen, also der von Platzhaltern für alle möglichen Wörter einer Kategorie bzw. Komponente. Stochastisches Part-of-speech tagging kann anhand dieser die Wahrscheinlichkeiten vorhersagen, welcher Worttyp wahrscheinlich noch folgen wird. Auf Basis eines Corpus können simit Mehrdeutigkeiten durch den Sachzusammenhang, den der Corpus beschreibt, aufgeöst werden. Das tagset von CLAWS 5 annotiert Wortkategorien wie folgt:
+\tt
+NN1 Nomen im Singular.
+\rm
+I saw her duck.
 
 \newpage
 \begin{thebibliography}{5}
