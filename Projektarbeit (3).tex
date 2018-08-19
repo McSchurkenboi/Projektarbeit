@@ -21,6 +21,7 @@
 
 \newpage
 \tableofcontents
+\listoftables
 
 \newpage
 \section{Einleitung}
@@ -227,7 +228,8 @@ Als Beispiel dazu soll hier zunächst ein Bigram zur tatsächlichen Wortvorhersa
 \\ \rm
 
 Zwischen einzelnen Äüßerungen wird der Platzhalter <s> als Indikator einer neuen Aussage verwendet, sodass dem Bigram nun eine Zeichenkette mit den obigen Aussagen, getrennt durch \tt <s> \rm zur Verfügung steht. Nun wird die mögliche Wortkombinatorik aus dem Corpus extrahiert, indem Kombinationen gezählt werden. Berechnet werden nun die Wahrscheinlichkeiten des Folgewortes auf Basis der vorherigen, formal ausgedrückt: $\frac{C(w_{n-1} w_{n})}{\sum{w}{}C(w_{n-1}w)}$
-\\ \tt
+\tt
+\begin{table}[h]
 \begin{tabular}{lll}
 Sequenz & Anzahl & $P(w_{n}|P(w_{n-1})$ \\
 <s> & 4 & \\
@@ -249,22 +251,27 @@ Morgen <s> & 1 & 1 \\
 Abend & 1 & \\
 Abend <s> & 1 & 1\\
 \end{tabular}
-\\ \rm
-
+\caption{Wahrscheinlichkeitstabelle Bigram zur Wortvorhersage}
+\end{table}
+\rm
 Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Folgewortes nach einem Wort ablesen. Auf "ich mag" folgt insg. einmal "Züge" und einmal "guten". Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes "Züge" mit $P("$Züge$"|$"ich mag"$)$ = 50\% berechnen.
 
 \subsubsection{Stochastisches POS-tagging}
 Neben der Möglichkeit, einzelne Wörter vorherzusagen, eignen sich n-Gramme wie oben erwähnt auch zur Darstellung der Wahrschinlichkeiten von Satzbausteinen, also der von Platzhaltern für alle möglichen Wörter einer Kategorie bzw. Komponente. Stochastisches Part-of-speech tagging kann anhand dieser die Wahrscheinlichkeiten vorhersagen, welcher Worttyp wahrscheinlich noch folgen wird. Die Trainingsdaten sind, nach Best-Practices aus dem maschinellen Lernen, in der Regel manuell und durch Benutzer markiert worden, damit dem Programm ein korrekter Datensatz zur Verfügung steht. Auf Basis eines Corpus können somit Mehrdeutigkeiten durch den syntaktischen Zusammenhang, den der Corpus beschreibt, eindeutig aufgelöst werden. In einem Beispiel mit syntaktischer Ambiguität werden jedoch Wörter zunächst verschieden annotiert.
 Das tagset von CLAWS 7 annotiert Wortkategorien wie folgt:
 
-\tt \begin{tabular}{ll}
+\tt 
+\begin{table}[h]
+\begin{tabular}{ll}
 PPIS2	& 1st person plural subjective personal pronoun \\
 PPHO1	& 3rd person sing. objective personal pronoun\\
 NN1		& singular common noun \\
 VV0		& base form of lexical verb \\
 VVD		& past tense of lexical verb \\
 PUN		& punctuation
-\end{tabular} \\
+\end{tabular}
+\caption{Annotationen gemäß \cite{clw7} (Auszug)}
+\end{table} 
 
 %NN1 Nomen im Singular. \\
 %PNP Personalpronomen.\\
@@ -294,8 +301,12 @@ Problematisch ist, dass auch syntaktisch falsche Deutungen entstehen können, we
 Durch das Verwenden von manuell erstellten Corpora kann zumindest diese eindeutig falsche Deutung der Syntax eliminiert werden, da solch ein Sprachkonstrukt in der englischen Sprache nicht auftreten kann. Das Tagging des folgenden minimalen Korpus könnte dann wieder als Eingabe für ein n-Gram dienen, welches auf Basis der höchsten Wahrscheinlichkeit ein Wort annotiert.
 
 \tt
-<s> People use to see a duck. <s> Most people duck in order to avoid danger. <s>
+People use to see a duck. Most people duck in order to avoid danger.
+\rm
+
 Der Corpus könnte annotiert sein:
+
+\tt
 We(NN2) use(JK) to(TO) see(VV0) a(AT1) duck(NN1).(PUN) Most(DAT) people(NN2) duck(VV0) in(BCL11) order(BCL12) to(BCL13) avoid(VV0) danger(NN1).
 \rm
 
@@ -303,8 +314,9 @@ Dauraus ergibt sich unter Verwendung eines n-Grams umgangssprachlich formuliert,
 
 Abschließend lässt sich daher sagen, dass die Trainingsdaten möglichst repräsentativ für die möglichen Konstruktionen in einer Sprache bzw. in der Anwendungsdomäne des POS-taggers sein müssen, um akkurate Ergebnisse zu erzielen. Dies betrifft sowohl die Qualität der im Corpus enthaltenen Wörter und Sätze, als auch deren Korrektheit im Hinblick auf die quantitative Repräsentation einzelner Konstrukte. Häufig anzutreffende Hauptsatz-Nebensatz-Konstruktionen müssen etwa für die Analyse eines stilistisch einfachen Textes, der zum Großteil aus solchen besteht, häufiger vorhanden sein, als kompliziert verschachtelte Kausalsätze und eingeschobene Relativsätze mit beispielsweise vielen beschreibenden Aufzählungen.  
 \newpage
-\begin{thebibliography}{5}
 
+\begin{thebibliography}{5}
+\bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr
 
 \end{thebibliography}
 \end{document}
