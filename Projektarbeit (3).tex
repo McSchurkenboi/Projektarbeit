@@ -21,6 +21,7 @@
 
 \newpage
 \tableofcontents
+\listoftables
 
 \newpage
 \section{Einleitung}
@@ -168,8 +169,9 @@ Um unnötige Fehler zu vermeiden ist es ratsam zusätzlich ein Lexikon mit Worts
 \subsubsection{Buchstabierregeln mit endlichen Zustandswandlern}
 
 In der Morphologie gibt es eine Vielzahl von Regeln die bei dem Unterteilen, Interpretieren und Zusammensetzen von Wörtern zu beachten sind. Wenn man das "believe"-Beispiel aus Abschnitt 2.4 erneut betrachtet, fällt auf, dass bei dem hinzufügen des Suffixes "-able" der letzte Buchstabe des Wortstammes entfällt. Dies ist natürlich kein Tippfehler, sondern beruht auf einer der besagten Regeln. Die oben verwendete Regel lässt sich wie folgt darstellen:
-
+=======
 In der Morphologie gibt es eine Vielzahl von Regeln die bei dem Unterteilen, Interpretieren und Zusammensetzen von Wörtern zu beachten sind. Wenn man das "believe"-Beispiel aus dem obigen Abschnitt erneut betrachtet, fällt auf, dass bei dem hinzufügen des Suffixes "-able" der letzte Buchstabe des Wortstammes entfällt. Dies ist natürlich kein Tippfehler, sondern beruht auf einer der besagten Regeln. Die oben verwendete Regel lässt sich wie folgt darstellen:
+>>>>>>> c9fa30f312e23515df11c7b8dc1e889de1ff2df0
 
 \begin{center}
 e $\rightarrow \varepsilon \textasciicircum \_$able
@@ -202,6 +204,7 @@ Ein endlicher Zustandswandler ist ein Graph aus einer endlichen Anzahl von Knote
 
 Der oben abgebildete Zustandswandler ist in der Lage die beschriebene Regel umzusetzen wie folgt: In Zustand 1 erfolgt der Input des eingelesenen Wortes, also in diesem Falle "believable". Über die Schleife mit "other:other" ist die Abbildung aller nicht speziell angegebenen Zeichenfolgen auf sich selbst beschrieben. Es kann jederzeit das leere Wort auf ein "e" Übertragen werden, dies geschieht jedoch nur, falls auch ein "able" folgt. In dem Fall wird zuvor noch aus dem leeren Wort ein Affix-Zeichen ($\textasciicircum$) generiert (Es ist anzumerken, dass der Zustandswandler nicht deterministisch ist, sich jedoch über die Potenzmengenkonstruktion immer ein äquivalenter deterministischer Zustandswandler erstellen ließe). So wird also das Wort "believable" durch diesen Automaten als "believe$\textasciicircum$able" Interpretiert, und somit das "able"-Affix erkannt. Andersherum ließe sich aus dem Wortaufbau "believe$\textasciicircum$able" das korrekte Wort "believable" generieren. 
 
+<<<<<<< HEAD
 Üblicherweise wird für jede Regel ein eigener Zustandswandler erstellt, welche dann bei der Verarbeitung von Wörtern parallel ablaufen. Dies ist gut für die Performanz, birgt allerdings Probleme, wenn man mit komplexen Wörtern arbeitet, bei denen mehrere Regeln gleichzeitig anzuwenden sind, bei denen verschieden valide Ergebnisse erzielt werden können. So wäre es z.B. problematisch zwischen den Wörtern "un$\textasciicircum$ion$\textasciicircum$ise$\textasciicircum$ed" (Chemie) und "union$\textasciicircum$ise$\textasciicircum$ed" (gewerkschaftlich organisiert) zu unterscheiden. 
 
 \subsection{Part of speech tagging und Wortvorhersage}
@@ -214,7 +217,7 @@ Solche Regelmäßigkeiten werden in Form von sogenannten \textit{corpora} gelief
 Die Anwendung eines Corpus auf ein natürlichsprachliches Dokument ermöglicht sogleich auch eine Vorhersage der nächsten Wörter bzw. Sprachbausteine, nachdem schon ein Teilsatz gelesen wurde. Diese \textit{prediction} kann auf Basis bekannter Regelmäßigkeiten also schon vor der Wortanalyse recht genau die nächste grammatikalische Komponente bzw. den Worttyp vorhersagen.
 
 \subsubsection{N-gram Modelle zur Sprachvorhersage und -modellierung}
-Auf Basis der vorliegenden Corpora existieren eine Vielzahl an Regeln bezüglich des Satzbaus und bekannnter Folgen von Worttypen, wenn ein neues Dokument annotiert werden soll. Zur Veranschaulichung einer möglichen Annotation soll in diesem Abschnitt die Notation von CLAWS 5 (QUELLE) für Annotationen genutzt werden.
+Auf Basis der vorliegenden Corpora existieren eine Vielzahl an Regeln bezüglich des Satzbaus und bekannnter Folgen von Worttypen, wenn ein neues Dokument annotiert werden soll. Zur Veranschaulichung einer möglichen Annotation soll in diesem Abschnitt die Notation von CLAWS 7 (http://ucrel.lancs.ac.uk/claws7tags.html) für Annotationen genutzt werden.
 
 Bei erneuter Betrachtung des obigen Beispiels \textit{"Ich fahre Fahrrad."} könnte, wenn dieser Satz als minimaler Corpus vorliegt, neben der Regel Subjekt-Prädikat-Objekt eines Satzbaus auch beinhalten, dass der Punkt ein Satzende markiert und das Substantive und Personalpronomen mit einem Großbuchstaben beginnen ("Ich" und "Fahrrad" können Nomen sein und sind groß geschrieben). Sprachvorhersage nutzt diese bekannten Regeln und würde etwa aus der obigen Regel herleiten, das, wenn ein Verb gelesen wurde, darauf immer ein Substantiv bzw. das Satzobjekt folgt. POS-Tagging macht sich diese Beobachtungen durch Berechnung von Wahrscheinlichkeiten bei der Annotation von Wortfolgen zunutze. 
 
@@ -222,11 +225,16 @@ Kontextfreie Bertrachtung einzelner Wörter, also ohne andere Taggings mit einzu
 Die Wahrscheinlichkeit des Typen des Folgewortes auf Basis eines Bigrams lässt sich berechnen, indem aus einem Corpus die Worttypen an der jeweiligen Satzstelle gezählt und statistisch erfasst werden. 
 Als Beispiel dazu soll hier zunächst ein Bigram zur tatsächlichen Wortvorhersage dienen, anschließend wird diskutert, inwiefern solche Techniken auch den nächsten part-of-speech in einem Text vorhersagen können. Aus folgendem Corpus vierer Aussagen lässt sich dies wie folgt ableiten:
 \\ \tt
-<s> ich mag Züge <s> ich mag guten Tee \\
+
+<s> ich mag Züge <s> ich mag guten Tee 
+
+
 <s> guten Morgen <s> guten Abend <s>
 \\ \rm
-Zwischen einzelnen Äüßerungen wird der Platzhalter <s> als Indikator einer neuen Aussage verwendet, sodass dem Bigram nun eine Zeichenkette mit den obigen Aussagen, getrennt durch \tt <s> \rm zur Verfügung steht. Nun wird die mögliche Wortkombinatorik aus dem Corpus extrahiert, indem Kombinationen gezählt werden. Berechnet werden nun die Wahrscheinlichkeiten des Folgewortes auf Basis der vorherigen, formal ausgedrückt: $\frac{C(w_{n-1} w_{n})}{\sum{w}{}C(w_{n-1}w}$
-\\ \tt
+
+Zwischen einzelnen Äüßerungen wird der Platzhalter <s> als Indikator einer neuen Aussage verwendet, sodass dem Bigram nun eine Zeichenkette mit den obigen Aussagen, getrennt durch \tt <s> \rm zur Verfügung steht. Nun wird die mögliche Wortkombinatorik aus dem Corpus extrahiert, indem Kombinationen gezählt werden. Berechnet werden nun die Wahrscheinlichkeiten des Folgewortes auf Basis der vorherigen, formal ausgedrückt: $\frac{C(w_{n-1} w_{n})}{\sum{w}{}C(w_{n-1}w)}$
+\tt
+\begin{table}[h]
 \begin{tabular}{lll}
 Sequenz & Anzahl & $P(w_{n}|P(w_{n-1})$ \\
 <s> & 4 & \\
@@ -248,19 +256,72 @@ Morgen <s> & 1 & 1 \\
 Abend & 1 & \\
 Abend <s> & 1 & 1\\
 \end{tabular}
-\\ \rm
-
-Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Folgewortes nach einem Wort ablesen. Auf "ich mag" folgt insg. einmal "Züge" und einmal "guten". Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes bzw. Satzes berechnet werden.
-
-Neben der Möglichkeit, einzelne Wörter vorherzusagen, eignen sich n-Gramme wie oben erwähnt auch zur Darstellung der Wahrschinlichkeiten von Satzbausteinen, also der von Platzhaltern für alle möglichen Wörter einer Kategorie bzw. Komponente. Stochastisches Part-of-speech tagging kann anhand dieser die Wahrscheinlichkeiten vorhersagen, welcher Worttyp wahrscheinlich noch folgen wird. Die Trainingsdaten sind, nach Best-Practices aus dem maschinellen Lernen, in der Regel manuell und durch Benutzer markiert worden, damit dem Programm ein korrekter Datensatz zur Verfügung steht. Auf Basis eines Corpus können somit Mehrdeutigkeiten durch den syntaktischen Zusammenhang, den der Corpus beschreibt, aufgelöst werden. Das tagset von CLAWS 5 annotiert Wortkategorien wie folgt:
-\tt
-NN1 Nomen im Singular.
+\caption{Wahrscheinlichkeitstabelle Bigram zur Wortvorhersage}
+\end{table}
 \rm
-I saw her duck.
+Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Folgewortes nach einem Wort ablesen. Auf "ich mag" folgt insg. einmal "Züge" und einmal "guten". Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes "Züge" mit $P("$Züge$"|$"ich mag"$)$ = 50\% berechnen.
 
+\subsubsection{Stochastisches POS-tagging}
+Neben der Möglichkeit, einzelne Wörter vorherzusagen, eignen sich n-Gramme wie oben erwähnt auch zur Darstellung der Wahrschinlichkeiten von Satzbausteinen, also der von Platzhaltern für alle möglichen Wörter einer Kategorie bzw. Komponente. Stochastisches Part-of-speech tagging kann anhand dieser die Wahrscheinlichkeiten vorhersagen, welcher Worttyp wahrscheinlich noch folgen wird. Die Trainingsdaten sind, nach Best-Practices aus dem maschinellen Lernen, in der Regel manuell und durch Benutzer markiert worden, damit dem Programm ein korrekter Datensatz zur Verfügung steht. Auf Basis eines Corpus können somit Mehrdeutigkeiten durch den syntaktischen Zusammenhang, den der Corpus beschreibt, eindeutig aufgelöst werden. In einem Beispiel mit syntaktischer Ambiguität werden jedoch Wörter zunächst verschieden annotiert.
+Das tagset von CLAWS 7 annotiert Wortkategorien wie folgt:
+
+\tt 
+\begin{table}[h]
+\begin{tabular}{ll}
+PPIS2	& 1st person plural subjective personal pronoun \\
+PPHO1	& 3rd person sing. objective personal pronoun\\
+NN1		& singular common noun \\
+VV0		& base form of lexical verb \\
+VVD		& past tense of lexical verb \\
+PUN		& punctuation
+\end{tabular}
+\caption{Annotationen gemäß \cite{clw7} (Auszug)}
+\end{table} 
+
+%NN1 Nomen im Singular. \\
+%PNP Personalpronomen.\\
+%VM0 Modales Hilfsverb.\\
+%VVB Verb in Grundform ohne Appendix.\\
+%VVI Verb im Infinitiv (im Englischen mit "to").\\
+\rm
+
+Als Beispiel dient hier der englische Satz \textit{"We saw her duck."}. Dieser enthält Mehrdeutigkeiten, da "duck" entweder als \textit{"Ente"}, also als Substantiv \textit{"ihre Ente"} oder als "ducken", also als Verb (dt. \textit{"sie (sich) ducken"}) interpretiert werden kann. Zusätzlich kann "we saw" als \textit{"sahen"}, oder als \textit{"sägen"}, also zeitformabhängig verstanden werden. Äquivalent im Deutschen sind also die drei Sätze \textit{"Wir sahen ihre Ente."}, \textit{"Wir sahen sie (sich) ducken."} und \textit{"Wir zerschneiden ihre Ente"} mit völlig unterschiedlicher Aussage. \tt (Semantisch betrachtet stellt sich ferner die Frage, ob die Deutung von "her duck" als Nomen mit "ihr Haustier" etwas anderes bedeutet als "für sie zum Essen") \rm
+
+Diese sinnvollen Annotationen könnten durch einen CLAWS 7-POS-tagger wie folgt erfasst werden:
+
+\tt
+\begin{tabular}{ll} 
+1. & We(PPIS2) saw(VVD) her(PPHO1) duck(VV0) .(PUN) \\
+2. & We(PPIS2) saw(VVD) her(PPHO1) duck(NN1) .(PUN) \\
+3. & We(PPIS2) saw(VV0) her(PPHO1) duck(NN1) .(PUN) \\
+\end{tabular} \rm
+
+Problematisch ist, dass auch syntaktisch falsche Deutungen entstehen können, wenn, wie oben erwähnt, unzureichende Trainingsdaten und Regeln für die Wortfolgen existieren. Dann werden alle möglichen Teildeutungen der einzelnen Wörter als Tagging ausgegeben, etwa mit der Bedeutung \textit{"Wir zerschneiden sie sich ducken"} aus der Syntax.
+
+\tt
+\begin{tabular}{ll} 
+4. & We(PPIS2) saw(VV0) her(PPHO1) duck(VV0) .(PUN)\\
+\end{tabular} \rm
+
+Durch das Verwenden von manuell erstellten Corpora kann zumindest diese eindeutig falsche Deutung der Syntax eliminiert werden, da solch ein Sprachkonstrukt in der englischen Sprache nicht auftreten kann. Das Tagging des folgenden minimalen Korpus könnte dann wieder als Eingabe für ein n-Gram dienen, welches auf Basis der höchsten Wahrscheinlichkeit ein Wort annotiert.
+
+\tt
+People use to see a duck. Most people duck in order to avoid danger.
+\rm
+
+Der Corpus könnte annotiert sein:
+
+\tt
+We(NN2) use(JK) to(TO) see(VV0) a(AT1) duck(NN1).(PUN) Most(DAT) people(NN2) duck(VV0) in(BCL11) order(BCL12) to(BCL13) avoid(VV0) danger(NN1).
+\rm
+
+Dauraus ergibt sich unter Verwendung eines n-Grams umgangssprachlich formuliert, dass etwa in einem Satz, in welchem bereits ein Wort als Verb im Präsens getaggt wurde, ein Objekt, also ein als Nomen getaggtes Wort, folgen muss. Im ersten Satz ergibt sich dies etwa aus der Stellung des "see" als Verb vor dem "duck". Dementsprechend kann so schon die vorhin beschriebene Deutung 4. ausgeschlsosen werden, da diese Regel des Satzbaus nicht vorkommt. Weitere mögliche Regelmäßigkeiten, die ein n-Gram statistisch erfasst, wäre die Möglichkeit einer Before-Clause (BCL) nur nach einem Nomen oder die hohe Wahrscheinlichkeit eines Punktes nach einem Nomen im Singular. Auffällig ist, dass die Deutung von saw als Verb in Past Tense entfällt, da keine Regel auftritt, die ein Verb in Past-Tense vor einem Nomen enthält. Daher erfasst ein N-Gram auf Basis dieses Korpus nur Verben im Präsens korrekt (im Corpus taucht keine Deutung eines Verbs als Vergangenheitsform auf). 
+
+Abschließend lässt sich daher sagen, dass die Trainingsdaten möglichst repräsentativ für die möglichen Konstruktionen in einer Sprache bzw. in der Anwendungsdomäne des POS-taggers sein müssen, um akkurate Ergebnisse zu erzielen. Dies betrifft sowohl die Qualität der im Corpus enthaltenen Wörter und Sätze, als auch deren Korrektheit im Hinblick auf die quantitative Repräsentation einzelner Konstrukte. Häufig anzutreffende Hauptsatz-Nebensatz-Konstruktionen müssen etwa für die Analyse eines stilistisch einfachen Textes, der zum Großteil aus solchen besteht, häufiger vorhanden sein, als kompliziert verschachtelte Kausalsätze und eingeschobene Relativsätze mit beispielsweise vielen beschreibenden Aufzählungen.  
 \newpage
-\begin{thebibliography}{5}
 
+\begin{thebibliography}{5}
+\bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr
 
 \end{thebibliography}
 \end{document}
