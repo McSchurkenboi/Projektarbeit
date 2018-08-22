@@ -360,6 +360,70 @@ Es ist zu beachten, dass in kontextfreien Grammatiken generell das leere Wort $\
 
 Man spricht von einer linksbündigen bzw. rechtsbündigen Grammatik, wenn alle nicht-terminalen Symbole ganz links bzw. rechts auf der rechten Seite der Regel stehen (also in der Form "NT$\rightarrow$NT t" bzw "NT$\rightarrow$t NT"). Diese Grammatiken sind jedoch schwach-äquivalent zu regulären Grammatiken, welche sich mit endlichen Automaten implementieren lassen. Dies ist jedoch für den Aufbau von natürlichen Sprachen nicht ausreichend. Der Ansatz, sich auf eine rechts- bzw. linksbündige Grammatik zu beschränken, um damit eine natürliche Sprache zu generieren, entfällt also sofort. 
 
+\subsubsection{Beispiel einer kontextfreien Grammatik}
+
+Im folgenden wird die Funktionsweise kontextfreier Grammatiken anhand eines sehr simplen Beispiels dargestellt. Hierzu gelten die folgenden Produktionsregeln P (für spätere Erläuterungen durchnummeriert):
+\newline
+\\
+\tt
+1. S $\rightarrow$ NP VP\\
+2. VP $\rightarrow$ V\\
+3. VP $\rightarrow$ V NP\\
+4. VP $\rightarrow$ V VP\\
+
+\rm
+
+Außerdem stehe ein Lexikon die folgenden Wörter zur Verfügung:
+\newline
+\\
+\tt
+V $\rightarrow$ can\\
+V $\rightarrow$ fish\\
+V $\rightarrow$ catch\\
+NP $\rightarrow$ fish\\
+NP $\rightarrow$ he\\
+NP $\rightarrow$ fishermen\\
+\rm 
+\newline
+Die formale Darstellung dieser Grammatik sieht dann aus wie folgt:
+
+\begin{center}
+\tt
+$G=(\lbrace S,VP,NP,\rbrace ,\lbrace can, fish, catch, he, fisherman\rbrace ,\lbrace P(siehe oben)\rbrace ,S)$
+\rm
+\end{center}
+
+Man beachte, dass "fish" nur einmal bei den terminalen Symbolen auftaucht, obwohl es im Lexikon zwei mal aufgeführt ist (als verb und als noun-phrase). Diese Unterscheidung wird in der Grammatik jedoch lediglich durch die produzierende Regel vorgenommen, das terminale Symbol ist für beide Varianten zunächst gleich.
+
+Die Möglichkeiten und Probleme der beschriebene Grammatik werden an den folgenden Beispielsätzen deutlich:
+\\
+
+\tt
+"He can fish"
+"He can catch fish"
+"Fishermen can fish fish"
+\rm
+
+Klammert man den ersten Satz entsprechend der Grammatik kommt man zu folgendem Ergebnis:\\
+
+\tt 
+(S(NP he)(VP(V can)(VP(V fish))))\\
+\rm
+
+Somit kann man, indem man die Klammern von außen nach innen durchgeht die verwendeten Regeln und ihre Reihenfolge ermitteln, in diesem Fall also 1., 4. und dann 2.. (Dies lässt sich jedoch sehr viel übersichtlicher darstellen, wie in einem späteren Abschnitt aufgezeigt wird.)
+
+Der gleiche Satz ließe sich aber auch leicht anders klammern:\\
+
+\tt
+(S(NP he)(VP(V can)(NP fish)))\\
+\rm
+
+Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass "fish" als noun-phrase statt verb interpretiert wird , was jedoch auf semantischer Ebene keinerlei Sinn ergibt und daher eigentlich nicht möglich sein sollte. Entfernt man die 3. Produktionsregel jedoch aus der Grammatik, so lassen sich andere, durchaus sinnvolle Sätze, wie der zweite Beispielsatz "He can catch fish" nicht mehr herstellen. Dies gilt ebenfalls für den dritten Beispielsatz "Fishermen can fish fish", welcher nur Sinn ergibt, solange "fish" als verb und als noun-phrase interpretiert werden kann.
+
+\subsubsection{Pars-Bäume} 
+
+Wie angekündigt lässt sich die Struktur von geparsten Sätzen auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen
+
 \newpage
 
 \begin{thebibliography}{5}
