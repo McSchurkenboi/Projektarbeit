@@ -424,6 +424,35 @@ Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass "fish
 
 Wie angekündigt lässt sich die Struktur von geparsten Sätzen auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen
 
+\subsubsection{Chart-Parsing}
+Wie anhand des Parsbaums zu einer zugehörigen Grammatik erkennbar ist, ist es nicht nur möglich, anhand von Produktionsregeln Sätze zu generieren, sondern diese (Teil-)Sätze aufsteigend nach den erzeugenden Regeln aufzuschlüsseln. Aus kontextfreien Grammatiken lassen sich jedoch Sätze erzeugen, die semantisch betrachtet weniger Sinn ergeben, als andere. Auch kann es passieren, dass man in eine Sackgasse läuft, da keine passende Produktionsregel mehr existiert, und dann backtracking erforderlich ist. Der Einsatz und die Konstruktion eines Parsers, der diese Besonderheiten berücksichtigt, werden im Folgenden anhand des bekannten Beispielsatzes \textit{they can fish} erläutert.
+
+Da die Anwendung der Produktionsregeln hintereinander erfolgt, muss daher festgehalten werden, welche Regeln bisher zum Einsatz gekommen sind. Für die Implementierung ist diese Speicherung zur Reduzierung der Programmlaufzeit erforderlich. Anhand dieser bekannten Informationen kann dann rekursiv mithilfe von dynamischer Programmierung die Generation von Sätzen erfolgen und alle möglichen Regeln werden erfasst. Es lässt sich daran ein Suchbaum für den Einsatz der Grammatik ableiten. 
+
+Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Knoten und fügt sukzessive die Regeln zwischen den möglichen Satzteilen in Form von Kanten hinzu. Kanten stellen die bis dahin angewandten Produktionsregeln dar, indem sie diese als \textit{$mother_{category}$} enthalten und können verschieden weit entfernte Knoten links und rechts verbinden. Kanten besagen also, als welche grammatikalischen Komponenten die verbundenen Knoten verstanden werden können. Gemäß \cite{cop04} besteht eine Kante aus:
+\\
+\tt
+\\$[id, knoten_{links}, knoten_{rechts}, mother_{category}, daughters]$\\
+\rm
+\\
+Initialisiert wird mit einer leeren Menge von Kanten zwischen den bekannten Knoten. Der Algorithmus terminiert, wenn eine Kante zwischen Anfangs- und Endknoten gefunden wurde. Dies bedeutet, dass alle dazwischen liegenden Teilregeln ebenfalls gefunden wurden; der Suchbaum ist dann vollständig. Wenn mehrere Kanten von erstem zu letztem Wort existieren, deutet dies dann auf eine Mehrdeutigkeit hin, da die Kanten dann verschiedene Produktionsregeln enthalten. Der Algorithmus sieht dann wie folgt aus:
+\begin{enumerate} \tt
+\item 
+ChartParse: \\
+for each Wort $w_{0-n}$ im Satz, sei \textit{from} der linke und \textit{to} der rechte Knoten und daughters ds ein w \\
+\hspace*{.2cm} for each möglichen Lexikoneintrag der Kategorie cat von w \\
+\hspace*{.4cm} neueKante \textit{from,to,cat,ds} \\
+output alle aufgespannten Kanten von $w_{0}$ nach $w_{n}$ \\ \rm(gesamter Text wird abgedeckt und mother ist S)\tt \\
+\item 
+neueKante: \textit{from,to,cat,daughters} \\
+Neue Kante einzeichnen: \textit{id,from,to,cat,ds} \\
+for each Regel linkeSeite -> $r_{1}-r_{n}$ einer cat aus der Grammatik \\
+\hspace*{.2cm} Finde zusammenhängende Menge von Kanten \\
+\hspace*{.2cm} $[id_{1},from_{1},to_{1},cat_{1},ds]$ bis $[id_{n-1},from_{n-1},from,cat_{n-1},ds_{n-1}]$ 
+
+\rm(so einzeichnen, dass die Kante jeweils  eine bekannte Regel zur Verbindung zwischen zwei Knoten enthält, also $to_{1}=from_{2}$ usw.)\tt \\
+\hspace*{.2cm} For each Menge von Kanten, neueKante $from_{1},to,linkeSeite,id_{1}-id$ \rm(also alle Kanten weiter unterteilen)
+\end{enumerate}
 \newpage
 
 \begin{thebibliography}{5}
