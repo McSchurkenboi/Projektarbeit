@@ -5,7 +5,7 @@
 \usepackage{mathrsfs}
 \usepackage{amssymb}
 \usepackage{tikz}
-\usetikzlibrary{automata,arrows}
+\usetikzlibrary{automata,arrows,positioning}
 \usepackage{textcomp}
 
 \pagenumbering{arabic}
@@ -373,7 +373,7 @@ Im folgenden wird die Funktionsweise kontextfreier Grammatiken anhand eines sehr
 
 \rm
 
-Außerdem stehe ein Lexikon die folgenden Wörter zur Verfügung:
+Außerdem stehe ein Lexikon die folgenden Wörter (bzw. terminalen Symbole) zur Verfügung (hier der Einfachheit halber direkt als Produktionsregeln dargestellt):
 \newline
 \\
 \tt
@@ -422,7 +422,34 @@ Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass "fish
 
 \subsubsection{Pars-Bäume} 
 
-Wie angekündigt lässt sich die Struktur von geparsten Sätzen auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen
+Wie angekündigt lässt sich die Struktur von geparsten Sätzen auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen. Ein Pars-Baum zu dem oben genannten Beispiel sähe beispielsweise aus wie folgt:
+
+\begin{center}
+\begin{tikzpicture}
+\node (a) {S};
+\node [below left = 1.5cm of a] (b) {NP};
+\node [below right = 1.5cm of a](c) {VP};
+\node [below = 1cm of b](d) {He};
+\node [below left = 1cm of c](e) {V};
+\node [below right = 1cm of c](f) {VP};
+\node [below = 1cm of e](g) {can};
+\node [below = 1cm of f](h) {V};
+\node [below = 1cm of h](i) {fish};
+
+\draw (a)--(b);
+\draw (a)--(c);
+\draw (b)--(d);
+\draw (c)--(e);
+\draw (c)--(f);
+\draw (e)--(g);
+\draw (f)--(h);
+\draw (h)--(i);
+\end{tikzpicture}
+\end{center}
+
+Da auf der linken Seite einer Produktionsregel der kontextfreien Grammatiken immer nur ein nicht-terminales Symbol steht, lässt sich hier unschwer eine Regel pro Elternknoten erkennen. Das S wir in NP und VP aufgeteilt, das NP wird widerum zum terminalen Symbol \textit{"He"} usw. entsprechend der definierten Produktionsregeln. Alle Blätter (Knoten ohne Kindknoten) des Baumes sind jeweils ein Wort und bilden somit zusammen den erzeugten Satz \textit{"He can fish."}. 
+
+
 
 \newpage
 
