@@ -424,7 +424,7 @@ Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass "fish
 
 Wie angekündigt lässt sich die Struktur von geparsten Sätzen auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen
 
-\subsubsection{Chart-Parsing}
+\subsubsection{Anwendung Chart-Parsing}
 Wie anhand des Parsbaums zu einer zugehörigen Grammatik erkennbar ist, ist es nicht nur möglich, anhand von Produktionsregeln Sätze zu generieren, sondern diese (Teil-)Sätze aufsteigend nach den erzeugenden Regeln aufzuschlüsseln. Aus kontextfreien Grammatiken lassen sich jedoch Sätze erzeugen, die semantisch betrachtet weniger Sinn ergeben, als andere. Auch kann es passieren, dass man in eine Sackgasse läuft, da keine passende Produktionsregel mehr existiert, und dann backtracking erforderlich ist. Der Einsatz und die Konstruktion eines Parsers, der diese Besonderheiten berücksichtigt, werden im Folgenden anhand des bekannten Beispielsatzes \textit{they can fish} erläutert.
 
 Da die Anwendung der Produktionsregeln hintereinander erfolgt, muss daher festgehalten werden, welche Regeln bisher zum Einsatz gekommen sind. Für die Implementierung ist diese Speicherung zur Reduzierung der Programmlaufzeit erforderlich. Anhand dieser bekannten Informationen kann dann rekursiv mithilfe von dynamischer Programmierung die Generation von Sätzen erfolgen und alle möglichen Regeln werden erfasst. Es lässt sich daran ein Suchbaum für den Einsatz der Grammatik ableiten. 
@@ -432,17 +432,30 @@ Da die Anwendung der Produktionsregeln hintereinander erfolgt, muss daher festge
 Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Knoten und fügt sukzessive die Regeln zwischen den möglichen Satzteilen in Form von Kanten hinzu. Kanten stellen die bis dahin angewandten Produktionsregeln dar, indem sie diese als \textit{$mother_{category}$} enthalten und können verschieden weit entfernte Knoten links und rechts verbinden. Kanten besagen also, als welche grammatikalischen Komponenten die verbundenen Knoten verstanden werden können. Gemäß \cite{cop04} besteht eine Kante aus:
 \\
 \tt
-\\$[id, knoten_{links}, knoten_{rechts}, mother_{category}, daughters]$\\
+\\$[id, knoten_{links}, knoten_{rechts}, mother_{category}, daughters]$
 \rm
 \\
-Initialisiert wird mit einer leeren Menge von Kanten zwischen den bekannten Knoten. Der Algorithmus terminiert, wenn eine Kante zwischen Anfangs- und Endknoten gefunden wurde. Dies bedeutet, dass alle dazwischen liegenden Teilregeln ebenfalls gefunden wurden; der Suchbaum ist dann vollständig. Wenn mehrere Kanten von erstem zu letztem Wort existieren, deutet dies dann auf eine Mehrdeutigkeit hin, da die Kanten dann verschiedene Produktionsregeln enthalten. Der Algorithmus sieht dann wie folgt aus:
+
+Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: \\
+\begin{tikzpicture}[shorten >=2pt,auto,node distance=4cm]
+      \node[state] (q1) {0};
+      \node[state] (q2) [right of=q1] {1};
+      \node[state] (q3) [right of=q2] {2};
+      \node[state] (q4) [right of=q3] {3};
+      
+      \draw (2,-1) node (A) {they};
+      \draw (6,-1) node  (B) {can};
+      \draw (10,-1) node  (C) {fish};
+\end{tikzpicture}
+\\
+Initialisiert wird mit einer leeren Menge von Kanten zwischen den bekannten Knoten. Der Algorithmus terminiert, wenn eine Kante zwischen Anfangs- und Endknoten gefunden wurde. Dies bedeutet, dass alle dazwischen liegenden Teilregeln ebenfalls gefunden wurden; der Suchbaum ist dann vollständig. Nach dem Durchlauf liegen dann alle möglichen Kanten, das heißt alle Teil- und Gesamtdeutungen des Satzes vor. Begonnen wird mit mit den ersten Knoten; diese werden dann mittels Kanten direkt nach den Regeln der Grammatik verbunden und nach und nach kommen weitere Kanten bis zum n-ten Wort hinzu. Wenn mehrere Kanten von erstem zu letztem Wort existieren, deutet dies dann auf eine Mehrdeutigkeit hin, da die Kanten dann verschiedene Produktionsregeln enthalten. Der Algorithmus sieht dann wie folgt aus:
 \begin{enumerate} \tt
 \item 
 ChartParse: \\
 for each Wort $w_{0-n}$ im Satz, sei \textit{from} der linke und \textit{to} der rechte Knoten und daughters ds ein w \\
 \hspace*{.2cm} for each möglichen Lexikoneintrag der Kategorie cat von w \\
 \hspace*{.4cm} neueKante \textit{from,to,cat,ds} \\
-output alle aufgespannten Kanten von $w_{0}$ nach $w_{n}$ \\ \rm(gesamter Text wird abgedeckt und mother ist S)\tt \\
+output alle aufgespannten Kanten von $w_{0}$ nach $w_{n}$ \\ \rm(gesamter Text wird abgedeckt und mother ist S)\tt
 \item 
 neueKante: \textit{from,to,cat,daughters} \\
 Neue Kante einzeichnen: \textit{id,from,to,cat,ds} \\
@@ -453,6 +466,56 @@ for each Regel linkeSeite -> $r_{1}-r_{n}$ einer cat aus der Grammatik \\
 \rm(so einzeichnen, dass die Kante jeweils  eine bekannte Regel zur Verbindung zwischen zwei Knoten enthält, also $to_{1}=from_{2}$ usw.)\tt \\
 \hspace*{.2cm} For each Menge von Kanten, neueKante $from_{1},to,linkeSeite,id_{1}-id$ \rm(also alle Kanten weiter unterteilen)
 \end{enumerate}
+Bei Eingabe des Beispielsatzes würde die Ergebnistabelle aus \cite{cop04} folgende Kanten als Einträge beinhalten:
+
+\begin{table}
+\tt
+\begin{tabular}{lllll}
+$id$ & $knoten_{links}$ & $knoten_{rechts}$ & $mother$ & $daughters$ \\
+1    & 0                & 1                 & NP       & (they)      \\
+2    & 1                & 2                 & V        & (can)       \\
+3    & 1                & 2                 & VP       & (2)         \\
+4    & 0                & 2                 & S        & (1 3)       \\
+5    & 2                & 3                 & V        & (fish)      \\
+6    & 2                & 3                 & VP       & (5)         \\
+7    & 1                & 3                 & VP       & (2 6)       \\
+8    & 0                & 3                 & S        & (1 7)       \\
+9    & 2                & 3                 & NP       & (fish)      \\
+10   & 1                & 3                 & VP       & (2 9)       \\
+11   & 0                & 3                 & S        & (1 10)     
+\end{tabular}
+\rm
+\caption{Parsing-Tabelle gemäß Grammatikregeln aus \cite{cop04}}
+Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alles möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie folgt visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake in Kapitel 4.8):
+
+\begin{tikzpicture} [shorten >=2pt,auto,node distance=4cm]
+      \node[state] (q1) {0};
+      \node[state] (q2) [right of=q1] {1};
+      \node[state] (q3) [right of=q2] {2};
+      \node[state] (q4) [right of=q3] {3};
+      
+      \draw (2,-1) node (A) {they};
+      \draw (6,-1) node  (B) {can};
+      \draw (10,-1) node  (C) {fish};
+      
+      
+      \draw (q1) to[bend left=10] node[auto] {1}(q2);
+      \draw (q2) to[bend left=10] node[auto] {2}(q3);
+      \draw (q2) to[bend left=30] node[auto] {3}(q3);
+      \draw (q1) to[bend left=40] node[auto] {4}(q3);
+      \draw (q3) to[bend left=10] node[auto] {5}(q4);
+      \draw (q3) to[bend left=30] node[auto] {6}(q4);
+      \draw (q2) to[bend left=40] node[auto] {7}(q4);
+      \draw (q1) to[bend left=45] node[auto] {8}(q4);
+      \draw (q3) to[bend left=100] node[auto] {9}(q4);
+      \draw (q2) to[bend left=90] node[auto] {10}(q4);\\
+      \draw (q1) to[bend left=80] node[auto] {11}(q4);
+
+      
+      
+\end{tikzpicture}
+\end{table}
+
 \newpage
 
 \begin{thebibliography}{5}
