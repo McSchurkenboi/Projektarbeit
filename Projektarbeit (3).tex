@@ -449,6 +449,25 @@ Wie angekündigt lässt sich die Struktur von geparsten Sätzen auch etwas über
 
 Da auf der linken Seite einer Produktionsregel der kontextfreien Grammatiken immer nur ein nicht-terminales Symbol steht, lässt sich hier unschwer eine Regel pro Elternknoten erkennen. Das S wir in NP und VP aufgeteilt, das NP wird widerum zum terminalen Symbol \textit{"He"} usw. entsprechend der definierten Produktionsregeln. Alle Blätter (Knoten ohne Kindknoten) des Baumes sind jeweils ein Wort und bilden somit zusammen den erzeugten Satz \textit{"He can fish."}. 
 
+\subsubsection{Zufallsgenerierung mit kontextfreien Grammatiken}
+
+Ähnlich zu den endlichen Zustandswandlern sind auch kontextfreie Grammatiken bidirektional und können somit nicht nur zum Parsen, sondern auch für die Generierung von Sätzen verwendet werden. 
+Ein naiver Zufallsalgorithmus könnte dabei auf einer Liste ausgeführt werden und die folgenden Schritte verwenden:
+
+\begin{enumerate}
+\item Wähle ein nicht-terminales Symbol aus der Liste (zufällig oder z.B. der Reihenfolge nach).
+\item Wähle zufällig eine Produktionsregel der Grammatik mit dem gewählten Symbol auf der linken Seite und führe sie aus. 
+\item Ersetze in der Liste das gewählte Symbol durch die rechte Seite der gewählten Produktionsregel
+\item Wiederhole 1., 2. und 3. bis keine nicht-terminalen Symbole übrig sind. 
+\item Durchlaufe die Liste und speichere die Inhalte der Listenelemente in eine gemeinsame Zeichenkette. Diese Zeichenkette ist der Zufällig generierte Satz. 
+\end{enumerate}
+
+Mit dem beschriebenen Verfahren lassen sich zweifellos Sätze generieren, jedoch können diese sowohl Fehler enthalten, als auch in vielen Fällen unendlich lang werden. Dies lässt sich beides mit der in 2.5.3 beschriebenen Grammatik demonstrieren. 
+
+Fehlerhafte Generierung: Wegen der Bidirektionalität der kontextfreien Grammatik, geht mit der gezeigten Möglichkeit falsch zu interpretieren auch die Möglichkeit einher falsch zu generieren. Man beachte z.B., dass sich der fehlerhafte Satz "He fish can" genauso generieren ließe wie der korrekte Satz "He can fish".
+
+Unbegrenzte Sätze: Wie in der natürlichen Sprache lassen sich theoretisch unendlich lange Sätze formulieren. Dies wird normalerweise durch den Menschen unterbunden, kann jedoch einen Zufallsalgorithmus abhängig von den verwendeten Regeln für lange Zeit am terminieren hindern. So kann in der verwendeten kontextfreien Grammatik schon allein durch die 4. Produktionsregel eine unendlich lange Folge von Verben generiert werden.
+
 
 
 \subsubsection{Chart-Parsing}
