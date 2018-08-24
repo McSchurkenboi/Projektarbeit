@@ -357,6 +357,32 @@ Es ist zu beachten, dass in kontextfreien Grammatiken generell das leere Wort $\
 
 Man spricht von einer linksbündigen bzw. rechtsbündigen Grammatik, wenn alle nicht-terminalen Symbole ganz links bzw. rechts auf der rechten Seite der Regel stehen (also in der Form "NT$\rightarrow$NT t" bzw "NT$\rightarrow$t NT"). Diese Grammatiken sind jedoch schwach-äquivalent zu regulären Grammatiken, welche sich mit endlichen Automaten implementieren lassen, was jedoch für den Aufbau von natürlichen Sprachen nicht ausreichend ist. Der Ansatz sich auf eine rechts- bzw. linksbündige Grammatik zu beschränken, um damit eine natürliche Sprache zu generieren entfällt also sofort. 
 
+\subsection{Parsen mit constraint-basierten Grammatiken}
+
+Wie zuvor an verschiedenen Beispielen demonstriert wurde, weisen die kontextfreien Grammatiken beim Parsen und Generieren einige schwächen auf. Daher wird im folgenden Abschnitt ein neuer, komplexerer Ansatz vorgestellt um sich mit den gleichen Problemen zu befassen. Kontextfreie Grammatiken können als constraint-basiert interpretiert werden, diese Bezeichnung wird jedoch üblicherweise für mächtigere Grammatiken verwendet. Constraint-basierte Grammatiken sind in NLP weit verbreitet und werden mit sogenannten feature-structures (Eigenschaftsstrukturen) dargestellt, daher auch oft feature-structure (FS) Grammatik genannt. Im folgenden Abschnitt soll die Umsetzung solch einer Grammatik durch feature-structures demonstriert werden.
+
+\subsubsection{Beispiel zu einfacher FS Grammatik}
+
+FSs weisen große Ähnlichkeit zu Baumstrukturen auf. Sie haben genau eine Wurzel und sind von dieser aus gerichtet. Ein Knoten kann keinen, einen oder mehrere Kindesknoten besitzen. Blätterknoten verfügen über Werte und Kanten sind mit Eigenschaften versehen. Ein Weg entlang von Eigenschaften wird als Pfad bezeichnet. Eigenschaften sind entweder atomar oder zusammengesetzt, abhängig davon ob sie auf ein Blatt des Baumes oder auf einen weiteren nicht-Blattknoten zeigen. In dem folgenden  dem Paper entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{"CAT"} für die Wortkategorie und \textit{"AGR"} für agreement (Stimmigkeit), teilt, welche jeweils auf die Blattknoten mit den Werten \textit{"noun"} (für Nomen) und \textit{"sg"} (für Singular) zeigen. Die Eigenschaften \textit{"CAT"} und \textit{"AGR"} sind also atomar.
+
+\begin{center}
+\begin{tikzpicture}
+
+%\draw[thick, ->] (a) to node[midway, above] {CAT} (b);
+
+\end{tikzpicture}
+\end{center}
+
+Fügt man wie in der nächsten Abbildung vor der Wurzel eine weitere Eigenschaft \textit{"Head"} hinzu, so ist diese zusammengesetzt, da sie auf einen nicht-Blattknoten zeigt. Dieser wird wiederum in die beiden Eigenschaften \textit{"CAT"} und \textit{"AGR"} aufgeteilt. 
+
+\begin{center}
+\begin{tikzpicture}
+
+%\draw[thick, ->] (a) to node[midway, above] {CAT} (b);
+
+\end{tikzpicture}
+\end{center}
+
 
 
 
