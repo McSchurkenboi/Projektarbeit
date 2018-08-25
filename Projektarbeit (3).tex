@@ -5,7 +5,7 @@
 \usepackage{mathrsfs}
 \usepackage{amssymb}
 \usepackage{tikz}
-\usetikzlibrary{automata,arrows}
+\usetikzlibrary{automata,arrows,positioning}
 \usepackage{textcomp}
 
 \pagenumbering{arabic}
@@ -481,7 +481,7 @@ $id$ & $knoten_{links}$ & $knoten_{rechts}$ & $mother$ & $daughters$ \\
 \end{tabular}
 \rm
 \caption{Parsing-Tabelle gemäß Grammatikregeln aus \cite{cop04}}
-Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alles möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie folgt visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake in Kapitel 4.8):
+Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jeder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alle möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie folgt visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake in Kapitel 4.8):
 
 \begin{tikzpicture} [shorten >=2pt,auto,node distance=4cm]
       \node[state] (q1) {0};
@@ -521,9 +521,12 @@ FSs sind Graphen, welche große Ähnlichkeit zu Baumstrukturen aufweisen. Sie ha
 
 \begin{center}
 \begin{tikzpicture}
+\node[draw,shape=circle,fill=black] (a) at (0,0) {};
+\node[draw,shape=circle,fill=black,label=above:noun] [right = 2.5cm of a] (b) {};
+\node[draw,shape=circle,fill=black,label=above:sg] [below = 1.5cm of b] (c) {};
 
-%\draw[thick, ->] (a) to node[midway, above] {CAT} (b);
-
+\draw[thick, ->] (a) to node[midway, above] {CAT} (b);
+\draw[thick, ->] (a) to node[midway, above, right] {AGR} (c);
 \end{tikzpicture}
 \end{center}
 
@@ -532,14 +535,24 @@ Fügt man wie in der nächsten Abbildung vor der Wurzel eine weitere Eigenschaft
 \begin{center}
 \begin{tikzpicture}
 
-%\draw[thick, ->] (a) to node[midway, above] {CAT} (b);
+\node[draw,shape=circle,fill=black] (a) at (0,0) {};
+\node[draw,shape=circle,fill=black,label=above:noun,right = 2.5cm of a] (b) {};
+\node[draw,shape=circle,fill=black,below = 1.5cm of b] (c) {};
+\node[draw,shape=circle,fill=black,left = 2.5cm of a] (d) {}; 
 
+\draw[thick, ->] (a) to node[midway, above] {CAT} (b);
+\draw[thick, ->] (a) to node[midway, above, right] {AGR} (c);
+\draw[thick, ->] (d) to node[midway, above] {HEAD} (a);
 \end{tikzpicture}
 \end{center}
 
 Solche Strukturen lassen sich am besten als attribute-value matrices (Attribut-Wert Matrizen, AVMs) aufschreiben was dann wie folgt aussieht:
 
-In FSs ist es möglich, dass mehrere Pfade zu dem gleichen Endknoten erreichen.
+
+
+In FSs ist es möglich, dass mehrere Pfade zu dem gleichen Endknoten erreichen, was als Eintrittsinvarianz bezeichnet wird. Sollte dies bei einem Endknoten zutreffen, so wird dessen Wert durch einen eingeklammerten Integer dargestellt. Der numerische Wert dieses Integers ist irrelevant, da er als Platzhalter für einen tatsächlichen grammatikalischen Wert verwendet wird. Dabei ist zu beachten, dass dann für gleiche Integer auch der gleiche Wert eingesetzt wird, was jedoch erst in einem späteren Abschnitt genauer beschrieben wird. 
+
+
 
 \newpage
 
