@@ -122,11 +122,13 @@ Disambiguation - Die Entfernung von Mehrdeutigkeiten auf Basis der Ergebnisse de
 \item
 Context Module - Textbausteine, deren Interpretation semantisch auf dem Kontext anderer Sätze oder Wörtern beruhen, können erfasst werden. Bei Anaphern ist etwa das Verständnis des aktuellen Kontext abhängig von einer vorherigen Deutung.
 \item
-Text Planning - Die Sachzusammenhänge und Semantiken, die aus dem zugrundeliegenden Text extrahiert wurden, werden für die Darstellung im fertigen Text definiert. Es wird festgelegt, welche der Bedeutungen übertragen und vermittelt werden sollen.
+Text Planning - Die Sachzusammenhänge und Semantiken, die aus dem zugrundeliegenden Text extrahiert wurden, werden für die Darstellung im fertigen Text definiert. Es wird festgelegt, welche der Bedeutungen qualitativ übertragen und vermittelt werden sollen. Die Reihenfolge und Umfang der behandelten Themen wird geschätzt und definiert.
 \item
-Tactical Generation - Die Bedeutungen werden in Form konkreter Zeichenketten generiert, die die gewünschte Bedeutung enthalten. Diese Textbausteine basieren häufig direkt auf den Ergebnissen des vorherigen Parsings, da dort schon Bedeutungen zusammengefasst werden können.
+Tactical Generation - Die Bedeutungen werden in Form konkreter Zeichenketten generiert, die die gewünschte Bedeutung enthalten. Diese Textbausteine basieren häufig direkt auf den Ergebnissen des vorherigen Parsings, da dort schon Bedeutungen zusammengefasst werden können. Der quantitative Teil des Textes wird erzeugt.
 \item
 Morpholigical Generation - Die erzeugten Sätze werden morphologisch an die Rahmenbedingungen der verwendeten Sprache angepasst. Grammatiken und Regeln der Satzkonstruktion werden auf die erzeugten Wörter angewendet, sodass ein lesbarer und nachvollziehbarer Text entsteht.
+\item
+Output Processing - Der Text wird nun, nachdem dieser inhaltlich nun komplett erzeugt vorliegt, an das Design und Format des jeweiligen Einsatzzwecks angepasst. Sollte Text, anders als in dieser Arbeit der Einfachheit halber angenommen, nicht als geschriebenes Wort ohne besondere Formatierung vorliegen, kann dieser einem Formatter zur Designanpassung übergeben werden. Ferner kann etwa mihilfe von Text-to-Speech eine Audioausgabe erfolgen. 
 \end{enumerate}
 
 \subsection{Morpholoie in NLP}
@@ -447,7 +449,8 @@ Initialisiert wird mit einer leeren Menge von Kanten zwischen den bekannten Knot
 \begin{enumerate} \tt
 \item 
 ChartParse: \\
-for each Wort $w_{0-n}$ im Satz, sei \textit{from} der linke und \textit{to} der rechte Knoten und daughters ds ein w \\
+for each Wort $w_{0-n}$ im Satz, sei \textit{from} der linke \\
+und \textit{to} der rechte Knoten und daughters ds ein w \\
 \hspace*{.2cm} for each möglichen Lexikoneintrag der Kategorie cat von w \\
 \hspace*{.4cm} neueKante \textit{from,to,cat,ds} \\
 output alle aufgespannten Kanten von $w_{0}$ nach $w_{n}$ \\ \rm(gesamter Text wird abgedeckt und mother ist S)\tt
@@ -458,7 +461,8 @@ for each Regel linkeSeite -> $r_{1}-r_{n}$ einer cat aus der Grammatik \\
 \hspace*{.2cm} Finde zusammenhängende Menge von Kanten \\
 \hspace*{.2cm} $[id_{1},from_{1},to_{1},cat_{1},ds]$ bis $[id_{n-1},from_{n-1},from,cat_{n-1},ds_{n-1}]$ 
 
-\rm(so einzeichnen, dass die Kante jeweils  eine bekannte Regel zur Verbindung zwischen zwei Knoten enthält, also $to_{1}=from_{2}$ usw.)\tt \\
+\rm(so einzeichnen, dass die Kante jeweils  eine bekannte Regel \\
+zur Verbindung zwischen zwei Knoten enthält, also $to_{1}=from_{2}$ usw.)\tt \\
 \hspace*{.2cm} For each Menge von Kanten, neueKante $from_{1},to,linkeSeite,id_{1}-id$ \rm(also alle Kanten weiter unterteilen)
 \end{enumerate}
 Bei Eingabe des Beispielsatzes würde die Ergebnistabelle aus \cite{cop04} folgende Kanten als Einträge beinhalten:
@@ -481,7 +485,9 @@ $id$ & $knoten_{links}$ & $knoten_{rechts}$ & $mother$ & $daughters$ \\
 \end{tabular}
 \rm
 \caption{Parsing-Tabelle gemäß Grammatikregeln aus \cite{cop04}}
+
 Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jeder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alle möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie folgt visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake in Kapitel 4.8):
+
 
 \begin{tikzpicture} [shorten >=2pt,auto,node distance=4cm]
       \node[state] (q1) {0};
@@ -505,9 +511,6 @@ Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge
       \draw (q3) to[bend left=100] node[auto] {9}(q4);
       \draw (q2) to[bend left=90] node[auto] {10}(q4);\\
       \draw (q1) to[bend left=80] node[auto] {11}(q4);
-
-      
-      
 \end{tikzpicture}
 \end{table}
 
@@ -553,6 +556,8 @@ Solche Strukturen lassen sich am besten als attribute-value matrices (Attribut-W
 In FSs ist es möglich, dass mehrere Pfade zu dem gleichen Endknoten erreichen, was als Eintrittsinvarianz bezeichnet wird. Sollte dies bei einem Endknoten zutreffen, so wird dessen Wert durch einen eingeklammerten Integer dargestellt. Der numerische Wert dieses Integers ist irrelevant, da er als Platzhalter für einen tatsächlichen grammatikalischen Wert verwendet wird. Dabei ist zu beachten, dass dann für gleiche Integer auch der gleiche Wert eingesetzt wird, was jedoch erst in einem späteren Abschnitt genauer beschrieben wird. 
 
 
+
+\subsection{Lexikalische Semantiken und kontextbasierte Deutungen}
 
 \newpage
 
