@@ -42,6 +42,7 @@ Zu diesem Zweck werden zunächst ausführlich die Grundlagen zu NLP und dessen T
 \newpage
 \section{Grundlagen von Natural Language Processing}
 \subsection{Einführung}
+\section{Einführung}
 Der folgende Abschnitt befasst sich mit den Grundlagen zu Natural Language Processing (im Folgenden kurz NLP). Dazu gehört neben dessen Herkunft bzw. Motivation eine inhaltliche Wissensgrundlage, welche für den weiteren Verlauf der Ausarbeitung relevant ist. 
 
 \subsubsection{Motivation und Herkunft}
@@ -452,11 +453,18 @@ Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Kn
 \\
 
 Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: \\
+Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: 
+\\
+
 \begin{tikzpicture}[shorten >=2pt,auto,node distance=4cm]
       \node[state] (q1) {0};
       \node[state] (q2) [right of=q1] {1};
       \node[state] (q3) [right of=q2] {2};
       \node[state] (q4) [right of=q3] {3};
+	  \node[draw,shape=circle] (a) at (1,0) {1};
+	  \node[draw,shape=circle] (b) at (4,0) {2};
+	  \node[draw,shape=circle] (c) at (8,0) {3};
+	  \node[draw,shape=circle] (d) at (12,0) {4};
       
       \draw (2,-1) node (A) {they};
       \draw (6,-1) node  (B) {can};
@@ -533,7 +541,6 @@ Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge
 \end{tikzpicture}
 \end{table}
 
-\subsection{Parsen mit constraint-basierten Grammatiken}
 \subsubsection{Mängel kontextfreier Grammatiken}
 Die Umsetzung der Modellierung von Sprache auf Basis kontextfreier Grammatiken ist mit einigen Problemem verbunden. Zunächst scheint es vorteilhaft, wenn durch die Rekursion alle möglichen Teildeutungen erfasst werden; davon sind jedoch nicht alle sinnvoll und viele redundant, weil sinnlos. Es fällt auf, dass durch die Zerlegung in Teildeutungen durch Anwendung aller möglichen Regeln aus der Grammatik prinzipiell exponentiell viele Deutungen entstehen könnten. Teilweise würden auch grammatikalisch falsche Sätze akzeptiert, wenn nicht jeder Numerus, Kasus etc. eines Wortes als Terminalsymbol in der Menge an Produktionsregeln repräsentiert wird. In der obigen einfachen Grammatik wird \textit{"they fish"} genau so wie \textit{"it fish"} akzeptiert. 
 
