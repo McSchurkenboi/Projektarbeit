@@ -575,11 +575,46 @@ Fügt man wie in der nächsten Abbildung vor der Wurzel eine weitere Eigenschaft
 \end{tikzpicture}
 \end{center}
 
-Solche Strukturen lassen sich am besten als attribute-value matrices (Attribut-Wert Matrizen, AVMs) aufschreiben was dann wie folgt aussieht:
+Solche Strukturen lassen sich am besten als attribute-value matrices (Attribut-Wert Matrizen, kurz AVMs) aufschreiben was dann wie folgt aussieht:
 
 
 
-In FSs ist es möglich, dass mehrere Pfade zu dem gleichen Endknoten erreichen, was als Eintrittsinvarianz bezeichnet wird. Sollte dies bei einem Endknoten zutreffen, so wird dessen Wert durch einen eingeklammerten Integer dargestellt. Der numerische Wert dieses Integers ist irrelevant, da er als Platzhalter für einen tatsächlichen grammatikalischen Wert verwendet wird. Dabei ist zu beachten, dass dann für gleiche Integer auch der gleiche Wert eingesetzt wird, was jedoch erst in einem späteren Abschnitt genauer beschrieben wird. 
+In FSs ist es möglich, dass mehrere Pfade zu dem gleichen Endknoten erreichen, was als Eintrittsinvarianz bezeichnet wird. Sollte dies bei einem Endknoten zutreffen, so wird dessen Wert durch einen eingeklammerten Integer dargestellt. Der numerische Wert dieses Integers ist irrelevant, da er als Platzhalter für einen tatsächlichen grammatikalischen Wert verwendet wird. Dabei ist zu beachten, dass dann für gleiche Integer auch der gleiche Wert eingesetzt wird.
+
+In der folgenden Abbildung sind Eintrittsinvarianz und die Darstellung von FSs als AVMs dargestellt:
+
+%\begin{tabular}{a||b|c}
+
+%\end{tabular}
+
+Üblicherweise werden bei dem Umgang mit FSs viele zunächst simple FSs zu größeren Vereint, um später aus einzelnen Wörtern korrekte, zusammenhängende Sätze oder Satzteile zu bilden. Diese Vereinigung (oder \textit{unification}) erlaubt es alle Informationen der einzelnen FSs zu kombinieren. Leere eckige Klammern ([]) stehen dabei für einen bisher nicht spezifizierten Wert, welcher später gewählt und dann konsistent verwendet werden muss. Das genaue Vorgehen soll an dem folgenden Beispiel veranschaulicht werden:
+
+Die unten beschriebe constraint-basierte Grammatik fügt zusätzlich zu den Wortkategorien in der in 3.6.2 verwendeten Grammatik das \textit{agreement} zu den Produktionsregeln hinzu. Somit wird nicht nur auf die entsprechende Kategorie wie Verb oder Nomen, sonder auch auf die Multiplizitäten \textit{singular} und \textit{plural} geachtet. \newline
+\\
+\tt
+S $\rightarrow$ NP-sg VP-sg\\
+S $\rightarrow$ NP-pl VP-pl\\
+VP-sg $\rightarrow$ V-sg NP-sg\\
+VP-sg $\rightarrow$ V-sg NP-pl\\
+VP-pl $\rightarrow$ V-pl NP-sg\\
+VP-pl $\rightarrow$ V-pl NP-pl\\
+\rm
+
+Dementsprechend muss nun auch das verwendete Lexikon (als Produktionsregeln dargestellt) angepasst werden:\\
+\\
+\tt
+NP-sg $\rightarrow$ he\\
+NP-pl $\rightarrow$ fishermen\\
+NP-sg $\rightarrow$ fish\\
+NP-pl $\rightarrow$ fish\\
+VP-sg $\rightarrow$ catches\\
+VP-pl $\rightarrow$ catch\\
+VP-sg $\rightarrow$ fishes\\
+VP-pl $\rightarrow$ fish\\
+\rm
+
+Mit den vorgestellten Änderung wir nun beispielsweise ein Satz wie \textit{"He catch fish"} nicht mehr akzeptiert, da \textit{"He"}(singular) und \textit{"catch"}(in diesem Fall plural) über die ersten beiden Produktionsregeln an die gleichen Multiplizitäten gebunden sind. 
+Diese lässt sich in der Darstellung der Grammatik durch FSs besonders gut erkennen:
 
 
 
