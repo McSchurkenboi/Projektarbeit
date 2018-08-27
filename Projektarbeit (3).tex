@@ -42,6 +42,7 @@ Zu diesem Zweck werden zunächst ausführlich die Grundlagen zu NLP und dessen T
 \newpage
 \section{Grundlagen von Natural Language Processing}
 \subsection{Einführung}
+\section{Einführung}
 Der folgende Abschnitt befasst sich mit den Grundlagen zu Natural Language Processing (im Folgenden kurz NLP). Dazu gehört neben dessen Herkunft bzw. Motivation eine inhaltliche Wissensgrundlage, welche für den weiteren Verlauf der Ausarbeitung relevant ist. 
 
 \subsubsection{Motivation und Herkunft}
@@ -437,7 +438,51 @@ Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass "fish
 
 \subsubsection{Pars-Bäume} 
 
-Wie angekündigt lässt sich die Struktur von geparsten Sätzen auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen
+Wie angekündigt lässt sich die Struktur von geparsten Sätzen auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen. Ein Pars-Baum zu dem oben genannten Beispiel sähe beispielsweise aus wie folgt:
+
+\begin{center}
+\begin{tikzpicture}
+\node (a) {S};
+\node [below left = 1.5cm of a] (b) {NP};
+\node [below right = 1.5cm of a](c) {VP};
+\node [below = 1cm of b](d) {He};
+\node [below left = 1cm of c](e) {V};
+\node [below right = 1cm of c](f) {VP};
+\node [below = 1cm of e](g) {can};
+\node [below = 1cm of f](h) {V};
+\node [below = 1cm of h](i) {fish};
+
+\draw (a)--(b);
+\draw (a)--(c);
+\draw (b)--(d);
+\draw (c)--(e);
+\draw (c)--(f);
+\draw (e)--(g);
+\draw (f)--(h);
+\draw (h)--(i);
+\end{tikzpicture}
+\end{center}
+
+Da auf der linken Seite einer Produktionsregel der kontextfreien Grammatiken immer nur ein nicht-terminales Symbol steht, lässt sich hier unschwer eine Regel pro Elternknoten erkennen. Das S wir in NP und VP aufgeteilt, das NP wird widerum zum terminalen Symbol \textit{"He"} usw. entsprechend der definierten Produktionsregeln. Alle Blätter (Knoten ohne Kindknoten) des Baumes sind jeweils ein Wort und bilden somit zusammen den erzeugten Satz \textit{"He can fish."}. 
+
+\subsubsection{Zufallsgenerierung mit kontextfreien Grammatiken}
+
+Ähnlich zu den endlichen Zustandswandlern sind auch kontextfreie Grammatiken bidirektional und können somit nicht nur zum Parsen, sondern auch für die Generierung von Sätzen verwendet werden. 
+Ein naiver Zufallsalgorithmus könnte dabei auf einer Liste ausgeführt werden und die folgenden Schritte verwenden:
+
+\begin{enumerate}
+\item Wähle ein nicht-terminales Symbol aus der Liste (zufällig oder z.B. der Reihenfolge nach).
+\item Wähle zufällig eine Produktionsregel der Grammatik mit dem gewählten Symbol auf der linken Seite und führe sie aus. 
+\item Ersetze in der Liste das gewählte Symbol durch die rechte Seite der gewählten Produktionsregel
+\item Wiederhole 1., 2. und 3. bis keine nicht-terminalen Symbole übrig sind. 
+\item Durchlaufe die Liste und speichere die Inhalte der Listenelemente in eine gemeinsame Zeichenkette. Diese Zeichenkette ist der Zufällig generierte Satz. 
+\end{enumerate}
+
+Mit dem beschriebenen Verfahren lassen sich zweifellos Sätze generieren, jedoch können diese sowohl Fehler enthalten, als auch in vielen Fällen unendlich lang werden. Dies lässt sich beides mit der in 2.5.3 beschriebenen Grammatik demonstrieren. 
+
+Fehlerhafte Generierung: Wegen der Bidirektionalität der kontextfreien Grammatik, geht mit der gezeigten Möglichkeit falsch zu interpretieren auch die Möglichkeit einher falsch zu generieren. Man beachte z.B., dass sich der fehlerhafte Satz "He fish can" genauso generieren ließe wie der korrekte Satz "He can fish".
+
+Unbegrenzte Sätze: Wie in der natürlichen Sprache lassen sich theoretisch unendlich lange Sätze formulieren. Dies wird normalerweise durch den Menschen unterbunden, kann jedoch einen Zufallsalgorithmus abhängig von den verwendeten Regeln für lange Zeit am terminieren hindern. So kann in der verwendeten kontextfreien Grammatik schon allein durch die 4. Produktionsregel eine unendlich lange Folge von Verben generiert werden.
 
 \subsubsection{Anwendung Chart-Parsing}
 Wie anhand des Parsbaums zu einer zugehörigen Grammatik erkennbar ist, ist es nicht nur möglich, anhand von Produktionsregeln Sätze zu generieren, sondern diese (Teil-)Sätze aufsteigend nach den erzeugenden Regeln aufzuschlüsseln. Aus kontextfreien Grammatiken lassen sich jedoch Sätze erzeugen, die semantisch betrachtet weniger Sinn ergeben, als andere. Auch kann es passieren, dass man in eine Sackgasse läuft, da keine passende Produktionsregel mehr existiert, und dann backtracking erforderlich ist. Der Einsatz und die Konstruktion eines Parsers, der diese Besonderheiten berücksichtigt, werden im Folgenden anhand des bekannten Beispielsatzes \textit{they can fish} erläutert.
@@ -452,11 +497,18 @@ Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Kn
 \\
 
 Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: \\
+Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: 
+\\
+
 \begin{tikzpicture}[shorten >=2pt,auto,node distance=4cm]
       \node[state] (q1) {0};
       \node[state] (q2) [right of=q1] {1};
       \node[state] (q3) [right of=q2] {2};
       \node[state] (q4) [right of=q3] {3};
+	  \node[draw,shape=circle] (a) at (1,0) {1};
+	  \node[draw,shape=circle] (b) at (4,0) {2};
+	  \node[draw,shape=circle] (c) at (8,0) {3};
+	  \node[draw,shape=circle] (d) at (12,0) {4};
       
       \draw (2,-1) node (A) {they};
       \draw (6,-1) node  (B) {can};
@@ -533,7 +585,6 @@ Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge
 \end{tikzpicture}
 \end{table}
 
-\subsection{Parsen mit constraint-basierten Grammatiken}
 \subsubsection{Mängel kontextfreier Grammatiken}
 Die Umsetzung der Modellierung von Sprache auf Basis kontextfreier Grammatiken ist mit einigen Problemem verbunden. Zunächst scheint es vorteilhaft, wenn durch die Rekursion alle möglichen Teildeutungen erfasst werden; davon sind jedoch nicht alle sinnvoll und viele redundant, weil sinnlos. Es fällt auf, dass durch die Zerlegung in Teildeutungen durch Anwendung aller möglichen Regeln aus der Grammatik prinzipiell exponentiell viele Deutungen entstehen könnten. Teilweise würden auch grammatikalisch falsche Sätze akzeptiert, wenn nicht jeder Numerus, Kasus etc. eines Wortes als Terminalsymbol in der Menge an Produktionsregeln repräsentiert wird. In der obigen einfachen Grammatik wird \textit{"they fish"} genau so wie \textit{"it fish"} akzeptiert. 
 
