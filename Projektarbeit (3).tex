@@ -497,8 +497,6 @@ Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Kn
 \\
 
 Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: \\
-Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: 
-\\
 
 \begin{tikzpicture}[shorten >=2pt,auto,node distance=4cm]
       \node[state] (q1) {0};
@@ -555,8 +553,6 @@ $id$ & $knoten_{links}$ & $knoten_{rechts}$ & $mother$ & $daughters$ \\
 \end{tabular}
 \rm
 \caption{Parsing-Tabelle gemäß Grammatikregeln aus \cite{cop04}}
-
-Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jeder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alle möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie folgt visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake in Kapitel 4.8):
 
 Wie sich nun erkennen lässt, lässt sich anhand der mit S beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alles möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie folgt visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake in Kapitel 4.8):
 
@@ -626,7 +622,7 @@ Fügt man wie in der nächsten Abbildung vor der Wurzel eine weitere Eigenschaft
 \end{tikzpicture}
 \end{center}
 
-Solche Strukturen lassen sich am besten als attribute-value matrices (Attribut-Wert Matrizen, kurz AVMs) aufschreiben was dann wie folgt aussieht:
+Solche Strukturen lassen sich am besten als attribute-value matrices (Attribut-Wert Matrizen, AVMs) aufschreiben was dann wie folgt aussieht:
 
 
 
