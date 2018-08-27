@@ -9,6 +9,9 @@
 \usepackage{tikz}
 \usetikzlibrary{automata,arrows,positioning}
 \usepackage{textcomp}
+\usepackage{verbatim}
+\usepackage{booktabs, tabularx}
+\renewcommand\tabularxcolumn[1]{m{#1}}
 
 \pagenumbering{arabic}
 \pagestyle{fancy}
@@ -595,7 +598,7 @@ Wie zuvor an verschiedenen Beispielen demonstriert wurde, weisen die kontextfrei
 
 %\subsubsection{Beispiel zu einfacher FS Grammatik}
 
-FSs sind Graphen, welche große Ähnlichkeit zu Baumstrukturen aufweisen. Sie haben genau eine Wurzel und sind von dieser aus gerichtet. Ein Knoten kann keinen, einen oder mehrere Kindesknoten besitzen. Endknoten, also Knoten mit dem Ausgangsgrad 0 verfügen über Werte und Kanten sind mit Eigenschaften versehen. Ein Weg entlang von Eigenschaften wird als Pfad bezeichnet. Eigenschaften sind entweder atomar oder zusammengesetzt, abhängig davon ob sie auf einen Endknoten oder auf einen weiteren nicht-Endknoten zeigen. In dem folgenden, dem Paper entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{"CAT"} für die Wortkategorie und \textit{"AGR"} für agreement (Stimmigkeit), teilt, welche jeweils auf die Endknoten mit den Werten \textit{"noun"} (für Nomen) und \textit{"sg"} (für Singular) zeigen. Die Eigenschaften \textit{"CAT"} und \textit{"AGR"} sind also atomar.
+FSs sind Graphen, welche große Ähnlichkeit zu Baumstrukturen aufweisen. Sie haben genau eine Wurzel und sind von dieser aus gerichtet. Ein Knoten kann keinen, einen oder mehrere Kindesknoten besitzen. Endknoten, also Knoten mit dem Ausgangsgrad 0 verfügen über Werte und Kanten sind mit Eigenschaften versehen. Ein Weg entlang von Eigenschaften wird als Pfad bezeichnet. Eigenschaften sind entweder atomar oder zusammengesetzt, abhängig davon ob sie auf einen Endknoten oder auf einen weiteren nicht-Endknoten zeigen. In dem folgenden, dem Paper entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{"CAT"} für die Wortkategorie und \textit{"AGR"} für agreement (zu deutsch "Kongruenz"), teilt, welche jeweils auf die Endknoten mit den Werten \textit{"noun"} (für Nomen) und \textit{"sg"} (für Singular) zeigen. Die Eigenschaften \textit{"CAT"} und \textit{"AGR"} sind also atomar.
 
 \begin{center}
 \begin{tikzpicture}
@@ -654,7 +657,7 @@ In der folgenden Abbildung sind Eintrittsinvarianz und FSs als AVMs dargestellt:
 Üblicherweise werden bei dem Umgang mit FSs viele zunächst simple FSs zu größeren Vereint, um später aus einzelnen Wörtern korrekte, zusammenhängende Sätze oder Satzteile zu bilden. Diese Vereinigung (oder \textit{unification}) erlaubt es alle Informationen der einzelnen FSs zu kombinieren. Leere eckige Klammern ([]) stehen dabei für einen bisher nicht spezifizierten Wert, welcher später gewählt und dann konsistent verwendet werden muss. Das genaue Vorgehen soll an dem folgenden Beispiel veranschaulicht werden:
 \\
 
-Die unten beschriebe constraint-basierte Grammatik fügt zusätzlich zu den Wortkategorien in der in 3.6.2 verwendeten Grammatik das \textit{agreement} zu den Produktionsregeln hinzu. Somit wird nicht nur auf die entsprechende Kategorie wie Verb oder Nomen, sonder auch auf die Multiplizitäten \textit{singular} und \textit{plural} geachtet. \newline
+Die unten beschriebe constraint-basierte Grammatik fügt zusätzlich zu den Wortkategorien in der in 3.6.2 verwendeten Grammatik die Kongruenz bzw. Übereinstimmung zu den Produktionsregeln hinzu. Somit wird nicht nur auf die entsprechende Kategorie wie Verb oder Nomen, sondern auch auf die Multiplizitäten \textit{singular} und \textit{plural} geachtet. \newline
 \\
 \tt
 S $\rightarrow$ NP-sg VP-sg\\
@@ -681,10 +684,40 @@ VP-pl $\rightarrow$ fish\\
 Mit den vorgestellten Änderung wir nun beispielsweise ein Satz wie \textit{"He catch fish"} nicht mehr akzeptiert, da \textit{"He"}(singular) und \textit{"catch"}(in diesem Fall plural) über die ersten beiden Produktionsregeln an die gleichen Multiplizitäten gebunden sind. 
 Diese lässt sich in der Darstellung der Grammatik durch FSs besonders gut erkennen:
 
+\begin{table}[h]
+\centering
+\begin{tabularx}{320pt}{>{\centering\arraybackslash}m{3cm}|>{\centering\arraybackslash}m{3.7cm}|>{\centering\arraybackslash}m{3cm}}
+%\begin{tabularx}{320pt}{>{\raggedright}c||c|c}
+ & FS (als Graph) & AVM\\\hline\hline
+Ohne Eintrittsinvarianz &   
+\begin{tikzpicture}
+\node[draw,shape=circle,fill=black] (a) at (0,0) {};
+\node[draw,shape=circle,fill=black,label=above:a] [right = 2.5cm of a] (b) {};
+\node[draw,shape=circle,fill=black,label=above:a] [below = 1.5cm of b] (c) {};
+\draw[thick, ->] (a) to node[midway, above] {F} (b);
+\draw[thick, ->] (a) to node[midway, above, right] {G} (c);
+\end{tikzpicture} & 
+$\begin{bmatrix} 
+F & a \\
+G & a 
+\end{bmatrix}$ 
+\\\hline
+mit Eintrittsinvarianz &
+\begin{tikzpicture}
+\node[draw,shape=circle,fill=black] (a) at (0,0) {};
+\node[draw,shape=circle,fill=black,label=above:a] [right = 2.5cm of a] (b) {};
+\draw[thick, ->] (a) to node[midway, above] {F} (b);
+\draw[thick, ->] (a) [bend right] to node[midway, below] {G} (b);
+\end{tikzpicture} & 
+$\begin{bmatrix} 
+F & [0] & a \\
+G & [0]
+\end{bmatrix}$ \\
+\end{tabularx}\\
+\end{table}
 
 
 \subsection{Lexikalische Semantiken und kontextbasierte Deutungen}
-
 \newpage
 
 \begin{thebibliography}{5}
