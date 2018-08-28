@@ -46,11 +46,8 @@ Das Ziel dieser Arbeit ist es, eine Anforderungsanalyse für solche Tools durchz
 Zu diesem Zweck werden zunächst ausführlich die Grundlagen zu NLP und dessen Tools erläutert. Die Teilschritte der Textverarbeitung werden theoretisch wie praktisch anhand von Implementierungsbeispielen erläutert. Daraufhin können mit Hilfe von Use Cases Anforderungen an diese Tools erhoben werden, auf denen Analyse und Evaluation des GATE-Tools beruhen sollen. Abgeschlossen wird die Arbeit von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen für NLP-relevante Domänen. 
 \newpage
 \section{Grundlagen von Natural Language Processing}
-\subsection{Einführung}
-\section{Einführung}
 Der folgende Abschnitt befasst sich mit den Grundlagen zu Natural Language Processing (im Folgenden kurz NLP). Dazu gehört neben dessen Herkunft bzw. Motivation eine inhaltliche Wissensgrundlage, welche für den weiteren Verlauf der Ausarbeitung relevant ist. 
 
-\subsubsection{Motivation und Herkunft}
 \subsection{Motivation und Herkunft}
 Ein Großteil der menschlichen Kommunikation findet durch natürliche Sprache statt. QUELLE Dies ist bereits seit Jahrtausenden so, jedoch hat sich die Übertragung dieser Sprache mit der Zeit verändert und weiterentwickelt. 
 
@@ -591,7 +588,7 @@ Die Umsetzung der Modellierung von Sprache auf Basis kontextfreier Grammatiken i
 
 Ferner werden Zusammenhänge aus Wörtern, die sich inhaltlich aufeinander beziehen, nicht abgebildet und nicht aus dem Kontext erfasst. Manche Verben erscheinen etwa ohne Berücksichtigung des Satzobjektes für den Menschen eher sinnlos, \textit{"Felix erwartet"} scheint unvollständig, die richtige Deutung von Zusammenhängen \textit{"Felix erwartet Aaron"} schließt den Kontext des Teilsatzes ein.
 
-Eine Möglichkeit zur Lösung wird in Abschnitt 2.6 und 2.7 behandelt, indem der Konsens einer Formulierung ebenso wie Ansätze der Semantik bei der Deutung berücksichtigt werden. Dies ist mittels einfacher Produktionsregeln nicht möglich.
+Eine Möglichkeit zur Lösung wird in Abschnitt 2.6 und 2.7 behandelt, indem die Kongruenz einer Formulierung ebenso wie Ansätze der Semantik bei der Deutung berücksichtigt werden. Dies ist mittels einfacher Produktionsregeln nicht möglich.
 
 \subsection{Parsen mit constraint-basierten Grammatiken}
 Wie zuvor an verschiedenen Beispielen demonstriert wurde, weisen die kontextfreien Grammatiken beim Parsen und Generieren einige schwächen auf. Daher wird im folgenden Abschnitt ein neuer, komplexerer Ansatz vorgestellt um sich mit den gleichen Problemen zu befassen. Kontextfreie Grammatiken können als constraint-basiert interpretiert werden, diese Bezeichnung wird jedoch üblicherweise für mächtigere Grammatiken verwendet. Constraint-basierte Grammatiken sind in NLP weit verbreitet und werden mit sogenannten feature-structures (Eigenschaftsstrukturen) dargestellt, daher auch oft feature-structure (FS) Grammatik genannt. Im folgenden Abschnitt soll die Umsetzung solch einer Grammatik durch feature-structures demonstriert werden.
@@ -718,9 +715,107 @@ G & [0]
 
 
 \subsection{Lexikalische Semantiken und kontextbasierte Deutungen}
+Mithilfe der im letzten Abschnitt eingeführten Feature Structures wurde eine Möglichkeit offenbart, Abhängigkeiten zwischen einzelnen Wörtern abzubilden. Abgesehen von der Syntax, die durch eine möglichst gute Modellierung der zugrundeliegenden Grammatik im Computer darstellbar wird, ist es die Semantik, die den "Sinn" hinter einer Aussage repräsentiert. In NLP-Anwendungen wird dies häufig als "Logische Form" oder "Logik einer Aussage" umrissen (vgl. \cite{swb02}), wenn eine semantische Repräsentation eines Satzes erstellt werden soll. Einen Ansatz, um überhaupt solch einen Sinn abbilden zu können, bieten dabei die schon bekannten Feature Structures. Semantiken können theoretisch allesamt in einem Lexikon abgespeichert werden, die korrekte Deutung kann anhand der bekannten Informationen aus der Semantik anderer Wörter bestimmt werden. Wenn man erneut das Problem von Verben mit und ohne erforderlichem Bezugswort betrachtet, damit diese Sinn ergeben, könnte diese Semantik als Erweiterung der FSs um die Argumente des Verbs erfolgen. Diese Repräsentation ist jedoch nur syntaktisch vollständig, sie erfasst beispielsweise keine der weiter unten genannten semantischen Feinheiten der Deutung. Es werden außerdem, logisch betrachtet, Quantoren benötigt, um das Ausmaß einer Aussage zu erfassen.
+
+Zu starke Spezifizierungen der Semantik führen jedoch auch dazu, dass Mehrdeutigkeiten nicht mehr erfasst werden können. Wenn man die Relationen von Wörtern etwa durch die klassische Aussagenlogik abbildet, müssen diese auch unterschiedliche Semantiken liefern können.
+
+\tt
+Every man loves a woman.
+\rm
+zu deutsch \textit{"Jeder Mann liebt..."} ist semantisch mehrdeutig zwischen  
+
+1. \textit{"...irgendeine Frau"}: $\forall x [man'(x) \Rightarrow \exists y [woman'(y) \bigwedge love'(x,y)]]$  und
+
+2. \textit{"...die eine Frau"}: $\exists y [woman'(y) \bigwedge \forall x [man'(x) \Rightarrow love'(x,y)]]$
+
+Es stellt sich die Frage, ob hier also logisch betrachtet mehrere oder nur eine spezifische Frau gemeint ist; Regeln der Aussagenlogik für die Semantik scheinen jedoch schon durch den Menschen schwer erkennbar und in der Implementierung kann die Deutung eingeschränkt werden, wie im nächsten Abschnitt beleuchtet wird.
+
+\subsubsection{Meaning-Postulates und Vereinfachung}
+Gesamtzusammenhänge werden immer dann offensichtlich, wenn aus einem Teil mehr als nur das übersetzte Wort abgeleitet werden kann. Die Bedeutung wird dann klarer, wenn sich dann eine Aussage über den Zusammenhang treffen lässt. Umgangssprachlich nutzt man beim Herstellen solcher Zusammenhänge bestimmte Metainformationen, also Wissen, dass über die reine Wortbedeutung hinausgeht. Die Schlussfolgerung einer Bedeutung wird somit vereinfacht, da die Möglichkeiten eingeschränkt sind. Für die Abbildung von Semantik auf logische Formeln stellen die in \cite{sr18} beschriebenen $\in_T$-Logiken einen Ansatz dar, dies zu formalisieren. Im folgenden werden daher zur Erläuterung Teile dieser Notation benutzt. Der Philosoph Rudolf Carnap hat schon 1952  untersucht, wie man den Sinn hinter dem geschriebenen Wort durch Vereinfachung erfassen kann. 
+\begin{enumerate}
+\item \textit{Meaning-Postulates}: A beinhaltet B und C
+
+Mithilfe von \textit{Meaning-Postulates} können Thesen zur Deutung vorgenommen werden, etwa das Beispiel aus \cite{car52}:
+
+$\forall x[bachelor(x)\Rightarrow man(x)\bigwedge unmarried(x)]$
+sinngemäß: Ein Junggeselle ist ein Mann und nicht verheiratet.
+
+Es ist zu beachten, dass diese Thesen nicht allzu vereinfachend ausfallen und deren Korrektheit ist darüber hinaus nicht in jeder Situation gewährleistet. Naiv könnte man davon ausgehen, dass die obige These auch mit Äquivalenz statt nur Implikation eine korrekte Semantik bildet. \cite{car52} beobachtet etwa, dass die Eigenschaften rechts davon zwar auch für den Papst gelten, jedoch scheint die Deutung als Junggeselle recht unpassend.
+
+\item \textit{Hyponomy}: A ist ein B
+
+Bei der Frage nach Zusammenhängen kommt unwillkürlich die Frage auf, welche Eigenschaften hinter der Bedeutung eines Worts stehen. 
+
+\tt
+Ein Hund ist ein Tier. 
+\rm
+also hat ein Hund auch alle Eigenschaften eines Tieres.
+
+Durch Kategorisierung können verschiedene Ausprägungen  der gleichen Sache zusammengefasst werden; Die Erfassung von Hyponomien ist nach \cite{cop04} wesentlich für Semantiken in NLP.
+
+\item \textit{Meronymy}: A $\subseteq$ B, A ist Teil von B
+
+\item \textit{Synonymy}: A $\equiv$ B, A ist semantisch äquivalent zu B
+
+\item \textit{Antonymy}: A $\equiv \neg$B, A bedeutet das Gegenteil von B
+
+\end{enumerate}
+
+Diese Vereinfachungen sind Ansätze zur verbesserten Erfassung der Semantik. Jedoch stellt sich für die Praxis etwa die Frage, ob diese auch für Verben und Adjektive oder Nomen wie \textit{"Gedanke"}, die sich schlecht verbildlichen lassen, getroffen werden können, ob es "Mehrfachvererbung" (Hund als Haustier und als Vierbeiner) gibt, oder wo der Ursprung aller Kategorien liegt. Wenn Wörter einer Kategorie zugeordnet werden, können feine Nuancen zwischen verschiedenen Wörtern verloren gehen.
+
+\subsubsection{Umgang mit Semantik in der Anwendung}
+Besonders in Arbeiten wie QUELLEN aus den 1980er Jahren versuchte man, Semantiken besser als durch einfache FSs zu erfassen, um etwa eine korrekte Negation in der Semantik abzubilden. Es ist dazu jedoch nicht nur erforderlich, alle möglichen Semantiken vorher in einem Lexikon parat zu haben, sondern auch, auf Basis der Textinformation eine davon als die wahrscheinlich richtige zu identifizieren. Die allgemeine Lösung dieses Problems ist AI-Hart. In der Implementierung bedarf es daher Möglichkeiten, überabzählbare Mehrdeutigkeiten und Vagheit zu verhindern. Mögliche Semantiken müssen dahingehend beschränkt werden, dass das Problem nicht mehr AI-Hart ist, da immer eine eindeutige Lösung gefunden wird. Es wird also beispielsweise erfasst, in welchen Wortkombinationen ein mehrdeutiges Wort häufig auftritt, um eine Beziehung daraus abzuleiten. 
+
+Übersetzungsprogramme nutzen dies etwa aus, um eine sinnvolle Deutung des Eingabetextes für die Übersetzung zu erreichen. In diesem Text taucht etwa \textit{"sinnvoll"} häufig im Zusammenhang mit Semantik auf; es liegt also nahe, dass sinngemäß \textit{Bedeutung geben} gemeint ist und nicht etwa \textit{naheliegend}. 
+
+Nach \cite{car52} existieren bei der Zuordnung einer Semantik eines Satzes in der Welt weitere Probleme, die durch mehrdeutige Semantik verursacht werden.
+
+Polysemie: Das bekannte Beispiel von \textit{Bank} (als Geldinstitut) vs. \textit{Bank} (als Parkbank) kann in der Regel durch die Herleitung der Semantik durch andere Wörter aufgelöst werden, da die Menge der Bedeutungen komplett disjunkt sind. Umso schwieriger wird es, wenn etwa eine dritte Bedeutung \textit{Bank} (als Spielbank im Casino) hinzukommt, deren Bedeutung sich inhaltlich mit der des Geldinstituts überschneidet. 
+
+Ein weiteres Beispiel ist etwa \textit{Kartoffel}, das eine rohe Kartoffel, Salzkartoffel, Kartoffelpflanze und mehr meinen kann. Die Spezifizierungen weisen zwar auch Gemeinsamkeiten auf, haben jedoch eine andere Bedeutung. Die Formulierung Kartoffel ist zusätzlich vage.
+Man beschränkt sich daher oft nur auf eine flache Semantik, also nur einfache Zusammenhänge. In der Praxis schränkt man die Semantik jedoch auch auf eine beschränkte Wissensbasis, genannt \textit{"Ontologie"} ein, sodass der Kontext strikt vorgegeben und somit eindeutiger ist.
+
+\begin{figure}
+\begin{tikzpicture}
+\draw (3,0) circle (1.5cm) node {Geldinstitut};
+\draw (5.5,0) circle (1.5cm) node {im Casino};
+\draw (0,-2) circle (1.5cm) node {Sitzgelegenheit};
+\node at (0,1) {"Kontoführung"};
+\node at (4.25,-3) {\textbf{Bank}};
+\node at (4.25,2) {"Gelddepot"};
+\node at (9,1) {"Quelle für Spielchips"};
+\end{tikzpicture}
+\caption{mögliche Bedeutungsmengen eines Polysems}
+\end{figure}
+
+\subsubsection{Auflösung von Mehrdeutigkeiten durch Semantiken}
+Wie bereits beschrieben, stellen Mehrdeutigkeiten bei unbegrenzter Anwendungsdomöne ein ernstzunehmendes Problem dar, da schlicht zu viele mögliche Deutungen existieren. In der Praxis sammelt man daher Fachwissen aus der Problemdomäne und speichert es in Form von Ontologien zu Wissensbasen. Der Prozess der Auflösung von Mehrdeutigkeiten wird als Word-Sense-Disambiguation (kurz WSD) bezeichnet. Frühe WSD-Systeme basierten noch auf von hand eingetragenen Deutungen (vgl. POS-Tagging), heutige Systeme auf Basis von Machine-Learning können jedoch auf Basis eines kleinen Semantik-Corpus entweder selbstständig neue Bedeutungen erlernen oder verfügen über ein gesondertes Lexikon von ausführlichen Informationen zur Deutung von Mehrdeutigkeiten. 
+
+Wortkombinationen, in denen mehrdeutige Wörter auftauchen, werden als (\textit{Collocation}) bezeichnet. Die syntaktische Analyse identifiziert alle Wörter, die auf das mehrdeutige bezogen sind. Mithilfe der syntaktischen Analyse können dann die eindeutigen Bedeutungen zugeordnet werden, wie das Beispiel aus \cite{cop04} zeigt:
+
+\tt
+Striped bass are common.
+
+Bass guitars are common.
+\rm
+
+Die Mehrdeutigkeit liegt darin, dass es sich nach dem ersten Satz um gestreifte Barsche handelt, oder um Bass(-gitarren), die getreift sind. Collocation untersucht nun, ob bass noch in anderen Phrasen auftaucht (bass guitar ist eindeutig).
+
+Für die Erstellung eines Lexikons, mit dessen Hilfe mehrere Bedeutungen zugeordnet werden können, ist Collocation hilfreich. Machine Translation kann damit automatisiert Mehrdeutigkeiten erlernen, jedoch ist die Fehlerquote ohne Einschränkung recht groß und Wörter können auch uneindeutig erscheinen. Yarowsky 1995 QUELLE beschreibt ein Verfahren zur Sammlung von Mehrdeutigkeiten wie folgt: 
+
+\begin{enumerate}
+\item Zunächst werden alle Sätze, indem das mehrdeutige Wort auftaucht, aus dem Text aufgelistet.
+\item Collocations aus dem Wort mit völlig unterschiedlicher Bedeutung des Bezugswortes werden als aufgelöst gekennzeichnet. Die möglichen Deutungen werden in das Lexikon eingetragen. Diese meinen eindeutig immer etwas Anderes, da der Sachzusammenhang anders ist.
+\item Eine decision list wird erstellt, die die noch nicht aufgelösten Stellen, an denen das Wort auftaucht, zu den in 2. ermittelten Bedeutungen einordnet. Dabei wird die Wahrscheinlichkeit der Zugehörigkeit ermittelt. Dies kann etwa der nächste Abstand zu einer eindeutig identifizierten Semantik sein.
+\item Die Einträge aus der decision list mit der höchsten Wahrscheinlichkeit werden auf jeden EIntrag angewendet. Dabei wird unterhalb einer Toleranzgrenze festgelegt, die festlegt, ab welcher Abweichung von der Wahrscheinlichkeit die Zuordnung noch nicht eindeutig ist. 
+\item Ab Schritt drei wird solange wiederholt, bis alle Wörter einer Bedeutung zugeordnet wurden.
+\end{enumerate} 
 \newpage
 
 \begin{thebibliography}{5}
+\bibitem[SWB02]{swb02}Ivan A. Sag, Thomas Wasow, Emily M. Bender, Center For The Study Of Language And Information, "Syntactic Therory: A Formal Introduction", 2002
+\bibitem[CAR52]{car52}Rudolf Carnap, "Meaning Postulates.", Philospohical Studies vol.3 S.65-73, 1952
+\bibitem[SR18]{sr18}Aaron Schul, Felix Ritter, "Propositionale Logiken am Beispiel $\in_T$-Logik, Dortmund, 2018
 \bibitem[COP04]{cop04}Ann Copestake, University Of Cambridge, "Natural Language Processing", 2004
 \bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr
 \bibitem[CHO57]{cho57} Noam Chomsky, "Syntactic Structures", Mouton \& Co., Feb. 1957
