@@ -595,7 +595,27 @@ Wie zuvor an verschiedenen Beispielen demonstriert wurde, weisen die kontextfrei
 
 %\subsubsection{Beispiel zu einfacher FS Grammatik}
 
-FSs sind Graphen, welche große Ähnlichkeit zu Baumstrukturen aufweisen. Sie haben genau eine Wurzel und sind von dieser aus gerichtet. Ein Knoten kann keinen, einen oder mehrere Kindesknoten besitzen. Endknoten, also Knoten mit dem Ausgangsgrad 0 verfügen über Werte und Kanten sind mit Eigenschaften versehen. Ein Weg entlang von Eigenschaften wird als Pfad bezeichnet. Eigenschaften sind entweder atomar oder zusammengesetzt, abhängig davon ob sie auf einen Endknoten oder auf einen weiteren nicht-Endknoten zeigen. In dem folgenden, dem Paper entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{"CAT"} für die Wortkategorie und \textit{"AGR"} für agreement (zu deutsch "Kongruenz"), teilt, welche jeweils auf die Endknoten mit den Werten \textit{"noun"} (für Nomen) und \textit{"sg"} (für Singular) zeigen. Die Eigenschaften \textit{"CAT"} und \textit{"AGR"} sind also atomar.
+FSs sind Graphen, welche große Ähnlichkeit zu Baumstrukturen aufweisen. Dabei haben sie die folgenden Eingenschaften zu erfüllen:
+
+\begin{enumerate}
+\item Verbundenheit und einzelne Wurzel: jede FS hat genau eine Wurzel und alle anderen Knoten haben mindestens einen Elternknoten.
+\item Einzigartigkeit der Eigenschaften: Knoten können einen beliebigen Ausgangsgrad haben, dabei muss jedoch jede Kante eine einzigartige Eigenschaft beschreiben sein.
+\item Keine Kreise: kein Knoten darf direkt oder indirekt auf einen seiner Elternknoten zeigen. 
+\item Werte: Nur Endknoten, also Knoten mit dem Ausgangsgrad 0 dürfen einen Wert enthalten. 
+\item Endlichkeit: jede FS hat nur eine endliche Zahl von Knoten.
+\end{enumerate}
+
+Ein Weg entlang von Eigenschaften wird als Pfad bezeichnet. Eigenschaften sind entweder atomar oder zusammengesetzt, abhängig davon ob sie auf einen Endknoten oder auf einen weiteren nicht-Endknoten zeigen.
+Eine FS \textit{FS1} ist der FS \textit{FS2} untergeordnet, wenn \textit{FS2} mehr Informationen beinhaltet als \textit{FS1}. Dies wird durch die folgenden zwei Bedingungen sichergestellt:
+
+\begin{enumerate}
+\item Für jeden Pfad \textit{P} in \textit{FS1} gibt es einen gleichen Pfad \textit{P} in \textit{FS2}. Wenn \textit{P} in \textit{FS1} auf den Wert \textit{v} zeigt, so zeigt er auch in \textit{FS2} auf den Wert \textit{v}.
+\item Jedes Paar von Pfaden \textit{P} und \textit{Q} mit Eintrittsinvarianz in \textit{FS1} habt auch Eintrittsinvarianz in \textit{FS2}.
+\end{enumerate}
+
+Die genaue Bedeutung der oben genannten Eigenschaften und Bedingungen soll anhand von Abbildungen und Beispielen genauer dargestellt werden. 
+
+In dem folgenden, dem Paper entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{"CAT"} für die Wortkategorie und \textit{"AGR"} für agreement (zu deutsch "Kongruenz"), teilt, welche jeweils auf die Endknoten mit den Werten \textit{"noun"} (für Nomen) und \textit{"sg"} (für Singular) zeigen. Die Eigenschaften \textit{"CAT"} und \textit{"AGR"} sind also atomar.
 
 \begin{center}
 \begin{tikzpicture}
@@ -648,7 +668,7 @@ AGR & []
 
 In FSs ist es möglich, dass mehrere Pfade zu dem gleichen Endknoten erreichen, was als Eintrittsinvarianz bezeichnet wird. Sollte dies bei einem Endknoten zutreffen, so wird dessen Wert durch einen eingeklammerten Integer dargestellt. Der numerische Wert dieses Integers ist irrelevant, da er als Platzhalter für einen tatsächlichen grammatikalischen Wert verwendet wird. Dabei ist zu beachten, dass dann für gleiche Integer auch der gleiche Wert eingesetzt wird.
 
-In der folgenden Abbildung sind Eintrittsinvarianz und FSs als AVMs dargestellt:
+In Abbildung X.X sind Eintrittsinvarianz und FSs als AVMs dargestellt:
 \\
 \begin{table}[h]
 \centering
@@ -716,7 +736,7 @@ VP-pl $\rightarrow$ can\\
 \rm
 
 Mit den vorgestellten Änderung wir nun beispielsweise ein Satz wie \textit{"He catch fish"} nicht mehr akzeptiert, da \textit{"He"}(singular) und \textit{"catch"}(in diesem Fall plural) über die ersten beiden Produktionsregeln an die gleichen Multiplizitäten gebunden sind. 
-Dies lässt sich in der Darstellung der Grammatik durch AVMs besonders gut erkennen:
+Dies lässt sich in der Darstellung der Grammatik durch AVMs besonders gut erkennen:\\
 
 $\begin{bmatrix} 
 CAT & S \\
@@ -730,9 +750,9 @@ AGR & [1]
 \begin{bmatrix} 
 CAT & VP \\
 AGR & [1] 
-\end{bmatrix}$ 
+\end{bmatrix}$ \\
 
-Diese AVM-Darstellung verkörpert sowohl Regel 1. als auch 2. in der oben stehenden Grammatik, abhängig davon, ob der Platzhalter \textit{"[1]"} für den Wert \textit{"sg"} (singular) oder \textit{"pl"} (plural) steht. Das Einsetzen des Wertes gilt nur innerhalb der Regel, die [1] kann also problemlos auch in anderen Regeln als Platzhalter verwendet und dort durch andere Werte ersetzt werden.
+Diese AVM-Darstellung verkörpert sowohl Regel 1. als auch 2. in der oben stehenden Grammatik, abhängig davon, ob der Platzhalter \textit{"[1]"} für den Wert \textit{"sg"} (singular) oder \textit{"pl"} (plural) steht. Das Einsetzen des Wertes gilt nur innerhalb der Regel, die [1] kann also problemlos auch in anderen Regeln als Platzhalter verwendet und dort durch andere Werte ersetzt werden.\\
 
 $\begin{bmatrix} 
 CAT & VP \\
@@ -746,18 +766,18 @@ AGR & [1]
 \begin{bmatrix} 
 CAT & NP \\
 AGR & [] 
-\end{bmatrix}$ 
+\end{bmatrix}$ \\
 
 Diese Regel enthält die gleichen Informationen wie die restlichen Produktionsregeln der obigen Grammatik, also 3., 4., 5. und 6., da es für alle möglichen AGR-Werte von NP die nötige Produktionsregel gibt, solange die AGR-Werte von VP und V übereinstimmen. Die Regel ist also unabhängig von dem AGR-Wert bei NP, was es erlaubt diesen Wert komplett unbelegt ("[]") zu lassen.
 
-Die einzelnen Wörter bzw. Lexikoneinträge lassen sich durch simple AVMs darstellen wir folgt:
+Die einzelnen Wörter bzw. Lexikoneinträge lassen sich durch simple AVMs darstellen wir folgt:\\
 
 $\begin{bmatrix} 
 CAT & NP \\
 AGR & sg
-\end{bmatrix}\rightarrow$ he 
+\end{bmatrix}\rightarrow$ he \\
 
-Man betrachte nun das Parsen des Beispielsatzes \textit{"He fishes"}. Die AVMs der Wörter \textit{He} und \textit{fishes} können über die erste Regel vereinigt werden. Für eine etwas präzisere Betrachtung nehme man an, dass Regeln aus Mutter (rechte Seite) und nummerierten Töchtern (linke Seite) bestehen. Somit sind die Tochter 1 \textit{He} und die Tochter 2 \textit{fishes} in der Mutter \textit{He fishes} vereint wie folgt:
+Man betrachte nun das Parsen des Beispielsatzes \textit{"He fishes"}. Die AVMs der Wörter \textit{He} und \textit{fishes} können über die erste Regel vereinigt werden. Für eine etwas präzisere Betrachtung nehme man an, dass Regeln aus Mutter (rechte Seite) und nummerierten Töchtern (linke Seite) bestehen. Somit sind die Tochter 1 \textit{He} und die Tochter 2 \textit{fishes} in der Mutter \textit{He fishes} vereint wie folgt:\\
 
 $\begin{bmatrix} 
 Mutter & \begin{bmatrix} 
@@ -772,7 +792,12 @@ Tochter 2 & \begin{bmatrix}
 CAT & VP \\
 AGR & [1]
 \end{bmatrix}\\
-\end{bmatrix}$
+\end{bmatrix}$\\
+
+Da \textit{"He"} als singular erkannt wird, ist es nötig, dass auch alle anderen Kinder, in diesem Falle also nur "fishes" ebenfalls die [1] durch den Wert \textit{sg} ersetzen können. Falls dies möglich ist kann die Vereinigung durchgeführt werden, was dann der [1] der Mutter ebenfalls den Wert \textit{sg} zuweist. Falls mehrere Vereinigungen durchzuführen sind, so macht die Reihenfolge keinen Unterschied, da immer das gleiche Resultat erzielt wird. Das gleiche gilt für den verwendeten Pars-Algorithmus. Der einzige Unterschied ist, dass hier einige in bestimmten fällen terminieren und andere nicht. 
+
+Ohne eine entsprechende Produktionsregel wäre eine solche Vereinigung nicht möglich. Dies soll sowohl das Parsen, als auch Generieren von fehlerhaften Sätzen verhindern. In dem vorgestellten Beispiel reicht der Detailgrad der FSs jedoch bei Weitem nicht aus, um komplexere Sätze korrekt verarbeiten zu können.
+Außerdem können auf mangelnde oder fehlerhafte Informationen in den verwendeten Lexika (und den daraus folgenden Produktionsregeln) für falsche Resultate sorgen. So ist bspw. \textit{"fishes"} als singular gekennzeichnet, was es ermöglichen würde den fehlerhaften Satz \textit{"I fishes"} zu parsen. Um dies zu verhindern wäre es nötig nicht nur die Multiplizität, sondern auch die Person zu berücksichtigen. Je komplexer die in den FSs verwendeten Informationen, desto genauer und fehlerfreier lassen sich Sätze damit verarbeiten. Von einer vollständigen Grammatik ist man jedoch wie bereits erwähnt weit entfernt. 
 
 \subsection{Lexikalische Semantiken und kontextbasierte Deutungen}
 Mithilfe der im letzten Abschnitt eingeführten Feature Structures wurde eine Möglichkeit offenbart, Abhängigkeiten zwischen einzelnen Wörtern abzubilden. Abgesehen von der Syntax, die durch eine möglichst gute Modellierung der zugrundeliegenden Grammatik im Computer darstellbar wird, ist es die Semantik, die den "Sinn" hinter einer Aussage repräsentiert. In NLP-Anwendungen wird dies häufig als "Logische Form" oder "Logik einer Aussage" umrissen (vgl. \cite{swb02}), wenn eine semantische Repräsentation eines Satzes erstellt werden soll. Einen Ansatz, um überhaupt solch einen Sinn abbilden zu können, bieten dabei die schon bekannten Feature Structures. Semantiken können theoretisch allesamt in einem Lexikon abgespeichert werden, die korrekte Deutung kann anhand der bekannten Informationen aus der Semantik anderer Wörter bestimmt werden. Wenn man erneut das Problem von Verben mit und ohne erforderlichem Bezugswort betrachtet, damit diese Sinn ergeben, könnte diese Semantik als Erweiterung der FSs um die Argumente des Verbs erfolgen. Diese Repräsentation ist jedoch nur syntaktisch vollständig, sie erfasst beispielsweise keine der weiter unten genannten semantischen Feinheiten der Deutung. Es werden außerdem, logisch betrachtet, Quantoren benötigt, um das Ausmaß einer Aussage zu erfassen.
