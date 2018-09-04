@@ -52,15 +52,22 @@ Der folgende Abschnitt befasst sich mit den Grundlagen zu Natural Language Proce
 Ein Großteil der menschlichen Kommunikation findet durch natürliche Sprache statt. QUELLE Dies ist bereits seit Jahrtausenden so, jedoch hat sich die Übertragung dieser Sprache mit der Zeit verändert und weiterentwickelt. 
 
 Damals lediglich von Mund zu Mund übertragen war der erste große Schritt die Entwicklung der Schrift. Mithilfe von Hieroglyphen, Alphabeten oder anderen Zeichen war man in nun in der Lage, natürliche Sprache über lange Zeit und/oder weite Strecken zu vermitteln. Dies erwies sich als sehr Vorteilhaft und so setzte sich die Entwicklung fort, bis man über das Morsen und das Telefon schließlich die elektronische Nachricht erfand. 
-Im Rahmen der voranschreitenden Digitalisierung und Globalsierung steigt die Menge an übertragener natürlicher Sprache nach wie vor rasant an, sodass heutzutage ein Leben ohne beispielsweise die E-Mail unvorstellbar scheint (OBJEKTIVER: sodass heute etwa E-Mails einen wesentlichen Bestandteil der Kommunikation ausmachen.) . Obgleich die Übertragung durch kabelgebundene oder drahtlose Kommunikation weitgehend automatisiert ist, erfolgt die Auswertung des Inhalts größtenteils manuell durch menschliche Empfänger.
+Im Rahmen der voranschreitenden Digitalisierung und Globalsierung steigt die Menge an übertragener natürlicher Sprache nach wie vor rasant an, sodass heute etwa E-Mails einen wesentlichen Bestandteil der Kommunikation ausmachen. Obgleich die Übertragung durch kabelgebundene oder drahtlose Kommunikation weitgehend automatisiert ist, erfolgt die Auswertung des Inhalts größtenteils manuell durch menschliche Empfänger.
 
-Die Daten selbst sind jedoch inzwischen kaum noch nur durch den Menschen effizient zu verarbeiten, sodass man nach einer neuen Möglichkeit sucht, dem Menschen diese Arbeit zu erleichtern, oder sogar abzunehmen. Mit diese Aufgabe beschäftigt sich NLP. 
+Die Daten selbst sind jedoch inzwischen kaum noch nur durch den Menschen effizient zu verarbeiten, sodass man nach einer neuen Möglichkeit sucht, dem Menschen diese Arbeit zu erleichtern, oder sogar abzunehmen. Mit dieser Aufgabe beschäftigt sich NLP. Moderne Ansätze aus der Informatik, wie etwa Machine-Learning und dynamische Programmierung, sind dabei eng miteinander verwoben und sind aktuelle relevante Forschungsthemen.
 
 \subsection{Hypothese}
+Hypothese dieser Arbeit ist, dass bestimmte algorithmische Verfahren besser oder schlechter für NLP geeignet sind, die im Laufe der Zeit entwickelt wurden. Es stellt ferner sich die Frage, ob überhaupt ein ganzheitliches NLP unter Einbezug von Semantiken erforderlich ist und wenn ja, wie dann Wissen aus der Welt und um Sprache im Computer modelliert werden kann. 
 
 \subsection{Methodik}
+Verschiedene Ansätze für die Modellierung natürlicher Sprache werden zunächst erläutert, damit der Sinn und Zweck von NLP verdeutlicht wird. Die Teilschritte der Textverarbeitung werden für das Verständnis verschiedener Aspekte der Abläufe theoretisch wie praktisch mittels Implementierungsbeispielen erläutert. Anhand des Programms GATE wird überprüft, wie das Programm NLP umsetzt und inwiefern es unter Kriterien des Requirements-ENgineering für die Praxis geeignet ist.
 
 \subsection{Aufbau der Arbeit}
+Beginnend mit einer kurzen Motivation und Historie wird zunächst in das Thema eingeführt. Bekannte Ansätze und Beispiele aus dem Alltag leiten in die Analyse über.
+
+Für die Vermittlung von Wissen aus dem Bereich NLP werden zunächst ausführlich die Grundlagen zu NLP und dessen Aufgaben wie Tools erläutert. Daraufhin können mit Hilfe von Use-Cases Anforderungen an diese Tools erhoben werden, auf denen Analyse und Evaluation des GATE-Tools beruhen sollen. 
+
+Abgeschlossen wird die Arbeit von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen für NLP-relevante Domänen. 
 
 \section{Natural Language Processing}
 \subsection{Grundlagen und thematische Einordnung}
@@ -236,7 +243,9 @@ Dieses Kapitel befasst sich mit der Transformation von Ergebnissen der morpholog
 
 Im Deutschen ist es etwa recht wahrscheinlich, dass auf ein Nomen am Satzanfang als nächstes Wort ein Verb folgt, da dies einen typischen Satzbau darstellt. Ein part-of-speech Tagger sollte daher beispielsweise im Satz \textit{"Ich fahre Fahrrad."} korrekt das "Ich" als Subjekt, das "fahre" als Prädikat und das "Fahrrad" als Akkusativobjekt darstellen; Die isolierte Betrachtung von \textit{"Fahrrad"} ließe aber auch die Kategorisierung als Subjekt zu, da sich die zwei Möglichkeiten bezüglich der Morphologie nicht unterscheiden. Diese Mehrdeutigkeit einzelner Worte im Satz wird durch Analyse des syntaktischen Kontextes eliminiert, sodass POS tagging eine Eindeutigkeit der syntaktischen Deutung erzielt.
 
-Solche Regelmäßigkeiten werden in Form von sogenannten \textit{corpora} geliefert; sie stellen Trainingsdaten in Form von tatsächlicher Sprache dar. Im Englischen wird etwa häufig die Zeitung The Wall Street Journal genutzt, um die Repräsentation bestimmter Satzstrukturen und Wortfolgen statistisch zu erfassen. Alternativ können auch standardisierte Corpora wie der Lancaster-Oslo-Bergen Corpus (QUELLE) verwendet werden, der etwa eine Million Wörter in Sprache enthält. Corpora sind etwa für NLP auf Basis von Machine-Learning-Algorithmen erforderlich, können darüber hinaus aber auch etwa zur Rechtschreibprüfung oder Textunterteilung benutzt werden. Die meisten Textverarbeitungsprogramme können heutzutage etwa erkennen, wenn sich syntaktische Fehler in einem Satz ereignen (Kommasetzung, falscher Kasus, etc.). Es ist anzumerken, dass part-of-speech tagging nicht unbedingt vorher annotierter Texte bedarf, aber ohne diese eine syntaktische Einordnung ungleich schwerer fällt und die Fehlerquote massiv steigt. Mehrdeutigkeiten aus der Syntax heraus können somit nicht aufgeschlüsselt werden.
+Solche Regelmäßigkeiten werden in Form von sogenannten \textit{corpora} geliefert; sie stellen Trainingsdaten in Form von tatsächlicher Sprache dar. Im Englischen wird etwa häufig die Zeitung The Wall Street Journal genutzt, um die Repräsentation bestimmter Satzstrukturen und Wortfolgen statistisch zu erfassen. Eine Implementierung auf dieser Basis beschreiben etwa Toutanova et al. \cite{tou03}. 
+\cite{tou03} taggt zu etwa 97,24\% korrekt, der Vorschlag aus \cite{she07} erreicht auf Basis einer bidirektionalen Analyse und Machine-Learning sogar 97,33\%.
+ Alternativ können auch standardisierte Corpora wie der Lancaster-Oslo-Bergen Corpus (QUELLE) verwendet werden, der etwa eine Million Wörter in Sprache enthält. Corpora sind etwa für NLP auf Basis von Machine-Learning-Algorithmen erforderlich, können darüber hinaus aber auch etwa zur Rechtschreibprüfung oder Textunterteilung benutzt werden. Die meisten Textverarbeitungsprogramme können heutzutage etwa erkennen, wenn sich syntaktische Fehler in einem Satz ereignen (Kommasetzung, falscher Kasus, etc.). Es ist anzumerken, dass part-of-speech tagging nicht unbedingt vorher annotierter Texte bedarf, aber ohne diese eine syntaktische Einordnung ungleich schwerer fällt und die Fehlerquote massiv steigt. Mehrdeutigkeiten aus der Syntax heraus können somit nicht aufgeschlüsselt werden.
 
 Die Anwendung eines Corpus auf ein natürlichsprachliches Dokument ermöglicht sogleich auch eine Vorhersage der nächsten Wörter bzw. Sprachbausteine, nachdem schon ein Teilsatz gelesen wurde. Diese \textit{prediction} kann auf Basis bekannter Regelmäßigkeiten also schon vor der Wortanalyse recht genau die nächste grammatikalische Komponente bzw. den Worttyp vorhersagen.
 
@@ -895,11 +904,16 @@ Für die Erstellung eines Lexikons, mit dessen Hilfe mehrere Bedeutungen zugeord
 \item Die Einträge aus der decision list mit der höchsten Wahrscheinlichkeit werden auf jeden EIntrag angewendet. Dabei wird unterhalb einer Toleranzgrenze festgelegt, die festlegt, ab welcher Abweichung von der Wahrscheinlichkeit die Zuordnung noch nicht eindeutig ist. 
 \item Ab Schritt drei wird solange wiederholt, bis alle Wörter einer Bedeutung zugeordnet wurden.
 \end{enumerate} 
+
+Ähnlich wie die eingangs vorgestellten Corpora zur Sammlung von Syntax, stellt solch ein Lexikon dann eine Ontologie dar, also eine Sammlung von Wissen. Implentierungsbeispiele aus \cite{col11} erläutern, wie die Zuordnung von Bedeutungen zu Wörtern (Semantic Role Labelling) und die Darstellung von Wissensverknüpfungen in Vektoren erfolgt. Allgemeines Wissen über die Welt sollte dabei ebenso Teil der Wissensbasis sein, wie fachspezifisches Wissen aus der Anwendungsdomäne. Dieses tiefere Wissen kann dann zur Auflösung von Mehrdeutigkeiten herangezogen werden.
 \newpage
 
 \begin{thebibliography}{5}
 \bibitem[SWB02]{swb02}Ivan A. Sag, Thomas Wasow, Emily M. Bender, Center For The Study Of Language And Information, "Syntactic Therory: A Formal Introduction", 2002
 \bibitem[CAR52]{car52}Rudolf Carnap, "Meaning Postulates.", Philospohical Studies vol.3 S.65-73, 1952
+\bibitem[TOU03]{tou03}Kristina Toutanova et al., Stanford University, "Feature-Rich Part-of-Speech Tagging with a Cyclic Dependency Network", Jun. 2003
+\bibitem[SHE07]{she07} L. Shen, G. Satta, A. K. Joshi. In Meeting of the Association for Computational Linguistics (ACL), "Guided learning for bidirectional sequence classification", 2007.
+\bibitem[COL11]{col11}Ronan Collobert et al., "Natural Language Processing (Almost) from Scratch", Journal of Machine Learning Research 12 (2011) 
 \bibitem[SR18]{sr18}Aaron Schul, Felix Ritter, "Propositionale Logiken am Beispiel $\in_T$-Logik, Dortmund, 2018
 \bibitem[COP04]{cop04}Ann Copestake, University Of Cambridge, "Natural Language Processing", 2004
 \bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr
