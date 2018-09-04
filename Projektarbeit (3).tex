@@ -895,6 +895,64 @@ Für die Erstellung eines Lexikons, mit dessen Hilfe mehrere Bedeutungen zugeord
 \item Die Einträge aus der decision list mit der höchsten Wahrscheinlichkeit werden auf jeden EIntrag angewendet. Dabei wird unterhalb einer Toleranzgrenze festgelegt, die festlegt, ab welcher Abweichung von der Wahrscheinlichkeit die Zuordnung noch nicht eindeutig ist. 
 \item Ab Schritt drei wird solange wiederholt, bis alle Wörter einer Bedeutung zugeordnet wurden.
 \end{enumerate} 
+
+\subsection{Kontext}
+
+In vielen Fällen ist für ein semantisches Verständnis von natürlicher Sprache der Kontext ausschlaggebend. Der folgende Abschnitt beschäftigt sich mit kontextabhängigen Informationen, deren Auswirkung und Extraktion. 
+
+\subsubsection{Bezugsausdrücke}
+
+Viele Worte haben selbst keinen klaren semantischen Inhalt, nehmen jedoch Bezug auf andere Worte über welche sie ihre Bedeutung erhalten. Dazu gehören beispielsweise Pronomen. Der Ausdruck \textit{"Er"} hat keinerlei Ausdrucksstärke, wenn er sich nicht auf eine tatsächliche Instanz wie \textit{"Max Mustermann"} beziehen kann.\\
+
+\tt
+Das ist Max Mustermann. Er ist glücklich.\\
+\rm
+
+Hier erhält das Pronomen \textit{"Er"} dieselben semantischen Informationen wie \textit{Max Mustermann} und ließe sich ersetzen, ohne dass semantische Informationen verloren gehen. Man weiß also sofort, dass Max Mustermann glücklich ist. Für eine besseres Verständnis der Funktionsweise von Bezugsausdrücken sind zunächst die folgenden Begriffe zu klären:
+
+\begin{enumerate}
+\item Referent/Bezug: Eine tatsächliche Instanz (in der echten Welt) auf die sich andere Satzteile beziehen (hier eine bestimmte Person)
+\item Beziehender Ausdruck: Ausdruck, der sich auf einen Referent bezieht (hier "Er")
+\item Antezendent: Teil des Textes auf den sich ein beziehender Ausdruck bezieht (hier Max Mustermann)
+\item Anapher: Der Bezug auf einen Antezedent (hier würde man "Er" als anaphorisch bezeichnen, da es sich auf den Antezedent Max Mustermann bezieht.) 
+\end{enumerate}
+
+
+
+\subsubsection{Kohärenz}
+
+Sätze müssen eine inhaltliche Verbindung haben um kohärent zu sein. Einzelne Sätze können abgeschlossen sein, jedoch irritieren, wenn sie hintereinander stehen. 
+
+\tt 
+Das ist Max Mustermann. Tom ist glücklich.\\
+\rm
+
+Fügt man einen Satz mit verbindender Funktion hinzu, so mag es zwar ungewöhnlich formuliert, doch definitiv sinnvoller sein. (Es würde für den Empfänger der Sätze reichen, wenn er den Kontext bereits kennt, ohne das dieser mit übermittelt wird. Dies ist jedoch für NLP realistisch gesehen nicht von Nutzen.)
+
+\tt 
+Das ist Max Mustermann.Er hat Tom ein Fahrrad geschenkt. Tom ist glücklich.\\
+\rm
+
+Kohärenz kann maßgeblich Einfluss auf die Bedeutung eines Satzes nehmen:
+
+\tt Max ist ein Freund von Tom. Er hat ihm ein Fahrrad geschenkt. 
+\\
+\rm
+Zwei verschiedenen valide Interpretationen sind:
+
+\begin{enumerate}
+\item Max hat Tom ein Fahrrad geschenkt, weil sie Freunde sind.
+\item Max ist ein Freund von Tom, weil Tom ihm ein Fahrrad geschenkt hat. 
+\end{enumerate}
+
+
+
+
+
+
+
+
+
 \newpage
 
 \begin{thebibliography}{5}
