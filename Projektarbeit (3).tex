@@ -922,31 +922,42 @@ Hier erhält das Pronomen \textit{"Er"} dieselben semantischen Informationen wie
 \begin{enumerate}
 \item Referent/Bezug: Eine tatsächliche Instanz (in der echten Welt) auf die sich andere Satzteile beziehen (hier eine bestimmte Person)
 \item Beziehender Ausdruck: Ausdruck, der sich auf einen Referent bezieht (hier "Er")
-\item Antezendent: Teil des Textes auf den sich ein beziehender Ausdruck bezieht (hier Max Mustermann)
-\item Anapher: Der Bezug auf einen Antezedent (hier würde man "Er" als anaphorisch bezeichnen, da es sich auf den Antezedent Max Mustermann bezieht.) 
+\item Bezugswort: Teil des Textes auf den sich ein beziehender Ausdruck bezieht (hier Max Mustermann)
+\item Anaphora: Der Bezug auf einen Antezedent (hier würde man "Er" als anaphorisch bezeichnen, da es sich auf den Antezedent Max Mustermann bezieht.) 
 \end{enumerate}
 
+Üblicherweise wird in einem Text zunächst ein Referent über eine Bezugswort eingeführt und später über beziehende Ausdrücke referenziert. Es ist jedoch auch möglich, erst einen beziehenden Ausdruck zu verwenden und den Referent erst später zu erwähnen:\\
 
+\tt
+Weil er so glücklich war, musste Max lachen. \\
+\rm
+
+Es ist für Pronomen möglich auf keinerlei Referent zu verweisen. Diese Pronomen werden als pleonastisch bezeichnet und üblicherweise verwendet und einen generellen Zustand zu beschreiben:\\
+
+\tt 
+Es ist schönes Wetter, weil es nicht regnet.\\
+\rm
 
 \subsubsection{Kohärenz}
 
-Sätze müssen eine inhaltliche Verbindung haben um kohärent zu sein. Einzelne Sätze können abgeschlossen sein, jedoch irritieren, wenn sie hintereinander stehen. 
+Sätze müssen eine inhaltliche Verbindung haben um kohärent zu sein. Einzelne Sätze können abgeschlossen sein, jedoch irritieren, wenn sie hintereinander stehen. \\
 
 \tt 
 Das ist Max Mustermann. Tom ist glücklich.\\
 \rm
 
-Fügt man einen Satz mit verbindender Funktion hinzu, so mag es zwar ungewöhnlich formuliert, doch definitiv sinnvoller sein. (Es würde für den Empfänger der Sätze reichen, wenn er den Kontext bereits kennt, ohne das dieser mit übermittelt wird. Dies ist jedoch für NLP realistisch gesehen nicht von Nutzen.)
+Fügt man einen Satz mit verbindender Funktion hinzu, so mag es zwar ungewöhnlich formuliert, doch definitiv sinnvoller sein. (Es würde für den Empfänger der Sätze reichen, wenn er den Kontext bereits kennt, ohne das dieser mit übermittelt wird. Dies ist für uns jedoch nur im Zusammenhang mit Ontologien interessant.)\\
 
 \tt 
-Das ist Max Mustermann.Er hat Tom ein Fahrrad geschenkt. Tom ist glücklich.\\
+Das ist Max Mustermann. Er hat Tom ein Fahrrad geschenkt. Tom ist glücklich.\\
 \rm
 
-Kohärenz kann maßgeblich Einfluss auf die Bedeutung eines Satzes nehmen:
+Kohärenz kann maßgeblich Einfluss auf die Bedeutung eines Satzes nehmen:\\
 
 \tt Max ist ein Freund von Tom. Er hat ihm ein Fahrrad geschenkt. 
 \\
 \rm
+
 Zwei verschiedenen valide Interpretationen sind:
 
 \begin{enumerate}
@@ -954,9 +965,32 @@ Zwei verschiedenen valide Interpretationen sind:
 \item Max ist ein Freund von Tom, weil Tom ihm ein Fahrrad geschenkt hat. 
 \end{enumerate}
 
+\subsubsection{Präferenz von Referenten}
 
+In vielen Fällen kann ein beziehender Ausdruck auf verschiedene zuvor eingeführte Referenten verweisen. Hierbei sind die folgenden Regeln zu beachten:
 
-
+\begin{enumerate}
+\item Nähe: Das nähere Bezugswort ist üblicherweise der Referent. \textit{"Er"} bezieht sich also auf \textit{Tom}.\\
+\tt Max hat ein Fahrrad. Tom hat auch ein Fahrrad. Er leiht es manchmal Tim.\\
+\rm
+\item Grammatikalische Rolle: Man geht von einem Bezug auf Subjekte, dann Objekte und dann erst andere Satzteile aus. \textit{"Er"} bezieht sich also auf \textit{Max}.\\
+\tt
+Max fährt mit Tom Fahrrad. Er ist sehr schnell.\\
+\rm
+\item Wiederholtes Erwähnen: Ein wiederholtes Bezugswort ist höchstwahrscheinlich der Referent. \textit{"Er"} bezieht sich also üblicherweise auf \textit{Tom}.\\
+\tt
+Tom fährt Fahrrad. Max fährt mit Tom. Er ist sehr schnell.\\
+\rm
+\item Parallelismus: Bezugswörter mit gleicher oder ähnlicher Funktion wie der beziehende Ausdruck werden bevorzugt. \textit{"ihn"} bezieht sich also auf \textit{Tom}. \\
+\tt
+Max fährt mit Tom Fahrrad. Morgen fährt Tim mit ihm Auto.\\
+\rm
+\item Kohärenzeffekte: Der Inhalt des Kontextes kann entgegen der obigen Regeln den Bezug auf einen bestimmten Referent nahelegen. \textit{"Er"} bezieht sich also auf \textit{Tom}, da Hilfsbereitschaft als Erklärung dienen kann, warum andere ihn mögen.\\
+\tt
+Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.\\
+\rm
+\end{enumerate}
+Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in QUELLE von Lappin und Leass vorgestellt.\\
 
 
 
