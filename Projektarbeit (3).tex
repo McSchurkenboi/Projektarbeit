@@ -110,7 +110,17 @@ Abgesehen von diesen syntaktischen Uneindeutigkeiten muss NLP auch Hürden der i
 Solche scheinabr simplen Probleme sind für den Menschen recht einfach zu lösen. Wie oben erwähnt existiert NLP bereits seit ca. Mitte des 20. Jahrhunderts, jedoch ist die Behandlung natürlichsprachlicher Probleme auch heute noch problematisch in der Implementierung. Wenn Systeme die oben genannte Beispiele nicht explizit ausschließen, muss die Verarbeitungslogik besondere Rücksicht auf Uneindeutigkeiten nehmen.
 
 \subsection{Konzepte aus der Logik für NLP-Anwendungen}
-Hier vllt was zu $\varepsilon$T Logik
+Weit vor der Implementierung von NLP mittels Tools haben sich Logiker und Experten aus der theoretischen Informatik mit der Frage beschäftigt, wie man Sprache und Ereignisse aus der echten Welt in logischen Ausdrücken formalisieren kann. Ausgehend von der klassischen Aussagenlogik wurde mit der parametrisierten $\in_T$-Logik nach Zeitz \cite{ze00} ein Ansatz geschaffen, der eine Darstellung von Semantik in propositionalen Logiken ermöglicht. Nach Martin-Löf \cite{ml96} beschreibt eine Proposition den "Gedanken oder Sachverhalt eines formalen Ausdrucks", die dann in einer $\in_T$-Logik dargestellt werden kann und somit einen Sachverhalt als Symbol abbildet. Ziel ist es, tatsächlich Bedeutungen in Form von Propositionen mittels Formeln aus Symbolen der Logik darzustellen. Abstrakt betrachtet kann man sich mit formalen Logiken einer Abbildung von Wissen aus der tatsächlichen Welt annähern. 
+
+Die klassische Aussagenlogik kann etwa Wissen mittels ihrer Symbole abbilden, indem Sie Formeln aus diesen Symbolen bildet. Jedem Symbol ist dabei eine Aussage zugeordnet, dass dann in einer Formel als Variable auftaucht. Problematisch ist jedoch, dass solch eine Logik bei der Deutung auf reine Wahrheitswerte dieser Formeln beschränkt ist, indem die Symbole logisch wahr oder falsch belegt werden. Eine explizitere, semantische Deutung der Formeln ist jedoch erforderlich, um tatsächlich metasprachliche Aussagen in einer Logik zu formulieren. 
+
+$\in_T$-Logiken erweitern zugrundeliegende Logiken deshalb dahingehend, dass nicht nur die logische Korrektheit (die Formel ist syntaktisch korrekt) überprüft wird, womit auch Mehrdeutigkeiten und Missverständnisse akzeptiert würden. Die Bedeutung hinter den Symbolen, die Propositionen, werden erfasst. $\in_T$-Logiken können also auch die semantische Bedeutung einer Aussage überprüfen, indem sie entsprechende Ausdrucksmittel enthält:
+\begin{enumerate}
+\item propositionale Gleichheit (zwei Aussagen sind gleichbedeutend)
+\item Prädikate für wahr und falsch (Semantik, kein logischer Wahrheitswert)
+\item Quantifizierung über Propositionen (Umformulierung als messbare Eigenschaft)
+\end{enumerate}
+Mittels $\in_T$-Logiken kann man sich etwa der Behandlung von natürlichsprachigen Problemen, wie beispielsweise Antinomien, annähern, da diese eine logische Betrachtung und Deutung ermöglichen. Sie stellt daher eine Abstraktion und theoretische Grundlage der Lösungsansätze für Probleme aus Mehrdeutigkeiten und Semantik dar, sie unter 3.8 und 3.9 praktisch beschrieben werden.
 
 \subsection{Linguistische Analyse}
 Der folgende Abschnitt beschäftigt sich mit der Analyse der sprachlichen Struktur eines Dokumentes. Am Anfang von NLP steht die linguistische Analyse des Textes etwa bezüglich Satzstruktur und Differenzierung von Wörtern aus der Sprache und Eigennamen. Das Ziel ist die sogenannte \textit{Annotation} der Textbausteine bezüglich ihrer Bedeutung. Sachzusammenhänge und Relationen von Wörtern sollen dargestellt werden. (?)
@@ -816,11 +826,13 @@ Zu starke Spezifizierungen der Semantik führen jedoch auch dazu, dass Mehrdeuti
 \tt
 Every man loves a woman.
 \rm
-zu deutsch \textit{"Jeder Mann liebt..."} ist semantisch mehrdeutig zwischen  
+\\
+Zu deutsch \textit{"Jeder Mann liebt..."} ist semantisch mehrdeutig zwischen  
+\begin{enumerate}
+\item \textit{"...die eine Frau"}: $\exists y [woman'(y) \bigwedge \forall x [man'(x) \Rightarrow love'(x,y)]]$ und
+\item \textit{"...irgendeine Frau"}: $\forall x [man'(x) \Rightarrow \exists y [woman'(y) \bigwedge love'(x,y)]]$
+\end{enumerate}
 
-1. \textit{"...irgendeine Frau"}: $\forall x [man'(x) \Rightarrow \exists y [woman'(y) \bigwedge love'(x,y)]]$  und
-
-2. \textit{"...die eine Frau"}: $\exists y [woman'(y) \bigwedge \forall x [man'(x) \Rightarrow love'(x,y)]]$
 
 Es stellt sich die Frage, ob hier also logisch betrachtet mehrere oder nur eine spezifische Frau gemeint ist; Regeln der Aussagenlogik für die Semantik scheinen jedoch schon durch den Menschen schwer erkennbar und in der Implementierung kann die Deutung eingeschränkt werden, wie im nächsten Abschnitt beleuchtet wird.
 
@@ -911,10 +923,10 @@ In vielen Fällen ist für ein semantisches Verständnis von natürlicher Sprach
 
 \subsubsection{Bezugsausdrücke}
 
-Viele Worte haben selbst keinen klaren semantischen Inhalt, nehmen jedoch Bezug auf andere Worte über welche sie ihre Bedeutung erhalten. Dazu gehören beispielsweise Pronomen. Der Ausdruck \textit{"Er"} hat keinerlei Ausdrucksstärke, wenn er sich nicht auf eine tatsächliche Instanz wie \textit{"Max Mustermann"} beziehen kann.\\
+Viele Worte haben selbst keinen klaren semantischen Inhalt, nehmen jedoch Bezug auf andere Worte über welche sie ihre Bedeutung erhalten. Dazu gehören beispielsweise Pronomen. Der Ausdruck \textit{"Er"} hat keinerlei Ausdrucksstärke, wenn er sich nicht auf eine tatsächliche Instanz wie \textit{"Max Mustermann"} beziehen kann.
 
 \tt
-Das ist Max Mustermann. Er ist glücklich.\\
+Das ist Max Mustermann. Er ist glücklich.
 \rm
 
 Hier erhält das Pronomen \textit{"Er"} dieselben semantischen Informationen wie \textit{Max Mustermann} und ließe sich ersetzen, ohne dass semantische Informationen verloren gehen. Man weiß also sofort, dass Max Mustermann glücklich ist. Für eine besseres Verständnis der Funktionsweise von Bezugsausdrücken sind zunächst die folgenden Begriffe zu klären:
@@ -926,36 +938,36 @@ Hier erhält das Pronomen \textit{"Er"} dieselben semantischen Informationen wie
 \item Anaphora: Der Bezug auf einen Antezedent (hier würde man "Er" als anaphorisch bezeichnen, da es sich auf den Antezedent Max Mustermann bezieht.) 
 \end{enumerate}
 
-Üblicherweise wird in einem Text zunächst ein Referent über eine Bezugswort eingeführt und später über beziehende Ausdrücke referenziert. Es ist jedoch auch möglich, erst einen beziehenden Ausdruck zu verwenden und den Referent erst später zu erwähnen:\\
+Üblicherweise wird in einem Text zunächst ein Referent über eine Bezugswort eingeführt und später über beziehende Ausdrücke referenziert. Es ist jedoch auch möglich, erst einen beziehenden Ausdruck zu verwenden und den Referent erst später zu erwähnen:
 
 \tt
-Weil er so glücklich war, musste Max lachen. \\
+Weil er so glücklich war, musste Max lachen.
 \rm
 
-Es ist für Pronomen möglich auf keinerlei Referent zu verweisen. Diese Pronomen werden als pleonastisch bezeichnet und üblicherweise verwendet und einen generellen Zustand zu beschreiben:\\
+Es ist für Pronomen möglich auf keinerlei Referent zu verweisen. Diese Pronomen werden als pleonastisch bezeichnet und üblicherweise verwendet und einen generellen Zustand zu beschreiben:
 
 \tt 
-Es ist schönes Wetter, weil es nicht regnet.\\
+Es ist schönes Wetter, weil es nicht regnet.
 \rm
 
 \subsubsection{Kohärenz}
 
-Sätze müssen eine inhaltliche Verbindung haben um kohärent zu sein. Einzelne Sätze können abgeschlossen sein, jedoch irritieren, wenn sie hintereinander stehen. \\
+Sätze müssen eine inhaltliche Verbindung haben um kohärent zu sein. Einzelne Sätze können abgeschlossen sein, jedoch irritieren, wenn sie hintereinander stehen. 
 
 \tt 
-Das ist Max Mustermann. Tom ist glücklich.\\
+Das ist Max Mustermann. Tom ist glücklich.
 \rm
 
-Fügt man einen Satz mit verbindender Funktion hinzu, so mag es zwar ungewöhnlich formuliert, doch definitiv sinnvoller sein. (Es würde für den Empfänger der Sätze reichen, wenn er den Kontext bereits kennt, ohne das dieser mit übermittelt wird. Dies ist für uns jedoch nur im Zusammenhang mit Ontologien interessant.)\\
+Fügt man einen Satz mit verbindender Funktion hinzu, so mag es zwar ungewöhnlich formuliert, doch definitiv sinnvoller sein. (Es würde für den Empfänger der Sätze reichen, wenn er den Kontext bereits kennt, ohne das dieser mit übermittelt wird. Dies ist für uns jedoch nur im Zusammenhang mit Ontologien interessant.)
 
 \tt 
-Das ist Max Mustermann. Er hat Tom ein Fahrrad geschenkt. Tom ist glücklich.\\
+Das ist Max Mustermann. Er hat Tom ein Fahrrad geschenkt. Tom ist glücklich.
 \rm
 
-Kohärenz kann maßgeblich Einfluss auf die Bedeutung eines Satzes nehmen:\\
+Kohärenz kann maßgeblich Einfluss auf die Bedeutung eines Satzes nehmen:
 
 \tt Max ist ein Freund von Tom. Er hat ihm ein Fahrrad geschenkt. 
-\\
+
 \rm
 
 Zwei verschiedenen valide Interpretationen sind:
@@ -971,23 +983,23 @@ In vielen Fällen kann ein beziehender Ausdruck auf verschiedene zuvor eingefüh
 
 \begin{enumerate}
 \item Nähe: Das nähere Bezugswort ist üblicherweise der Referent. \textit{"Er"} bezieht sich also auf \textit{Tom}.\\
-\tt Max hat ein Fahrrad. Tom hat auch ein Fahrrad. Er leiht es manchmal Tim.\\
+\tt Max hat ein Fahrrad. Tom hat auch ein Fahrrad. Er leiht es manchmal Tim.
 \rm
 \item Grammatikalische Rolle: Man geht von einem Bezug auf Subjekte, dann Objekte und dann erst andere Satzteile aus. \textit{"Er"} bezieht sich also auf \textit{Max}.\\
 \tt
-Max fährt mit Tom Fahrrad. Er ist sehr schnell.\\
+Max fährt mit Tom Fahrrad. Er ist sehr schnell.
 \rm
 \item Wiederholtes Erwähnen: Ein wiederholtes Bezugswort ist höchstwahrscheinlich der Referent. \textit{"Er"} bezieht sich also üblicherweise auf \textit{Tom}.\\
 \tt
-Tom fährt Fahrrad. Max fährt mit Tom. Er ist sehr schnell.\\
+Tom fährt Fahrrad. Max fährt mit Tom. Er ist sehr schnell.
 \rm
 \item Parallelismus: Bezugswörter mit gleicher oder ähnlicher Funktion wie der beziehende Ausdruck werden bevorzugt. \textit{"ihn"} bezieht sich also auf \textit{Tom}. \\
 \tt
-Max fährt mit Tom Fahrrad. Morgen fährt Tim mit ihm Auto.\\
+Max fährt mit Tom Fahrrad. Morgen fährt Tim mit ihm Auto.
 \rm
 \item Kohärenzeffekte: Der Inhalt des Kontextes kann entgegen der obigen Regeln den Bezug auf einen bestimmten Referent nahelegen. \textit{"Er"} bezieht sich also auf \textit{Tom}, da Hilfsbereitschaft als Erklärung dienen kann, warum andere ihn mögen.\\
 \tt
-Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.\\
+Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 \rm
 \end{enumerate}
 Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in QUELLE von Lappin und Leass vorgestellt.\\
@@ -1000,15 +1012,17 @@ Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in QUE
 \newpage
 
 \begin{thebibliography}{5}
-\bibitem[SWB02]{swb02}Ivan A. Sag, Thomas Wasow, Emily M. Bender, Center For The Study Of Language And Information, "Syntactic Therory: A Formal Introduction", 2002
-\bibitem[CAR52]{car52}Rudolf Carnap, "Meaning Postulates.", Philospohical Studies vol.3 S.65-73, 1952
-\bibitem[TOU03]{tou03}Kristina Toutanova et al., Stanford University, "Feature-Rich Part-of-Speech Tagging with a Cyclic Dependency Network", Jun. 2003
+\bibitem[COL11]{col11}Ronan Collobert et al., "Natural Language Processing (Almost) from Scratch", Journal of Machine Learning Research 12, 2011. 
+\bibitem[CHO57]{cho57} Noam Chomsky, "Syntactic Structures", Mouton \& Co., Feb. 1957.
+\bibitem[COP04]{cop04}Ann Copestake, University Of Cambridge, "Natural Language Processing", 2004.
+\bibitem[ZE00]{ze00}Philip Zeitz, Technische Universität Berlin, "Parametrisierte $\in_T$-Logik: Eine Theorie der Erweiterung abstrakter Logiken um die Konzepte Wahrheit, Referenz und klassische Negation", Logos Verlag Berlin, 1999.
+\bibitem[ML96]{ml96}Per Martin-Löf, "On the meanings of the logical constants andthe justifications of the logical laws", Nordic Journal of Philosophical Logic, 1996.
+\bibitem[SWB02]{swb02}Ivan A. Sag, Thomas Wasow, Emily M. Bender, Center For The Study Of Language And Information, "Syntactic Therory: A Formal Introduction", 2002.
+\bibitem[CAR52]{car52}Rudolf Carnap, "Meaning Postulates.", Philospohical Studies vol.3 S.65-73, 1952.
+\bibitem[TOU03]{tou03}Kristina Toutanova et al., Stanford University, "Feature-Rich Part-of-Speech Tagging with a Cyclic Dependency Network", Jun. 2003.
 \bibitem[SHE07]{she07} L. Shen, G. Satta, A. K. Joshi. In Meeting of the Association for Computational Linguistics (ACL), "Guided learning for bidirectional sequence classification", 2007.
-\bibitem[COL11]{col11}Ronan Collobert et al., "Natural Language Processing (Almost) from Scratch", Journal of Machine Learning Research 12 (2011) 
-\bibitem[SR18]{sr18}Aaron Schul, Felix Ritter, "Propositionale Logiken am Beispiel $\in_T$-Logik, Dortmund, 2018
-\bibitem[COP04]{cop04}Ann Copestake, University Of Cambridge, "Natural Language Processing", 2004
-\bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr
-\bibitem[CHO57]{cho57} Noam Chomsky, "Syntactic Structures", Mouton \& Co., Feb. 1957
+\bibitem[SR18]{sr18}Aaron Schul, Felix Ritter, "Propositionale Logiken am Beispiel $\in_T$-Logik, Dortmund, 2018.
+\bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr.
 
 \end{thebibliography}
 \end{document}
