@@ -1011,6 +1011,12 @@ Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in \cite{ll94} von Lappin und Leass vorgestellt.\\
 
 \chapter{Anforderungsanaylse von NLP-Problemen}
+Generelle NLP Bedingungen:
+\begin{enumerate}
+\item kleine Domäne, hohe Präzision (oder andersrum)
+\item Vielzahl von Verarbeitungsschritten also Anbindung durch Plugins bzw API wichtig. Außerdem modifizieren einzelner Schritte und schnelle Verfügbarkeit der "Standartschritte"
+\item evtl. sehr hohe Laufzeiten (abhg. von Text, Schritten und verwendeten Algorithmen)
+\end{enumerate}
 \section{Nicht-funktionale Anforderungen}
 \subsection{Design}
 \begin{enumerate}
@@ -1043,7 +1049,9 @@ Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in \ci
 \begin{enumerate}
 \item ermöglicht das Einbinden von Plugins/stellt wichtige Funktionalitäten schnell zur Verfügung
 \item ermöglicht das Erstellen eigener Plugins/ermöglicht das erstellen und umsetzen eigener Funktionalitäten
+\item ermöglicht die Anbindung an andere Programme (in der Verarbeitungslogik vorher oder nachher)
 \end{enumerate}
+
 \chapter{Analyse und Evaluation von G.A.T.E}
 Hab nachgeschaut. Is top.
 \newpage
