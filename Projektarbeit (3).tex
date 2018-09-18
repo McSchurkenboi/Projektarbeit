@@ -1018,8 +1018,23 @@ Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in \cite{ll94} von Lappin und Leass vorgestellt.\\
 
 \chapter{Anforderungsanaylse von NLP-Problemen}
+Das folgende Kapitel beschäftigt sich mit der Anfolderungsanalyse NLP-Tools genrell. Dabei gibt es eine Vielzahl von Anforderungen und Anforderungsbereichen die zu berücksichtigen sind. Zunächst sind natürlich alle generellen Anforderungen zu Verarbeitungsprogrammen relevant. Des weiteren erwachsen jedoch aus den Eigenschaften von NLP bestimmte Probleme, welche wiederum speziellere Anforderungen notwendig machen. Dieses Kapitel wird sich nicht auf ein bestimtes Tool beziehen, sondern durch die Darstellung der besagten Anforderungen eine Grundlage für das nächste Kapitel liefern, in welchem GATE anhand der hier aufgeführten Punkte evaluiert wird. 
+
+Zunächst werden die oben erwähnten Eigenschaften von NLP betrachtet und die resultierenden Probleme aufgezählt. Daraufhin werden die genrellen und spezifischen Anforderungen an NLP-Tools ausgeführt. Diese sind in funktionale und nicht-funktionale Anfoderungen unterteilt, welche wiederum in bestimmte Anforderungsbereiche wie zum Beispiel "Design" oder "Sicherheit" aufgeteilt sind.
+
+\section{Eigenschaften von NLP}
+In diesem Abschnitt werden die in dem vorherigen Kapitel dargestellten Eigenschaften von NLP noch einmal kurz aufgeführt. Der Fokus liegt dabei auf den Eigenschaften, welche bei der Anforderungsanalyse besonderen Einfluss haben. Eine Auflistung der für uns relevantesten Eigenschaften kann wie folgt aussehen:
+
+\begin{enumerate}
+\item Ständiger Wandel von Sprache: natürliche Sprache verändert sich konstant. Dies gilt sowhl für Morphologie, als auch für Syntax, was wiederum zu variierenden Semantiken zwei gleicher Sätze zu einem unterschiedlichen Zeitpunkt führen kann. Dies hat zur Folge, dass Fehler entstehen, wenn NLP-Tools nicht ausreichend wartbar sind oder nicht immer Zugriff auf den aktuellsten Stand der Sprache haben, z.B. über Lexika.
+\item Vielzahl von Verarbeitungsschritten: Für eine ausreichende linguistische Analyse von Texten werden viele Arbeitsschritte hintereinander druchgeführt, wie in Abschnitt 2.2.1 beschrieben wird. Im Gegensatz zu vielen Programmierumgebungen reicht es also nicht einfach ein Programm zu kompilieren. Eingie Verarbeitungsschritte werden zudem noch den eigenen Zwecken angepasst um bestimmte Ergebnisse zu erziehlen. Dies muss also durch ein NLP-Tool ermöglicht und so gut es geht vereinfacht werden.
+\item Hohe Laufzeiten: Bei der Verarbeitung von Texten kann es zu sehr hohen Laufzeiten kommen. Diese sind bspw. abhängig von der Länge des Textes, der Anzahl der Verarbeitungsschritte und den in diesen verwendeten Algorithmen. Ein NLP-Tool sollte also über entsprechende Funktionalitäten verfügen, um die Laufzeit überblicken und evtl. einschränken zu können. 
+\item Domäne und Präzision: Bei NLP ist in vielen Fällen abzuwägen zwischen einer präzisen und schnellen Verarbeitung in kleiner Domäne (kleine Lexika, Corpora, semantisches Umfeld usw.) oder einer langsameren, weniger präzisen Verarbeitung in einer dafür größeren bzw. generelleren Domäne. Ein NLP-Tool muss es also ermöglichen die verarbeitungsdomäne jedes mal selbst zu wählen.
+\end{enumerate}
+
 Generelle NLP Bedingungen:
 \begin{enumerate}
+
 \item kleine Domäne, hohe Präzision (oder andersrum)
 \item Vielzahl von Verarbeitungsschritten also Anbindung durch Plugins bzw API wichtig. Außerdem modifizieren einzelner Schritte und schnelle Verfügbarkeit der "Standartschritte"
 \item evtl. sehr hohe Laufzeiten (abhg. von Text, Schritten und verwendeten Algorithmen)
@@ -1067,6 +1082,12 @@ Generelle NLP Bedingungen:
 
 \chapter{Analyse und Evaluation von G.A.T.E}
 Hab nachgeschaut. Is top.
+
+\chapter{Notizen}
+- bsp in 2.1.4 ändern
+- Anführungszeichen ändern
+- Abschnitt-Angaben überprüfen
+- Domänenabhängigkeit in kapitel 2 einbauen und evtl in 3 referenzieren 
 \newpage
 
 \begin{thebibliography}{5}
