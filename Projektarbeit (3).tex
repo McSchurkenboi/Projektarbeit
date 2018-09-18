@@ -1039,6 +1039,49 @@ Generelle NLP Bedingungen:
 \item Vielzahl von Verarbeitungsschritten also Anbindung durch Plugins bzw API wichtig. Außerdem modifizieren einzelner Schritte und schnelle Verfügbarkeit der "Standartschritte"
 \item evtl. sehr hohe Laufzeiten (abhg. von Text, Schritten und verwendeten Algorithmen)
 \end{enumerate}
+
+\section{Besondere Anforderungen für die Entwicklung von NLP-Tools}
+Wie bereits im vorigen Abschnitt dargelegt wurde, sind bei der Entwicklung von Tools, die NLP-Algorithmen zur Auswertung von Sprache verwenden, Besonderheiten zu beachten. Daraus ergebt sich besonders im Hinblick auf die korrekte Umsetzung der Funktionalität der Software Handlungsbedarf für die Planung der Entwicklung und das Anforderungsmanagement. Diese Anforderungen lassen sich im Sinne der Softwaretechnik in der Planung der Entwicklung in funktionale und nicht-funktionale Anforderungen an eine Software gliedern. Im Bereich der Softwareentwicklung existieren mittlerweile standardisierte Typen von Anforderungen, die in der DIN 9126 zusammengefasst sind. 
+In diesem Abschnitt soll besonderer Fokus auf der Benennung und Einordnung besonders beachtenswerter Anforderungen, die sich bei NLP ergeben, aus dieser Norm gelegt werden. In der Spezifizierung einzelner Anforderungen werden dabei die inhaltlichen Grundlagen aus Kap. 2 genutzt, um die Problematiken zu motivieren und darzulegen. Mögliche Schwachpunkte im Entwicklungsprozess können bereits im Vorhinein identifiziert und vermieden werden. Es ist dabei zu beachten, dass es durch die hohe Abhängigkeit von NLP zum Anwendungskontext in verschiedenen Domänen noch weitere Anforderungen entstehen können. Wenn etwa die Semantik besonders im Vordergrund steht oder schwer fachspezifisches Wissen erforderlich ist, muss man schon beim Programmentwurf auf diese Besonderheiten eingehen.
+
+\subsection{Funktionale Anforderungen}
+Im Kontext der Entwicklung von NLP-Tools können konkrete Anforderungen an den Betriebsablauf erhoben werden. Funktionale Anforderungen beschreiben, was das Endprodukt, also hier die hergestellte Software, zweckmäßig tun soll. Obwohl diese Anforderungen in der Regel spezifisch für einen Entwicklungszyklus festgelegt werden, existieren bei NLP auch allgemein besondere funktionale Anforderungen. Aufgrund der in Kap. 2.2 vorgestellten Schritte der Linguistischen Analyse existieren allgemein u.a. folgende Anforderungen an den Funktionsumfang:
+\begin{enumerate}
+\item Die Software muss standardisierte Dateitypen einlesen können.
+
+In der Softwareentwicklung ist eine hohe Flexibilität der späteren Einsatzmöglichkeiten von Software anzuraten. Wenn eine möglichst universell einsetzbare Software eingesetzt werden soll, muss sie daher in der Anwendungsdomäne häufig benutzte Dateiformate akzeptieren. Dies umfasst ganz konkret etwa .txt oder .doc Dateien als häufig vorkommende Dateitypen, kann aber individuell erweiterbar sein. Beim Einsatz in einer leicht anderen Umgebung kann durch Erweiterung der Textverarbeitung aber beispielsweise auch Speech-to-Text realisiert werden.
+
+\item Die Verarbeitungslogik der Programme muss in Modulen (getrennten Diensten) erfolgen
+Wie bereits zu Beginn von Kap. 2 dargelegt wurde, sind bei der Verarbeitung von Sprache verschiedene Teilschritte in der Verarbeitung erforderlich, die jeweils Logiken und Aspekte von Sprache umsetzen und verarbeiten. Diese Schritte sind in der Programmierung dann als Algorithmen implementiert, die teils vollkommen unterschiedlich arbeiten. Daher muss die Implementierung in eigenständigen Modulen erfolgen, die Kommunikation der Verarbeitungsergebnisse der Module an das jeweils nächste muss aber standardisiert erfolgen, damit die Schritte nachvollzogen werden können. Informationen und Taggings von Textstellen können etwa über XML oder einen eigens entwickelte n Dokumententyp ausgetauscht werden.
+
+\item Die Software muss die Sprachauswertung im Ergebnis repräsentativ darstellen können, sodass wesentliche Textstellen graphisch markiert sind. 
+
+Durch die sogenannte \textit{Annotation} von Text liegt im Ergebnis der Software ein gekennzeichneter Text vor, der Anmerkungen zur Deutung des Textes enthält. Die Einordnung von Wörtern und Sätzen anhand von Grammatikregeln muss klar ersichtlich sein. Für den Anwender ist es relevant, dass es dabei standardisierte Darstellungen von Deutungen im Programm gibt; jede Annotation eines Typs muss einheitlich und im besten Fall grafisch hervorgehoben sein.
+
+\item Im Falle von Mehrdeutigkeiten muss sich das Programm auf eine mögliche Deutung festlegen können und darf nicht abbrechen.
+
+Die Basis für eine Vielzahl von Problemen beim Entwurf von Verarbeitungslogik für NLP stellen sprachliche Mehrdeutigkeiten dar. Die Bewältigung solcher Mehrdeutigkeiten stellt daher einen wesentliches Funktionsteil dar. Da Programme, die NLP nutzen, aber deterministisch sein müssen (siehe nicht-funktionale Anforderungen), muss es an sochen Zweigstellen auf Basis von Heuristiken eine Möglichkeit auswählen. Alternativ könnte das Programm auch durch Interaktion mit dem Anwender zunächst meherere Möglichkeiten anbieten und den Benutzer dann eine davon Auswählen lassen, wenn etwa das Beispiel aus Kap.2 \textit{they can fish} vorliegt.
+Durch 
+
+\item Die Software muss jederzeit manuell terminierbar sein.
+
+Aufgrund der Vielzahl von Verarbeitungsschritten von NLP kann davon ausgegangen werden, dass bei der Analyse langer und komplexer Dokumente eine hohe Programmlaufzeit erreicht wird. Daher muss jederzeit auch die Terminierung durch den Benutzer möglich sein, wenn dies durch Umstände im Einsatzumfeld erforderlich ist. Es ist realistisch, dass etwa mehrere Implementierungen parallel genutzt werden und nicht alle Ergebnisse benötigt werden.
+
+\item Die Software ermöglicht das Einbinden von Plug-Ins
+
+Durch die im vorigen Abschnitt beschriebene Weiterentwicklung von Sprache, aber auch durch den Entwurf neuer Algorithmen und den Wunsch nach neuen Funktionen der Software muss es eine standardisierte Schnittstelle zur Einbindung von Plug-Ins geben. Die Basisfunktion der Software ist dann die Annotaion, ergänzend kommen dann weitere Funktionen hinzu, die diese nutzen. Die Plug-Ins können dann in den Funktionsablauf und Modulhierarchie der Software integriert werden.
+
+\item Die Software stellt Möglichkeiten zur Erstellung eigener Plug-Ins
+
+Um betriebsabhängig weitere Funktionen im Programm umzusetzen, muss das NLP-Tool Möglichkeiten zur Eigenentwicklung bieten. Dies kann entweder mittels einer eigenen Entwicklungsumgebung (IDE) umgesetzt werden, oder mit einer Schablone für andere Programmierumgebungen für Sprachen wie beispielsweise JAVA. Aus dem NLP-Programm hinaus lässt sich ein Funktionseditor zur Erstellung dieser Plug-Ins aufrufen.
+
+\item Die Software kann automatisiert in einen größeren Workflow eingebunden werden
+
+Vor und nach dem Einsatz von NLP-Software müssen die Daten über eine standardisierte Schnittstelle zur Verfügung stehen. Im betrieblichen Kontext kommen meist mehrere Programme in einem Arbeitsbereich zum Einsatz. Nach dem Ergebnis der Linguistischen Analyse durch ein NLP Tool steht etwa die Einordnung im Anwendungskontext, also die Weiterverarbeitung der Daten aus dem NLP in anderen Programmen, wie etwa zur Visualisierung oder Speicherung. Die Software muss also in der Lage sein, Datenein- und -ausgabeströme bereit zu stellen und zu verarbeiten.
+
+
+
+\end{enumerate}
 \section{Nicht-funktionale Anforderungen}
 \subsection{Design und Usability}
 \begin{enumerate}
@@ -1052,8 +1095,14 @@ Generelle NLP Bedingungen:
 \item Verfügt über ausreichend dokumentierte API
 \item Verfügt über ausführlichen User-Guide, der ermöglicht ohne weitere Hilfe mit dem Programm zu arbeiten
 \end{enumerate}
+\subsection{Funktionssicherheit}
+\begin{enumerate}
+\item Deterministische Algorithmen
+\item Reproduzierbarkeit der Ergebnisse und Textdeutung
+\end{enumerate}
 \subsection{Laufzeit}
 \begin{enumerate}
+\item Skalierbarkeit
 \item Ausfallsicherheit bei endloser oder extrem langer Laufzeit
 \item Grobe Zeitvorhersage bei Start der Verarbeitung abhängig von Textlänge und Verarbeitungsschritten
 \end{enumerate}
@@ -1066,13 +1115,8 @@ Generelle NLP Bedingungen:
 \subsection{Laufzeit}
 \begin{enumerate}
 \item ermöglicht jederzeit manuelle Terminierung der Verarbeitung (mit Rollback)
-\item Skalierbarkeit
 \end{enumerate}
-\subsection{Funktionssicherheit}
-\begin{enumerate}
-\item Deterministische Algorithmen
-\item Reproduzierbarkeit der Ergebnisse und Textdeutung
-\end{enumerate}
+
 \subsection{Anbindungsverwaltung}
 \begin{enumerate}
 \item ermöglicht das Einbinden von Plugins/stellt wichtige Funktionalitäten schnell zur Verfügung
