@@ -1032,16 +1032,10 @@ In diesem Abschnitt werden die in dem vorherigen Kapitel dargestellten Eigenscha
 \item Domäne und Präzision: Bei NLP ist in vielen Fällen abzuwägen zwischen einer präzisen und schnellen Verarbeitung in kleiner Domäne (kleine Lexika, Corpora, semantisches Umfeld usw.) oder einer langsameren, weniger präzisen Verarbeitung in einer dafür größeren bzw. generelleren Domäne. Ein NLP-Tool muss es also ermöglichen die verarbeitungsdomäne jedes mal selbst zu wählen.
 \end{enumerate}
 
-Generelle NLP Bedingungen:
-\begin{enumerate}
+Die hier nur kurz angerissenen Anforderungen, welche aus diesen Eigenschaft entstehen, werden im folgenden Abschnitt jeweils einzeln genauer behandelt.
 
-\item kleine Domäne, hohe Präzision (oder andersrum)
-\item Vielzahl von Verarbeitungsschritten also Anbindung durch Plugins bzw API wichtig. Außerdem modifizieren einzelner Schritte und schnelle Verfügbarkeit der "Standartschritte"
-\item evtl. sehr hohe Laufzeiten (abhg. von Text, Schritten und verwendeten Algorithmen)
-\end{enumerate}
-
-\section{Besondere Anforderungen für die Entwicklung von NLP-Tools}
-Wie bereits im vorigen Abschnitt dargelegt wurde, sind bei der Entwicklung von Tools, die NLP-Algorithmen zur Auswertung von Sprache verwenden, Besonderheiten zu beachten. Daraus ergebt sich besonders im Hinblick auf die korrekte Umsetzung der Funktionalität der Software Handlungsbedarf für die Planung der Entwicklung und das Anforderungsmanagement. Diese Anforderungen lassen sich im Sinne der Softwaretechnik in der Planung der Entwicklung in funktionale und nicht-funktionale Anforderungen an eine Software gliedern. Im Bereich der Softwareentwicklung existieren mittlerweile standardisierte Typen von Anforderungen, die in der DIN 9126 zusammengefasst sind. 
+\section{Anforderungen für die Entwicklung von NLP-Tools}
+Wie bereits im vorigen Abschnitt dargelegt wurde, sind bei der Entwicklung von Tools, die NLP-Algorithmen zur Auswertung von Sprache verwenden, Besonderheiten zu beachten. Daraus ergibt sich besonders im Hinblick auf die korrekte Umsetzung der Funktionalität der Software Handlungsbedarf für die Planung der Entwicklung und das Anforderungsmanagement. Diese Anforderungen lassen sich im Sinne der Softwaretechnik in der Planung der Entwicklung in funktionale und nicht-funktionale Anforderungen an eine Software gliedern. Im Bereich der Softwareentwicklung existieren mittlerweile standardisierte Typen von Anforderungen, die in der DIN 9126 zusammengefasst sind. 
 In diesem Abschnitt soll besonderer Fokus auf der Benennung und Einordnung besonders beachtenswerter Anforderungen, die sich bei NLP ergeben, aus dieser Norm gelegt werden. In der Spezifizierung einzelner Anforderungen werden dabei die inhaltlichen Grundlagen aus Kap. 2 genutzt, um die Problematiken zu motivieren und darzulegen. Mögliche Schwachpunkte im Entwicklungsprozess können bereits im Vorhinein identifiziert und vermieden werden. Es ist dabei zu beachten, dass es durch die hohe Abhängigkeit von NLP zum Anwendungskontext in verschiedenen Domänen noch weitere Anforderungen entstehen können. Wenn etwa die Semantik besonders im Vordergrund steht oder schwer fachspezifisches Wissen erforderlich ist, muss man schon beim Programmentwurf auf diese Besonderheiten eingehen.
 
 \subsection{Funktionale Anforderungen}
@@ -1051,8 +1045,9 @@ Im Kontext der Entwicklung von NLP-Tools können konkrete Anforderungen an den B
 
 In der Softwareentwicklung ist eine hohe Flexibilität der späteren Einsatzmöglichkeiten von Software anzuraten. Wenn eine möglichst universell einsetzbare Software eingesetzt werden soll, muss sie daher in der Anwendungsdomäne häufig benutzte Dateiformate akzeptieren. Dies umfasst ganz konkret etwa .txt oder .doc Dateien als häufig vorkommende Dateitypen, kann aber individuell erweiterbar sein. Beim Einsatz in einer leicht anderen Umgebung kann durch Erweiterung der Textverarbeitung aber beispielsweise auch Speech-to-Text realisiert werden.
 
-\item Die Verarbeitungslogik der Programme muss in Modulen (getrennten Diensten) erfolgen
-Wie bereits zu Beginn von Kap. 2 dargelegt wurde, sind bei der Verarbeitung von Sprache verschiedene Teilschritte in der Verarbeitung erforderlich, die jeweils Logiken und Aspekte von Sprache umsetzen und verarbeiten. Diese Schritte sind in der Programmierung dann als Algorithmen implementiert, die teils vollkommen unterschiedlich arbeiten. Daher muss die Implementierung in eigenständigen Modulen erfolgen, die Kommunikation der Verarbeitungsergebnisse der Module an das jeweils nächste muss aber standardisiert erfolgen, damit die Schritte nachvollzogen werden können. Informationen und Taggings von Textstellen können etwa über XML oder einen eigens entwickelte n Dokumententyp ausgetauscht werden.
+\item Die Verarbeitungslogik der Programme muss in Modulen (getrennten Diensten) erfolgen (siehe Abschnitt 3.1 2.). 
+
+Wie bereits zu Beginn von Kap. 2 dargelegt wurde, sind bei der Verarbeitung von Sprache verschiedene Teilschritte in der Verarbeitung erforderlich, die jeweils Logiken und Aspekte von Sprache umsetzen und verarbeiten. Diese Schritte sind in der Programmierung dann als Algorithmen implementiert, die teils vollkommen unterschiedlich arbeiten. Daher muss die Implementierung in eigenständigen Modulen erfolgen, die Kommunikation der Verarbeitungsergebnisse der Module an das jeweils nächste muss aber standardisiert erfolgen, damit die Schritte nachvollzogen werden können. Informationen und Taggings von Textstellen können etwa über XML oder einen eigens entwickelten Dokumententyp ausgetauscht werden.
 
 \item Die Software muss die Sprachauswertung im Ergebnis repräsentativ darstellen können, sodass wesentliche Textstellen graphisch markiert sind. 
 
@@ -1063,7 +1058,7 @@ Durch die sogenannte \textit{Annotation} von Text liegt im Ergebnis der Software
 Die Basis für eine Vielzahl von Problemen beim Entwurf von Verarbeitungslogik für NLP stellen sprachliche Mehrdeutigkeiten dar. Die Bewältigung solcher Mehrdeutigkeiten stellt daher einen wesentliches Funktionsteil dar. Da Programme, die NLP nutzen, aber deterministisch sein müssen (siehe nicht-funktionale Anforderungen), muss es an sochen Zweigstellen auf Basis von Heuristiken eine Möglichkeit auswählen. Alternativ könnte das Programm auch durch Interaktion mit dem Anwender zunächst meherere Möglichkeiten anbieten und den Benutzer dann eine davon Auswählen lassen, wenn etwa das Beispiel aus Kap.2 \textit{they can fish} vorliegt.
 Durch 
 
-\item Die Software muss jederzeit manuell terminierbar sein.
+\item Die Software muss jederzeit manuell terminierbar sein (siehe Abschnitt 3.1: 3.).
 
 Aufgrund der Vielzahl von Verarbeitungsschritten von NLP kann davon ausgegangen werden, dass bei der Analyse langer und komplexer Dokumente eine hohe Programmlaufzeit erreicht wird. Daher muss jederzeit auch die Terminierung durch den Benutzer möglich sein, wenn dies durch Umstände im Einsatzumfeld erforderlich ist. Es ist realistisch, dass etwa mehrere Implementierungen parallel genutzt werden und nicht alle Ergebnisse benötigt werden.
 
@@ -1078,46 +1073,62 @@ Um betriebsabhängig weitere Funktionen im Programm umzusetzen, muss das NLP-Too
 \item Die Software kann automatisiert in einen größeren Workflow eingebunden werden
 
 Vor und nach dem Einsatz von NLP-Software müssen die Daten über eine standardisierte Schnittstelle zur Verfügung stehen. Im betrieblichen Kontext kommen meist mehrere Programme in einem Arbeitsbereich zum Einsatz. Nach dem Ergebnis der Linguistischen Analyse durch ein NLP Tool steht etwa die Einordnung im Anwendungskontext, also die Weiterverarbeitung der Daten aus dem NLP in anderen Programmen, wie etwa zur Visualisierung oder Speicherung. Die Software muss also in der Lage sein, Datenein- und -ausgabeströme bereit zu stellen und zu verarbeiten.
-
-
-
 \end{enumerate}
-\section{Nicht-funktionale Anforderungen}
-\subsection{Design und Usability}
+
+\subsection{Nicht-funktionale Anforderungen}
+Etwas weniger NLP-spezifisch, jedoch nicht weniger wichtig sind die nicht-funktionalen Anforderungen an NLP-Tools. Diese beziehen sich nicht auf einzelne Funktionalitäten, sondern helfen dabei den Rahmen der Software festzulegen. Somit sind sie eher generell gehalten und stehen meist im Hintergrund. Somit sind etwa folgende nicht-funktionale Anforderungen an NLP-Tools gestellt:
+
+\begin{enumerate}
+\item Design der Benutzeroberfläche:\\
+Das Programm sollte einen mindestgrad an Ästetik nicht unterschreiten, sodass es für den Benutzer nicht unangenehm wird mit dem Programm zu arbeiten. Über Kleinigkeiten ist dabei hinwegzusehen, beispielsweise "beißende" Farbkombinationen auf großen Bildflächen sollten jedoch vermieden werden. 
+
+Das Programm sollte über einen gut dokumentierten, einfach erreichbaren und didaktisch verfollen User-Guide verfügen. Dieser soll neuen Nutzern des Tools den Einstieg in die Arbeit ermöglichen und so leicht wie möglich machen.
+
+Die Benutzeroberfläche sollte übersichtlich und sinnvoll angeordnet bzw. sortiert sein. Dazu gehören sowohl einzelne Bildschirme des Programms, als auch andere Elemente wie Drop-down Menüs. So sollten z.B. nicht zu viele mögliche Schaltflächen in einem Menü, sondern über ein Untermenü zu erreichen sein. Da Design und Usability sehr umfangreiche Themen sind, welche jedoch für diese Arbeit nur wenig relevant sind, wird darauf nicht weiter eingegangen. 
+
+\item Anbindung:\\
+Für eine unkomplizierte Interaktion der Teilschritte und mit anderen Programmen sind die von dem Programm akzeptierten bzw. verwendeten Dateitypen ausschlaggebend. Diese sollten stets universell oder zumindest leicht konvertiertbar sein. 
+
+Die API (application programming interface) bzw. Anwendungsprogrammierschnittstelle sollte gut dokumentiert und einfach erreichbar sein, um Nutzern das Anbinden an weitere Programme zu ermöglichen, ohne dabei z.B. auf Hilfe der Entwickler des Tools angewiesen zu sein. 
+ 
+\end{enumerate}
+
+
+\subsubsection{Design und Usability}
 \begin{enumerate}
 \item Benutzerfreundliche Oberfläche
 \item Ästhetik 
 \item Übersichtlichkeit (Anzahl von Bedienelementen und GUI-Tiefe)  
 \end{enumerate}
-\subsection{Anbindung}
+\subsubsection{Anbindung}
 \begin{enumerate}
 \item Nutzt Dateiformate welche von anderen Programmen nutzbar sind (universell oder leicht konvertierbar) 
 \item Verfügt über ausreichend dokumentierte API
 \item Verfügt über ausführlichen User-Guide, der ermöglicht ohne weitere Hilfe mit dem Programm zu arbeiten
 \end{enumerate}
-\subsection{Funktionssicherheit}
+\subsubsection{Funktionssicherheit}
 \begin{enumerate}
 \item Deterministische Algorithmen
 \item Reproduzierbarkeit der Ergebnisse und Textdeutung
 \end{enumerate}
-\subsection{Laufzeit}
+\subsubsection{Laufzeit}
 \begin{enumerate}
 \item Skalierbarkeit
 \item Ausfallsicherheit bei endloser oder extrem langer Laufzeit
 \item Grobe Zeitvorhersage bei Start der Verarbeitung abhängig von Textlänge und Verarbeitungsschritten
 \end{enumerate}
-\subsection{Sicherheit}
+\subsubsection{Sicherheit}
 \begin{enumerate}
 \item verhindert den Zugriff nicht autorisierter Programme auf Daten 
 \item kann nicht ohne Autorisierung auf Daten außerhalb des eigenen Programmes zugreifen
 \end{enumerate}
-\section{Funktionale Anforderungen}
-\subsection{Laufzeit}
+\subsection{Funktionale Anforderungen}
+\subsubsection{Laufzeit}
 \begin{enumerate}
 \item ermöglicht jederzeit manuelle Terminierung der Verarbeitung (mit Rollback)
 \end{enumerate}
 
-\subsection{Anbindungsverwaltung}
+\subsubsection{Anbindungsverwaltung}
 \begin{enumerate}
 \item ermöglicht das Einbinden von Plugins/stellt wichtige Funktionalitäten schnell zur Verfügung
 \item ermöglicht das Erstellen eigener Plugins/ermöglicht das erstellen und umsetzen eigener Funktionalitäten
@@ -1128,10 +1139,17 @@ Vor und nach dem Einsatz von NLP-Software müssen die Daten über eine standardi
 Hab nachgeschaut. Is top.
 
 \chapter{Notizen}
-- bsp in 2.1.4 ändern
-- Anführungszeichen ändern
-- Abschnitt-Angaben überprüfen
-- Domänenabhängigkeit in kapitel 2 einbauen und evtl in 3 referenzieren 
+- bsp in 2.1.4 ändern\\
+- Anführungszeichen ändern\\
+- Abschnitt-Angaben überprüfen\\
+- Domänenabhängigkeit in kapitel 2 einbauen und evtl in 3 referenzieren\\
+- funktionale anforderung 3: grafische darstellung eher nicht-funktional?\\
+- 4. wirklich anforderung des tools oder frage des programms?\\
+- 4. ende: durch ...?\\
+- 6.,7. plugins zu spezifisch? vllt eher "müssen mit funktionalitäten erweiterbar sein"\\
+- quelle für standards bei 3.2.2 1.?\\
+- evtl quelle für kap 4 titel war einfach gate :Stenetorp, Pontus, et al. "BRAT: a web-based tool for NLP-assisted text annotation." Proceedings of the Demonstrations at the 13th Conference of the European Chapter of the Association for Computational Linguistics. Association for Computational Linguistics, 2012.\\
+ 
 \newpage
 
 \begin{thebibliography}{5}
