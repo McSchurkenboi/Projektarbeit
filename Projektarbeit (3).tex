@@ -1098,7 +1098,39 @@ Im folgenden Abschnitt soll nun prototypisch der Workflow von Usern, die ein Pro
 
 Zur weiteren Definition und Einordnung der späteren Programmnutzer in Gruppen, wird anschließend in einem Use-Case-Diagramm die eher praktische und weniger technische Beschreibung verschiedener User-Anwendungsfälle erstellt. Die unterschiedlichen an NLP-Tools beteiligten Akteure aus einem betrieblichen Kontext werden in diesem näher beschrieben. Aus diesen Use-Cases der verschiedenen Stakeholder können im Anschluss konkrete Anforderungen an die Implementierung extrahiert werden, die nicht die technische Umsetzung der Software betreffen.
 
+\begin{tikzpicture} 
+\begin{umlsystem}[x=0, y=0]{NLP-Programm} 
+\umlactor[x=-5, y=0]{user}
+\umlactor[x=-5, y=-5]{developer}
+\umlactor[x=-5, y=-10]{administrator}
+\umlusecase[x=0, y=0, width=4cm]{Verarbeitungslogik auf Text ausführen}
+\umlusecase[x=0, y=-2, width=4cm]{Verarbeitung abbrechen, beenden}
+\umlusecase[x=-0.5, y=-4]{Module konfigurieren}
+\umlusecase[x=-1, y=-6, width=3cm]{Externe Programme anbinden}
+\umlusecase[x=5, y=-5, width=2cm]{Schnittstellen, API benutzen}
+\umlusecase[x=-1, y=-8, width=3cm]{Neue Module programmieren}
+\umlusecase[x=-1, y=-10]{Updates installieren}
+\umlusecase[x=1, y=-11]{Security Guidelines einhalten}
+\umlusecase[x=-1, y=-12]{Log-Dateien lesen}
 
+\umlinherit{developer}{user}
+
+\umlassoc{user}{usecase-1}
+\umlassoc{user}{usecase-2}
+\umlassoc{user}{usecase-3}
+\umlassoc{developer}{usecase-3}
+\umlassoc{developer}{usecase-4}
+\umlassoc{developer}{usecase-5}
+\umlassoc{developer}{usecase-6}
+\umlassoc{administrator}{usecase-7}
+\umlassoc{administrator}{usecase-8}
+\umlassoc{administrator}{usecase-9}
+
+\umlinclude[name=incl]{usecase-4}{usecase-5}
+\umlinclude[name=incl]{usecase-6}{usecase-5}
+
+\end{umlsystem} 
+\end{tikzpicture}
 
 \subsection{Funktionale Anforderungen}
 Im Kontext der Entwicklung von NLP-Tools können konkrete Anforderungen an den Betriebsablauf erhoben werden. Funktionale Anforderungen beschreiben, was das Endprodukt, also hier die hergestellte Software, zweckmäßig tun soll. Obwohl diese Anforderungen in der Regel spezifisch für einen Entwicklungszyklus festgelegt werden, existieren bei NLP auch allgemein besondere funktionale Anforderungen. Die hier skizzierte Liste von Anforderungen dient dabei zunächst zur Orientierung vor der Implementierungsphase, erhebt jedoch keinen Anspruch auf Vollständigkeit und ist für die Entwicklung erweiterbar. Je nach Entwicklungsparadigma und Anwendungskontext können sich die Anforderungen ändern. Aufgrund der in Kap. 2.2 vorgestellten Schritte der Linguistischen Analyse existieren allgemein u.a. folgende Anforderungen an den Funktionsumfang:
@@ -1180,55 +1212,6 @@ Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des
 
 \end{enumerate}
 
-
-\begin{center}
-\begin{tikzpicture}
-\node[circle, draw, minimum size=0.7cm,fill=black](start) at (0,0) {};
-\node[invis](invis0) at (0,-2) {};
-\node[invis](invis1) at (-6,-2) {};
-\node[invis](invis2) at (-3.5,-2) {};
-\node[invis](invis3) at (3.5,-2) {};
-\node[invis](invis4) at (6,-2) {};
-\node[activity](a) at (-3.5, -5) {Text einlesen};
-\node[dia](d1) at (3.5,-3) { };
-\node[activity](b) at (1, -5) {Standard-Verarbeitungs-logik einbinden};
-\node[activity](c) at (6, -5) {Verarbeitungs-schritt hinzufügen/ modifizieren};
-\node[dia](d2) at (3.5,-7) { };
-\node[invis](invis5) at (-6,-8) {};
-\node[invis](invis6) at (-3.5,-8) {};
-\node[invis](invis7) at (3.5,-8) {};
-\node[invis](invis8) at (6,-8) {};
-\node[invis](invis9) at (0,-8) {};
-\node[dia](d3) at (0,-9.5) { };
-\node[activity](d) at (0,-11) {Verarbeitungs-logik auf Text ausführen};
-\node[dia](d4) at (0,-12.5) { };
-\node[activity](e) at (0,-14) {Ergebnis darstellen};
-\node[invis](invis10) at (3,-9.5) {};
-\node[invis](invis11) at (3,-12.5) {};
-\node[circle, draw, minimum size=0.5cm,fill=black] at (0,-16) {};
-\node[circle, draw, minimum size=0.7cm](end) at (0,-16) {};
-\draw[->] (start) to (invis0.center);
-\draw[line width=1.5mm] (invis1.center) to (invis4.center);
-\draw[->] (invis2.center) to (a);
-\draw[->] (invis3.center) to (d1);
-\draw[->] (d1) to (b);
-\draw[->] (d1) to (c);
-\draw[->] (b) to (c);
-\draw[->] (a) to (invis6.center);
-\draw[->] (b) to (d2);
-\draw[->] (c) to (d2);
-\draw[->] (d2) to (invis7.center);
-\draw[line width=1.5mm] (invis5.center) to (invis8.center);
-\draw[->] (invis9.center) to (d3);
-\draw[->] (d3) to (d);
-\draw[->] (d) to (d4);
-\draw (d4) to node[midway, above] {[Abbruch]} (invis11.center);
-\draw (invis11.center) to (invis10.center);
-\draw[->] (invis10.center) to (d3);
-\draw[->] (d4) to (e);
-\draw[->] (e) to (end);
-\end{tikzpicture}
-\end{center}
 
 \chapter{Analyse und Evaluation von G.A.T.E}
 Hab nachgeschaut. Is top.
