@@ -8,7 +8,10 @@
 \usepackage{amsfonts}
 \usepackage{caption}
 \usepackage{tikz}
-\usetikzlibrary{automata,arrows,positioning}
+\usetikzlibrary{automata,arrows,positioning,shapes}
+\tikzstyle{activity} = [rectangle, draw, text centered, text width=7em, rounded corners, minimum height=2em]
+\tikzstyle{dia} = [diamond, draw]
+\tikzstyle{invis} = []
 \usepackage{textcomp}
 \usepackage{verbatim}
 \usepackage{booktabs, tabularx}
@@ -1118,56 +1121,56 @@ Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des
 \end{enumerate} 
 
 \end{enumerate}
-\section{Nicht-funktionale Anforderungen}
-\subsection{Design und Usability}
 
 
-\subsubsection{Design und Usability}
-\begin{enumerate}
-\item Benutzerfreundliche Oberfläche
-\item Ästhetik 
-\item Übersichtlichkeit (Anzahl von Bedienelementen und GUI-Tiefe)  
-\end{enumerate}
-\subsubsection{Anbindung}
-\begin{enumerate}
-\item Nutzt Dateiformate welche von anderen Programmen nutzbar sind (universell oder leicht konvertierbar) 
-\item Verfügt über ausreichend dokumentierte API
-\item Verfügt über ausführlichen User-Guide, der ermöglicht ohne weitere Hilfe mit dem Programm zu arbeiten
-\end{enumerate}
-\subsubsection{Funktionssicherheit}
-\begin{enumerate}
-\item Deterministische Algorithmen
-\item Reproduzierbarkeit der Ergebnisse und Textdeutung
-\end{enumerate}
-\subsubsection{Laufzeit}
-\begin{enumerate}
-\item Skalierbarkeit
-\item Ausfallsicherheit bei endloser oder extrem langer Laufzeit
-\item Grobe Zeitvorhersage bei Start der Verarbeitung abhängig von Textlänge und Verarbeitungsschritten
-\end{enumerate}
-\subsubsection{Sicherheit}
-\begin{enumerate}
-\item verhindert den Zugriff nicht autorisierter Programme auf Daten 
-\item kann nicht ohne Autorisierung auf Daten außerhalb des eigenen Programmes zugreifen
-\end{enumerate}
-\subsection{Funktionale Anforderungen}
-\subsubsection{Laufzeit}
-\begin{enumerate}
-\item ermöglicht jederzeit manuelle Terminierung der Verarbeitung (mit Rollback)
-\item Skalierbarkeit
-\end{enumerate}
-\subsection{Funktionssicherheit}
-\begin{enumerate}
-\item Deterministische Algorithmen
-\item Reproduzierbarkeit der Ergebnisse und Textdeutung
-\end{enumerate}
-
-\subsubsection{Anbindungsverwaltung}
-\begin{enumerate}
-\item ermöglicht das Einbinden von Plugins/stellt wichtige Funktionalitäten schnell zur Verfügung
-\item ermöglicht das Erstellen eigener Plugins/ermöglicht das erstellen und umsetzen eigener Funktionalitäten
-\item ermöglicht die Anbindung an andere Programme (in der Verarbeitungslogik vorher oder nachher)
-\end{enumerate}
+\begin{center}
+\begin{tikzpicture}
+\node[circle, draw, minimum size=0.7cm,fill=black](start) at (0,0) {};
+\node[invis](invis0) at (0,-2) {};
+\node[invis](invis1) at (-6,-2) {};
+\node[invis](invis2) at (-3.5,-2) {};
+\node[invis](invis3) at (3.5,-2) {};
+\node[invis](invis4) at (6,-2) {};
+\node[activity](a) at (-3.5, -5) {Text einlesen};
+\node[dia](d1) at (3.5,-3) { };
+\node[activity](b) at (1, -5) {Standard-Verarbeitungs-logik einbinden};
+\node[activity](c) at (6, -5) {Verarbeitungs-schritt hinzufügen/ modifizieren};
+\node[dia](d2) at (3.5,-7) { };
+\node[invis](invis5) at (-6,-8) {};
+\node[invis](invis6) at (-3.5,-8) {};
+\node[invis](invis7) at (3.5,-8) {};
+\node[invis](invis8) at (6,-8) {};
+\node[invis](invis9) at (0,-8) {};
+\node[dia](d3) at (0,-9.5) { };
+\node[activity](d) at (0,-11) {Verarbeitungs-logik auf Text ausführen};
+\node[dia](d4) at (0,-12.5) { };
+\node[activity](e) at (0,-14) {Ergebnis darstellen};
+\node[invis](invis10) at (3,-9.5) {};
+\node[invis](invis11) at (3,-12.5) {};
+\node[circle, draw, minimum size=0.5cm,fill=black] at (0,-16) {};
+\node[circle, draw, minimum size=0.7cm](end) at (0,-16) {};
+\draw[->] (start) to (invis0.center);
+\draw[line width=1.5mm] (invis1.center) to (invis4.center);
+\draw[->] (invis2.center) to (a);
+\draw[->] (invis3.center) to (d1);
+\draw[->] (d1) to (b);
+\draw[->] (d1) to (c);
+\draw[->] (b) to (c);
+\draw[->] (a) to (invis6.center);
+\draw[->] (b) to (d2);
+\draw[->] (c) to (d2);
+\draw[->] (d2) to (invis7.center);
+\draw[line width=1.5mm] (invis5.center) to (invis8.center);
+\draw[->] (invis9.center) to (d3);
+\draw[->] (d3) to (d);
+\draw[->] (d) to (d4);
+\draw (d4) to node[midway, above] {[Abbruch]} (invis11.center);
+\draw (invis11.center) to (invis10.center);
+\draw[->] (invis10.center) to (d3);
+\draw[->] (d4) to (e);
+\draw[->] (e) to (end);
+\end{tikzpicture}
+\end{center}
 
 \chapter{Analyse und Evaluation von G.A.T.E}
 Hab nachgeschaut. Is top.
