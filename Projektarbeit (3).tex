@@ -1022,18 +1022,18 @@ Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in \cite{ll94} von Lappin und Leass vorgestellt.\\
 
 \chapter{Anforderungsanaylse von NLP-Problemen}
-Das folgende Kapitel beschäftigt sich mit der Anfolderungsanalyse NLP-Tools genrell. Dabei gibt es eine Vielzahl von Anforderungen und Anforderungsbereichen die zu berücksichtigen sind. Zunächst sind natürlich alle generellen Anforderungen zu Verarbeitungsprogrammen relevant. Des weiteren erwachsen jedoch aus den Eigenschaften von NLP bestimmte Probleme, welche wiederum speziellere Anforderungen notwendig machen. Dieses Kapitel wird sich nicht auf ein bestimtes Tool beziehen, sondern durch die Darstellung der besagten Anforderungen eine Grundlage für das nächste Kapitel liefern, in welchem GATE anhand der hier aufgeführten Punkte evaluiert wird. 
+Das folgende Kapitel beschäftigt sich mit der Anfolderungsanalyse von NLP-Tools generell. Dabei gibt es eine Vielzahl von Anforderungen und Anforderungsbereichen die zu berücksichtigen sind. Zunächst sind natürlich alle generellen Anforderungen zu Verarbeitungsprogrammen relevant. Des weiteren erwachsen jedoch aus den Eigenschaften von NLP bestimmte Probleme, welche wiederum speziellere Anforderungen notwendig machen. Dieses Kapitel wird sich nicht auf ein bestimmtes Tool beziehen, sondern durch die Darstellung der besagten Anforderungen eine Grundlage für das nächste Kapitel liefern, in welchem GATE anhand der hier aufgeführten Punkte evaluiert wird. 
 
-Zunächst werden die oben erwähnten Eigenschaften von NLP betrachtet und die resultierenden Probleme aufgezählt. Daraufhin werden die genrellen und spezifischen Anforderungen an NLP-Tools ausgeführt. Diese sind in funktionale und nicht-funktionale Anfoderungen unterteilt, welche wiederum in bestimmte Anforderungsbereiche wie zum Beispiel "Design" oder "Sicherheit" aufgeteilt sind.
+Zunächst werden die oben erwähnten Eigenschaften von NLP betrachtet und die resultierenden Probleme aufgezählt. Daraufhin werden die generellen und spezifischen Anforderungen an NLP-Tools ausgeführt. Diese sind in funktionale und nicht-funktionale Anforderungen unterteilt.
 
 \section{Eigenschaften von NLP}
 In diesem Abschnitt werden die in dem vorherigen Kapitel dargestellten Eigenschaften von NLP noch einmal kurz aufgeführt. Der Fokus liegt dabei auf den Eigenschaften, welche bei der Anforderungsanalyse besonderen Einfluss haben. Eine Auflistung der für uns relevantesten Eigenschaften kann wie folgt aussehen:
 
 \begin{enumerate}
 \item Ständiger Wandel von Sprache: natürliche Sprache verändert sich konstant. Dies gilt sowhl für Morphologie, als auch für Syntax, was wiederum zu variierenden Semantiken zwei gleicher Sätze zu einem unterschiedlichen Zeitpunkt führen kann. Dies hat zur Folge, dass Fehler entstehen, wenn NLP-Tools nicht ausreichend wartbar sind oder nicht immer Zugriff auf den aktuellsten Stand der Sprache haben, z.B. über Lexika.
-\item Vielzahl von Verarbeitungsschritten: Für eine ausreichende linguistische Analyse von Texten werden viele Arbeitsschritte hintereinander druchgeführt, wie in Abschnitt 2.2.1 beschrieben wird. Im Gegensatz zu vielen Programmierumgebungen reicht es also nicht einfach ein Programm zu kompilieren. Eingie Verarbeitungsschritte werden zudem noch den eigenen Zwecken angepasst um bestimmte Ergebnisse zu erziehlen. Dies muss also durch ein NLP-Tool ermöglicht und so gut es geht vereinfacht werden.
+\item Vielzahl von Verarbeitungsschritten: Für eine ausreichende linguistische Analyse von Texten werden viele Arbeitsschritte hintereinander durchgeführt, wie in Abschnitt 2.2.1 beschrieben wird. Im Gegensatz zu vielen Programmierumgebungen reicht es also nicht einfach ein Programm zu kompilieren. Einige Verarbeitungsschritte werden zudem noch den eigenen Zwecken angepasst um bestimmte Ergebnisse zu erzielen. Dies muss also durch ein NLP-Tool ermöglicht und so gut es geht vereinfacht werden.
 \item Hohe Laufzeiten: Bei der Verarbeitung von Texten kann es zu sehr hohen Laufzeiten kommen. Diese sind bspw. abhängig von der Länge des Textes, der Anzahl der Verarbeitungsschritte und den in diesen verwendeten Algorithmen. Ein NLP-Tool sollte also über entsprechende Funktionalitäten verfügen, um die Laufzeit überblicken und evtl. einschränken zu können. 
-\item Domäne und Präzision: Bei NLP ist in vielen Fällen abzuwägen zwischen einer präzisen und schnellen Verarbeitung in kleiner Domäne (kleine Lexika, Corpora, semantisches Umfeld usw.) oder einer langsameren, weniger präzisen Verarbeitung in einer dafür größeren bzw. generelleren Domäne. Ein NLP-Tool muss es also ermöglichen die verarbeitungsdomäne jedes mal selbst zu wählen.
+\item Domäne und Präzision: Bei NLP ist in vielen Fällen abzuwägen zwischen einer präzisen und schnellen Verarbeitung in kleiner Domäne (kleine Lexika, Corpora, semantisches Umfeld usw.) oder einer langsameren, weniger präzisen Verarbeitung in einer dafür größeren bzw. generelleren Domäne. Ein NLP-Tool muss es also ermöglichen die Verarbeitungsdomäne jedes mal selbst zu wählen.
 \end{enumerate}
 
 Die hier nur kurz angerissenen Anforderungen, welche aus diesen Eigenschaft entstehen, werden im folgenden Abschnitt jeweils einzeln genauer behandelt.
@@ -1045,7 +1045,7 @@ In diesem Abschnitt soll besonderer Fokus auf der Benennung und Einordnung beson
 
 \section{User-Interaktion mit NLP-Tools}
 Die Modellierung der Interaktion der Software mit Usern stellt eine Grundlage für die Erhebung weiterer Anforderungen dar, die nicht die verwendeten Algorithmen für die Sprachanalyse betreffen. In Kapitel 2 wurden diese funktionalen Bestandteile einer NLP-Software  bereits ausführlich erläutert.
-Im folgenden Abschnitt soll nun prototypisch der Workflow von Usern, die ein Programm mit einer generellen NLP-Architektur verwenden, veranschaulicht werden. Mithilfe eines Aktivitätsdiagramms werden einerseits die Arbeitsumgebung, in der NLP-Tools zum Einsatz kommen und andererseits die spezifischen Interaktionspunkte der User mit diesem Programm beschrieben. Die Darstellung des Workflows soll in dieser Arbeit eher allgemeingültig erfolgen, da jede mögliche Anwendungsdomäne des Tools eigene Spezifika bei der Darstellung ihrer Arbeitsumgebung bereithält. Diese Besonderheiten betreffen dann auch die Darstellung und Abfolge der Interaktionsschritte und konkretisieren diese etwa auf einen speziellen Dokumententyp. Ein prototypisches Szenario bei der Verwendung eines NLP-Tools könnte etwa wie folgt aussehen:
+Im folgenden Abschnitt soll nun prototypisch der Workflow von Usern, die ein Programm mit einer generellen NLP-Architektur verwenden, veranschaulicht werden. Mithilfe eines Aktivitätsdiagramms werden einerseits die Arbeitsumgebung, in der NLP-Tools zum Einsatz kommen und andererseits die spezifischen Interaktionspunkte der User mit diesem Programm beschrieben. Die Darstellung des Workflows soll in dieser Arbeit eher allgemeingültig erfolgen, da jede mögliche Anwendungsdomäne des Tools eigene Spezifika bei der Darstellung ihrer Arbeitsumgebung bereithält. Diese Besonderheiten betreffen dann auch die Darstellung und Abfolge der Interaktionsschritte und konkretisieren diese etwa auf einen speziellen Dokumententyp. Ein prototypisches Szenario bei der Verwendung eines NLP-Tools könnte etwa wie folgt aussehen:\\
 
 \begin{center}
 \begin{tikzpicture}
@@ -1055,7 +1055,7 @@ Im folgenden Abschnitt soll nun prototypisch der Workflow von Usern, die ein Pro
 \node[invis](invis2) at (-3.5,-2) {};
 \node[invis](invis3) at (3.5,-2) {};
 \node[invis](invis4) at (6,-2) {};
-\node[activity](a) at (-3.5, -5) {Text einlesen};
+\node[activity](a) at (-3.5, -5) {Text aus Datei einlesen};
 \node[dia](d1) at (3.5,-3) { };
 \node[activity](b) at (1, -5) {Standard-Verarbeitungs-logik einbinden};
 \node[activity](c) at (6, -5) {Verarbeitungs-schritt hinzufügen/ modifizieren};
@@ -1096,7 +1096,7 @@ Im folgenden Abschnitt soll nun prototypisch der Workflow von Usern, die ein Pro
 \end{tikzpicture}
 \end{center}
 
-Zur weiteren Definition und Einordnung der späteren Programmnutzer in Gruppen, wird anschließend in einem Use-Case-Diagramm die eher praktische und weniger technische Beschreibung verschiedener User-Anwendungsfälle erstellt. Die unterschiedlichen an NLP-Tools beteiligten Akteure aus einem betrieblichen Kontext werden in diesem näher beschrieben. Aus diesen Use-Cases der verschiedenen Stakeholder können im Anschluss konkrete Anforderungen an die Implementierung extrahiert werden, die nicht die technische Umsetzung der Software betreffen.
+Zur weiteren Definition und Einordnung der späteren Programmnutzer in Gruppen, wird anschließend in einem Use-Case-Diagramm die eher praktische und weniger technische Beschreibung verschiedener User-Anwendungsfälle erstellt. Die unterschiedlichen an NLP-Tools beteiligten Akteure aus einem betrieblichen Kontext werden in diesem näher beschrieben. Aus diesen Use-Cases der verschiedenen Stakeholder können im Anschluss konkrete Anforderungen an die Implementierung extrahiert werden, die nicht die technische Umsetzung der Software betreffen.\\
 
 \begin{tikzpicture} 
 \begin{umlsystem}[x=0, y=0]{NLP-Programm} 
@@ -1209,9 +1209,13 @@ Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des
 \item \textit{Integrität} - Das Programmverhalten bei der Textverarbeitung muss nachvollziehbar sein und Änderungen an den Daten dürfen nicht unbemerkt erfolgen. Wie bereits unter Funktionssicherheit angesprochen, muss das Programm eindeutig und nachvollziehbar arbeiten, sodass ein sicheres Verhalten garantiert wird. Auch die Module dürfen keine Möglichkeit für unkontrollierte und nicht überprüfbare Dateizugriffe bieten, indem ihr Anwendungsbereich klar abgedeckt ist und deren Zugriffsrechte verifizierbar sind.
 \item \textit{Verfügbarkeit} - Verhinderung von Systemausfällen und garantierter Zugriff auf Ergebnisse der Textverarbeitung. Innerhalb des Anwendungsgebietes muss das NLP-Tool verlässlich sein, damit eine hohe Verfügbarkeit ohne Ausfälle gewährleistet wird. Dabei ist zu beachten, dass einerseits das Programm generell fehlerfrei arbeiten muss, da ansonsten das Tool ausfällt. Andererseits müssen auch die Programmmodule einzeln fehlerfrei implementiert sein und sprachliche Sonderfälle berücksichtigen, die nicht zu einem unkontrollierten Abbruch führen dürfen. Das Programmverhalten, wenn etwa Mehrdeutigkeiten auftreten, muss hier in der Entwicklungsphase berücksichtigt werden, damit das Programm in diesem Regelfall verfügbar bleibt.
 \end{enumerate} 
-
 \end{enumerate}
 
+\subsection{Verwendung der Anforderungen}
+Mit den obigen Auflistungen liegt nun das Fundament für die Bewertung eines NLP-Tools. Dazu kann man die beschriebenen Anforderungen einzeln auf das Tool beziehen und nachprüfen, ob festgelegte Bedingungen erfüllt sind. Während einige Anforderungen dadurch sehr schnell zu prüfen sind, gestaltet es sich für andere um einiges komplizierter. Generell lässt sich sagen (laut QUELLE), dass sich die Prüfung nicht-funktionaler Anforderungen schwieriger gestaltet, als die Prüfung von funktionalen Anforderungen. Da sich die funktionalen Anforderungen oftmals auf das Vorhandensein bzw. die Art der Ausführung von bestimmten Funktionen beziehen, lassen sich diese manchmal schon durch schnelles Ausprobieren bestätigen. Das widerlegen bzw. nicht-Erfüllen dieser Anforderungen hingegen ist ein wenig aufwändiger, da gezeigt werden soll, dass eine Funktionalität nicht gegeben ist. Jedoch ist davon auszugehen, dass wichtige Funktionen auch schnell und simpel zugänglich sind, sofern diese implementiert sind. 
+Nicht-funktionale Anforderungen erheben üblicherweise Ansprüche an das System und sind deswegen nicht einfach in dem Programm überprüfbar. Besonders im Bereich des Usability Enigineering ist die Auffassung der Produkts stark subjektiv. Daher lassen sich diese Anforderungen kaum verifizieren bzw. falsifizieren, ohne dabei eng mit den Benutzern zusammenzuarbeiten. 
+
+Wie genau sich ein NLP-Tool anhand der aufgestellten Anforderungen bewerten lässt wird im folgenden Kapitel an dem Beispiel der General Architecture for Text Engineering (GATE) gezeigt. 
 
 \chapter{Analyse und Evaluation von G.A.T.E}
 Hab nachgeschaut. Is top.
