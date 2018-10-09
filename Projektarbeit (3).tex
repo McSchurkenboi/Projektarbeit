@@ -887,7 +887,9 @@ Durch Kategorisierung können verschiedene Ausprägungen  der gleichen Sache zus
 Diese Vereinfachungen sind Ansätze zur verbesserten Erfassung der Semantik. WORDNET Jedoch stellt sich für die Praxis etwa die Frage, ob diese auch für Verben und Adjektive oder Nomen wie \textit{"Gedanke"}, die sich schlecht verbildlichen lassen, getroffen werden können, ob es "Mehrfachvererbung" (Hund als Haustier und als Vierbeiner) gibt, oder wo der Ursprung aller Kategorien liegt. Wenn Wörter einer Kategorie zugeordnet werden, können feine Nuancen zwischen verschiedenen Wörtern verloren gehen.
 
 \subsection{Umgang mit Semantik in der Anwendung}
-Besonders in Arbeiten wie QUELLEN aus den 1980er Jahren versuchte man, Semantiken besser als durch einfache FSs zu erfassen, um etwa eine korrekte Negation in der Semantik abzubilden. Es ist dazu jedoch nicht nur erforderlich, alle möglichen Semantiken vorher in einem Lexikon parat zu haben, sondern auch, auf Basis der Textinformation eine davon als die wahrscheinlich richtige zu identifizieren. Die allgemeine Lösung dieses Problems ist AI-Vollständig. 
+Es existieren Ansätze, Semantiken besser als durch einfache FSs zu erfassen, um etwa eine korrekte Negation in der Semantik abzubilden. Vorschläge aus den 1980er Jahren, mithilfe von Theorembeweisern und Model-Checking lexikalische Semantik zu modellieren, sind etwa in \cite{sb88} und \cite{kn85} zu finden. In diesen Arbeiten werden mächtigere logische Modelle zur Modellierung von Semantik skizziert. 
+
+Bei der korrekten Erfassung von Semantiken ist es nicht nur erforderlich, alle möglichen Semantiken vorher in einem Lexikon abzulegen, sondern auch, auf Basis der Textinformation eine davon als die wahrscheinlich richtige zu identifizieren. Die allgemeine Lösung dieses Problems ist AI-Vollständig. 
 
 In der Implementierung bedarf es daher Möglichkeiten, überabzählbare Mehrdeutigkeiten und vage Formulierungen zu verhindern. Mögliche Semantiken müssen dahingehend beschränkt werden, dass das Problem dann nicht mehr AI-Vollständig ist, da immer eine eindeutige Lösung gefunden wird. Es wird also beispielsweise erfasst, in welchen Wortkombinationen ein mehrdeutiges Wort häufig auftritt, um eine Beziehung daraus abzuleiten. 
 
@@ -1039,15 +1041,61 @@ In diesem Abschnitt werden die in dem vorherigen Kapitel dargestellten Eigenscha
 Die hier nur kurz angerissenen Anforderungen, welche aus diesen Eigenschaft entstehen, werden im folgenden Abschnitt jeweils einzeln genauer behandelt.
 
 \section{Anforderungen für die Entwicklung von NLP-Tools}
-Wie bereits im vorigen Abschnitt dargelegt wurde, sind bei der Entwicklung von Tools, die NLP-Algorithmen zur Auswertung von Sprache verwenden, Besonderheiten zu beachten. Daraus ergibt sich besonders im Hinblick auf die korrekte Umsetzung der Funktionalität der Software Handlungsbedarf für die Planung der Entwicklung und das Anforderungsmanagement. Diese Anforderungen lassen sich im Sinne der Softwaretechnik in der Planung der Entwicklung in funktionale und nicht-funktionale Anforderungen an eine Software gliedern. Im Bereich der Softwareentwicklung existieren mittlerweile standardisierte Typen von Anforderungen, die in der DIN 9126 zusammengefasst sind. In QUELLE sind diese zu finden, jedoch fällt die Umsetzung besonders in Anwendungsgebieten, die in denen immer wieder neue Ansätze entstehen, nicht leicht. Da Komponenten für NLP ständig mit neuen Algorithmen implementiert werden können, fehlen mitunter best-practices für deren Entwicklung.
+Wie bereits im vorigen Abschnitt dargelegt wurde, sind bei der Entwicklung von Tools, die NLP-Algorithmen zur Auswertung von Sprache verwenden, Besonderheiten zu beachten. Daraus ergibt sich besonders im Hinblick auf die korrekte Umsetzung der Funktionalität der Software Handlungsbedarf für die Planung der Entwicklung und das Anforderungsmanagement. Diese Anforderungen lassen sich im Sinne der Softwaretechnik in der Planung der Entwicklung in funktionale und nicht-funktionale Anforderungen an eine Software gliedern. Im Bereich der Softwareentwicklung existieren mittlerweile standardisierte Typen von Anforderungen, die u.a. in DIN 9126 zusammengefasst sind. In \cite{bal98} sind diese zu finden, jedoch fällt die Umsetzung besonders in Anwendungsgebieten, die in denen immer wieder neue Ansätze entstehen, nicht leicht. Da Komponenten für NLP ständig mit neuen Algorithmen implementiert werden können, fehlen mitunter best-practices für deren Entwicklung.
 
 In diesem Abschnitt soll besonderer Fokus auf der Benennung und Einordnung besonders beachtenswerter Anforderungen, die sich bei NLP ergeben, auf der DIN-Norm 9126 gelegt werden. In der Spezifizierung einzelner Anforderungen werden dabei die inhaltlichen Grundlagen aus Kap. 2 genutzt, um die Problematiken zu motivieren und darzulegen. Mögliche Schwachpunkte im Entwicklungsprozess können somit bereits im Vorhinein identifiziert und vermieden werden. Es ist dabei zu beachten, dass durch die hohe Abhängigkeit von NLP zum Anwendungskontext in verschiedenen Domänen noch weitere Anforderungen entstehen können. Wenn etwa die Semantik besonders im Vordergrund steht oder schwer fachspezifisches Wissen erforderlich ist, muss man schon beim Programmentwurf auf diese Besonderheiten eingehen.
 
-\section{User-Interaktion mit NLP-Tools}
-Die Modellierung der Interaktion der Software mit Usern stellt eine Grundlage für die Erhebung weiterer Anforderungen dar, die nicht die verwendeten Algorithmen für die Sprachanalyse betreffen. In Kapitel 2 wurden diese funktionalen Bestandteile einer NLP-Software  bereits ausführlich erläutert.
-Im folgenden Abschnitt soll nun prototypisch der Workflow von Usern, die ein Programm mit einer generellen NLP-Architektur verwenden, veranschaulicht werden. Mithilfe eines Aktivitätsdiagramms werden einerseits die Arbeitsumgebung, in der NLP-Tools zum Einsatz kommen und andererseits die spezifischen Interaktionspunkte der User mit diesem Programm beschrieben. Die Darstellung des Workflows soll in dieser Arbeit eher allgemeingültig erfolgen, da jede mögliche Anwendungsdomäne des Tools eigene Spezifika bei der Darstellung ihrer Arbeitsumgebung bereithält. Diese Besonderheiten betreffen dann auch die Darstellung und Abfolge der Interaktionsschritte und konkretisieren diese etwa auf einen speziellen Dokumententyp. Ein prototypisches Szenario bei der Verwendung eines NLP-Tools könnte etwa wie folgt aussehen:\\
+\subsection{User-Interaktion mit NLP-Tools}
+Die Modellierung der Interaktion von Software mit Usern stellt eine Grundlage für die Erhebung weiterer Anforderungen dar, die nicht die verwendeten Algorithmen für die Sprachanalyse betreffen. In Kapitel 2 wurden diese funktionalen Bestandteile einer NLP-Software  bereits ausführlich erläutert.
+Im folgenden Abschnitt soll nun prototypisch der Workflow von Usern, die ein Programm mit einer generellen NLP-Architektur verwenden, veranschaulicht werden. Damit lassen sich im Anschluss weitere Anforderungen extrahieren und in funktionale und nicht-funktionale Anforderungen kategorisieren.
+
+Zur Definition und Einordnung der späteren Programmnutzer in Gruppen, wird im  Use-Case-Diagramm in Fig. 3.1 die eher praktische und weniger technische Beschreibung verschiedener User-Anwendungsfälle erstellt. Die unterschiedlichen an NLP-Tools beteiligten Akteure in einem näherungsweise betrieblichen Kontext werden in diesem näher beschrieben. Aus diesen Use-Cases der verschiedenen Stakeholder können im Anschluss konkrete Anforderungen an die Implementierung extrahiert werden, die nicht die technische Umsetzung der Software betreffen (insb. nicht-funktionale Anforderungen).
+
+Mithilfe des Aktivitätsdiagramms werden einerseits die Arbeitsumgebung, in der NLP-Tools zum Einsatz kommen und andererseits die spezifischen Interaktionspunkte der User mit einem Programm beschrieben. In Fig. 3.2 wird die Vorgehensweise eines Users beim Verwenden eines NLP-Software dargestellt. Die Darstellung des Workflows soll in dieser Arbeit eher allgemeingültig erfolgen, da jede mögliche Anwendungsdomäne des Tools eigene Spezifika bei der Darstellung ihrer Arbeitsumgebung bereithält. Diese Besonderheiten betreffen dann auch die Darstellung und Abfolge der Interaktionsschritte in solchen Diagrammen und konkretisieren diese etwa auf einen speziellen Dokumententyp hin.
+
+Die in den Diagrammen enthaltenen Nutzungsszenarien können im folgenden Abschnitt in konkrete Anforderungen überführt werden.
+
+\begin{figure}
+\begin{center}
+\begin{tikzpicture} 
+\begin{umlsystem}[x=0, y=0]{NLP-Programm} 
+\umlactor[x=-5, y=0]{user}
+\umlactor[x=-5, y=-5]{developer}
+\umlactor[x=-5, y=-10]{administrator}
+\umlusecase[x=0, y=0, width=4cm]{Verarbeitungslogik auf Text ausführen}
+\umlusecase[x=0, y=-2, width=4cm]{Verarbeitung abbrechen, beenden}
+\umlusecase[x=-0.5, y=-4]{Module konfigurieren}
+\umlusecase[x=-1, y=-6, width=3cm]{Externe Programme anbinden}
+\umlusecase[x=5, y=-5, width=2cm]{Schnittstellen, API benutzen}
+\umlusecase[x=-1, y=-8, width=3cm]{Neue Module programmieren}
+\umlusecase[x=-1, y=-10]{Updates installieren}
+\umlusecase[x=1, y=-11]{Security Guidelines einhalten}
+\umlusecase[x=-1, y=-12]{Log-Dateien lesen}
+
+\umlinherit{developer}{user}
+
+\umlassoc{user}{usecase-1}
+\umlassoc{user}{usecase-2}
+\umlassoc{user}{usecase-3}
+\umlassoc{developer}{usecase-3}
+\umlassoc{developer}{usecase-4}
+\umlassoc{developer}{usecase-5}
+\umlassoc{developer}{usecase-6}
+\umlassoc{administrator}{usecase-7}
+\umlassoc{administrator}{usecase-8}
+\umlassoc{administrator}{usecase-9}
+
+\umlinclude[name=incl]{usecase-4}{usecase-5}
+\umlinclude[name=incl]{usecase-6}{usecase-5}
+
+\end{umlsystem} 
+\end{tikzpicture}
+\caption{UML-Use-Case Diagramm für allgemeine NLP-Tools}
+\end{center}
+\end{figure}
 
 \begin{center}
+\begin{figure}
 \begin{tikzpicture}
 \node[circle, draw, minimum size=0.7cm,fill=black](start) at (0,0) {};
 \node[invis](invis0) at (0,-2) {};
@@ -1094,43 +1142,9 @@ Im folgenden Abschnitt soll nun prototypisch der Workflow von Usern, die ein Pro
 \draw[->] (d4) to (e);
 \draw[->] (e) to (end);
 \end{tikzpicture}
+\caption{UML-Aktivitätsdiagramm User-Workflow mit dem Tool}
+\end{figure}
 \end{center}
-
-Zur weiteren Definition und Einordnung der späteren Programmnutzer in Gruppen, wird anschließend in einem Use-Case-Diagramm die eher praktische und weniger technische Beschreibung verschiedener User-Anwendungsfälle erstellt. Die unterschiedlichen an NLP-Tools beteiligten Akteure aus einem betrieblichen Kontext werden in diesem näher beschrieben. Aus diesen Use-Cases der verschiedenen Stakeholder können im Anschluss konkrete Anforderungen an die Implementierung extrahiert werden, die nicht die technische Umsetzung der Software betreffen.\\
-
-\begin{tikzpicture} 
-\begin{umlsystem}[x=0, y=0]{NLP-Programm} 
-\umlactor[x=-5, y=0]{user}
-\umlactor[x=-5, y=-5]{developer}
-\umlactor[x=-5, y=-10]{administrator}
-\umlusecase[x=0, y=0, width=4cm]{Verarbeitungslogik auf Text ausführen}
-\umlusecase[x=0, y=-2, width=4cm]{Verarbeitung abbrechen, beenden}
-\umlusecase[x=-0.5, y=-4]{Module konfigurieren}
-\umlusecase[x=-1, y=-6, width=3cm]{Externe Programme anbinden}
-\umlusecase[x=5, y=-5, width=2cm]{Schnittstellen, API benutzen}
-\umlusecase[x=-1, y=-8, width=3cm]{Neue Module programmieren}
-\umlusecase[x=-1, y=-10]{Updates installieren}
-\umlusecase[x=1, y=-11]{Security Guidelines einhalten}
-\umlusecase[x=-1, y=-12]{Log-Dateien lesen}
-
-\umlinherit{developer}{user}
-
-\umlassoc{user}{usecase-1}
-\umlassoc{user}{usecase-2}
-\umlassoc{user}{usecase-3}
-\umlassoc{developer}{usecase-3}
-\umlassoc{developer}{usecase-4}
-\umlassoc{developer}{usecase-5}
-\umlassoc{developer}{usecase-6}
-\umlassoc{administrator}{usecase-7}
-\umlassoc{administrator}{usecase-8}
-\umlassoc{administrator}{usecase-9}
-
-\umlinclude[name=incl]{usecase-4}{usecase-5}
-\umlinclude[name=incl]{usecase-6}{usecase-5}
-
-\end{umlsystem} 
-\end{tikzpicture}
 
 \subsection{Funktionale Anforderungen}
 Im Kontext der Entwicklung von NLP-Tools können konkrete Anforderungen an den Betriebsablauf erhoben werden. Funktionale Anforderungen beschreiben, was das Endprodukt, also hier die hergestellte Software, zweckmäßig tun soll. Obwohl diese Anforderungen in der Regel spezifisch für einen Entwicklungszyklus festgelegt werden, existieren bei NLP auch allgemein besondere funktionale Anforderungen. Die hier skizzierte Liste von Anforderungen dient dabei zunächst zur Orientierung vor der Implementierungsphase, erhebt jedoch keinen Anspruch auf Vollständigkeit und ist für die Entwicklung erweiterbar. Je nach Entwicklungsparadigma und Anwendungskontext können sich die Anforderungen ändern. Aufgrund der in Kap. 2.2 vorgestellten Schritte der Linguistischen Analyse existieren allgemein u.a. folgende Anforderungen an den Funktionsumfang:
@@ -1183,14 +1197,17 @@ Vor und nach dem Einsatz von NLP-Software müssen die Daten über eine standardi
 Etwas weniger NLP-spezifisch, jedoch nicht weniger wichtig sind die nicht-funktionalen Anforderungen an NLP-Tools. Diese beziehen sich nicht auf einzelne Funktionalitäten, sondern helfen dabei den Rahmen der Software festzulegen. Somit sind sie eher generell gehalten und stehen meist im Hintergrund. Somit sind etwa folgende nicht-funktionale Anforderungen an NLP-Tools gestellt:
 
 \begin{enumerate}
-\item Design der Benutzeroberfläche:\\
+\item Design der Benutzeroberfläche:
+
 Das Programm sollte einen mindestgrad an Ästetik nicht unterschreiten, sodass es für den Benutzer nicht unangenehm wird mit dem Programm zu arbeiten. Über Kleinigkeiten ist dabei hinwegzusehen, beispielsweise "beißende" Farbkombinationen auf großen Bildflächen sollten jedoch vermieden werden. 
+
+Die Benutzeroberfläche sollte übersichtlich und sinnvoll angeordnet bzw. sortiert sein. Dazu gehören sowohl einzelne Bildschirme des Programms, als auch andere Elemente wie Drop-down Menüs. So sollten z.B. nicht zu viele mögliche Schaltflächen in einem Menü, sondern über ein Untermenü zu erreichen sein. Design und Usability sind sehr umfangreiche Themen, daher werden diese hier nur kurz erwähnt. Siehe dazu etwa \cite{shn10}. HCI-Guidelines sollten, sofern im Unternehmen vorhanden, selbstverständlich eingehalten werden.
 
 Das Programm sollte über einen gut dokumentierten, einfach erreichbaren und didaktisch verfollen User-Guide verfügen. Dieser soll neuen Nutzern des Tools den Einstieg in die Arbeit ermöglichen und so leicht wie möglich machen.
 
-Die Benutzeroberfläche sollte übersichtlich und sinnvoll angeordnet bzw. sortiert sein. Dazu gehören sowohl einzelne Bildschirme des Programms, als auch andere Elemente wie Drop-down Menüs. So sollten z.B. nicht zu viele mögliche Schaltflächen in einem Menü, sondern über ein Untermenü zu erreichen sein. Da Design und Usability sehr umfangreiche Themen sind, welche jedoch für diese Arbeit nur wenig relevant sind, wird darauf nicht weiter eingegangen. 
 
-\item Anbindung:\\
+\item Anbindung:
+
 Für eine unkomplizierte Interaktion der Teilschritte und mit anderen Programmen sind die von dem Programm akzeptierten bzw. verwendeten Dateitypen ausschlaggebend. Diese sollten stets universell oder zumindest leicht konvertiertbar sein. 
 
 Die API (application programming interface) bzw. Anwendungsprogrammierschnittstelle sollte gut dokumentiert und einfach erreichbar sein, um Nutzern das Anbinden an weitere Programme zu ermöglichen, ohne dabei z.B. auf Hilfe der Entwickler des Tools angewiesen zu sein. 
@@ -1203,7 +1220,7 @@ Auch gibt es zufallsbasierte Verfahren für Deutungen, die etwa im Falle von Meh
 
 \item Informationssicherheit:
 
-Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des Datenschutzes relevant, damit das Programm einerseits keine Sicherheitslücke für andere Systeme schafft und selbst auch sicher arbeitet, sodass verlässliche Resultate erzielt werden. Die Manipulationssicherheit und Verifizierbarkeit von Daten muss durch entsprechende Schutzmaßnahmen des Programms gewährleistet sein. Log-Dateien und eindeutige Algorithmen (siehe Punkt 3) erleichtern das Nachvollziehen von Ergebnissen und Fehler durch Manipulation werden kenntlich gemacht. Im Sinne der \textit{Informationssicherheit} nach Claudia Eckert \cite{eck13} muss bei der Entwicklung ein Fokus auf die folgenden Kernschutzziele der Informationssicherheit gelegt werden:
+Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des Datenschutzes relevant, damit das Programm einerseits keine Sicherheitslücke für andere Systeme schafft und selbst auch sicher arbeitet, sodass verlässliche Resultate erzielt werden. Die Manipulationssicherheit und Verifizierbarkeit von Daten muss durch entsprechende Schutzmaßnahmen des Programms gewährleistet sein. Log-Dateien und eindeutige Algorithmen (siehe Punkt 3) erleichtern das Nachvollziehen von Ergebnissen und Fehler durch Manipulation werden kenntlich gemacht. Im Sinne der \textit{Informationssicherheit} \cite{eck13} muss bei der Entwicklung ein Fokus auf die folgenden "Kernschutzziele" gelegt werden:
 \begin{enumerate}
 \item \textit{Vertraulichkeit} - Der Datenzugriff durch das Programm darf nur in erforderlichem Maße und nur durch autorisierte Nutzer erfolgen. Das NLP-Tool insgesamt, aber auch die einzelnen Module müssen klar beschränkte Zugriffsrechte für die Quelldaten, aber auch für andere angeschlossene Systeme und Programme haben. Wenn also ein Modul des NLP-Tools unkontrollierte Zugriffsrechte auf das Quelldokument erhält, obwohl dies gar nicht nötig ist, stellt dies eine Verletzung dieses Schutzziels dar. 
 \item \textit{Integrität} - Das Programmverhalten bei der Textverarbeitung muss nachvollziehbar sein und Änderungen an den Daten dürfen nicht unbemerkt erfolgen. Wie bereits unter Funktionssicherheit angesprochen, muss das Programm eindeutig und nachvollziehbar arbeiten, sodass ein sicheres Verhalten garantiert wird. Auch die Module dürfen keine Möglichkeit für unkontrollierte und nicht überprüfbare Dateizugriffe bieten, indem ihr Anwendungsbereich klar abgedeckt ist und deren Zugriffsrechte verifizierbar sind.
@@ -1211,7 +1228,7 @@ Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des
 \end{enumerate} 
 \end{enumerate}
 
-\subsection{Verwendung der Anforderungen}
+\section{Verwendung der Anforderungen}
 Mit den obigen Auflistungen liegt nun das Fundament für die Bewertung eines NLP-Tools. Dazu kann man die beschriebenen Anforderungen einzeln auf das Tool beziehen und nachprüfen, ob festgelegte Bedingungen erfüllt sind. Während einige Anforderungen dadurch sehr schnell zu prüfen sind, gestaltet es sich für andere um einiges komplizierter. Generell lässt sich sagen (laut QUELLE), dass sich die Prüfung nicht-funktionaler Anforderungen schwieriger gestaltet, als die Prüfung von funktionalen Anforderungen. Da sich die funktionalen Anforderungen oftmals auf das Vorhandensein bzw. die Art der Ausführung von bestimmten Funktionen beziehen, lassen sich diese manchmal schon durch schnelles Ausprobieren bestätigen. Das widerlegen bzw. nicht-Erfüllen dieser Anforderungen hingegen ist ein wenig aufwändiger, da gezeigt werden soll, dass eine Funktionalität nicht gegeben ist. Jedoch ist davon auszugehen, dass wichtige Funktionen auch schnell und simpel zugänglich sind, sofern diese implementiert sind. 
 Nicht-funktionale Anforderungen erheben üblicherweise Ansprüche an das System und sind deswegen nicht einfach in dem Programm überprüfbar. Besonders im Bereich des Usability Enigineering ist die Auffassung der Produkts stark subjektiv. Daher lassen sich diese Anforderungen kaum verifizieren bzw. falsifizieren, ohne dabei eng mit den Benutzern zusammenzuarbeiten. 
 
@@ -1227,14 +1244,9 @@ Hab nachgeschaut. Is top.
 - Domänenabhängigkeit in kapitel 2 einbauen und evtl in 3 referenzieren\\
 - funktionale anforderung 3: grafische darstellung eher nicht-funktional?\\
 - 4. wirklich anforderung des tools oder frage des programms?\\
-- 6.,7. plugins zu spezifisch? vllt eher "müssen mit funktionalitäten erweiterbar sein"\\
 - quelle für standards bei 3.2.2 1.?\\
 - evtl quelle für kap 4 titel war einfach gate :Stenetorp, Pontus, et al. "BRAT: a web-based tool for NLP-assisted text annotation." Proceedings of the Demonstrations at the 13th Conference of the European Chapter of the Association for Computational Linguistics. Association for Computational Linguistics, 2012.\\
-- Einstieg Kap. 3 überarbeiten, iwas mit neben den algorithmen braucht man auch noch den swt bums vllt\\
-- vielleicht noch mehr konkrete funkt. anf.\\
-- use cases als kap. 3.2 damits nicer zu den anforderungen überleitet, vllt einfach nen typischen user mal modellieren oder nen use case aus nem paper kurz\\
-- nicht funkt. 1 is find ich zu allgemein, da könnt man vllt die schneiderman regeln aus mci erwähnen\\
- 
+
 \newpage
 \begin{thebibliography}{20}
 \bibitem[COL11]{col11}Ronan Collobert et al., "Natural Language Processing (Almost) from Scratch", Journal of Machine Learning Research 12, 2011. 
@@ -1253,6 +1265,9 @@ Hab nachgeschaut. Is top.
 \bibitem[SHE07]{she07} L. Shen, G. Satta, A. K. Joshi. In Meeting of the Association for Computational Linguistics (ACL), "Guided learning for bidirectional sequence classification", 2007.
 \bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr.
 \bibitem[ECK13]{eck13}Claudia Eckert, "IT-Sicherheit: Konzepte-Verfahren-Protokolle" 8. Auflage, Walter de Gruyter, 2013.
-
+\bibitem[SHN10]{shn10}Ben Shneiderman. Designing the user interface: strategies for effective human-computer interaction. Pearson Education India, 2010.
+\bibitem[SB88]{sb88}Muggleton, Stephen, and Wray Buntine. "Machine invention of first-order predicates by inverting resolution." Machine Learning Proceedings 1988. 1988. 339-352.
+\bibitem[KN85]{kn85}Kapur, Deepak, and Paliath Narendran. "An equational approach to theorem proving in first-order predicate calculus." ACM SIGSOFT Software Engineering Notes 10.4 (1985): 63-66
+\bibitem[BAL98]{bal98}Balzert, Helmut. "Software-Qualitätssicherung." Lehrbuch der Software-Technik. Spektrum Akadem. Verlag (1998)
 \end{thebibliography}
 \end{document}
