@@ -16,6 +16,7 @@
 \usepackage{textcomp}
 \usepackage{verbatim}
 \usepackage{booktabs, tabularx}
+\usepackage{graphicx}
 \renewcommand\tabularxcolumn[1]{m{#1}}
 
 \pagenumbering{arabic}
@@ -1203,9 +1204,6 @@ Das Programm sollte einen mindestgrad an Ästetik nicht unterschreiten, sodass e
 
 Die Benutzeroberfläche sollte übersichtlich und sinnvoll angeordnet bzw. sortiert sein. Dazu gehören sowohl einzelne Bildschirme des Programms, als auch andere Elemente wie Drop-down Menüs. So sollten z.B. nicht zu viele mögliche Schaltflächen in einem Menü, sondern über ein Untermenü zu erreichen sein. Design und Usability sind sehr umfangreiche Themen, daher werden diese hier nur kurz erwähnt. Siehe dazu etwa \cite{shn10}. HCI-Guidelines sollten, sofern im Unternehmen vorhanden, selbstverständlich eingehalten werden.
 
-Das Programm sollte über einen gut dokumentierten, einfach erreichbaren und didaktisch verfollen User-Guide verfügen. Dieser soll neuen Nutzern des Tools den Einstieg in die Arbeit ermöglichen und so leicht wie möglich machen.
-
-
 \item Anbindung:
 
 Für eine unkomplizierte Interaktion der Teilschritte und mit anderen Programmen sind die von dem Programm akzeptierten bzw. verwendeten Dateitypen ausschlaggebend. Diese sollten stets universell oder zumindest leicht konvertiertbar sein. 
@@ -1226,6 +1224,9 @@ Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des
 \item \textit{Integrität} - Das Programmverhalten bei der Textverarbeitung muss nachvollziehbar sein und Änderungen an den Daten dürfen nicht unbemerkt erfolgen. Wie bereits unter Funktionssicherheit angesprochen, muss das Programm eindeutig und nachvollziehbar arbeiten, sodass ein sicheres Verhalten garantiert wird. Auch die Module dürfen keine Möglichkeit für unkontrollierte und nicht überprüfbare Dateizugriffe bieten, indem ihr Anwendungsbereich klar abgedeckt ist und deren Zugriffsrechte verifizierbar sind.
 \item \textit{Verfügbarkeit} - Verhinderung von Systemausfällen und garantierter Zugriff auf Ergebnisse der Textverarbeitung. Innerhalb des Anwendungsgebietes muss das NLP-Tool verlässlich sein, damit eine hohe Verfügbarkeit ohne Ausfälle gewährleistet wird. Dabei ist zu beachten, dass einerseits das Programm generell fehlerfrei arbeiten muss, da ansonsten das Tool ausfällt. Andererseits müssen auch die Programmmodule einzeln fehlerfrei implementiert sein und sprachliche Sonderfälle berücksichtigen, die nicht zu einem unkontrollierten Abbruch führen dürfen. Das Programmverhalten, wenn etwa Mehrdeutigkeiten auftreten, muss hier in der Entwicklungsphase berücksichtigt werden, damit das Programm in diesem Regelfall verfügbar bleibt.
 \end{enumerate} 
+
+\item Dokumentation:\\
+Das Programm sollte über einen gut dokumentierten, einfach erreichbaren und didaktisch wertvollen User-Guide verfügen. Dieser soll neuen Nutzern des Tools den Einstieg in die Arbeit ermöglichen und so leicht wie möglich machen.
 \end{enumerate}
 
 \section{Verwendung der Anforderungen}
@@ -1240,7 +1241,7 @@ Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Tools Gener
 \section{Einordnung von GATE}
 Die Entwicklung der General Architecture for Text Engineering begann 1995 an der University of Sheffield und wird permanent weiterentwickelt \cite{cgw95}. GATE wurde mit der Programmiersprache Java geschrieben  und ist ein Werkzeug zur Erzeugung und Evaluierung von Sprachverarbeitungsprogrammen. Des Weiteren ermöglicht es den Bau und das Annotieren von Korpora \cite{cmb02}. 
 
-GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind:
+GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind \cite{gm18}:
 \begin{enumerate}
 \item tokenizer: Der tokenizer unterteilt den Text oberflächlich in Zeichen oder Zeichenketten, welche als Zahlen, Wörter (Groß- und Kleinschreibung wird unterschieden) und Interpunktion kategorisiert werden. Die Arbeit soll für den tokenizer so effizient wie möglich sein und nur als Vorarbeit etwa für spätere Grammatikregeln dienen. 
 
@@ -1254,8 +1255,50 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 
 \item orthographic coreference tagger: Der orthographic coreference tagger, auch bekannt als OrthoMatcher, verbindet annotierte Entitäten, welche der semantic tagger finden konnte mit einer Beziehung, um somit eine Koreferenz zu erzeugen.
 \end{enumerate}
-\cite{gm18}
-Quellen:
+
+\begin{center}
+\begin{figure}[h!]
+\includegraphics[scale=0.8]{GATE_Bilder/ANNIE2.jpg}
+\caption{Abbildung der unveränderten ANNIE-Verarbeitungskomponenten in GATE}
+\end{figure}
+\end{center}
+
+\subsection{Repräsentation nicht-funktionaler Anforderungen}
+In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderungen an NLP-Tools mit GATE abgeglichen, um entscheiden zu können, inwiefern GATE diese erfüllt. Hierzu werden die Anforderungen erneut einzeln aufgelistet und ihrer Repräsentation in dem Tool, sofern vorhanden, erläutert. 
+
+\subsubsection{Design und Benutzeroberfläche}
+
+Die Benutzeroberflächengestaltung von GATE ist sehr simpel gehalten und verzichtet auf großflächigen Einsatz von Farbe komplett. Die am meisten verwendeten Farben sind weiß und helle Grautöne, welche sich jedoch stark genug von einander kontrastieren, um das Unterscheiden verschiedener angrenzender Schaltflächen nicht zu erschweren. Lediglich einige Symbole (etwa die der Komponenten) sind farbig und erhöhen dadurch Übersichtlichkeit und Wiedererkannbarkeit. 
+
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.8]{GATE_Bilder/GUI-Ausschnitt.jpg}
+\caption{Ausschnitt des GATE-GUI}
+\end{center}
+\end{figure}
+
+Wie in Abbildung XY zu sehen ist, wurde die Oberfläche recht übersichtlich gehalten. Die wichtigsten Funktionalitäten sind über Schnellzugriffe, die Projekthierarchie zur linken und über Drop-Down Menüs in der Menu-Bar erreichbar. Wenn eine Verarbeitungslogik eingebunden ist, wird diese im Hauptfenster dargestellt (siehe z.B. ANNIE in Abbildung XY). In dem Hauptfenster können mehrere Ansichten hintereinander liegen, zwischen welchen mit Hilfe von Tabs am oberen Rand des Fensters gewechselt werden kann, sowie es üblicherweise bei Programmierumgebungen zu sehen ist. 
+
+\subsubsection{Anbindung}
+
+Um Text in GATE verarbeiten zu können muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. Die Dokumente werden als .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate) akzeptiert.
+Nach der Verarbeitung kann annotierter Text als XML-Datei mit allen hinzugefügten Informationen exportiert und anders weiterverwendet werden. Plugins wie der ConfigurableExporter ermöglichen sogar, den verarbeiteten Text abhängig von den vergebenen Annotationen zu manipulieren und direkt in eine bereits vorhandene Datei zu extrahieren. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \chapter{Notizen}
 - bsp in 2.1.4 ändern\\
@@ -1265,7 +1308,7 @@ Quellen:
 - funktionale anforderung 3: grafische darstellung eher nicht-funktional?\\
 - 4. wirklich anforderung des tools oder frage des programms?\\
 - quelle für standards bei 3.2.2 1.?\\
-- evtl quelle für kap 4 titel war einfach gate :Stenetorp, Pontus, et al. "BRAT: a web-based tool for NLP-assisted text annotation." Proceedings of the Demonstrations at the 13th Conference of the European Chapter of the Association for Computational Linguistics. Association for Computational Linguistics, 2012.\\
+
 
 \newpage
 \begin{thebibliography}{20}
