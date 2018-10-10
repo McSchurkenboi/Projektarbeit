@@ -1235,7 +1235,27 @@ Nicht-funktionale Anforderungen erheben üblicherweise Ansprüche an das System 
 Wie genau sich ein NLP-Tool anhand der aufgestellten Anforderungen bewerten lässt wird im folgenden Kapitel an dem Beispiel der General Architecture for Text Engineering (GATE) gezeigt. 
 
 \chapter{Analyse und Evaluation von G.A.T.E}
-Hab nachgeschaut. Is top.
+Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Tools General Architecture for Text Engineering (GATE). Zunächst werden dazu alle relevanten Aspekte des Tools vorgestellt. Danach werden die in dem vorherigen Kapitel erhobenen Anforderungen einzeln mit GATE abgeglichen und evaluiert. Letztlich wird abhängig von der Relevanz und dem Erfüllungsgrad der einzelnen Anforderungen eine Gesamteinschätzung gegeben.
+
+\section{Einordnung von GATE}
+Die Entwicklung der General Architecture for Text Engineering begann 1995 an der University of Sheffield und wird permanent weiterentwickelt \cite{cgw95}. GATE wurde mit der Programmiersprache Java geschrieben  und ist ein Werkzeug zur Erzeugung und Evaluierung von Sprachverarbeitungsprogrammen. Des Weiteren ermöglicht es den Bau und das Annotieren von Korpora \cite{cmb02}. 
+
+GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind:
+\begin{enumerate}
+\item tokenizer: Der tokenizer unterteilt den Text oberflächlich in Zeichen oder Zeichenketten, welche als Zahlen, Wörter (Groß- und Kleinschreibung wird unterschieden) und Interpunktion kategorisiert werden. Die Arbeit soll für den tokenizer so effizient wie möglich sein und nur als Vorarbeit etwa für spätere Grammatikregeln dienen. 
+
+\item gazetteer: Ein gazetteer beinhaltet relevante Eigennamen aus bestimmten Bereichen. Es handelt sich dabei um eine geschachtelte Liste, welche für jeden Bereich (beispielsweise Städte, Flughäfen, Fußball Clubs) über eine Liste der jeweils bekannten Eigennamen. Gazetteers werden verwendet, um domänenspezifisch Entitäten zu erkennen, da diese in einem normalen Wörterbuch nicht zu finden sind.
+
+\item sentence-splitter: Der sentence-splitter unterteilt den gesamten Text in einzelne Sätze. Dies wird später für den part-of-speech tagger benötigt. Der splitter verwendet dazu einen Gazetteer mit Abkürzungen um Interpunktion wie Fragezeichen, Ausrufezeichen und Punkt von anderen Sonderzeichen wie Semikola und Doppelpunkt zu unterscheiden. 
+
+\item part-of-speech tagger: Der part-of-speech tagger annotiert alle Wörter und Symbole. Eine Liste mit verwendeten Tags lässt sich in \cite{gt18} finden. Dafür nutzt er Standard-Lexika und Regelwerke, welche auf dem Corpus-Training des Wallstreet Journal beruhen. Für das genau Vorgehen des taggers siehe auch Abschnitt 2.2.4.
+
+\item semantic tagger: Der ANNIE semantic tagger beruht auf der JAPE-Sprache und verwendet Regeln, um basierend von vorherigen Annotationen annotierte Entitäten zu erzeugen. Die zugewiesenen Annotationen können dabei oft schon den vorhandenen gazetteer-Listen entnommen werden. 
+
+\item orthographic coreference tagger: Der orthographic coreference tagger, auch bekannt als OrthoMatcher, verbindet annotierte Entitäten, welche der semantic tagger finden konnte mit einer Beziehung, um somit eine Koreferenz zu erzeugen.
+\end{enumerate}
+\cite{gm18}
+Quellen:
 
 \chapter{Notizen}
 - bsp in 2.1.4 ändern\\
@@ -1269,5 +1289,10 @@ Hab nachgeschaut. Is top.
 \bibitem[SB88]{sb88}Muggleton, Stephen, and Wray Buntine. "Machine invention of first-order predicates by inverting resolution." Machine Learning Proceedings 1988. 1988. 339-352.
 \bibitem[KN85]{kn85}Kapur, Deepak, and Paliath Narendran. "An equational approach to theorem proving in first-order predicate calculus." ACM SIGSOFT Software Engineering Notes 10.4 (1985): 63-66
 \bibitem[BAL98]{bal98}Balzert, Helmut. "Software-Qualitätssicherung." Lehrbuch der Software-Technik. Spektrum Akadem. Verlag (1998)
+\bibitem[CGW95]{cgw95} Hamish Cunningham, Robert J. Gaizauskas, Yorick Wilks. A general architecture for text engineering (GATE): A new approach to language engineering R \& D. University of Sheffield, Department of Computer Science, 1995.
+\bibitem[CMB02]{cmb02} Cunningham, Hamish, et al. "GATE: an architecture for development of robust HLT applications." Proceedings of the 40th annual meeting on association for computational linguistics. Association for Computational Linguistics, 2002.
+\bibitem[GO18]{go18} https://gate.ac.uk/overview.html Offizielle Webseite von GATE (Overview), aufgerufen am 09.10.2018
+\bibitem[GM18]{gm18} https://gate.ac.uk/sale/tao/split.html GATE User Guide, aufgerufen am 09.10.2018
+\bibitem[GT18]{gt18} https://gate.ac.uk/sale/tao/splitap7.html\#x39-743000G, aufgerufen am 09.10.2018
 \end{thebibliography}
 \end{document}
