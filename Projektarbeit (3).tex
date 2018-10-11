@@ -1256,6 +1256,7 @@ Der GDM stellt die Sammlung aller Informationen über Texte in einer Datenbank d
 \caption{Annotationen in TIPSTER-interner Darstellung aus \cite{cu97}}
 \end{center}
 \end{figure} 
+\end{comment}
 Der GDM stellt den einzelnen CREOLE-Modulen innerhalb von GATE die Informationen zur Verfügung und empfängt die neu gewonnenen Informationen nach jedem Teilschritt. Das Datenmodell des GDM basiert auf einer Datenbank, die sich lokal auf dem Computer oder im Netzwerk befinden kann. Die Datenbank ist beliebig konfigurierbar und verfügt bei großen Datenmengen über eine API zur Anbindung externer Systeme (siehe 4.2.2 "Anbindung"). 
 \item \textit{GGI - Gate Graphical Interface}
 
@@ -1273,10 +1274,9 @@ Die eigentliche Textanalyse mit GATE findet durch einzelne Module aus dem CREOLE
 \end{figure} 
 \end{comment}
 
-\end{enumerate}
-
 GATE verfügt nach der Installation über einige Module zur Umsetzung von NLP-Funktionalitäten (folgender Abschnitt). Es lassn sich jedoch auch beliebig viele Werkzeuge nachladen und einbinden. CREOLE bietet auch eine API zur Entwicklung bzw. direkten laden eigener Module in GATE an (siehe FUNKT ANF??) und realisiert somit etwa I/O des Moduls über den GDM. CREOLE-Objekte sind also wrapper für Verarbeitungswerkzeuge \cite{cu02}. 
 Die verschiedenen CREOLE-Objekte sind im GATE-Installationsverzeichnis in einzelnen Ordnern gespeichert. Die Auswahl und Konfiguration der Module erfolgt über ein Fenster innerhalb der GGI (Fig. 4.x).
+\end{enumerate}
 
 \subsection{NLP mit GATE}
 GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind \cite{gm18}:
