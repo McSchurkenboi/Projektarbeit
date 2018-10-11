@@ -1243,26 +1243,44 @@ Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Tools Gener
 \section{Einordnung von GATE}
 Die Entwicklung der General Architecture for Text Engineering begann 1995 an der University of Sheffield und wird permanent weiterentwickelt \cite{cgw95}. GATE wurde mit der Programmiersprache Java geschrieben  und ist ein Werkzeug zur Erzeugung und Evaluierung von Sprachverarbeitungsprogrammen. Des Weiteren ermöglicht es den Bau und das Annotieren von Korpora \cite{cmb02}. 
 
-<<<<<<< HEAD
 \subsection{GATE-Architektur}
-GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen und die Darstellung der Ergebnisse an. Die drei Kernbausteine des Programms lassen sich wie folgt darstellen QUELLE:
+GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen und die Darstellung der Ergebnisse an. Dem Benutzer wird es ermöglicht, von einer GUI aus Tools zur Textverarbeitung zu starten, in eine Verarbeitungskette zu bringen und Deltas bei unterschiedlichen zum Einsatz gekommenen Verarbeitungswerkzeugen darzustellen. Grundsätzlich unterscheidet Gate dabei Module von Objekten, das bedeutet Verarbeitungswerkzeuge und Text sowie die Darstellung von Informationen über Text. GATE bietet somit einen Rahmen für die unten aufgeführten Komponenten. Die drei Kernbausteine des Programms lassen sich laut \cite{cu02} wie folgt darstellen QUELLE:
 \begin{enumerate}
 \item \textit{GDM - Gate Document Manager}
 
-Der GDM stellt die Sammlung aller Informationen über Texte dar. In einer Datenbank werden alle durch das Programm identifizierten Annotationen gespeichert.
+Der GDM stellt die Sammlung aller Informationen über Texte in einer Datenbank dar. Sämtliche Informationen (d.h. insb. Annotationen) über den Text sind im GDM gespeichert und werden durch diesen zur Verfügung gestellt. Der GDM implementiert den TIPSTER Document Manager \cite{cu97}, der eine Annotations-basierte Umsetzung von NLP-Systemen darstellt (siehe ABSCHNITT??). TIPSTER ergänzt dazu den vorhandenen Text um Annotationen bzw. speichert diese Informationen in einer Datenbank, ohne den Text zu verändern. Annotation-Sets liegen dabei konkret als SGML(Standard Generalized Markup Language) Auszeichnungssprachen (z.B. als XML, html) abgelegt werden (Fig.4.x). Jedem Text wird dabei eine eigene leere Datenbank zugeordnet und bildet zusammen mit dieser separat gespeichert.
+\begin{comment} 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.5]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/Tipster.jpg}
+\caption{Annotationen in TIPSTER-interner Darstellung aus \cite{cu97}}
+\end{center}
+\end{figure} 
+Der GDM stellt den einzelnen CREOLE-Modulen innerhalb von GATE die Informationen zur Verfügung und empfängt die neu gewonnenen Informationen nach jedem Teilschritt. Das Datenmodell des GDM basiert auf einer Datenbank, die sich lokal auf dem Computer oder im Netzwerk befinden kann. Die Datenbank ist beliebig konfigurierbar und verfügt bei großen Datenmengen über eine API zur Anbindung externer Systeme (siehe 4.2.2 "Anbindung"). 
 \item \textit{GGI - Gate Graphical Interface}
 
-Ein GUI für die Konfiguration des Programms und die Darstellung der Ergebnisse
+Das GGI stellt die GUI von GATE dar. In der Oberfläche kann der Benutzer das Programm konfigurieren und Objekte innerhalb von GATE verwalten. Im GGI können auch die Ergebnisse nach der Verarbeitung dargestellt werden.
 
-\item \textit{CREOLE}
+\item \textit{CREOLE - Collection of Reusable Objects for Language Engineerung}
 
-Sammlung aller Bausteine zur Textverarbeitung, aus denen dann vom User die benötigten ausgewählt werden können.
+Die eigentliche Textanalyse mit GATE findet durch einzelne Module aus dem CREOLE-Modulkatalog statt.
+\begin{comment} 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=0.7]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/CREOLE.jpg}
+\caption{Auflistung der installierten Plugins aus verschiedenen Ordnern}
+\end{center}
+\end{figure} 
+\end{comment}
+
 \end{enumerate}
 
-GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind:
-=======
+GATE verfügt nach der Installation über einige Module zur Umsetzung von NLP-Funktionalitäten (folgender Abschnitt). Es lassn sich jedoch auch beliebig viele Werkzeuge nachladen und einbinden. CREOLE bietet auch eine API zur Entwicklung bzw. direkten laden eigener Module in GATE an (siehe FUNKT ANF??) und realisiert somit etwa I/O des Moduls über den GDM. CREOLE-Objekte sind also wrapper für Verarbeitungswerkzeuge \cite{cu02}. 
+Die verschiedenen CREOLE-Objekte sind im GATE-Installationsverzeichnis in einzelnen Ordnern gespeichert. Die Auswahl und Konfiguration der Module erfolgt über ein Fenster innerhalb der GGI (Fig. 4.x).
+
+\subsection{NLP mit GATE}
 GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind \cite{gm18}:
->>>>>>> 0b5d0d975a4e5f1ca2b11fac13c85e7d92e35426
+
 \begin{enumerate}
 \item tokenizer: Der tokenizer unterteilt den Text oberflächlich in Zeichen oder Zeichenketten, welche als Zahlen, Wörter (Groß- und Kleinschreibung wird unterschieden) und Interpunktion kategorisiert werden. Die Arbeit soll für den tokenizer so effizient wie möglich sein und nur als Vorarbeit etwa für spätere Grammatikregeln dienen. 
 
@@ -1277,12 +1295,14 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 \item orthographic coreference tagger: Der orthographic coreference tagger, auch bekannt als OrthoMatcher, verbindet annotierte Entitäten, welche der semantic tagger finden konnte mit einer Beziehung, um somit eine Koreferenz zu erzeugen.
 \end{enumerate}
 
-\begin{center}
+\begin{comment}
 \begin{figure}[h!]
+\begin{center}
 \includegraphics[scale=0.8]{GATE_Bilder/ANNIE2.jpg}
 \caption{Abbildung der unveränderten ANNIE-Verarbeitungskomponenten in GATE}
-\end{figure}
 \end{center}
+\end{figure}
+\end{comment}
 
 \subsection{Repräsentation nicht-funktionaler Anforderungen}
 In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderungen an NLP-Tools mit GATE abgeglichen, um entscheiden zu können, inwiefern GATE diese erfüllt. Hierzu werden die Anforderungen erneut einzeln aufgelistet und ihrer Repräsentation in dem Tool, sofern vorhanden, erläutert. 
@@ -1290,15 +1310,14 @@ In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderunge
 \subsubsection{Design und Benutzeroberfläche}
 
 Die Benutzeroberflächengestaltung von GATE ist sehr simpel gehalten und verzichtet auf großflächigen Einsatz von Farbe komplett. Die am meisten verwendeten Farben sind weiß und helle Grautöne, welche sich jedoch stark genug von einander kontrastieren, um das Unterscheiden verschiedener angrenzender Schaltflächen nicht zu erschweren. Lediglich einige Symbole (etwa die der Komponenten) sind farbig und erhöhen dadurch Übersichtlichkeit und Wiedererkannbarkeit. 
-
-
+\begin{comment} 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.8]{GATE_Bilder/GUI-Ausschnitt.jpg}
 \caption{Ausschnitt des GATE-GUI}
 \end{center}
 \end{figure}
-
+\end{comment}
 Wie in Abbildung XY zu sehen ist, wurde die Oberfläche recht übersichtlich gehalten. Die wichtigsten Funktionalitäten sind über Schnellzugriffe, die Projekthierarchie zur linken und über Drop-Down Menüs in der Menu-Bar erreichbar. Wenn eine Verarbeitungslogik eingebunden ist, wird diese im Hauptfenster dargestellt (siehe z.B. ANNIE in Abbildung XY). In dem Hauptfenster können mehrere Ansichten hintereinander liegen, zwischen welchen mit Hilfe von Tabs am oberen Rand des Fensters gewechselt werden kann, sowie es üblicherweise bei Programmierumgebungen zu sehen ist. 
 
 \subsubsection{Anbindung}
@@ -1326,11 +1345,19 @@ Nach der Verarbeitung kann annotierter Text als XML-Datei mit allen hinzugefügt
 \subsection{Repräsentation funktionaler Anforderungen}
 Im folgenden Abscnitt wird die Umsetzung der funktionalen Anforderungen, die in Kapitel 3.2 beschrieben sind, überprüft. Dabei ist zu beachten, dass GATE über eine Vielzahl von Funktionen und Konfigurationen verfügt, die das Verhalten und Aussehen der Software beeinflussen. Daher wird hier, wenn möglich, vom Standard-Lieferumfang ausgegangen, der für diese Arbeit ausreichende Funktionalität und Grundlage für eine Evaluation bietet. An geeigneter Stelle auf weiterführende Programme und Erweiterungen für GATE referenziert, wenn diese dort nicht bereits enthalten sind.
 
-Zu 1.: GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten  Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.
+Zu 1.: GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate). Um Text in GATE verarbeiten zu können, muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein leerer Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. GATE verwaltet auf diese Weise dann alle Informationen über den Text mittels des GDM. Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.
 
-Zu 2.: GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{ANNIE Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung. Innerhalb der Verarbeitungskette kommunizieren die Mudule die neu gewonnenen Informationen als XML-Dateien an den \textit{GATE DOCUMENT MANAGER} mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Da XML Dateien in Klartext vorliegen und nicht etwa in Objekten verpackt sind, lässt sich der Inhalt auch durch Nutzer nachvollziehen.
+Zu 2.: GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{ANNIE Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung. Innerhalb der Verarbeitungskette kommunizieren die Mudule die neu gewonnenen Informationen als XML-Dateien an den GDM mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Da es sich grundsätzlich um XML Dateien in Klartext handelt und nicht etwa um verpackte Objekte mit Attributen, lässt sich der Inhalt auch durch Nutzer nachvollziehen.
 
 Zu 3.: In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Einzelne Module können verschoben, gelöscht oder neu hinzugefügt werden. Innerhalb der Programm-GUI lassen sich direkt einzelne Modulparameter auf einen Wert einstellen. Der Grad der individualisierbarkeit ist jedoch von Modul zu Modul unterschiedlich, je nach Implementierung und Anwendungsgebiet des Moduls. Beispielsweise benötigt der JAPE-Transducer eine Grammatik aus einer Datei als Eingabe, die anzuwendende Regeln für Taggings enthält. Diese muss dabei bei jedem Programmstart neu ausgewählt werden.
+\begin{comment} 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=1.0]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/POSTagger.jpg}
+\caption{Einstellbare Modulparameter des POS-Taggers \\ Hier können etwa Pfade für Input- und Output-Daten angegeben werden}
+\end{center}
+\end{figure} 
+\end{comment}
 Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.
  
 
@@ -1375,7 +1402,8 @@ Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Lo
 \bibitem[GO18]{go18} https://gate.ac.uk/overview.html Offizielle Webseite von GATE (Overview), aufgerufen am 09.10.2018
 \bibitem[GM18]{gm18} https://gate.ac.uk/sale/tao/split.html GATE User Guide, aufgerufen am 09.10.2018
 \bibitem[GT18]{gt18} https://gate.ac.uk/sale/tao/splitap7.html\#x39-743000G, aufgerufen am 09.10.2018
-\bibitem[MIL95]{mil95}
+\bibitem[MIL95]{mil95}Miller, George A. "WordNet: a lexical database for English." Communications of the ACM 38.11 (1995): 39-41.
 \bibitem[CC98]{cc98}Claudia Leacock, Martin Chodorow. "Combining local context and WordNet similarity for word sense identification." WordNet: An electronic lexical database 49.2 (1998): 265-283
+\bibitem[CU97]{cu97}Cunningham, Hamish, et al. "GATE–a TIPSTER-based general architecture for text engineering." Proceedings of the TIPSTER Text Program (Phase III). Vol. 6. 1997
 \end{thebibliography}
 \end{document}
