@@ -1206,9 +1206,6 @@ Das Programm sollte einen mindestgrad an Ästetik nicht unterschreiten, sodass e
 
 Die Benutzeroberfläche sollte übersichtlich und sinnvoll angeordnet bzw. sortiert sein. Dazu gehören sowohl einzelne Bildschirme des Programms, als auch andere Elemente wie Drop-down Menüs. So sollten z.B. nicht zu viele mögliche Schaltflächen in einem Menü, sondern über ein Untermenü zu erreichen sein. Design und Usability sind sehr umfangreiche Themen, daher werden diese hier nur kurz erwähnt. Siehe dazu etwa \cite{shn10}. HCI-Guidelines sollten, sofern im Unternehmen vorhanden, selbstverständlich eingehalten werden.
 
-Das Programm sollte über einen gut dokumentierten, einfach erreichbaren und didaktisch verfollen User-Guide verfügen. Dieser soll neuen Nutzern des Tools den Einstieg in die Arbeit ermöglichen und so leicht wie möglich machen.
-
-
 \item Anbindung:
 
 Für eine unkomplizierte Interaktion der Teilschritte und mit anderen Programmen sind die von dem Programm akzeptierten bzw. verwendeten Dateitypen ausschlaggebend. Diese sollten stets universell oder zumindest leicht konvertiertbar sein. 
@@ -1246,6 +1243,7 @@ Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Tools Gener
 \section{Einordnung von GATE}
 Die Entwicklung der General Architecture for Text Engineering begann 1995 an der University of Sheffield und wird permanent weiterentwickelt \cite{cgw95}. GATE wurde mit der Programmiersprache Java geschrieben  und ist ein Werkzeug zur Erzeugung und Evaluierung von Sprachverarbeitungsprogrammen. Des Weiteren ermöglicht es den Bau und das Annotieren von Korpora \cite{cmb02}. 
 
+<<<<<<< HEAD
 \subsection{GATE-Architektur}
 GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen und die Darstellung der Ergebnisse an. Die drei Kernbausteine des Programms lassen sich wie folgt darstellen QUELLE:
 \begin{enumerate}
@@ -1262,7 +1260,9 @@ Sammlung aller Bausteine zur Textverarbeitung, aus denen dann vom User die benö
 \end{enumerate}
 
 GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind:
+=======
 GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind \cite{gm18}:
+>>>>>>> 0b5d0d975a4e5f1ca2b11fac13c85e7d92e35426
 \begin{enumerate}
 \item tokenizer: Der tokenizer unterteilt den Text oberflächlich in Zeichen oder Zeichenketten, welche als Zahlen, Wörter (Groß- und Kleinschreibung wird unterschieden) und Interpunktion kategorisiert werden. Die Arbeit soll für den tokenizer so effizient wie möglich sein und nur als Vorarbeit etwa für spätere Grammatikregeln dienen. 
 
@@ -1276,8 +1276,6 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 
 \item orthographic coreference tagger: Der orthographic coreference tagger, auch bekannt als OrthoMatcher, verbindet annotierte Entitäten, welche der semantic tagger finden konnte mit einer Beziehung, um somit eine Koreferenz zu erzeugen.
 \end{enumerate}
-\cite{gm18}
-Quellen:
 
 \begin{center}
 \begin{figure}[h!]
@@ -1308,6 +1306,21 @@ Wie in Abbildung XY zu sehen ist, wurde die Oberfläche recht übersichtlich geh
 Um Text in GATE verarbeiten zu können muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. Die Dokumente werden als .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate) akzeptiert.
 Nach der Verarbeitung kann annotierter Text als XML-Datei mit allen hinzugefügten Informationen exportiert und anders weiterverwendet werden. Plugins wie der ConfigurableExporter ermöglichen sogar, den verarbeiteten Text abhängig von den vergebenen Annotationen zu manipulieren und direkt in eine bereits vorhandene Datei zu extrahieren. 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Umsetzung der Anforderungen}
 
 \subsection{Repräsentation funktionaler Anforderungen}
@@ -1333,7 +1346,7 @@ Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Lo
 - funktionale anforderung 3: grafische darstellung eher nicht-funktional?\\
 - 4. wirklich anforderung des tools oder frage des programms?\\
 - quelle für standards bei 3.2.2 1.?\\
-- evtl quelle für kap 4 titel war einfach gate :Stenetorp, Pontus, et al. "BRAT: a web-based tool for NLP-assisted text annotation." Proceedings of the Demonstrations at the 13th Conference of the European Chapter of the Association for Computational Linguistics. Association for Computational Linguistics, 2012.\\
+
 
 \newpage
 \begin{thebibliography}{20}
