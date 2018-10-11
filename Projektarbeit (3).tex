@@ -884,7 +884,9 @@ Durch Kategorisierung können verschiedene Ausprägungen  der gleichen Sache zus
 
 \end{enumerate}
 
-Diese Vereinfachungen sind Ansätze zur verbesserten Erfassung der Semantik. WORDNET Jedoch stellt sich für die Praxis etwa die Frage, ob diese auch für Verben und Adjektive oder Nomen wie \textit{"Gedanke"}, die sich schlecht verbildlichen lassen, getroffen werden können, ob es "Mehrfachvererbung" (Hund als Haustier und als Vierbeiner) gibt, oder wo der Ursprung aller Kategorien liegt. Wenn Wörter einer Kategorie zugeordnet werden, können feine Nuancen zwischen verschiedenen Wörtern verloren gehen.
+Diese Vereinfachungen sind Ansätze zur verbesserten Erfassung der Semantik.  Jedoch stellt sich für die Praxis etwa die Frage, ob diese auch für Verben und Adjektive oder Nomen wie \textit{"Gedanke"}, die sich schlecht verbildlichen lassen, getroffen werden können, ob es "Mehrfachvererbung" (Hund als Haustier und als Vierbeiner) gibt, oder wo der Ursprung aller Kategorien liegt. Wenn Wörter einer Kategorie zugeordnet werden, können feine Nuancen zwischen verschiedenen Wörtern verloren gehen. 
+
+Einen Vorschlag, Wörter derart semantisch zu verknüpfen, stellt das Lexikon WordNet dar, das seit 1985 entwickelt wird \cite{mil95}. Innerhalb von WordNet werden Beziehungen von Wörtern anhand der obigen Kategorien nach Carnap getaggt, zusätzlich sind auch \textit{Troponomy} (Art und Weise) und \textit{Entailment} (Semantische Implikation) möglich. In Wordnet kann somit ein Netz von Wortbedeutungen zwischen allen Wörtern einer Sprache gebildet werden, um Semantiken aufzulösen und zu bewerten. 
 
 \subsection{Umgang mit Semantik in der Anwendung}
 Es existieren Ansätze, Semantiken besser als durch einfache FSs zu erfassen, um etwa eine korrekte Negation in der Semantik abzubilden. Vorschläge aus den 1980er Jahren, mithilfe von Theorembeweisern und Model-Checking lexikalische Semantik zu modellieren, sind etwa in \cite{sb88} und \cite{kn85} zu finden. In diesen Arbeiten werden mächtigere logische Modelle zur Modellierung von Semantik skizziert. 
@@ -1240,6 +1242,21 @@ Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Tools Gener
 \section{Einordnung von GATE}
 Die Entwicklung der General Architecture for Text Engineering begann 1995 an der University of Sheffield und wird permanent weiterentwickelt \cite{cgw95}. GATE wurde mit der Programmiersprache Java geschrieben  und ist ein Werkzeug zur Erzeugung und Evaluierung von Sprachverarbeitungsprogrammen. Des Weiteren ermöglicht es den Bau und das Annotieren von Korpora \cite{cmb02}. 
 
+\subsection{GATE-Architektur}
+GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen und die Darstellung der Ergebnisse an. Die drei Kernbausteine des Programms lassen sich wie folgt darstellen QUELLE:
+\begin{enumerate}
+\item \textit{GDM - Gate Document Manager}
+
+Der GDM stellt die Sammlung aller Informationen über Texte dar. In einer Datenbank werden alle durch das Programm identifizierten Annotationen gespeichert.
+\item \textit{GGI - Gate Graphical Interface}
+
+Ein GUI für die Konfiguration des Programms und die Darstellung der Ergebnisse
+
+\item \textit{CREOLE}
+
+Sammlung aller Bausteine zur Textverarbeitung, aus denen dann vom User die benötigten ausgewählt werden können.
+\end{enumerate}
+
 GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Information Extraction System), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind:
 \begin{enumerate}
 \item tokenizer: Der tokenizer unterteilt den Text oberflächlich in Zeichen oder Zeichenketten, welche als Zahlen, Wörter (Groß- und Kleinschreibung wird unterschieden) und Interpunktion kategorisiert werden. Die Arbeit soll für den tokenizer so effizient wie möglich sein und nur als Vorarbeit etwa für spätere Grammatikregeln dienen. 
@@ -1257,6 +1274,23 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 \cite{gm18}
 Quellen:
 
+\section{Umsetzung der Anforderungen}
+
+\subsection{Repräsentation funktionaler Anforderungen}
+Im folgenden Abscnitt wird die Umsetzung der funktionalen Anforderungen, die in Kapitel 3.2 beschrieben sind, überprüft. Dabei ist zu beachten, dass GATE über eine Vielzahl von Funktionen und Konfigurationen verfügt, die das Verhalten und Aussehen der Software beeinflussen. Daher wird hier, wenn möglich, vom Standard-Lieferumfang ausgegangen, der für diese Arbeit ausreichende Funktionalität und Grundlage für eine Evaluation bietet. An geeigneter Stelle auf weiterführende Programme und Erweiterungen für GATE referenziert, wenn diese dort nicht bereits enthalten sind.
+
+Zu 1.: GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten  Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.
+
+Zu 2.: GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{ANNIE Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung. Innerhalb der Verarbeitungskette kommunizieren die Mudule die neu gewonnenen Informationen als XML-Dateien an den \textit{GATE DOCUMENT MANAGER} mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Da XML Dateien in Klartext vorliegen und nicht etwa in Objekten verpackt sind, lässt sich der Inhalt auch durch Nutzer nachvollziehen.
+
+Zu 3.: In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Einzelne Module können verschoben, gelöscht oder neu hinzugefügt werden. Innerhalb der Programm-GUI lassen sich direkt einzelne Modulparameter auf einen Wert einstellen. Der Grad der individualisierbarkeit ist jedoch von Modul zu Modul unterschiedlich, je nach Implementierung und Anwendungsgebiet des Moduls. Beispielsweise benötigt der JAPE-Transducer eine Grammatik aus einer Datei als Eingabe, die anzuwendende Regeln für Taggings enthält. Diese muss dabei bei jedem Programmstart neu ausgewählt werden.
+Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.
+ 
+
+
+\subsubsection{Semantik}
+\subsubsection{•}
+
 \chapter{Notizen}
 - bsp in 2.1.4 ändern\\
 - Anführungszeichen ändern\\
@@ -1273,8 +1307,8 @@ Quellen:
 \bibitem[CHO57]{cho57} Noam Chomsky, "Syntactic Structures", Mouton \& Co., Feb. 1957.
 \bibitem[WEI89]{wei89}Ralph Weischedel, et al. "White paper on natural language processing." Proceedings of the workshop on Speech and Natural Language. Association for Computational Linguistics, 1989.
 \bibitem[HAO14]{hao14}Hao Wu, et al. "ILLINOISCLOUDNLP: Text Analytics Services in the Cloud." LREC. 2014.
-\bibitem[WEI66]{wei66}Joseph Weizenbaum, "ELIZA—a computer program for the study of natural language communication between man and machine." Communications of the ACM 9.1 S. 36-45, 1966.
-\bibitem[COP04]{cop04}Ann Copestake, University Of Cambridge, "Natural Language Processing", 2004.
+\bibitem[WEI66]{wei66}Joseph Weizenbaum, "ELIZA—a computer program for the study of natural language communication between man and machine." Communications of the ACM 9.1, 36-45, 1966
+\bibitem[COP04]{cop04}Ann Copestake, University Of Cambridge, "Natural Language Processing", 2004
 \bibitem[LL94]{ll94} Shalom Lappin, Herbert J. Leass. "An algorithm for pronominal anaphora resolution." Computational linguistics 20.4 (1994): 535-561.
 \bibitem[YAR95]{yar95}David Yarowsky, "Unsupervised word sense disambiguation rivaling supervised methods." Proceedings of the 33rd annual meeting on Association for Computational Linguistics. Association for Computational Linguistics, 1995.
 \bibitem[ZE00]{ze00}Philip Zeitz, Technische Universität Berlin, "Parametrisierte $\in_T$-Logik: Eine Theorie der Erweiterung abstrakter Logiken um die Konzepte Wahrheit, Referenz und klassische Negation", Logos Verlag Berlin, 1999.
@@ -1286,13 +1320,15 @@ Quellen:
 \bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr.
 \bibitem[ECK13]{eck13}Claudia Eckert, "IT-Sicherheit: Konzepte-Verfahren-Protokolle" 8. Auflage, Walter de Gruyter, 2013.
 \bibitem[SHN10]{shn10}Ben Shneiderman. Designing the user interface: strategies for effective human-computer interaction. Pearson Education India, 2010.
-\bibitem[SB88]{sb88}Muggleton, Stephen, and Wray Buntine. "Machine invention of first-order predicates by inverting resolution." Machine Learning Proceedings 1988. 1988. 339-352.
+\bibitem[SB88]{sb88}Muggleton, Stephen, and Wray Buntine. "Machine invention of first-order predicates by inverting resolution." Machine Learning Proceedings 1988. 1988. 339-352
 \bibitem[KN85]{kn85}Kapur, Deepak, and Paliath Narendran. "An equational approach to theorem proving in first-order predicate calculus." ACM SIGSOFT Software Engineering Notes 10.4 (1985): 63-66
 \bibitem[BAL98]{bal98}Balzert, Helmut. "Software-Qualitätssicherung." Lehrbuch der Software-Technik. Spektrum Akadem. Verlag (1998)
-\bibitem[CGW95]{cgw95} Hamish Cunningham, Robert J. Gaizauskas, Yorick Wilks. A general architecture for text engineering (GATE): A new approach to language engineering R \& D. University of Sheffield, Department of Computer Science, 1995.
-\bibitem[CMB02]{cmb02} Cunningham, Hamish, et al. "GATE: an architecture for development of robust HLT applications." Proceedings of the 40th annual meeting on association for computational linguistics. Association for Computational Linguistics, 2002.
+\bibitem[CGW95]{cgw95} Hamish Cunningham, Robert J. Gaizauskas, Yorick Wilks. A general architecture for text engineering (GATE): A new approach to language engineering R \& D. University of Sheffield, Department of Computer Science, 1995
+\bibitem[CMB02]{cmb02} Cunningham, Hamish, et al. "GATE: an architecture for development of robust HLT applications." Proceedings of the 40th annual meeting on association for computational linguistics. Association for Computational Linguistics, 2002
 \bibitem[GO18]{go18} https://gate.ac.uk/overview.html Offizielle Webseite von GATE (Overview), aufgerufen am 09.10.2018
 \bibitem[GM18]{gm18} https://gate.ac.uk/sale/tao/split.html GATE User Guide, aufgerufen am 09.10.2018
 \bibitem[GT18]{gt18} https://gate.ac.uk/sale/tao/splitap7.html\#x39-743000G, aufgerufen am 09.10.2018
+\bibitem[MIL95]{mil95}
+\bibitem[CC98]{cc98}Claudia Leacock, Martin Chodorow. "Combining local context and WordNet similarity for word sense identification." WordNet: An electronic lexical database 49.2 (1998): 265-283
 \end{thebibliography}
 \end{document}
