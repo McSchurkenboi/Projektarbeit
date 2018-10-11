@@ -1300,6 +1300,8 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 \begin{center}
 \includegraphics[scale=0.8]{GATE_Bilder/ANNIE2.jpg}
 \caption{Abbildung der unveränderten ANNIE-Verarbeitungskomponenten in GATE}
+\caption{Standard ANNIE-Verarbeitungskomponenten}
+\end{figure}
 \end{center}
 \end{figure}
 \end{comment}
@@ -1324,11 +1326,26 @@ Wie in Abbildung XY zu sehen ist, wurde die Oberfläche recht übersichtlich geh
 
 Um Text in GATE verarbeiten zu können muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. Die Dokumente werden als .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate) akzeptiert.
 Nach der Verarbeitung kann annotierter Text als XML-Datei mit allen hinzugefügten Informationen exportiert und anders weiterverwendet werden. Plugins wie der ConfigurableExporter ermöglichen sogar, den verarbeiteten Text abhängig von den vergebenen Annotationen zu manipulieren und direkt in eine bereits vorhandene Datei zu extrahieren. 
+In GATE können Dokumente als .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate) eingelesen werden.
+Nach der Verarbeitung kann annotierter Text als XML-Datei mit allen hinzugefügten Informationen exportiert und anders weiterverwendet werden. Plugins wie der ConfigurableExporter ermöglichen sogar, den verarbeiteten Text abhängig von den vergebenen Annotationen zu manipulieren und direkt in eine bereits vorhandene Datei zu extrahieren.\\
 
+GATE verfügt über verschiedene APIs. Eine davon ist die GDM-API, welche als Schnittstelle zwischen den einzelnen Komponenten der Verarbeitungskette fungiert. Diese ist für die Benutzer von GATE besonders wichtig, wenn es darum geht bspw. die Standardkomponenten des ANNIE Plugins für ein spezielles Ziel zu verändern bzw. anzupassen. Des Weiteren hat GATE die CREOLE-API, welche genutzt werden kann, um CREOLE-Plugins zu verändern oder selbst zu entwerfen und in das Programm einzubinden.
+Die wichtigste Programmierschnittstelle für Benutzer, welche nicht in GATE programmieren wollen, sondern die Kernfunktionalitäten von GATE in einem anderen Programm nutzen wollen ist jedoch unter dem Namen GATE Embedded zu finden. GATE Embedded ist eine Ansammlung von Java Archiven (JARs), welche die besagten Funktionalitäten bereitstellen. Es ist nativ in Java und anderen JVM(Java Vitual Machine)-basierten Programmiersprachen verfügbar, kann jedoch auch über Gateways wie JNI (Java Native Interface) auch für andere Sprachen nutzbar gemacht werden.
+Diese APIs bieten Nutzern bzw. Entwicklern sowohl die Möglichkeit benötigte Erweiterungen in GATE einzufügen, als auch GATE als Programmteil in der Entwicklung anderer Anwendungen zu benutzen und dadurch aufwendige Entwicklungsarbeit einzusparen. 
 
+\subsubsection{Funktionssicherheit}
+Ermöglichung für den User über eine Funktion, Ergebnisse von verschiedenen Verarbeitungsdurchgängen zu vergleichen, um Determinismus sicherzustellen (Funktionale Anforderung).
 
+\subsubsection{Dokumentation}
 
+GATE verfügt über einen ausführlichen User-Guide, welcher direkt über die Webseite zu erreichen ist. Dieser ist aufgeteilt in vier Kapitel: GATE Basics, GATE for Advanced Users, CREOLE Plugins und the GATE Family:Cloud, MIMIR, Teamware. 
+GATE Basics bietet einen gut verständlichen Einstieg für Benutzer, welche sich noch nicht mit dem Tool auskennen. Dabei stellt es vor allem die Arbeit mit den ANNIE-Komponenten vor.
+GATE for Advanced Users hilft bei fortgeschrittenerer Arbeit mit dem Tool, z.B. wenn es um das manipulieren von Text anhand von Annotationen oder die Entwicklung eigener Plugins geht.
+CREOLE Plugins bietet einen ausführlicheren Blick auf verschiedenste CREOLE-Plugins. Dabei wird vor allem auf die Arbeit mit Ontologien und Gazetteers eingegangen.
+The GATE Family: Cloud, MIMIR, Teamware verweist auf weitere mit GATE verwandte Services wie z.B. das web-basierte Annotations-Tool Teamware.
+Es ist also möglich, alle nötigen Informationen um mit dem Tool arbeiten zu können einheitlich über die Webseite von GATE zu erhalten. \\
 
+Die GATE-API kann unter dem Namen GATE Embedded über die offizielle Webseite von GATE eingesehen werden. GATE Embedded ist eine open source Software, welche alle Kernfunktionalitäten von GATE beinhaltet und ist direkt zum Download verlinkt. 
 
 
 
@@ -1405,5 +1422,6 @@ Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Lo
 \bibitem[MIL95]{mil95}Miller, George A. "WordNet: a lexical database for English." Communications of the ACM 38.11 (1995): 39-41.
 \bibitem[CC98]{cc98}Claudia Leacock, Martin Chodorow. "Combining local context and WordNet similarity for word sense identification." WordNet: An electronic lexical database 49.2 (1998): 265-283
 \bibitem[CU97]{cu97}Cunningham, Hamish, et al. "GATE–a TIPSTER-based general architecture for text engineering." Proceedings of the TIPSTER Text Program (Phase III). Vol. 6. 1997
+\bibitem[CU02]{cu02}Cunningham, Hamish. "GATE, a general architecture for text engineering." Computers and the Humanities 36.2 (2002): 223-254.
 \end{thebibliography}
 \end{document}
