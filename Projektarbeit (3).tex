@@ -1210,7 +1210,7 @@ Die Benutzeroberfläche sollte übersichtlich und sinnvoll angeordnet bzw. sorti
 
 Für eine unkomplizierte Interaktion der Teilschritte und mit anderen Programmen sind die von dem Programm akzeptierten bzw. verwendeten Dateitypen ausschlaggebend. Diese sollten stets universell oder zumindest leicht konvertiertbar sein. 
 
-Die API (application programming interface) bzw. Anwendungsprogrammierschnittstelle sollte gut dokumentiert und einfach erreichbar sein, um Nutzern das Anbinden an weitere Programme zu ermöglichen, ohne dabei z.B. auf Hilfe der Entwickler des Tools angewiesen zu sein. 
+Die API (application programming interface) bzw. Anwendungsprogrammierschnittstelle sollte einfach erreichbar und verwendbar sein, um Nutzern das Anbinden an weitere Programme zu ermöglichen, ohne dabei z.B. auf Hilfe der Entwickler des Tools angewiesen zu sein. 
  
 \item Funktionssicherheit:
 
@@ -1244,7 +1244,7 @@ Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Tools Gener
 Die Entwicklung der General Architecture for Text Engineering begann 1995 an der University of Sheffield und wird permanent weiterentwickelt \cite{cgw95}. GATE wurde mit der Programmiersprache Java geschrieben  und ist ein Werkzeug zur Erzeugung und Evaluierung von Sprachverarbeitungsprogrammen. Des Weiteren ermöglicht es den Bau und das Annotieren von Korpora \cite{cmb02}. 
 
 \subsection{GATE-Architektur}
-GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen und die Darstellung der Ergebnisse an. Dem Benutzer wird es ermöglicht, von einer GUI aus Tools zur Textverarbeitung zu starten, in eine Verarbeitungskette zu bringen und Deltas bei unterschiedlichen zum Einsatz gekommenen Verarbeitungswerkzeugen darzustellen. Grundsätzlich unterscheidet Gate dabei Module von Objekten, das bedeutet Verarbeitungswerkzeuge und Text sowie die Darstellung von Informationen über Text. GATE bietet somit einen Rahmen für die unten aufgeführten Komponenten. Die drei Kernbausteine des Programms lassen sich laut \cite{cu02} wie folgt darstellen QUELLE:
+GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen und die Darstellung der Ergebnisse an. Dem Benutzer wird es ermöglicht, von einer GUI aus Tools zur Textverarbeitung zu starten, in eine Verarbeitungskette zu bringen und Deltas bei unterschiedlichen zum Einsatz gekommenen Verarbeitungswerkzeugen darzustellen. Grundsätzlich unterscheidet Gate dabei Module von Objekten, das bedeutet Verarbeitungswerkzeuge und Text sowie die Darstellung von Informationen über Text. GATE bietet somit einen Rahmen für die unten aufgeführten Komponenten. Die drei Kernbausteine des Programms lassen sich laut \cite{cu02} wie folgt darstellen:
 \begin{enumerate}
 \item \textit{GDM - Gate Document Manager}
 
@@ -1306,6 +1306,27 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 \end{figure}
 \end{comment}
 
+\section{Umsetzung der Anforderungen}
+
+\subsection{Repräsentation funktionaler Anforderungen}
+Im folgenden Abschnitt wird die Umsetzung der funktionalen Anforderungen, die in Kapitel 3.2 beschrieben sind, überprüft. Dabei ist zu beachten, dass GATE über eine Vielzahl von Funktionen und Konfigurationen verfügt, die das Verhalten und Aussehen der Software beeinflussen. Daher wird hier, wenn möglich, vom Standard-Lieferumfang ausgegangen, der für diese Arbeit ausreichende Funktionalität und Grundlage für eine Evaluation bietet. An geeigneter Stelle auf weiterführende Programme und Erweiterungen für GATE referenziert, wenn diese dort nicht bereits enthalten sind.
+
+Zu 1.: GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate). Um Text in GATE verarbeiten zu können, muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein leerer Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. GATE verwaltet auf diese Weise dann alle Informationen über den Text mittels des GDM. Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.
+
+Zu 2.: GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{ANNIE Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung. Innerhalb der Verarbeitungskette kommunizieren die Mudule die neu gewonnenen Informationen als XML-Dateien an den GDM mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Da es sich grundsätzlich um XML Dateien in Klartext handelt und nicht etwa um verpackte Objekte mit Attributen, lässt sich der Inhalt auch durch Nutzer nachvollziehen.
+
+Zu 3.: In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Einzelne Module können verschoben, gelöscht oder neu hinzugefügt werden. Innerhalb der Programm-GUI lassen sich direkt einzelne Modulparameter auf einen Wert einstellen. Der Grad der Individualisierbarkeit ist jedoch von Modul zu Modul unterschiedlich, je nach Implementierung und Anwendungsgebiet des Moduls. Beispielsweise benötigt der JAPE-Transducer eine Grammatik aus einer Datei als Eingabe, die anzuwendende Regeln für Taggings enthält. Diese muss dabei bei jedem Programmstart neu ausgewählt werden.
+\begin{comment} 
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[scale=1.0]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/POSTagger.jpg}
+\caption{Einstellbare Modulparameter des POS-Taggers \\ Hier können etwa Pfade für Input- und Output-Daten angegeben werden}
+\end{center}
+\end{figure} 
+\end{comment}
+Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.
+
+
 \subsection{Repräsentation nicht-funktionaler Anforderungen}
 In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderungen an NLP-Tools mit GATE abgeglichen, um entscheiden zu können, inwiefern GATE diese erfüllt. Hierzu werden die Anforderungen erneut einzeln aufgelistet und ihrer Repräsentation in dem Tool, sofern vorhanden, erläutert. 
 
@@ -1335,6 +1356,7 @@ Diese APIs bieten Nutzern bzw. Entwicklern sowohl die Möglichkeit benötigte Er
 
 \subsubsection{Funktionssicherheit}
 Ermöglichung für den User über eine Funktion, Ergebnisse von verschiedenen Verarbeitungsdurchgängen zu vergleichen, um Determinismus sicherzustellen (Funktionale Anforderung).
+Anforderung: Das NLP-Tool sollte den Entwickler bei der Kontrolle von funktionaler Sicherheit unterstützen und ermöglichen das ordnungsgemäße Arbeiten verschiedener Funktionen zu überwachen und zu testen. 
 
 \subsubsection{Dokumentation}
 
@@ -1346,41 +1368,10 @@ The GATE Family: Cloud, MIMIR, Teamware verweist auf weitere mit GATE verwandte 
 Es ist also möglich, alle nötigen Informationen um mit dem Tool arbeiten zu können einheitlich über die Webseite von GATE zu erhalten. \\
 
 Die GATE-API kann unter dem Namen GATE Embedded über die offizielle Webseite von GATE eingesehen werden. GATE Embedded ist eine open source Software, welche alle Kernfunktionalitäten von GATE beinhaltet und ist direkt zum Download verlinkt. 
-
-
-
-
-
-
-
-
-
-
-
-\section{Umsetzung der Anforderungen}
-
-\subsection{Repräsentation funktionaler Anforderungen}
-Im folgenden Abscnitt wird die Umsetzung der funktionalen Anforderungen, die in Kapitel 3.2 beschrieben sind, überprüft. Dabei ist zu beachten, dass GATE über eine Vielzahl von Funktionen und Konfigurationen verfügt, die das Verhalten und Aussehen der Software beeinflussen. Daher wird hier, wenn möglich, vom Standard-Lieferumfang ausgegangen, der für diese Arbeit ausreichende Funktionalität und Grundlage für eine Evaluation bietet. An geeigneter Stelle auf weiterführende Programme und Erweiterungen für GATE referenziert, wenn diese dort nicht bereits enthalten sind.
-
-Zu 1.: GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate). Um Text in GATE verarbeiten zu können, muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein leerer Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. GATE verwaltet auf diese Weise dann alle Informationen über den Text mittels des GDM. Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.
-
-Zu 2.: GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{ANNIE Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung. Innerhalb der Verarbeitungskette kommunizieren die Mudule die neu gewonnenen Informationen als XML-Dateien an den GDM mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Da es sich grundsätzlich um XML Dateien in Klartext handelt und nicht etwa um verpackte Objekte mit Attributen, lässt sich der Inhalt auch durch Nutzer nachvollziehen.
-
-Zu 3.: In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Einzelne Module können verschoben, gelöscht oder neu hinzugefügt werden. Innerhalb der Programm-GUI lassen sich direkt einzelne Modulparameter auf einen Wert einstellen. Der Grad der individualisierbarkeit ist jedoch von Modul zu Modul unterschiedlich, je nach Implementierung und Anwendungsgebiet des Moduls. Beispielsweise benötigt der JAPE-Transducer eine Grammatik aus einer Datei als Eingabe, die anzuwendende Regeln für Taggings enthält. Diese muss dabei bei jedem Programmstart neu ausgewählt werden.
-\begin{comment} 
-\begin{figure}[h!]
-\begin{center}
-\includegraphics[scale=1.0]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/POSTagger.jpg}
-\caption{Einstellbare Modulparameter des POS-Taggers \\ Hier können etwa Pfade für Input- und Output-Daten angegeben werden}
-\end{center}
-\end{figure} 
-\end{comment}
-Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.
  
 
 
-\subsubsection{Semantik}
-\subsubsection{•}
+
 
 \chapter{Notizen}
 - bsp in 2.1.4 ändern\\
