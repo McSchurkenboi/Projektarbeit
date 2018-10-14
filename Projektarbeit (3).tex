@@ -1,4 +1,5 @@
 \documentclass[12pt]{report}
+\usepackage[german]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage{fancyhdr}
@@ -92,7 +93,7 @@ Dazu ist, wie im nächsten Abschnitt beschrieben, die linguistische Analyse der 
 \subsection{Beispiele früher Entwicklungen}
 Die Forschungsergebnisse des Linguisten Noam Chomsky seit den 1950er Jahren haben aufgezeigt, dass es grundsätzlich möglich ist, einge Aspekte der Regeln englischer Sprache zu formalisieren. In Kombination von beispielsweise Automaten und generativen Grammatiken (Abschnitt 2.4 und 2.6), die auch \textit{Chomsky-Hierarchie} genannt wird, wird verdeutlicht, wie diese automatisiert aufgefasst und nachvollzogen werden kann. Siehe dazu auch \cite{cho57}. Chomsky schaffte damit zum großen Teil die Grundlagen der Modelle heutiger Sprachanalyse-Tools.
 
-Bereits in den 1960er Jahren versuchte man durch Sprachcomputer bzw. Chatbots wie \textit{ELIZA} \cite{wei66} die Mensch-Maschine-Kommunikation umzusetzen, indem die Textnachricht eines Benutzers automatisch durch einen Computer verarbeitet und eine plausible Antwort gegeben wurde, damals jedoch noch ohne echte Wissensbasis. Aus heutiger Sicht kann man ELIZA somit keine Möglichkeit zur "intelligenten" Kommunikation attestieren, da scheinbar der Sinn hinter den Nutzereingaben nicht gänzlich erfasst wird.
+Bereits in den 1960er Jahren versuchte man durch Sprachcomputer bzw. Chatbots wie \textit{ELIZA} \cite{wei66} die Mensch-Maschine-Kommunikation umzusetzen, indem die Textnachricht eines Benutzers automatisch durch einen Computer verarbeitet und eine plausible Antwort gegeben wurde, damals jedoch noch ohne echte Wissensbasis. Aus heutiger Sicht kann man ELIZA somit keine Möglichkeit zur \glqq   intelligenten\grqq{} Kommunikation attestieren, da scheinbar der Sinn hinter den Nutzereingaben nicht gänzlich erfasst wird.
 
 Heutige Entwicklungen im Bereich Sprachassistenzsysteme sind alltäglicher Begleiter jedes Smartphone-Nutzers geworden; sie analysieren die Spracheingaben mithilfe von NLP-Techniken bezüglich ihrer Bedeutung in Echtzeit über Clouds. \cite{hao14}
 
@@ -106,17 +107,17 @@ Bereits einfache Anfragen können computergestützte Frage-Antwort-Systeme wie S
 
 Schon das Wort \textit{überblicken} kann das Übersehen von etwas, ebenso wie das im Blick haben (Gegenteil) bedeuten.
 
-Der Satz \textit{"Die Betrachtung des Studenten"} kann etwa als Student, der (etwas) betrachtet, oder als ein Student, der (von jemand anderem) betrachtet wird, verstanden werden. Sätze mit solch einem Satzbau (bestehend aus nominalisiertem Verb, Bezugswort und Substantiv) verursachen unwillkürlich zwei mögliche Deutungen aufgrund der unklaren Syntax.
+Der Satz \textit{\glqq   Die Betrachtung des Studenten\grqq{}} kann etwa als Student, der (etwas) betrachtet, oder als ein Student, der (von jemand anderem) betrachtet wird, verstanden werden. Sätze mit solch einem Satzbau (bestehend aus nominalisiertem Verb, Bezugswort und Substantiv) verursachen unwillkürlich zwei mögliche Deutungen aufgrund der unklaren Syntax.
 
-Die Frage \textit{"Verkaufen Sie Handys und Computer von Samsung?"} kann als Frage nach allgemeinen Handys und nur Computern, spezifisch von Samsung oder nach Handys und Computern gleichermaßen nur von Samsung verstanden werden. Auch hier entsteht Unklarheit durch zwei mögliche Bezüge des einschränkenden Relativsatzes. Ob eine Aufzählung oder ein Unterschied (zwischen \textit{von Samsung} und \textit{nicht von Samsung} gemacht wird, ist syntaktisch unklar.)
+Die Frage \textit{\glqq  Verkaufen Sie Handys und Computer von Samsung?\grqq{}} kann als Frage nach allgemeinen Handys und nur Computern, spezifisch von Samsung oder nach Handys und Computern gleichermaßen nur von Samsung verstanden werden. Auch hier entsteht Unklarheit durch zwei mögliche Bezüge des einschränkenden Relativsatzes. Ob eine Aufzählung oder ein Unterschied (zwischen \textit{von Samsung} und \textit{nicht von Samsung} gemacht wird, ist syntaktisch unklar.)
 
-\textit{"Wie schnell ist der Bus?"} und \textit{"Wie schnell ist der Bus da?"} mögen zunächst ähnlich aussehen, fragen jedoch unterschiedlichen Inhalt ab und haben nichts miteinander zu tun. Außerdem könnte der zweite Satz kontextabhängig etwa nach der Fahrzeit bis zum Ziel oder nach der Ankunftszeit, an der man einsteigen kann, fragen. Die vage Formulierung von Sätzen stellt bei der Frage nach deren Bedeutung eine Herausforderung dar, durch Untersuchung des Kontextes der Frage kann hier jedoch meist recht treffsicher geantwortet werden.
+\textit{\glqq  Wie schnell ist der Bus?\grqq{}} und \textit{\glqq  Wie schnell ist der Bus da?\grqq{}} mögen zunächst ähnlich aussehen, fragen jedoch unterschiedlichen Inhalt ab und haben nichts miteinander zu tun. Außerdem könnte der zweite Satz kontextabhängig etwa nach der Fahrzeit bis zum Ziel oder nach der Ankunftszeit, an der man einsteigen kann, fragen. Die vage Formulierung von Sätzen stellt bei der Frage nach deren Bedeutung eine Herausforderung dar, durch Untersuchung des Kontextes der Frage kann hier jedoch meist recht treffsicher geantwortet werden.
 
 Abgesehen von diesen syntaktischen Uneindeutigkeiten muss NLP auch Hürden der inhaltlichen Mehrdeutigkeit bzw. Semantik bewältigen. Aktuell beschäftigt man sich zum Beispiel mit der Aufgabe zu erkennen, ob ein Kommentar zu einem Video der Webseite \textit{Youtube} eher positiv oder eher negativ gesinnt ist. Was hier für den Menschen schon beim ersten Lesen sofort erkennbar wird, stellt für den Computer ein ernstzunehmendes Problem dar. Tonalität und Stimmung des Kommentars, der unter einem Video als Reaktion entsteht, sind mitunter nicht direkt aus dem audiovisuellen Eindruck aus dem Video ersichtlich. (?)
 Solche scheinabr simplen Probleme sind für den Menschen recht einfach zu lösen. Wie oben erwähnt existiert NLP bereits seit ca. Mitte des 20. Jahrhunderts, jedoch ist die Behandlung natürlichsprachlicher Probleme auch heute noch problematisch in der Implementierung. Wenn Systeme die oben genannte Beispiele nicht explizit ausschließen, muss die Verarbeitungslogik besondere Rücksicht auf Uneindeutigkeiten nehmen.
 
 \subsection{Konzepte aus der Logik für NLP-Anwendungen}
-Weit vor der Implementierung von NLP mittels Tools haben sich Logiker und Experten aus der theoretischen Informatik mit der Frage beschäftigt, wie man Sprache und Ereignisse aus der echten Welt in logischen Ausdrücken formalisieren kann. Ausgehend von der klassischen Aussagenlogik wurde mit der parametrisierten $\in_T$-Logik nach Zeitz \cite{ze00} ein Ansatz geschaffen, der eine Darstellung von Semantik in propositionalen Logiken ermöglicht. Nach Martin-Löf \cite{ml96} beschreibt eine Proposition den "Gedanken oder Sachverhalt eines formalen Ausdrucks", die dann in einer $\in_T$-Logik dargestellt werden kann und somit einen Sachverhalt als Symbol abbildet. Ziel ist es, tatsächlich Bedeutungen in Form von Propositionen mittels Formeln aus Symbolen der Logik darzustellen. Abstrakt betrachtet kann man sich mit propositionalen Logiken einer Abbildung von Wissen aus der tatsächlichen Welt annähern. 
+Weit vor der Implementierung von NLP mittels Tools haben sich Logiker und Experten aus der theoretischen Informatik mit der Frage beschäftigt, wie man Sprache und Ereignisse aus der echten Welt in logischen Ausdrücken formalisieren kann. Ausgehend von der klassischen Aussagenlogik wurde mit der parametrisierten $\in_T$-Logik nach Zeitz \cite{ze00} ein Ansatz geschaffen, der eine Darstellung von Semantik in propositionalen Logiken ermöglicht. Nach Martin-Löf \cite{ml96} beschreibt eine Proposition den \glqq  Gedanken oder Sachverhalt eines formalen Ausdrucks\grqq{}, die dann in einer $\in_T$-Logik dargestellt werden kann und somit einen Sachverhalt als Symbol abbildet. Ziel ist es, tatsächlich Bedeutungen in Form von Propositionen mittels Formeln aus Symbolen der Logik darzustellen. Abstrakt betrachtet kann man sich mit propositionalen Logiken einer Abbildung von Wissen aus der tatsächlichen Welt annähern. 
 
 Die klassische Aussagenlogik kann etwa Wissen mittels ihrer Symbole abbilden, indem Sie Formeln aus diesen Symbolen bildet. Jedem Symbol ist dabei eine Aussage zugeordnet, dass dann in einer Formel als Variable auftaucht. Problematisch ist jedoch, dass solch eine Logik bei der Deutung auf reine Wahrheitswerte dieser Formeln beschränkt ist, indem die Symbole logisch wahr oder falsch belegt werden. Eine explizitere, semantische Deutung der Formeln ist jedoch erforderlich, um tatsächlich metasprachliche Aussagen in einer Logik zu formulieren. 
 
@@ -139,7 +140,7 @@ Morphologische Analyse - Die Zerlegung von Wörtern bezüglich ihrer Struktur. D
 \item
 Syntax - Aufbau von Sätzen durch einzelne Wörter. Jede Sprache besitzt syntaktische Regelungen bezüglich der auftauchenden Wörter; im Deutschen folgt etwa auf einen Artikel irgendwann ein Substantiv oder bestimmte Signalwörter geben Satztyp und Tempus an. Auf Basis dieses Wissens können formale und strukturelle Analysen der Textbestandteile erfolgen.
 \item
-Semantiken - Die Identifikation der Bedeutung von einzelnen Sätzen und Wörtern. Die Semantik eines Textabschnittes wird häufig als "Logik" bezeichnet und fragt nach dessen Bedeutung bzw. Thema. Semantische Deutungen können anhand von Kompositionen einzelner Wörter und Sätzen auf Basis der semantischen Analyse erkannt werden.
+Semantiken - Die Identifikation der Bedeutung von einzelnen Sätzen und Wörtern. Die Semantik eines Textabschnittes wird häufig als \glqq  Logik\grqq{} bezeichnet und fragt nach dessen Bedeutung bzw. Thema. Semantische Deutungen können anhand von Kompositionen einzelner Wörter und Sätzen auf Basis der semantischen Analyse erkannt werden.
 \item
 Kontext - Darstellung von Sachzusammenhängen aus der Vereinigung von ähnlichen Bedeutungen. Textbausteine, die sich mit dem gleichen Thema beschäftigen, werden dem gleichen Sachzusammenhang zugeordnet und als Teil dessen annotiert.
 \end{enumerate}
@@ -177,19 +178,19 @@ Der folgende Abschnitt befasst sich genauer mit der morphologischen Analyse von 
 
 Wie bereits erwähnt, befasst sich die Morphologie mit der Struktur, Zusammensetzung und Korrektheit einzelner Wörter. Jedes Wort der englischen Sprache besteht aus mindestens einem Wortstamm und beliebig vielen Affixen. Affixe sind unterteilt in Präfixe und Suffixe, abhängig davon, ob sie vor oder hinter dem Wortstamm auftauchen. Es gibt auch Affixe, welche in der Mitte des Wortes eingeordnet werden. Diese existieren jedoch nicht in der englischen Sprache und sind daher künftig zu vernachlässigen. (? Reihenfolge)
 
-Man betrachte beispielsweise das Wort \textit{"believe"} von dem englischen Verb \textit{"to believe"} (zu Deutsch: "glauben"). Hängt man das Suffix \textit{"-able"} an, so erhält man das Adjektiv \textit{"believable" ("glaubhaft")}. Fügt man nun das Präfix \textit{"un-"} hinzu erhält man die Negation \textit{"unbelievable" ("unglaubhaft")}. Die morphologische Analyse erkennt dies nicht nur als ein Wort, sondern als Präfix-Stamm-Suffix-Konstrukt.
+Man betrachte beispielsweise das Wort \textit{\glqq  believe\grqq{}} von dem englischen Verb \textit{\glqq  to believe\grqq{}} (zu Deutsch: \glqq  glauben\grqq{}). Hängt man das Suffix \textit{\glqq  -able\grqq{}} an, so erhält man das Adjektiv \textit{\glqq  believable\grqq{} (\glqq  glaubhaft\grqq{})}. Fügt man nun das Präfix \textit{\glqq  un-\grqq{}} hinzu erhält man die Negation \textit{\glqq  unbelievable\grqq{} (\glqq  unglaubhaft\grqq{})}. Die morphologische Analyse erkennt dies nicht nur als ein Wort, sondern als Präfix-Stamm-Suffix-Konstrukt.
 
-Es wird zwischen ableitender und flexionaler Morphologie unterschieden, wobei die Abgrenzung jedoch nicht ganz eindeutig ist. Affixe wie \textit{"anti-"}, \textit{"re-"} und das oben verwendete \textit{"un-"} gelten als ableitend und können mehrfach und sogar rekursiv zu Stämmen auftauchen. Sie fügen dem Stamm in der Regel eine Zusatzinformation hinzu, wie z.B. Negation. Es kann auch, wie in dem Beispiel oben demonstriert, zur Änderung der Wortart kommen. Flexionale Affixe werden normalerweise aufgrund grammatikalischer Regeln wie Pluralisierung hinzugefügt. Hierzu gehören das Plural-"-s" und die Endung \textit{"-ed"} in der Vergangenheitsform. 
+Es wird zwischen ableitender und flexionaler Morphologie unterschieden, wobei die Abgrenzung jedoch nicht ganz eindeutig ist. Affixe wie \textit{\glqq  anti-\grqq{}}, \textit{\glqq  re-\grqq{}} und das oben verwendete \textit{\glqq  un-\grqq{}} gelten als ableitend und können mehrfach und sogar rekursiv zu Stämmen auftauchen. Sie fügen dem Stamm in der Regel eine Zusatzinformation hinzu, wie z.B. Negation. Es kann auch, wie in dem Beispiel oben demonstriert, zur Änderung der Wortart kommen. Flexionale Affixe werden normalerweise aufgrund grammatikalischer Regeln wie Pluralisierung hinzugefügt. Hierzu gehören das Plural-\glqq  -s\grqq{} und die Endung \textit{\glqq  -ed\grqq{}} in der Vergangenheitsform. 
 
-Die morphologische Analyse ist üblicherweise eine Vorarbeit für das Parsen von Texten, welches in Abschnitt 2.6 genauer beschrieben ist. Dafür sind jedoch genauere syntaktische und semantische Informationen nötig. So würde beispielsweise das Wort "fishing" eindeutig durch die "-ing"-Endung als Verb im Partizip Präsens erkannt, während bei dem Wort "fish" eine Mehrdeutigkeit zwischen dem Verb "fischen" und dem Substantiv "Fisch" die Verarbeitung verkompliziert. Dies wird durch das sogenannte Part-of-Speech-Tagging gelöst, welches in Abschnitt 2.5 behandelt wird.
+Die morphologische Analyse ist üblicherweise eine Vorarbeit für das Parsen von Texten, welches in Abschnitt 2.6 genauer beschrieben ist. Dafür sind jedoch genauere syntaktische und semantische Informationen nötig. So würde beispielsweise das Wort \glqq  fishing\grqq{} eindeutig durch die \glqq  -ing\grqq{}-Endung als Verb im Partizip Präsens erkannt, während bei dem Wort \glqq  fish\grqq{} eine Mehrdeutigkeit zwischen dem Verb \glqq  fischen\grqq{} und dem Substantiv \glqq  Fisch\grqq{} die Verarbeitung verkompliziert. Dies wird durch das sogenannte Part-of-Speech-Tagging gelöst, welches in Abschnitt 2.5 behandelt wird.
 
 \subsection{Lexika in der Morphologie}
 Für eine präzise morphologische Analyse bedarf es 3 verschiedener Lexika, um mögliche Interpretationen zu speichern:
 
 \begin{enumerate}
-\item Liste von Affixen (zusammen mit den Informationen, die damit verbunden sind, z.B. Negation \tt "un-"\rm)
-\item Liste von unregelmäßigen Wörtern (zusammen mit den Informationen, die damit verbunden sind, z.B. \tt "went":simple past"(to) go"\rm)
-\item Liste von Wortstämmen (zusammen mit syntaktischer Kategorie, z.B. \tt "believe":verb\rm)
+\item Liste von Affixen (zusammen mit den Informationen, die damit verbunden sind, z.B. Negation \tt \glqq  un-\grqq{}\rm)
+\item Liste von unregelmäßigen Wörtern (zusammen mit den Informationen, die damit verbunden sind, z.B. \tt \glqq  went\grqq{}:simple past\glqq  (to) go\grqq{}\rm)
+\item Liste von Wortstämmen (zusammen mit syntaktischer Kategorie, z.B. \tt \glqq  believe\grqq{}:verb\rm)
 \end{enumerate}
 
 Die Affix-Liste könnte in einen Präfix- und einen Suffix-Teil getrennt werden, welche jeweils das Affix und die oben beschriebenen Informationen als formatierten Text enthalten, in etwa wie folgt (Suffix-Teil):
@@ -207,28 +208,28 @@ s PLURAL\_NOUN\\
 began PAST\_VERB begin\\
 begun PSP\_VERB begin\\
 \rm
-\textit{"Began"} und \textit{"begun"} sind hier jeweils die "PAST\_VERB"- und "PSP\_VERB" (past participle)-Form des Referenzstammes \textit{"begin"}.
+\textit{\glqq  Began\grqq{}} und \textit{\glqq  begun\grqq{}} sind hier jeweils die \glqq  PAST\_VERB\grqq{}- und \glqq  PSP\_VERB\grqq{} (past participle)-Form des Referenzstammes \textit{\glqq  begin\grqq{}}.
 
 Um unnötige Fehler zu vermeiden ist es ratsam, zusätzlich ein Lexikon mit Wortstämmen zu verwenden, welches die Wortstämme und eine grammatikalische Einordnung beinhaltet. Dies hat hauptsächlich zwei Gründe: 
 
 \begin{enumerate}
-\item Die Form im Zusammenhang mit vielen syntaktischen (siehe Abschnitt 2.5) und morphologischen Regeln ist wichtig. Die \textit{"-able"}-Anhangsregel kann beispielsweise nur bei Verben verwendet werden, die dann ein Adjektiv darstellen (diese Eigenschaft würde in der Affix-Liste beschrieben).
-\item Mögliche Wortstämme überprüfen zu können ist wichtig, da somit viele Mehrdeutigkeiten ausgeschlossen werden können. So könnte "bus" z.B. als "bu$\textasciicircum$s" (Plural von "bu") interpretiert werden. Dies ist jedoch nicht möglich, wenn kein Eintrag zu dem Wortstamm "bu" existiert. 
+\item Die Form im Zusammenhang mit vielen syntaktischen (siehe Abschnitt 2.5) und morphologischen Regeln ist wichtig. Die \textit{\glqq  -able\grqq{}}-Anhangsregel kann beispielsweise nur bei Verben verwendet werden, die dann ein Adjektiv darstellen (diese Eigenschaft würde in der Affix-Liste beschrieben).
+\item Mögliche Wortstämme überprüfen zu können ist wichtig, da somit viele Mehrdeutigkeiten ausgeschlossen werden können. So könnte \glqq  bus\grqq{} z.B. als \glqq  bu$\textasciicircum$s\grqq{} (Plural von \glqq  bu\grqq{}) interpretiert werden. Dies ist jedoch nicht möglich, wenn kein Eintrag zu dem Wortstamm \glqq  bu\grqq{} existiert. 
 \end{enumerate}
 
 \subsection{Buchstabierregeln mit endlichen Zustandswandlern}
-In der Morphologie gibt es eine Vielzahl von Regeln, die bei der Unterteilung, Interpretation und Zusammensetzung von Wörtern zu beachten sind. Wenn man das "believe"-Beispiel aus Abschnitt 2.4 erneut betrachtet, fällt auf, dass bei dem hinzufügen des Suffixes "-able" der letzte Buchstabe des Wortstammes entfällt. Dies ist natürlich kein Tippfehler, sondern beruht auf einer der besagten Regeln. Die oben verwendete Regel lässt sich wie folgt darstellen:
+In der Morphologie gibt es eine Vielzahl von Regeln, die bei der Unterteilung, Interpretation und Zusammensetzung von Wörtern zu beachten sind. Wenn man das \glqq  believe\grqq{}-Beispiel aus Abschnitt 2.4 erneut betrachtet, fällt auf, dass bei dem hinzufügen des Suffixes \glqq  -able\grqq{} der letzte Buchstabe des Wortstammes entfällt. Dies ist natürlich kein Tippfehler, sondern beruht auf einer der besagten Regeln. Die oben verwendete Regel lässt sich wie folgt darstellen:
 \tt
 \begin{center}
 e $\rightarrow \varepsilon \textasciicircum \_$able
 \end{center}
 \rm
-Das \textit{e} ist in dem Falle der in Frage stehende Buchstabe, welcher, symbolisiert durch den Pfeil, in das $\varepsilon$ (das leere Wort) gewandelt wird, falls ein Affix angehängt wird ($\textasciicircum$) und es an dieser Stelle ($\_$) steht, also vor dem \textit{"-able"}.
+Das \textit{e} ist in dem Falle der in Frage stehende Buchstabe, welcher, symbolisiert durch den Pfeil, in das $\varepsilon$ (das leere Wort) gewandelt wird, falls ein Affix angehängt wird ($\textasciicircum$) und es an dieser Stelle ($\_$) steht, also vor dem \textit{\glqq  -able\grqq{}}.
 
 Solche Regeln lassen sich zu morphologischen Zwecken gut mit endlichen Zustandswandlern (finite state transducers) realisieren, was im Folgenden demonstriert werden soll.
 
 \subsection{Endliche Zustandswandler zur Umsetzung von morphologischen Regeln}
-Ein endlicher Zustandswandler ist ein Graph aus einer endlichen Anzahl von Knoten (Zuständen), welche durch Kanten verbunden sind. Knoten sind unterteilt in einen Start-Knoten, eine beliebige Anzahl an normalen Knoten und mindestens einen Ziel-Knoten. Der Start-Knoten als Input das zu verarbeitende Wort, welches nun in eine Abbildung der Aufbaustruktur des Wortes übertragen werden soll. Das Erreichen eines Ziel-Knotens heißt, dass das Wort korrekt ist und akzeptiert werden kann. Die Kanten repräsentieren die Abbildung einer Zeichenkette auf eine andere. Dies funktioniert bidirektional, wodurch sie sowohl zum Erstellen, als auch zum Auflösen von Wörtern verwendetet werden können \cite{cop04}. Die folgende Abbildung zeigt den eindlichen Zustandswandler, der die Umsetzung der besagten "able"-Anhangs-Regel ermöglicht:
+Ein endlicher Zustandswandler ist ein Graph aus einer endlichen Anzahl von Knoten (Zuständen), welche durch Kanten verbunden sind. Knoten sind unterteilt in einen Start-Knoten, eine beliebige Anzahl an normalen Knoten und mindestens einen Ziel-Knoten. Der Start-Knoten als Input das zu verarbeitende Wort, welches nun in eine Abbildung der Aufbaustruktur des Wortes übertragen werden soll. Das Erreichen eines Ziel-Knotens heißt, dass das Wort korrekt ist und akzeptiert werden kann. Die Kanten repräsentieren die Abbildung einer Zeichenkette auf eine andere. Dies funktioniert bidirektional, wodurch sie sowohl zum Erstellen, als auch zum Auflösen von Wörtern verwendetet werden können \cite{cop04}. Die folgende Abbildung zeigt den eindlichen Zustandswandler, der die Umsetzung der besagten \glqq  able\grqq{}-Anhangs-Regel ermöglicht:
 \\
 
 \begin{figure}
@@ -249,14 +250,14 @@ Ein endlicher Zustandswandler ist ein Graph aus einer endlichen Anzahl von Knote
 \end{figure}
 
 
-Der oben abgebildete Zustandswandler ist in der Lage die beschriebene Regel umzusetzen wie folgt: In Zustand 1 erfolgt der Input des eingelesenen Wortes, also in diesem Falle \textit{"believable"}. Über die Schleife mit \textit{"other:other"} ist die Abbildung aller nicht speziell angegebenen Zeichenfolgen auf sich selbst beschrieben. Es kann jederzeit das leere Wort auf ein \textit{"e"} Übertragen werden, dies geschieht jedoch nur, falls auch ein "-able" folgt. In dem Fall wird zuvor noch aus dem leeren Wort ein Affix-Zeichen ($\textasciicircum$) generiert (Es ist anzumerken, dass der Zustandswandler nicht deterministisch ist, sich jedoch über die Potenzmengenkonstruktion immer ein äquivalenter deterministischer Zustandswandler erstellen ließe). So wird also das Wort "believable" durch diesen Automaten als "believe$\textasciicircum$able" Interpretiert, und somit das "able"-Affix erkannt. Andersherum ließe sich aus dem Wortaufbau "believe$\textasciicircum$able" das korrekte Wort "believable" generieren.
+Der oben abgebildete Zustandswandler ist in der Lage die beschriebene Regel umzusetzen wie folgt: In Zustand 1 erfolgt der Input des eingelesenen Wortes, also in diesem Falle \textit{\glqq  believable\grqq{}}. Über die Schleife mit \textit{\glqq  other:other\grqq{}} ist die Abbildung aller nicht speziell angegebenen Zeichenfolgen auf sich selbst beschrieben. Es kann jederzeit das leere Wort auf ein \textit{\glqq  e\grqq{}} Übertragen werden, dies geschieht jedoch nur, falls auch ein \glqq  -able\grqq{} folgt. In dem Fall wird zuvor noch aus dem leeren Wort ein Affix-Zeichen ($\textasciicircum$) generiert (Es ist anzumerken, dass der Zustandswandler nicht deterministisch ist, sich jedoch über die Potenzmengenkonstruktion immer ein äquivalenter deterministischer Zustandswandler erstellen ließe). So wird also das Wort \glqq  believable\grqq{} durch diesen Automaten als \glqq  believe$\textasciicircum$able\grqq{} Interpretiert, und somit das \glqq  able\grqq{}-Affix erkannt. Andersherum ließe sich aus dem Wortaufbau \glqq  believe$\textasciicircum$able\grqq{} das korrekte Wort \glqq  believable\grqq{} generieren.
 
-Üblicherweise werden für jede Regel eigene Zustandswandler erstellt, welche dann bei der Verarbeitung von Wörtern parallel ablaufen. Dies ist gut für die Performanz, birgt allerdings Probleme. Wenn man mit komplexen Wörtern arbeitet, bei denen mehrere Regeln gleichzeitig anzuwenden sind, können verschiedene valide Ergebnisse erzielt werden. So wäre es etwa problematisch zwischen den Wörtern "un$\textasciicircum$ion$\textasciicircum$ise$\textasciicircum$ed" (Chemie) und "union$\textasciicircum$ise$\textasciicircum$ed" (gewerkschaftlich organisiert) zu unterscheiden. 
+Üblicherweise werden für jede Regel eigene Zustandswandler erstellt, welche dann bei der Verarbeitung von Wörtern parallel ablaufen. Dies ist gut für die Performanz, birgt allerdings Probleme. Wenn man mit komplexen Wörtern arbeitet, bei denen mehrere Regeln gleichzeitig anzuwenden sind, können verschiedene valide Ergebnisse erzielt werden. So wäre es etwa problematisch zwischen den Wörtern \glqq  un$\textasciicircum$ion$\textasciicircum$ise$\textasciicircum$ed\grqq{} (Chemie) und \glqq  union$\textasciicircum$ise$\textasciicircum$ed\grqq{} (gewerkschaftlich organisiert) zu unterscheiden. 
 
 \section{Part-of-speech tagging und Wortvorhersage}
 Dieses Kapitel befasst sich mit der Transformation von Ergebnissen der morphologischen Analyse einzelner Wörter in eine sinnvolle Kategorisierung der Wörter im Sachzusammenhang aus mehreren Wörtern. Part-of-speech tagging klassifiziert einzelne Worte eines Textes so, dass erfasst wird, welche Rolle sie im Satz spielen. Die einzelnen Wörter des Textes werden im Englischen bezüglich ihrer grammatikalischen Funktion und Anzahl markiert (\textit{annotiert}). Die Identifikation muss so erfolgen, dass sie den Kontext des Satzes erfasst, also insgesamt Sinn ergibt. Diese Kennzeichnung geht über die Analyse einzelner Wörter hinaus; Sie erfasst auch die Syntax umgebender Wörter eines Satzes. 
 
-Im Deutschen ist es etwa recht wahrscheinlich, dass auf ein Nomen am Satzanfang als nächstes Wort ein Verb folgt, da dies einen typischen Satzbau darstellt. Ein part-of-speech Tagger sollte daher beispielsweise im Satz \textit{"Ich fahre Fahrrad."} korrekt das "Ich" als Subjekt, das "fahre" als Prädikat und das "Fahrrad" als Akkusativobjekt darstellen; Die isolierte Betrachtung von \textit{"Fahrrad"} ließe aber auch die Kategorisierung als Subjekt zu, da sich die zwei Möglichkeiten bezüglich der Morphologie nicht unterscheiden. Diese Mehrdeutigkeit einzelner Worte im Satz wird durch Analyse des syntaktischen Kontextes eliminiert, sodass POS tagging eine Eindeutigkeit der syntaktischen Deutung erzielt.
+Im Deutschen ist es etwa recht wahrscheinlich, dass auf ein Nomen am Satzanfang als nächstes Wort ein Verb folgt, da dies einen typischen Satzbau darstellt. Ein part-of-speech Tagger sollte daher beispielsweise im Satz \textit{\glqq  Ich fahre Fahrrad.\grqq{}} korrekt das \glqq  Ich\grqq{} als Subjekt, das \glqq  fahre\grqq{} als Prädikat und das \glqq  Fahrrad\grqq{} als Akkusativobjekt darstellen; Die isolierte Betrachtung von \textit{\glqq  Fahrrad\grqq{}} ließe aber auch die Kategorisierung als Subjekt zu, da sich die zwei Möglichkeiten bezüglich der Morphologie nicht unterscheiden. Diese Mehrdeutigkeit einzelner Worte im Satz wird durch Analyse des syntaktischen Kontextes eliminiert, sodass POS tagging eine Eindeutigkeit der syntaktischen Deutung erzielt.
 
 Solche Regelmäßigkeiten werden in Form von sogenannten \textit{corpora} geliefert; sie stellen Trainingsdaten in Form von tatsächlicher Sprache dar. Im Englischen wird etwa häufig die Zeitung The Wall Street Journal genutzt, um die Repräsentation bestimmter Satzstrukturen und Wortfolgen statistisch zu erfassen. Eine Implementierung auf dieser Basis beschreiben etwa Toutanova et al. \cite{tou03}. 
 \cite{tou03} taggt zu etwa 97,24\% korrekt, der Vorschlag aus \cite{she07} erreicht auf Basis einer bidirektionalen Analyse und Machine-Learning sogar 97,33\%.
@@ -267,7 +268,7 @@ Die Anwendung eines Corpus auf ein natürlichsprachliches Dokument ermöglicht s
 \subsection{N-gram Modelle zur Sprachvorhersage und -modellierung}
 Auf Basis der vorliegenden Corpora existieren eine Vielzahl an Regeln bezüglich des Satzbaus und bekannnter Folgen von Worttypen, wenn ein neues Dokument annotiert werden soll. Zur Veranschaulichung einer möglichen Annotation soll in diesem Abschnitt die Notation \cite{clw7} für Annotationen genutzt werden.
 
-Bei erneuter Betrachtung des obigen Beispiels \textit{"Ich fahre Fahrrad."} könnte dieses, wenn dieser Satz als minimaler Corpus vorliegt, neben der Regel Subjekt-Prädikat-Objekt eines Satzbaus auch beinhalten, dass der Punkt ein Satzende markiert und das Substantive und Satzanfänge mit einem Großbuchstaben beginnen ("Fahrrad" ist gemäß der Morphologie ein Nomen und ist groß geschrieben). Sprachvorhersage nutzt diese bekannten Regeln und würde etwa aus der obigen Regel herleiten, das, wenn ein Verb gelesen wurde, darauf immer ein Substantiv bzw. das Satzobjekt folgt. POS-Tagging macht sich diese Beobachtungen durch Berechnung von Wahrscheinlichkeiten bei der Annotation von Wortfolgen zunutze. 
+Bei erneuter Betrachtung des obigen Beispiels \textit{\glqq  Ich fahre Fahrrad.\grqq{}} könnte dieses, wenn dieser Satz als minimaler Corpus vorliegt, neben der Regel Subjekt-Prädikat-Objekt eines Satzbaus auch beinhalten, dass der Punkt ein Satzende markiert und das Substantive und Satzanfänge mit einem Großbuchstaben beginnen (\glqq  Fahrrad\grqq{} ist gemäß der Morphologie ein Nomen und ist groß geschrieben). Sprachvorhersage nutzt diese bekannten Regeln und würde etwa aus der obigen Regel herleiten, das, wenn ein Verb gelesen wurde, darauf immer ein Substantiv bzw. das Satzobjekt folgt. POS-Tagging macht sich diese Beobachtungen durch Berechnung von Wahrscheinlichkeiten bei der Annotation von Wortfolgen zunutze. 
 
 Kontextfreie Betrachtung einzelner Wörter, also ohne andere Taggings mit einzubeziehen, wird als Unigramm bezeichnet. Dabei werden jedoch Regeln über den Zusammenhang von Wortketten vollständig ignoriert und das Ergebnis ist ähnlich dem der morphologischen Analyse. Vorhersage-Systeme, die sich der Annotierung des vorigen Wortes bedienen, werden als Bigramme (englisch \textit{bigrams}) bezeichnet, Trigramme dementsprechend bei Berücksichtigung der zwei vorigen Wörter und N-gramme, wenn alle n-1 zuvor gelesenen Wörter, also die gesamte Terminologie des Textes bis zum n-ten Wort, berücksichtigt werden.
 Die Wahrscheinlichkeit des Typs des Folgewortes auf Basis eines Bigramms lässt sich berechnen, indem aus einem Corpus die Worttypen an der jeweiligen Satzstelle gezählt und statistisch erfasst werden. 
@@ -308,7 +309,7 @@ Abend <s> & 1 & 1\\
 \end{tabular}
 \captionof{table}{Wahrscheinlichkeitstabelle Bigram zur Wortvorhersage}
 \rm
-Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Wortes nach einem gelesenen Wort ablesen. Auf "ich mag" folgt insgesamt einmal "Züge" und einmal "guten". Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes "Züge" mit $P("$Züge$"|$"ich mag"$)$ = 50\% berechnet werden.
+Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Wortes nach einem gelesenen Wort ablesen. Auf \glqq  ich mag\grqq{} folgt insgesamt einmal \glqq  Züge\grqq{} und einmal \glqq  guten\grqq{}. Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes \glqq  Züge\grqq{} mit $P(\glqq  $Züge$\grqq{}|$\glqq  ich mag\grqq{}$)$ = 50\% berechnet werden.
 
 \subsection{Stochastisches POS-tagging}
 Neben der Möglichkeit, einzelne Wörter vorherzusagen, eignen sich n-Gramme wie oben erwähnt auch zur Darstellung der Wahrscheinlichkeiten von Satzbausteinen, also der von Platzhaltern für alle möglichen Wörter einer Kategorie bzw. Komponente. Stochastisches Part-of-speech tagging kann anhand dieser die Wahrscheinlichkeiten vorhersagen, welcher Worttyp folgen wird. Die Trainingsdaten sind, nach Best-Practices aus dem maschinellen Lernen, in der Regel manuell und durch Benutzer markiert worden, damit dem Programm ein korrekter Datensatz zur Verfügung steht. Auf Basis eines Corpus können somit Mehrdeutigkeiten durch den syntaktischen Zusammenhang eindeutig aufgelöst werden. In einem Beispiel mit syntaktischer Ambiguität werden jedoch Wörter zunächst verschieden annotiert.
@@ -331,10 +332,10 @@ PUN		& punctuation
 %PNP Personalpronomen.\\
 %VM0 Modales Hilfsverb.\\
 %VVB Verb in Grundform ohne Appendix.\\
-%VVI Verb im Infinitiv (im Englischen mit "to").\\
+%VVI Verb im Infinitiv (im Englischen mit \glqq  to\grqq{}).\\
 \rm
 
-Als Beispiel dient hier der englische Satz \textit{"We saw her duck."}. Dieser enthält Mehrdeutigkeiten, da "duck" entweder als \textit{"Ente"}, also als Substantiv \textit{"ihre Ente"} oder als "ducken", also als Verb (dt. \textit{"sie (sich) ducken"}) interpretiert werden kann. Zusätzlich kann "we saw" als \textit{"sahen"}, oder als \textit{"zerschneiden"}, also zeitformabhängig verstanden werden. Äquivalent im Deutschen sind also die drei Sätze \textit{"Wir sahen ihre Ente."}, \textit{"Wir sahen sie (sich) ducken."} und \textit{"Wir zerschneiden ihre Ente"} mit völlig unterschiedlicher Aussage. (Semantisch betrachtet stellt sich ferner die Frage, ob die Deutung von "her duck" als Nomen mit "ihr Haustier" etwas anderes bedeutet als "für sie zum Essen")
+Als Beispiel dient hier der englische Satz \textit{\glqq  We saw her duck.\grqq{}}. Dieser enthält Mehrdeutigkeiten, da \glqq  duck\grqq{} entweder als \textit{\glqq  Ente\grqq{}}, also als Substantiv \textit{\glqq  ihre Ente\grqq{}} oder als \glqq  ducken\grqq{}, also als Verb (dt. \textit{\glqq  sie (sich) ducken\grqq{}}) interpretiert werden kann. Zusätzlich kann \glqq  we saw\grqq{} als \textit{\glqq  sahen\grqq{}}, oder als \textit{\glqq  zerschneiden\grqq{}}, also zeitformabhängig verstanden werden. Äquivalent im Deutschen sind also die drei Sätze \textit{\glqq  Wir sahen ihre Ente.\grqq{}}, \textit{\glqq  Wir sahen sie (sich) ducken.\grqq{}} und \textit{\glqq  Wir zerschneiden ihre Ente\grqq{}} mit völlig unterschiedlicher Aussage. (Semantisch betrachtet stellt sich ferner die Frage, ob die Deutung von \glqq  her duck\grqq{} als Nomen mit \glqq  ihr Haustier\grqq{} etwas anderes bedeutet als \glqq  für sie zum Essen\grqq{})
 
 Diese sinnvollen Annotationen könnten durch einen CLAWS 7-POS-tagger wie folgt erfasst werden:
 \\ \tt
@@ -348,7 +349,7 @@ Diese sinnvollen Annotationen könnten durch einen CLAWS 7-POS-tagger wie folgt 
 \\
 \end{tabular} 
 \\ \rm
-Problematisch ist, dass auch syntaktisch falsche Deutungen entstehen können, wenn, wie oben erwähnt, unzureichende Trainingsdaten und Regeln für die Wortfolgen existieren. Dann werden alle möglichen Teildeutungen der einzelnen Wörter als Tagging ausgegeben, etwa mit der Bedeutung \textit{"Wir zerschneiden sie sich ducken"} aus der Syntax.
+Problematisch ist, dass auch syntaktisch falsche Deutungen entstehen können, wenn, wie oben erwähnt, unzureichende Trainingsdaten und Regeln für die Wortfolgen existieren. Dann werden alle möglichen Teildeutungen der einzelnen Wörter als Tagging ausgegeben, etwa mit der Bedeutung \textit{\glqq  Wir zerschneiden sie sich ducken\grqq{}} aus der Syntax.
 \\ \tt
 \begin{tabular}{ll} 
 \\
@@ -368,7 +369,7 @@ Der Corpus könnte annotiert sein:
 We(NN2) use(JK) to(TO) see(VV0) a(AT1) duck(NN1).(PUN) Most(DAT) people(NN2) duck(VV0) in(BCL11) order(BCL12) to(BCL13) avoid(VV0) danger(NN1).
 \\ \rm
 
-Dauraus ergibt sich unter Verwendung eines n-Grams umgangssprachlich formuliert, dass etwa in einem Satz, in welchem bereits ein Wort als Verb im Präsens getaggt wurde, ein Objekt, also ein als Nomen getaggtes Wort, folgen muss. Im ersten Satz ergibt sich dies etwa aus der Stellung des "see" als Verb vor dem "duck". Dementsprechend kann so schon die vorhin beschriebene Deutung 4. ausgeschlossen werden, da diese Regel des Satzbaus nicht vorkommt. Weitere mögliche Regelmäßigkeiten, die ein n-Gramm statistisch erfasst, wäre die Möglichkeit einer Before-Clause (BCL) nur nach einem Nomen oder die hohe Wahrscheinlichkeit eines Punktes nach einem Nomen im Singular. Auffällig ist, dass die Deutung von saw als Verb in Past Tense entfällt, da keine Regel auftritt, die ein Verb in Past-Tense vor einem Nomen enthält. Daher erfasst ein N-Gram auf Basis dieses Korpus nur Verben im Präsens korrekt (im Corpus taucht keine Deutung eines Verbs als Vergangenheitsform auf). 
+Dauraus ergibt sich unter Verwendung eines n-Grams umgangssprachlich formuliert, dass etwa in einem Satz, in welchem bereits ein Wort als Verb im Präsens getaggt wurde, ein Objekt, also ein als Nomen getaggtes Wort, folgen muss. Im ersten Satz ergibt sich dies etwa aus der Stellung des \glqq  see\grqq{} als Verb vor dem \glqq  duck\grqq{}. Dementsprechend kann so schon die vorhin beschriebene Deutung 4. ausgeschlossen werden, da diese Regel des Satzbaus nicht vorkommt. Weitere mögliche Regelmäßigkeiten, die ein n-Gramm statistisch erfasst, wäre die Möglichkeit einer Before-Clause (BCL) nur nach einem Nomen oder die hohe Wahrscheinlichkeit eines Punktes nach einem Nomen im Singular. Auffällig ist, dass die Deutung von saw als Verb in Past Tense entfällt, da keine Regel auftritt, die ein Verb in Past-Tense vor einem Nomen enthält. Daher erfasst ein N-Gram auf Basis dieses Korpus nur Verben im Präsens korrekt (im Corpus taucht keine Deutung eines Verbs als Vergangenheitsform auf). 
 
 Abschließend lässt sich daher sagen, dass die Trainingsdaten möglichst repräsentativ für die möglichen Konstruktionen in einer Sprache bzw. in der Anwendungsdomäne des POS-taggers sein müssen, um akkurate Ergebnisse zu erzielen. Dies betrifft sowohl die Qualität der im Corpus enthaltenen Wörter und Sätze, als auch deren Korrektheit im Hinblick auf die quantitative Repräsentation einzelner Konstrukte. Häufig anzutreffende Hauptsatz-Nebensatz-Konstruktionen müssen etwa für die Analyse eines stilistisch einfachen Textes, der zum Großteil aus solchen besteht, häufiger vorhanden sein, als kompliziert verschachtelte Kausalsätze und eingeschobene Relativsätze mit beispielsweise vielen beschreibenden Aufzählungen.  
 
@@ -383,30 +384,30 @@ Der Begriff der generativen Grammatik beruht auf der Arbeit von Chomsky in den 1
 ((the (fisherman)) fishes)
 ((the (old fisherman)) fishes)
 
-Durch das obige Beispiel wird die Bindung der einzelnen Wörter untereinander deutlich: "old" gehört eindeutig zu "fisherman" und das "the" bezieht sich im zweiten Satz auf "old fisherman" zusammen. Die Klammerung (the old) ist also auf keinen Fall möglich, da "old" mit dem "fisherman" eingeklammert ist. 
+Durch das obige Beispiel wird die Bindung der einzelnen Wörter untereinander deutlich: \glqq  old\grqq{} gehört eindeutig zu \glqq  fisherman\grqq{} und das \glqq  the\grqq{} bezieht sich im zweiten Satz auf \glqq  old fisherman\grqq{} zusammen. Die Klammerung (the old) ist also auf keinen Fall möglich, da \glqq  old\grqq{} mit dem \glqq  fisherman\grqq{} eingeklammert ist. 
 
 Bei zwei Grammatiken spricht man von schwacher Äquivalenz, falls sie die gleichen Zeichenketten generieren können und von starker Äquivalenz, wenn sie diese auch gleich klammern. 
 
-Die meisten Ansätze verleihen der internen Struktur nun verschiedene Bezeichnungen, abhängig von der oben gezeigten Klammerung. Somit würde man "the fisherman" (ebenso wie "the old fisherman") im Englischen als "noun-phrase" (NP) bezeichnen. "fishes" würde (zusammen mit jeglichen Zusätzen wie "fishes very good" oder "fishes fish" als "verb-phrase" (VP) gekennzeichnet. Diese Bezeichnungen dienen in kontextfreien Grammatiken als linke Seite von Produktionsregeln, wie im folgenden Abschnitt genauer dargestellt wird.
+Die meisten Ansätze verleihen der internen Struktur nun verschiedene Bezeichnungen, abhängig von der oben gezeigten Klammerung. Somit würde man \glqq  the fisherman\grqq{} (ebenso wie \glqq  the old fisherman\grqq{}) im Englischen als \glqq  noun-phrase\grqq{} (NP) bezeichnen. \glqq  fishes\grqq{} würde (zusammen mit jeglichen Zusätzen wie \glqq  fishes very good\grqq{} oder \glqq  fishes fish\grqq{} als \glqq  verb-phrase\grqq{} (VP) gekennzeichnet. Diese Bezeichnungen dienen in kontextfreien Grammatiken als linke Seite von Produktionsregeln, wie im folgenden Abschnitt genauer dargestellt wird.
 
 \subsection{Kontextfreie Grammatiken}
 Kontextfreie Grammatiken stammen aus dem Bereich der Theoretischen Informatik und werden dargestellt durch ein Tupel mit 4 verschiedenen Komponenten:
 
 \begin{enumerate}
 \item Eine Menge nicht-terminaler Symbole (wie z.B. NP oder VP aus dem vorherigen Abschnitt)
-\item Eine Menge terminaler Symbole (die Wörter aus denen später die Zeichenkette bestehen wird, also "the", "old", "fisherman" und "fishes")
+\item Eine Menge terminaler Symbole (die Wörter aus denen später die Zeichenkette bestehen wird, also \glqq  the\grqq{}, \glqq  old\grqq{}, \glqq  fisherman\grqq{} und \glqq  fishes\grqq{})
 \item Eine Menge sogenannter Produktionsregeln mit folgenden Eigenschaften:
 \begin{enumerate}
 \item Eine Regel besteht aus einer linken und einer rechten Seite, getrennt durch einen Pfeil ($\rightarrow$).
 \item Auf der linken Seite befindet sich genau ein nicht-terminales Symbol.
 \item Auf der rechten Seiten befindet sich mindestens ein Symbol (terminal oder nicht-terminal).
 \end{enumerate}
-\item Das Startsymbol (konventionell "S"), welches zu den nicht-terminalen Symbolen gehört
+\item Das Startsymbol (konventionell \glqq  S\grqq{}), welches zu den nicht-terminalen Symbolen gehört
 \end{enumerate}
 
 Es ist zu beachten, dass in kontextfreien Grammatiken generell das leere Wort $\varepsilon$ als terminales Symbol mit eingeschlossen ist. Aus linguistischer Sicht verkompliziert dies jedoch nur die Grammatiken und kann daher bezüglich NLP ausgeschlossen werden (es ließe sich außerdem auch zu jeder kontextfreien Grammatik eine schwach-äquivalente Grammatik erzeugen, welche das leere Wort nicht beinhaltet).
 
-Man spricht von einer linksbündigen bzw. rechtsbündigen Grammatik, wenn alle nicht-terminalen Symbole ganz links bzw. rechts auf der rechten Seite der Regel stehen (also in der Form "NT$\rightarrow$NT t" bzw "NT$\rightarrow$t NT"). Diese Grammatiken sind jedoch schwach-äquivalent zu regulären Grammatiken, welche sich mit endlichen Automaten implementieren lassen. Dies ist jedoch für den Aufbau von natürlichen Sprachen nicht ausreichend. Der Ansatz, sich auf eine rechts- bzw. linksbündige Grammatik zu beschränken, um damit eine natürliche Sprache zu generieren, entfällt also sofort. 
+Man spricht von einer linksbündigen bzw. rechtsbündigen Grammatik, wenn alle nicht-terminalen Symbole ganz links bzw. rechts auf der rechten Seite der Regel stehen (also in der Form \glqq  NT$\rightarrow$NT t\grqq{} bzw \glqq  NT$\rightarrow$t NT\grqq{}). Diese Grammatiken sind jedoch schwach-äquivalent zu regulären Grammatiken, welche sich mit endlichen Automaten implementieren lassen. Dies ist jedoch für den Aufbau von natürlichen Sprachen nicht ausreichend. Der Ansatz, sich auf eine rechts- bzw. linksbündige Grammatik zu beschränken, um damit eine natürliche Sprache zu generieren, entfällt also sofort. 
 
 %\subsubsection{Beispiel einer kontextfreien Grammatik}
 Im folgenden wird die Funktionsweise kontextfreier Grammatiken anhand eines sehr simplen Beispiels dargestellt. Hierzu gelten die folgenden Produktionsregeln P (für spätere Erläuterungen durchnummeriert):
@@ -440,15 +441,15 @@ $G=(\lbrace S,VP,NP,\rbrace ,\lbrace can, fish, catch, he, fisherman\rbrace ,\lb
 \rm
 \end{center}
 
-Man beachte, dass "fish" nur einmal bei den terminalen Symbolen auftaucht, obwohl es im Lexikon zwei mal aufgeführt ist (als verb und als noun-phrase). Diese Unterscheidung wird in der Grammatik jedoch lediglich durch die produzierende Regel vorgenommen, das terminale Symbol ist für beide Varianten zunächst gleich.
+Man beachte, dass \glqq  fish\grqq{} nur einmal bei den terminalen Symbolen auftaucht, obwohl es im Lexikon zwei mal aufgeführt ist (als verb und als noun-phrase). Diese Unterscheidung wird in der Grammatik jedoch lediglich durch die produzierende Regel vorgenommen, das terminale Symbol ist für beide Varianten zunächst gleich.
 
 Die Möglichkeiten und Probleme der beschriebene Grammatik werden an den folgenden Beispielsätzen deutlich:
 \\
 
 \tt
-"He can fish"
-"He can catch fish"
-"Fishermen can fish fish"
+\glqq  He can fish\grqq{}
+\glqq  He can catch fish\grqq{}
+\glqq  Fishermen can fish fish\grqq{}
 \rm
 
 Klammert man den ersten Satz entsprechend der Grammatik kommt man zu folgendem Ergebnis:\\
@@ -465,7 +466,7 @@ Der gleiche Satz ließe sich aber auch leicht anders klammern:\\
 (S(NP he)(VP(V can)(NP fish)))\\
 \rm
 
-Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass "fish" als noun-phrase statt verb interpretiert wird , was jedoch auf semantischer Ebene keinerlei Sinn ergibt und daher eigentlich nicht möglich sein sollte. Entfernt man die 3. Produktionsregel jedoch aus der Grammatik, so lassen sich andere, durchaus sinnvolle Sätze, wie der zweite Beispielsatz "He can catch fish" nicht mehr herstellen. Dies gilt ebenfalls für den dritten Beispielsatz "Fishermen can fish fish", welcher nur Sinn ergibt, solange "fish" als verb und als noun-phrase interpretiert werden kann.
+Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass \glqq  fish\grqq{} als noun-phrase statt verb interpretiert wird , was jedoch auf semantischer Ebene keinerlei Sinn ergibt und daher eigentlich nicht möglich sein sollte. Entfernt man die 3. Produktionsregel jedoch aus der Grammatik, so lassen sich andere, durchaus sinnvolle Sätze, wie der zweite Beispielsatz \glqq  He can catch fish\grqq{} nicht mehr herstellen. Dies gilt ebenfalls für den dritten Beispielsatz \glqq  Fishermen can fish fish\grqq{}, welcher nur Sinn ergibt, solange \glqq  fish\grqq{} als verb und als noun-phrase interpretiert werden kann.
 
 Die Struktur eines geparsten Satzes lässt sich auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen. Ein Pars-Baum zu dem oben genannten Beispiel sähe beispielsweise aus wie folgt:
 \begin{figure}
@@ -490,11 +491,11 @@ Die Struktur eines geparsten Satzes lässt sich auch etwas übersichtlicher dars
 \draw (f)--(h);
 \draw (h)--(i);
 \end{tikzpicture}
-\caption{Parsbaum von "He can fish"}
+\caption{Parsbaum von \glqq  He can fish\grqq{}}
 \end{center}
 \end{figure}
 
-Da auf der linken Seite einer Produktionsregel der kontextfreien Grammatiken immer nur ein nicht-terminales Symbol steht, lässt sich hier eine Regel pro Elternknoten ablesen. Das S wir in NP und VP aufgeteilt, das NP wird widerum zum terminalen Symbol \textit{"He"} usw. entsprechend der definierten Produktionsregeln. Alle Blätter (Knoten ohne Kindknoten) des Baumes sind jeweils ein Wort und bilden somit zusammen den erzeugten Satz \textit{"He can fish."}. 
+Da auf der linken Seite einer Produktionsregel der kontextfreien Grammatiken immer nur ein nicht-terminales Symbol steht, lässt sich hier eine Regel pro Elternknoten ablesen. Das S wir in NP und VP aufgeteilt, das NP wird widerum zum terminalen Symbol \textit{\glqq  He\grqq{}} usw. entsprechend der definierten Produktionsregeln. Alle Blätter (Knoten ohne Kindknoten) des Baumes sind jeweils ein Wort und bilden somit zusammen den erzeugten Satz \textit{\glqq  He can fish.\grqq{}}. 
 
 \subsection{Zufallsgenerierung mit kontextfreien Grammatiken}
 
@@ -511,7 +512,7 @@ Ein naiver Zufallsalgorithmus könnte dabei auf einer Liste ausgeführt werden u
 
 Mit dem beschriebenen Verfahren lassen sich zweifellos Sätze generieren, jedoch können diese sowohl Fehler enthalten, als auch in vielen Fällen unendlich lang werden. Dies lässt sich beides mit der in 2.5.3 beschriebenen Grammatik demonstrieren. 
 
-Fehlerhafte Generierung: Wegen der Bidirektionalität der kontextfreien Grammatik geht mit der gezeigten Möglichkeit, falsch zu interpretieren, auch die Möglichkeit einher, falsch zu generieren. Man beachte etwa, dass sich der fehlerhafte Satz "He fish can" genauso generieren ließe wie der korrekte Satz "He can fish".
+Fehlerhafte Generierung: Wegen der Bidirektionalität der kontextfreien Grammatik geht mit der gezeigten Möglichkeit, falsch zu interpretieren, auch die Möglichkeit einher, falsch zu generieren. Man beachte etwa, dass sich der fehlerhafte Satz \glqq  He fish can\grqq{} genauso generieren ließe wie der korrekte Satz \glqq  He can fish\grqq{}.
 
 Unbegrenzte Sätze: Wie in der natürlichen Sprache lassen sich theoretisch unendlich lange Sätze formulieren. Bei der Mensch-Mensch-Kommunikation kommt dies nicht vor, kann jedoch die Terminierung eines Zufallsalgorithmus abhängig von den verwendeten Regeln für lange Zeit verhindern. So kann in der verwendeten kontextfreien Grammatik schon allein durch die vierte Produktionsregel eine unendlich lange Folge von Verben generiert werden.
 
@@ -540,7 +541,7 @@ Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Be
       \draw (6,-1) node  (B) {can};
       \draw (10,-1) node  (C) {fish};
 \end{tikzpicture}
-\caption{Initialisierung des kontextfreien Parsings für "they can fish"}
+\caption{Initialisierung des kontextfreien Parsings für \glqq  they can fish\grqq{}}
 \end{center}
 \end{figure}
 Initialisiert wird mit einer leeren Menge von Kanten zwischen den bekannten Knoten. Der Algorithmus terminiert, wenn eine Kante zwischen Anfangs- und Endknoten gefunden wurde. Dies bedeutet, dass alle dazwischen liegenden Teilregeln ebenfalls gefunden wurden; der Suchbaum ist dann vollständig. Nach dem Durchlauf liegen dann alle möglichen Kanten, das heißt alle Teil- und Gesamtdeutungen des Satzes, vor. Begonnen wird mit mit den ersten Knoten; diese werden dann mittels Kanten direkt nach den Regeln der Grammatik verbunden und nach und nach kommen weitere Kanten bis zum n-ten Wort hinzu. Wenn mehrere Kanten von erstem zu letztem Wort existieren, deutet dies dann auf eine Mehrdeutigkeit hin, da die Kanten dann verschiedene Produktionsregeln enthalten. Der Algorithmus sieht dann wie folgt aus:
@@ -611,14 +612,14 @@ Wie sich nun erkennbar ist, lässt sich anhand der mit S beginnenden Einträge a
       \draw (q2) to[bend left=90] node[auto] {10}(q4);
       \draw (q1) to[bend left=80] node[auto] {11}(q4);
 \end{tikzpicture}
-\caption{Ermittelte Grammatikregeln durch Parsing zu "they can fish"}
+\caption{Ermittelte Grammatikregeln durch Parsing zu \glqq  they can fish\grqq{}}
 \end{center}
 \end{figure}
 
 \subsection{Mängel kontextfreier Grammatiken}
-Die Umsetzung der Modellierung von Sprache auf Basis kontextfreier Grammatiken ist mit einigen Problemem verbunden. Zunächst scheint es vorteilhaft, wenn durch die Rekursion alle möglichen Teildeutungen erfasst werden. Davon sind jedoch nicht alle sinnvoll und viele redundant. Es fällt auf, dass durch die Zerlegung in Teildeutungen durch Anwendung aller möglichen Regeln aus der Grammatik prinzipiell exponentiell viele Deutungen entstehen könnten. Teilweise würden auch grammatikalisch falsche Sätze akzeptiert, wenn nicht jeder Numerus, Kasus etc. eines Wortes als Terminalsymbol in der Menge an Produktionsregeln repräsentiert wird. In der obigen einfachen Grammatik wird \textit{"they fish"} genau so wie \textit{"it fish"} akzeptiert. 
+Die Umsetzung der Modellierung von Sprache auf Basis kontextfreier Grammatiken ist mit einigen Problemem verbunden. Zunächst scheint es vorteilhaft, wenn durch die Rekursion alle möglichen Teildeutungen erfasst werden. Davon sind jedoch nicht alle sinnvoll und viele redundant. Es fällt auf, dass durch die Zerlegung in Teildeutungen durch Anwendung aller möglichen Regeln aus der Grammatik prinzipiell exponentiell viele Deutungen entstehen könnten. Teilweise würden auch grammatikalisch falsche Sätze akzeptiert, wenn nicht jeder Numerus, Kasus etc. eines Wortes als Terminalsymbol in der Menge an Produktionsregeln repräsentiert wird. In der obigen einfachen Grammatik wird \textit{\glqq  they fish\grqq{}} genau so wie \textit{\glqq  it fish\grqq{}} akzeptiert. 
 
-Ferner werden Zusammenhänge aus Wörtern, die sich inhaltlich aufeinander beziehen, nicht abgebildet und nicht aus dem Kontext erfasst. Manche Verben erscheinen etwa ohne Berücksichtigung des Satzobjektes für den Menschen eher sinnlos. Der Teilsatz \textit{"Tom erwartet"} scheint unvollständig, die richtige Deutung von Zusammenhängen \textit{"Tom erwartet Max"} schließt den Kontext des Teilsatzes ein.
+Ferner werden Zusammenhänge aus Wörtern, die sich inhaltlich aufeinander beziehen, nicht abgebildet und nicht aus dem Kontext erfasst. Manche Verben erscheinen etwa ohne Berücksichtigung des Satzobjektes für den Menschen eher sinnlos. Der Teilsatz \textit{\glqq  Tom erwartet\grqq{}} scheint unvollständig, die richtige Deutung von Zusammenhängen \textit{\glqq  Tom erwartet Max\grqq{}} schließt den Kontext des Teilsatzes ein.
 
 Eine Möglichkeit zur Lösung wird in Abschnitt 3.6 und 3.7 behandelt, indem die Kongruenz einer Formulierung ebenso wie Ansätze der Semantik bei der Deutung berücksichtigt werden. Dies ist mittels einfacher Produktionsregeln nicht möglich.
 
@@ -645,7 +646,7 @@ Eine FS \textit{FS1} ist der FS \textit{FS2} untergeordnet, wenn \textit{FS2} me
 
 Die genaue Bedeutung der oben genannten Eigenschaften und Bedingungen soll anhand von Abbildungen und Beispielen genauer dargestellt werden. 
 
-In dem folgenden, \cite{cop04} entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{"CAT"} für die Wortkategorie und \textit{"AGR"} für agreement (zu deutsch "Kongruenz"), teilt, welche jeweils auf die Endknoten mit den Werten \textit{"noun"} (für Nomen) und \textit{"sg"} (für Singular) zeigen. Die Eigenschaften \textit{"CAT"} und \textit{"AGR"} sind also atomar.
+In dem folgenden, \cite{cop04} entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{\glqq  CAT\grqq{}} für die Wortkategorie und \textit{\glqq  AGR\grqq{}} für agreement (zu deutsch \glqq  Kongruenz\grqq{}), teilt, welche jeweils auf die Endknoten mit den Werten \textit{\glqq  noun\grqq{}} (für Nomen) und \textit{\glqq  sg\grqq{}} (für Singular) zeigen. Die Eigenschaften \textit{\glqq  CAT\grqq{}} und \textit{\glqq  AGR\grqq{}} sind also atomar.
 
 \begin{figure}[h!]
 \begin{center}
@@ -661,7 +662,7 @@ In dem folgenden, \cite{cop04} entnommenen Beispiel ist eine FS abgebildet, die 
 \end{center}
 \end{figure}
 
-Fügt man wie in der nächsten Abbildung vor der Wurzel eine weitere Eigenschaft \textit{"Head"} hinzu, so ist diese zusammengesetzt, da sie auf einen nicht-Endknoten zeigt. Dieser wird wiederum in die beiden Eigenschaften \textit{"CAT"} und \textit{"AGR"} aufgeteilt. 
+Fügt man wie in der nächsten Abbildung vor der Wurzel eine weitere Eigenschaft \textit{\glqq  Head\grqq{}} hinzu, so ist diese zusammengesetzt, da sie auf einen nicht-Endknoten zeigt. Dieser wird wiederum in die beiden Eigenschaften \textit{\glqq  CAT\grqq{}} und \textit{\glqq  AGR\grqq{}} aufgeteilt. 
 
 \begin{figure}[h!]
 \begin{center}
@@ -772,7 +773,7 @@ VP-sg $\rightarrow$ can\\
 VP-pl $\rightarrow$ can\\
 \rm
 
-Mit den vorgestellten Änderung wird nun beispielsweise der Satz \textit{"He catch fish"} nicht mehr akzeptiert, da \textit{"He"}(singular) und \textit{"catch"}(in diesem Fall plural) über die ersten beiden Produktionsregeln an die gleichen Multiplizitäten gebunden sind. 
+Mit den vorgestellten Änderung wird nun beispielsweise der Satz \textit{\glqq  He catch fish\grqq{}} nicht mehr akzeptiert, da \textit{\glqq  He\grqq{}}(singular) und \textit{\glqq  catch\grqq{}}(in diesem Fall plural) über die ersten beiden Produktionsregeln an die gleichen Multiplizitäten gebunden sind. 
 Dies lässt sich in der Darstellung der Grammatik durch AVMs besonders gut erkennen:\\
 
 $\begin{bmatrix} 
@@ -789,7 +790,7 @@ CAT & VP \\
 AGR & [1] 
 \end{bmatrix}$ \\
 
-Diese AVM-Darstellung beinhaltet sowohl die erste, als auch die zweite Regel in der oben stehenden Grammatik, abhängig davon, ob der Platzhalter \textit{"[1]"} für den Wert \textit{"sg"} (singular) oder \textit{"pl"} (plural) steht. Das Einsetzen des Werts gilt nur innerhalb der Regel, die [1] kann also problemlos auch in anderen Regeln als Platzhalter verwendet und dort durch andere Werte ersetzt werden.\\
+Diese AVM-Darstellung beinhaltet sowohl die erste, als auch die zweite Regel in der oben stehenden Grammatik, abhängig davon, ob der Platzhalter \textit{\glqq  [1]\grqq{}} für den Wert \textit{\glqq  sg\grqq{}} (singular) oder \textit{\glqq  pl\grqq{}} (plural) steht. Das Einsetzen des Werts gilt nur innerhalb der Regel, die [1] kann also problemlos auch in anderen Regeln als Platzhalter verwendet und dort durch andere Werte ersetzt werden.\\
 
 $\begin{bmatrix} 
 CAT & VP \\
@@ -805,7 +806,7 @@ CAT & NP \\
 AGR & [] 
 \end{bmatrix}$ \\
 
-Diese Regel enthält die gleichen Informationen wie die restlichen Produktionsregeln der obigen Grammatik, also 3., 4., 5. und 6., da für alle möglichen AGR-Werte von NP die nötige Produktionsregel existiert, solange die AGR-Werte von VP und V übereinstimmen. Die Regel ist also unabhängig von dem AGR-Wert bei NP, was es erlaubt, diesen Wert komplett unbelegt ("[]") zu lassen.
+Diese Regel enthält die gleichen Informationen wie die restlichen Produktionsregeln der obigen Grammatik, also 3., 4., 5. und 6., da für alle möglichen AGR-Werte von NP die nötige Produktionsregel existiert, solange die AGR-Werte von VP und V übereinstimmen. Die Regel ist also unabhängig von dem AGR-Wert bei NP, was es erlaubt, diesen Wert komplett unbelegt (\glqq  []\grqq{}) zu lassen.
 
 Die einzelnen Wörter bzw. Lexikoneinträge lassen sich durch simple AVMs wie folgt darstellen:\\
 
@@ -814,7 +815,7 @@ CAT & NP \\
 AGR & sg
 \end{bmatrix}\rightarrow$ he \\
 
-Man betrachte nun das Parsen des Beispielsatzes \textit{"He fishes"}. Die AVMs der Wörter \textit{He} und \textit{fishes} können über die erste Regel vereinigt werden. Für eine etwas präzisere Betrachtung nehme man an, dass Regeln aus Mutter (rechte Seite) und nummerierten Töchtern (linke Seite) bestehen. Somit sind die Tochter 1 \textit{He} und die Tochter 2 \textit{fishes} in der Mutter \textit{He fishes} wie folgt vereint:\\
+Man betrachte nun das Parsen des Beispielsatzes \textit{\glqq  He fishes\grqq{}}. Die AVMs der Wörter \textit{He} und \textit{fishes} können über die erste Regel vereinigt werden. Für eine etwas präzisere Betrachtung nehme man an, dass Regeln aus Mutter (rechte Seite) und nummerierten Töchtern (linke Seite) bestehen. Somit sind die Tochter 1 \textit{He} und die Tochter 2 \textit{fishes} in der Mutter \textit{He fishes} wie folgt vereint:\\
 
 $\begin{bmatrix} 
 Mutter & \begin{bmatrix} 
@@ -831,13 +832,13 @@ AGR & [1]
 \end{bmatrix}\\
 \end{bmatrix}$\\
 
-Da \textit{"He"} als singular erkannt wird, ist es nötig, dass auch alle anderen Kinder, in diesem Falle also nur "fishes", ebenfalls die [1] durch den Wert \textit{sg} ersetzen können. Falls dies möglich ist, kann die Vereinigung durchgeführt werden, was dann der [1] der Mutter ebenfalls den Wert \textit{sg} zuweist. Falls mehrere Vereinigungen durchzuführen sind, so macht die Reihenfolge keinen Unterschied, da immer das gleiche Resultat erzielt wird. Das Gleiche gilt für den verwendeten Pars-Algorithmus. Der einzige Unterschied ist, dass hier einige Algorithmen in bestimmten Fällen terminieren und andere nicht. 
+Da \textit{\glqq  He\grqq{}} als singular erkannt wird, ist es nötig, dass auch alle anderen Kinder, in diesem Falle also nur \glqq  fishes\grqq{}, ebenfalls die [1] durch den Wert \textit{sg} ersetzen können. Falls dies möglich ist, kann die Vereinigung durchgeführt werden, was dann der [1] der Mutter ebenfalls den Wert \textit{sg} zuweist. Falls mehrere Vereinigungen durchzuführen sind, so macht die Reihenfolge keinen Unterschied, da immer das gleiche Resultat erzielt wird. Das Gleiche gilt für den verwendeten Pars-Algorithmus. Der einzige Unterschied ist, dass hier einige Algorithmen in bestimmten Fällen terminieren und andere nicht. 
 
 Ohne eine entsprechende Produktionsregel wäre eine solche Vereinigung nicht möglich. Dies soll sowohl das Parsen, als auch Generieren von fehlerhaften Sätzen verhindern. In dem vorgestellten Beispiel reicht der Detailgrad der FSs jedoch nicht aus, um komplexere Sätze korrekt verarbeiten zu können.
-Außerdem können mangelnde oder fehlerhafte Informationen in den verwendeten Lexika (und den daraus folgenden Produktionsregeln) für falsche Resultate sorgen. So ist etwa \textit{"fishes"} als singular gekennzeichnet, was es ermöglicht, den fehlerhaften Satz \textit{"I fishes"} zu parsen. Um dies zu verhindern wäre es nötig, nicht nur die Multiplizität, sondern auch die Person zu berücksichtigen. Je komplexer die in den FSs verwendeten Informationen, desto genauer und fehlerfreier lassen sich Sätze damit verarbeiten. Von einer vollständigen Grammatik ist man jedoch wie bereits erwähnt weit entfernt. 
+Außerdem können mangelnde oder fehlerhafte Informationen in den verwendeten Lexika (und den daraus folgenden Produktionsregeln) für falsche Resultate sorgen. So ist etwa \textit{\glqq  fishes\grqq{}} als singular gekennzeichnet, was es ermöglicht, den fehlerhaften Satz \textit{\glqq  I fishes\grqq{}} zu parsen. Um dies zu verhindern wäre es nötig, nicht nur die Multiplizität, sondern auch die Person zu berücksichtigen. Je komplexer die in den FSs verwendeten Informationen, desto genauer und fehlerfreier lassen sich Sätze damit verarbeiten. Von einer vollständigen Grammatik ist man jedoch wie bereits erwähnt weit entfernt. 
 
 \section{Lexikalische Semantiken und kontextbasierte Deutungen}
-Mithilfe der im letzten Abschnitt eingeführten FSs wurde eine Möglichkeit vorgestellt, Abhängigkeiten zwischen einzelnen Wörtern abzubilden. Abgesehen von der Syntax, die durch eine möglichst gute Modellierung der zugrundeliegenden Grammatik im Computer darstellbar wird, ist es die Semantik, die den "Sinn" hinter einer Aussage repräsentiert. In NLP-Anwendungen wird dies häufig als "Logische Form" oder "Logik einer Aussage" umrissen (vgl. \cite{swb02}), wenn eine semantische Repräsentation eines Satzes erstellt werden soll. Einen Ansatz, um überhaupt solch einen Sinn abbilden zu können, bieten dabei die schon bekannten Feature Structures. Semantiken können theoretisch allesamt in einem Lexikon abgespeichert werden. Die korrekte Deutung kann dann anhand der bekannten Informationen aus der Semantik anderer Wörter bestimmt werden. Wenn man erneut das Problem von Verben mit und ohne erforderlichem Bezugswort betrachtet, damit diese Sinn ergeben, könnte diese Semantik als Erweiterung der FSs um die Argumente des Verbs erfolgen. Diese Repräsentation ist jedoch nur syntaktisch vollständig, sie erfasst beispielsweise keine der weiter unten genannten semantischen Feinheiten der Deutung. Es werden außerdem, logisch betrachtet, Quantoren benötigt, um das Ausmaß einer Aussage zu erfassen.
+Mithilfe der im letzten Abschnitt eingeführten FSs wurde eine Möglichkeit vorgestellt, Abhängigkeiten zwischen einzelnen Wörtern abzubilden. Abgesehen von der Syntax, die durch eine möglichst gute Modellierung der zugrundeliegenden Grammatik im Computer darstellbar wird, ist es die Semantik, die den \glqq  Sinn\grqq{} hinter einer Aussage repräsentiert. In NLP-Anwendungen wird dies häufig als \glqq  Logische Form\grqq{} oder \glqq  Logik einer Aussage\grqq{} umrissen (vgl. \cite{swb02}), wenn eine semantische Repräsentation eines Satzes erstellt werden soll. Einen Ansatz, um überhaupt solch einen Sinn abbilden zu können, bieten dabei die schon bekannten Feature Structures. Semantiken können theoretisch allesamt in einem Lexikon abgespeichert werden. Die korrekte Deutung kann dann anhand der bekannten Informationen aus der Semantik anderer Wörter bestimmt werden. Wenn man erneut das Problem von Verben mit und ohne erforderlichem Bezugswort betrachtet, damit diese Sinn ergeben, könnte diese Semantik als Erweiterung der FSs um die Argumente des Verbs erfolgen. Diese Repräsentation ist jedoch nur syntaktisch vollständig, sie erfasst beispielsweise keine der weiter unten genannten semantischen Feinheiten der Deutung. Es werden außerdem, logisch betrachtet, Quantoren benötigt, um das Ausmaß einer Aussage zu erfassen.
 
 Zu starke Spezifizierungen der Semantik führen jedoch auch dazu, dass Mehrdeutigkeiten nicht mehr erfasst werden können. Wenn man die Relationen von Wörtern etwa durch die klassische Aussagenlogik abbildet, müssen diese auch unterschiedliche Semantiken liefern können.
 
@@ -845,10 +846,10 @@ Zu starke Spezifizierungen der Semantik führen jedoch auch dazu, dass Mehrdeuti
 Every man loves a woman.
 \rm
 \\
-Zu deutsch \textit{"Jeder Mann liebt..."} ist semantisch mehrdeutig zwischen  
+Zu deutsch \textit{\glqq  Jeder Mann liebt...\grqq{}} ist semantisch mehrdeutig zwischen  
 \begin{enumerate}
-\item \textit{"...die eine Frau"}: $\exists y [woman'(y) \bigwedge \forall x [man'(x) \Rightarrow love'(x,y)]]$ und
-\item \textit{"...irgendeine Frau"}: $\forall x [man'(x) \Rightarrow \exists y [woman'(y) \bigwedge love'(x,y)]]$
+\item \textit{\glqq  ...die eine Frau\grqq{}}: $\exists y [woman'(y) \bigwedge \forall x [man'(x) \Rightarrow love'(x,y)]]$ und
+\item \textit{\glqq  ...irgendeine Frau\grqq{}}: $\forall x [man'(x) \Rightarrow \exists y [woman'(y) \bigwedge love'(x,y)]]$
 \end{enumerate}
 
 
@@ -885,7 +886,7 @@ Durch Kategorisierung können verschiedene Ausprägungen  der gleichen Sache zus
 
 \end{enumerate}
 
-Diese Vereinfachungen sind Ansätze zur verbesserten Erfassung der Semantik.  Jedoch stellt sich für die Praxis etwa die Frage, ob diese auch für Verben und Adjektive oder Nomen wie \textit{"Gedanke"}, die sich schlecht verbildlichen lassen, getroffen werden können, ob es "Mehrfachvererbung" (Hund als Haustier und als Vierbeiner) gibt, oder wo der Ursprung aller Kategorien liegt. Wenn Wörter einer Kategorie zugeordnet werden, können feine Nuancen zwischen verschiedenen Wörtern verloren gehen. 
+Diese Vereinfachungen sind Ansätze zur verbesserten Erfassung der Semantik.  Jedoch stellt sich für die Praxis etwa die Frage, ob diese auch für Verben und Adjektive oder Nomen wie \textit{\glqq  Gedanke\grqq{}}, die sich schlecht verbildlichen lassen, getroffen werden können, ob es \glqq  Mehrfachvererbung\grqq{} (Hund als Haustier und als Vierbeiner) gibt, oder wo der Ursprung aller Kategorien liegt. Wenn Wörter einer Kategorie zugeordnet werden, können feine Nuancen zwischen verschiedenen Wörtern verloren gehen. 
 
 Einen Vorschlag, Wörter derart semantisch zu verknüpfen, stellt das Lexikon WordNet dar, das seit 1985 entwickelt wird \cite{mil95}. Innerhalb von WordNet werden Beziehungen von Wörtern anhand der obigen Kategorien nach Carnap getaggt, zusätzlich sind auch \textit{Troponomy} (Art und Weise) und \textit{Entailment} (Semantische Implikation) möglich. In Wordnet kann somit ein Netz von Wortbedeutungen zwischen allen Wörtern einer Sprache gebildet werden, um Semantiken aufzulösen und zu bewerten. 
 
@@ -902,21 +903,23 @@ Nach \cite{car52} existieren bei der Zuordnung einer Semantik eines Satzes in de
 
 Das bekannte Beispiel von \textit{Bank} (als Geldinstitut) vs. \textit{Bank} (als Parkbank) kann in der Regel durch die Herleitung der Semantik durch andere Wörter aufgelöst werden, da die Menge der Bedeutungen komplett disjunkt sind. Umso schwieriger wird es, wenn etwa eine dritte Bedeutung \textit{Bank} (als Spielbank im Casino) hinzukommt, deren Bedeutung sich inhaltlich mit der des Geldinstituts überschneidet. 
 
-Ein weiteres Beispiel ist etwa \textit{"Max mag Kartoffeln"}, das eine rohe Kartoffel, Salzkartoffeln, Kartoffelpflanzen und mehr meinen kann. Die Spezifizierungen weisen zwar auch Gemeinsamkeiten auf, haben jedoch eine andere Bedeutung. Die Formulierung Kartoffel ist also vage.
-Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfache Zusammenhänge. In der Praxis begrenzt man die Semantik jedoch auch auf eine überschaubare Wissensbasis, genannt \textit{"Ontologie"}, sodass der Kontext strikt vorgegeben und somit eindeutiger ist.
+Ein weiteres Beispiel ist etwa \textit{\glqq  Max mag Kartoffeln\grqq{}}, das eine rohe Kartoffel, Salzkartoffeln, Kartoffelpflanzen und mehr meinen kann. Die Spezifizierungen weisen zwar auch Gemeinsamkeiten auf, haben jedoch eine andere Bedeutung. Die Formulierung Kartoffel ist also vage.
+Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfache Zusammenhänge. In der Praxis begrenzt man die Semantik jedoch auch auf eine überschaubare Wissensbasis, genannt \textit{\glqq  Ontologie\grqq{}}, sodass der Kontext strikt vorgegeben und somit eindeutiger ist.
 
+\begin{comment}
 \begin{figure}
 \begin{tikzpicture}
 \draw (3,0) circle (1.5cm) node {Geldinstitut};
 \draw (5.5,0) circle (1.5cm) node {im Casino};
 \draw (0,-2) circle (1.5cm) node {Sitzgelegenheit};
-\node at (0,1) {"Kontoführung"};
+\node at (0,1) {\glqq   Kontoführung\grqq{}};
 \node at (4.25,-3) {\textbf{Bank}};
-\node at (4.25,2) {"Gelddepot"};
-\node at (9,1) {"Quelle für Spielchips"};
+\node at (4.25,2) {\glqq   Gelddepot\grqq{}};
+\node at (9,1) {\glqq   Quelle für Spielchips\grqq{};
 \end{tikzpicture}
 \caption{mögliche Bedeutungsmengen eines Polysems}
 \end{figure}
+\end{comment}
 
 \subsection{Auflösung von Mehrdeutigkeiten durch Semantiken}
 Wie bereits beschrieben, stellen Mehrdeutigkeiten bei unbegrenzter Anwendungsdomöne ein ernstzunehmendes Problem dar, da schlicht zu viele mögliche Deutungen existieren. In der Praxis sammelt man daher Fachwissen aus der Problemdomäne und speichert es in Form von Ontologien zu Wissensbasen ab. Der Prozess der Auflösung von Mehrdeutigkeiten wird als Word-Sense-Disambiguation (kurz WSD) bezeichnet. Frühe WSD-Systeme basierten noch auf von Hand eingetragenen Deutungen (vgl. POS-Tagging). Heutige Systeme auf Basis von Machine-Learning können jedoch auf Basis eines kleinen Semantik-Corpus entweder selbstständig neue Bedeutungen erlernen oder verfügen über ein gesondertes Lexikon von ausführlichen Informationen zur Auflösung von Mehrdeutigkeiten. 
@@ -947,19 +950,19 @@ Für die Erstellung eines Lexikons, mit dessen Hilfe mehrere Bedeutungen zugeord
 In vielen Fällen ist für ein semantisches Verständnis von natürlicher Sprache der Kontext ausschlaggebend. Der folgende Abschnitt beschäftigt sich mit kontextabhängigen Informationen, deren Auswirkung und Extraktion. 
 
 \subsection{Bezugsausdrücke}
-Viele Worte haben selbst keinen klaren semantischen Inhalt, nehmen jedoch Bezug auf andere Worte, über welche sie ihre Bedeutung erhalten. Dazu gehören beispielsweise Pronomen. Der Ausdruck \textit{"Er"} hat keinerlei Ausdrucksstärke, wenn er sich nicht auf eine tatsächliche Instanz wie \textit{"Max Mustermann"} beziehen kann.
+Viele Worte haben selbst keinen klaren semantischen Inhalt, nehmen jedoch Bezug auf andere Worte, über welche sie ihre Bedeutung erhalten. Dazu gehören beispielsweise Pronomen. Der Ausdruck \textit{\glqq  Er\grqq{}} hat keinerlei Ausdrucksstärke, wenn er sich nicht auf eine tatsächliche Instanz wie \textit{\glqq  Max Mustermann\grqq{}} beziehen kann.
 
 \tt
 Das ist Max Mustermann. Er ist glücklich.
 \rm
 
-Hier erhält das Pronomen \textit{"Er"} dieselben semantischen Informationen wie \textit{Max Mustermann} und ließe sich ersetzen, ohne dass semantische Informationen verloren gehen. Man weiß also sofort, dass Max Mustermann glücklich ist. Für eine besseres Verständnis der Funktionsweise von Bezugsausdrücken sind zunächst die folgenden Begriffe zu klären:
+Hier erhält das Pronomen \textit{\glqq  Er\grqq{}} dieselben semantischen Informationen wie \textit{Max Mustermann} und ließe sich ersetzen, ohne dass semantische Informationen verloren gehen. Man weiß also sofort, dass Max Mustermann glücklich ist. Für eine besseres Verständnis der Funktionsweise von Bezugsausdrücken sind zunächst die folgenden Begriffe zu klären:
 
 \begin{enumerate}
 \item Referent/Bezug: Eine tatsächliche Instanz (in der echten Welt) auf die sich andere Satzteile beziehen (hier eine bestimmte Person)
-\item Beziehender Ausdruck: Ausdruck, der sich auf einen Referent bezieht (hier "Er")
+\item Beziehender Ausdruck: Ausdruck, der sich auf einen Referent bezieht (hier \glqq  Er\grqq{})
 \item Bezugswort: Teil des Textes auf den sich ein beziehender Ausdruck bezieht (hier Max Mustermann)
-\item Anaphora: Der Bezug auf einen Antezedent (hier würde man "Er" als anaphorisch bezeichnen, da es sich auf den Antezedent Max Mustermann bezieht.) 
+\item Anaphora: Der Bezug auf einen Antezedent (hier würde man \glqq  Er\grqq{} als anaphorisch bezeichnen, da es sich auf den Antezedent Max Mustermann bezieht.) 
 \end{enumerate}
 
 Üblicherweise wird in einem Text zunächst ein Referent über eine Bezugswort eingeführt und später über beziehende Ausdrücke referenziert. Es ist jedoch auch möglich, erst einen beziehenden Ausdruck zu verwenden und den Referent erst später zu erwähnen:
@@ -1004,22 +1007,22 @@ Zwei verschiedenen valide Interpretationen sind:
 In vielen Fällen kann ein beziehender Ausdruck auf verschiedene zuvor eingeführte Referenten verweisen. Hierbei sind die folgenden Regeln zu beachten:
 
 \begin{enumerate}
-\item Nähe: Das nähere Bezugswort ist üblicherweise der Referent. \textit{"Er"} bezieht sich also auf \textit{Tom}.\\
+\item Nähe: Das nähere Bezugswort ist üblicherweise der Referent. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Tom}.\\
 \tt Max hat ein Fahrrad. Tom hat auch ein Fahrrad. Er leiht es manchmal Tim.
 \rm
-\item Grammatikalische Rolle: Man geht von einem Bezug auf Subjekte, dann Objekte und dann erst andere Satzteile aus. \textit{"Er"} bezieht sich also auf \textit{Max}.\\
+\item Grammatikalische Rolle: Man geht von einem Bezug auf Subjekte, dann Objekte und dann erst andere Satzteile aus. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Max}.\\
 \tt
 Max fährt mit Tom Fahrrad. Er ist sehr schnell.
 \rm
-\item Wiederholtes Erwähnen: Ein wiederholtes Bezugswort ist höchstwahrscheinlich der Referent. \textit{"Er"} bezieht sich also üblicherweise auf \textit{Tom}.\\
+\item Wiederholtes Erwähnen: Ein wiederholtes Bezugswort ist höchstwahrscheinlich der Referent. \textit{\glqq  Er\grqq{}} bezieht sich also üblicherweise auf \textit{Tom}.\\
 \tt
 Tom fährt Fahrrad. Max fährt mit Tom. Er ist sehr schnell.
 \rm
-\item Parallelismus: Bezugswörter mit gleicher oder ähnlicher Funktion wie der beziehende Ausdruck werden bevorzugt. \textit{"ihn"} bezieht sich also auf \textit{Tom}. \\
+\item Parallelismus: Bezugswörter mit gleicher oder ähnlicher Funktion wie der beziehende Ausdruck werden bevorzugt. \textit{\glqq  ihn\grqq{}} bezieht sich also auf \textit{Tom}. \\
 \tt
 Max fährt mit Tom Fahrrad. Morgen fährt Tim mit ihm Auto.
 \rm
-\item Kohärenzeffekte: Der Inhalt des Kontextes kann entgegen der obigen Regeln den Bezug auf einen bestimmten Referent nahelegen. \textit{"Er"} bezieht sich also auf \textit{Tom}, da Hilfsbereitschaft als Erklärung dienen kann, warum andere ihn mögen.\\
+\item Kohärenzeffekte: Der Inhalt des Kontextes kann entgegen der obigen Regeln den Bezug auf einen bestimmten Referent nahelegen. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Tom}, da Hilfsbereitschaft als Erklärung dienen kann, warum andere ihn mögen.\\
 \tt
 Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 \rm
@@ -1202,7 +1205,7 @@ Etwas weniger NLP-spezifisch, jedoch nicht weniger wichtig sind die nicht-funkti
 \begin{enumerate}
 \item Design der Benutzeroberfläche:
 
-Das Programm sollte einen mindestgrad an Ästetik nicht unterschreiten, sodass es für den Benutzer nicht unangenehm wird mit dem Programm zu arbeiten. Über Kleinigkeiten ist dabei hinwegzusehen, beispielsweise "beißende" Farbkombinationen auf großen Bildflächen sollten jedoch vermieden werden. 
+Das Programm sollte einen mindestgrad an Ästetik nicht unterschreiten, sodass es für den Benutzer nicht unangenehm wird mit dem Programm zu arbeiten. Über Kleinigkeiten ist dabei hinwegzusehen, beispielsweise \glqq  beißende\grqq{} Farbkombinationen auf großen Bildflächen sollten jedoch vermieden werden. 
 
 Die Benutzeroberfläche sollte übersichtlich und sinnvoll angeordnet bzw. sortiert sein. Dazu gehören sowohl einzelne Bildschirme des Programms, als auch andere Elemente wie Drop-down Menüs. So sollten z.B. nicht zu viele mögliche Schaltflächen in einem Menü, sondern über ein Untermenü zu erreichen sein. Nach \cite{hl13} (Figur 4.x) haben Oberflächen-Designer und die späteren Nutzer Einfluss auf eine gue Usability des Programms. Design und Usability sind sehr umfangreiche Themen, daher werden diese hier nur kurz erwähnt. Siehe dazu etwa \cite{shn10}. HCI-Guidelines sollten, sofern im Unternehmen vorhanden, selbstverständlich eingehalten werden.
 
@@ -1229,7 +1232,7 @@ Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des
 \end{center}
 \end{figure} 
 \end{comment}
-Im Sinne der \textit{Informationssicherheit} \cite{eck13} muss bei der Entwicklung ein Fokus auf die folgenden "Kernschutzziele" gelegt werden:
+Im Sinne der \textit{Informationssicherheit} \cite{eck13} muss bei der Entwicklung ein Fokus auf die folgenden \glqq  Kernschutzziele\grqq{} gelegt werden:
 \begin{enumerate}
 \item \textit{Vertraulichkeit} - Der Datenzugriff durch das Programm darf nur in erforderlichem Maße und nur durch autorisierte Nutzer erfolgen. Das NLP-Tool insgesamt, aber auch die einzelnen Module müssen klar beschränkte Zugriffsrechte für die Quelldaten, aber auch für andere angeschlossene Systeme und Programme haben. Wenn also ein Modul des NLP-Tools unkontrollierte Zugriffsrechte auf das Quelldokument erhält, obwohl dies gar nicht nötig ist, stellt dies eine Verletzung dieses Schutzziels dar. 
 \item \textit{Integrität} - Das Programmverhalten bei der Textverarbeitung muss nachvollziehbar sein und Änderungen an den Daten dürfen nicht unbemerkt erfolgen. Wie bereits unter Funktionssicherheit angesprochen, muss das Programm eindeutig und nachvollziehbar arbeiten, sodass ein sicheres Verhalten garantiert wird. Auch die Module dürfen keine Möglichkeit für unkontrollierte und nicht überprüfbare Dateizugriffe bieten, indem ihr Anwendungsbereich klar abgedeckt ist und deren Zugriffsrechte verifizierbar sind.
@@ -1266,7 +1269,7 @@ Der GDM stellt die Sammlung aller Informationen über Texte in einer Datenbank d
 \end{center}
 \end{figure} 
 \end{comment}
-Der GDM stellt den einzelnen CREOLE-Modulen innerhalb von GATE die Informationen zur Verfügung und empfängt die neu gewonnenen Informationen nach jedem Teilschritt. Das Datenmodell des GDM basiert auf einer Datenbank, die sich lokal auf dem Computer oder im Netzwerk befinden kann. Die Datenbank ist beliebig konfigurierbar und verfügt bei großen Datenmengen über eine API zur Anbindung externer Systeme (siehe 4.2.2 "Anbindung"). 
+Der GDM stellt den einzelnen CREOLE-Modulen innerhalb von GATE die Informationen zur Verfügung und empfängt die neu gewonnenen Informationen nach jedem Teilschritt. Das Datenmodell des GDM basiert auf einer Datenbank, die sich lokal auf dem Computer oder im Netzwerk befinden kann. Die Datenbank ist beliebig konfigurierbar und verfügt bei großen Datenmengen über eine API zur Anbindung externer Systeme (siehe 4.2.2 \glqq  Anbindung\grqq{}). 
 \item \textit{GGI - Gate Graphical Interface}
 
 Das GGI stellt die GUI von GATE dar. In der Oberfläche kann der Benutzer das Programm konfigurieren und Objekte innerhalb von GATE verwalten. Im GGI können auch die Ergebnisse nach der Verarbeitung dargestellt werden.
@@ -1359,7 +1362,7 @@ Wie bereits unter 4.1.1 - CREOLE beschrieben, kann die Funktionalität quasi bel
 Neben den JAVA-Klassen (\textit{.class}-Dateien) eines jeden Objekts ist dort auch die build.xml abgelegt, die zur Abnindung weiterer Ressourcen des Plugins und auch zur Anbindung an notwendige Schnittstellen des GDM dient. Die \textit{creole.xml} beinhaltet Meta-Informationen über das Plugin wie den Namen und die Version, damit diese im \textit{Plugin-Manager} angezeigt werden können. Diese Dateien können vom User in ihrer Funktionalität angepasst werden, so besteht etwa Zugriff auf die \textit{.class}-Dateien. Der Ordnerzugriff sollte daher im Sinne der \textit{Informationssicherheit} nur autorisierten Nutzern erlaubt werden, da ansonsten auch Änderungen vorgenommen werden können, die nicht direkt sichtbar sind. Eine Prüfsumme des Codes oder sonstige Kontrollmechanismen für den Code gibt es nicht.
 
 \subsubsection{Einbettung in Workflow und andere Programme}
-GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. "Anbindung"). Somit können externe Programme von außen einfach auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Tools mit Abhängigkeits-Management realisiert werden (Maven oder Gradle), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) in das andere Programmverzeichnis kopiert werden. In Figur 4.x wird etwa verdeutlicht, welcher Code dann für die Verwendung des ANNIE-Moduls durch dieses Programm benötigt wird. Anschließend wird dann bei der Kompilierung des Programms in der Entwicklungsumgebung die GATE-Dateien mit integriert bzw. diese können dann dort verwendet werden. 
+GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. \glqq  Anbindung\grqq{}). Somit können externe Programme von außen einfach auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Tools mit Abhängigkeits-Management realisiert werden (Maven oder Gradle), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) in das andere Programmverzeichnis kopiert werden. In Figur 4.x wird etwa verdeutlicht, welcher Code dann für die Verwendung des ANNIE-Moduls durch dieses Programm benötigt wird. Anschließend wird dann bei der Kompilierung des Programms in der Entwicklungsumgebung die GATE-Dateien mit integriert bzw. diese können dann dort verwendet werden. 
 \begin{comment} 
 \begin{figure}[h!]
 \begin{center}
@@ -1369,7 +1372,7 @@ GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Kom
 \end{figure}
 \end{comment}
 Auf diese Weise stehen dem Entwickler viele Möglichkeiten zur Anpassung der Dateien wie auch zu deren Nutzung in anderen Programmen offen, solange diese JAVA verwenden können.
-Zu 4.: Nachdem in GATE eine Verarbeitungskette ausgeführt ist, wird in dem Hauptfenster der GGI der verarbeitete Text zunächst als Klartext angezeigt. Mögliche Annotationen werden in eine Leiste am rechten Rand als "Annotation Sets" aufgelistet und sind über Checkboxen auswählbar. Die Annotationen sind farbig markiert und hinterlegen den jeweils annotierten Text, sobald die entsprechende Checkbox aktiviert wird.
+Zu 4.: Nachdem in GATE eine Verarbeitungskette ausgeführt ist, wird in dem Hauptfenster der GGI der verarbeitete Text zunächst als Klartext angezeigt. Mögliche Annotationen werden in eine Leiste am rechten Rand als \glqq  Annotation Sets\grqq{} aufgelistet und sind über Checkboxen auswählbar. Die Annotationen sind farbig markiert und hinterlegen den jeweils annotierten Text, sobald die entsprechende Checkbox aktiviert wird.
 In dem Annotation Stack am unteren Fensterrand lassen sich die Annotationen ohne Text betrachten, was vor allem nützlich wird, sobald bestimmte Textstellen mehrfach markiert sind.\\
 \begin{comment}
 \begin{figure}
@@ -1423,7 +1426,7 @@ Um Funktionssicherheit zu überprüfen, bietet sich Entwicklern die Möglichkeit
 Um die Informationssicherheit von GATE genau beurteilen zu können, sind ausführliche, präziser und genau kontrollierte Test nötig, welche den Umfang dieser Arbeit weit überschreiten und daher hier nicht behandelt werden können. Die Suche nach explizierten Forschungsergebnissen zu der Informationssicherheit von GATE blieb ergebnislos, weswegen sich in diesem Bereich keine anderen Werke referenzieren lassen.
 
 Dennoch ist es möglich die folgenden Aussagen über GATE zu treffen:
-Als JAVA-basiertes Programm erhält GATE die entsprechenden Sicherheitsvorteile, welche unter anderem die folgenden Sicherheitsmaßnahmen beinhalten:
+Als JAVA-basiertes Programm erhält GATE die entsprechenden Sicherheitsvorteile, welche unter anderem die folgenden Sicherheitsmaßnahmen beinhalten \cite{do18}
 \begin{enumerate}
 \item Bytecode-Check: Bei dem Compilieren von JAVA-Programmen (der GATE-Launcher verweist auf eine Executable JAR) wird von dem Compiler eine JAVA-Klasse mit Bytecode erzeugt, welche bei jeder Ausführung des Programms auf Malware wie etwa Viren überprüft wird. 
 \item Garbage-Collector: Der JAVA-Garbage-Collector befreit vereinfacht ausgedrückt automatisch Speicherplatz, welcher belegt wird, jedoch nicht mehr darauf zugegriffen werden kann. Dies hat zwei Vorteile: Zum einen erhöht es die Verfügbarkeit, da es die inkorrekte Freigabe von Speicherplatz verhindert, zum anderen hilft es Entwicklern die Integrität während der Ausführung des Programms zu wahren. 
@@ -1463,34 +1466,35 @@ In den vorherigen Abschnitten wurde die Arbeitsweise von GATE und die Umsetzung 
 
 \newpage
 \begin{thebibliography}{20}
-\bibitem[COL11]{col11}Ronan Collobert et al., "Natural Language Processing (Almost) from Scratch", Journal of Machine Learning Research 12, 2011. 
-\bibitem[CHO57]{cho57} Noam Chomsky, "Syntactic Structures", Mouton \& Co., Feb. 1957.
-\bibitem[WEI89]{wei89}Ralph Weischedel, et al. "White paper on natural language processing." Proceedings of the workshop on Speech and Natural Language. Association for Computational Linguistics, 1989.
-\bibitem[HAO14]{hao14}Hao Wu, et al. "ILLINOISCLOUDNLP: Text Analytics Services in the Cloud." LREC. 2014.
-\bibitem[WEI66]{wei66}Joseph Weizenbaum, "ELIZA—a computer program for the study of natural language communication between man and machine." Communications of the ACM 9.1, 36-45, 1966
-\bibitem[COP04]{cop04}Ann Copestake, University Of Cambridge, "Natural Language Processing", 2004
-\bibitem[LL94]{ll94} Shalom Lappin, Herbert J. Leass. "An algorithm for pronominal anaphora resolution." Computational linguistics 20.4 (1994): 535-561.
-\bibitem[YAR95]{yar95}David Yarowsky, "Unsupervised word sense disambiguation rivaling supervised methods." Proceedings of the 33rd annual meeting on Association for Computational Linguistics. Association for Computational Linguistics, 1995.
-\bibitem[ZE00]{ze00}Philip Zeitz, Technische Universität Berlin, "Parametrisierte $\in_T$-Logik: Eine Theorie der Erweiterung abstrakter Logiken um die Konzepte Wahrheit, Referenz und klassische Negation", Logos Verlag Berlin, 1999.
-\bibitem[ML96]{ml96}Per Martin-Löf, "On the meanings of the logical constants andthe justifications of the logical laws", Nordic Journal of Philosophical Logic, 1996.
-\bibitem[SWB02]{swb02}Ivan A. Sag, Thomas Wasow, Emily M. Bender, Center For The Study Of Language And Information, "Syntactic Therory: A Formal Introduction", 2002.
-\bibitem[CAR52]{car52}Rudolf Carnap, "Meaning Postulates.", Philospohical Studies vol.3 S.65-73, 1952.
-\bibitem[TOU03]{tou03}Kristina Toutanova et al., Stanford University, "Feature-Rich Part-of-Speech Tagging with a Cyclic Dependency Network", Jun. 2003.
-\bibitem[SHE07]{she07} L. Shen, G. Satta, A. K. Joshi. In Meeting of the Association for Computational Linguistics (ACL), "Guided learning for bidirectional sequence classification", 2007.
-\bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, "CLAWS part-of-speech tagger for English", http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr.
-\bibitem[ECK13]{eck13}Claudia Eckert, "IT-Sicherheit: Konzepte-Verfahren-Protokolle" 8. Auflage, Walter de Gruyter, 2013.
+\bibitem[COL11]{col11}Ronan Collobert et al., \glqq  Natural Language Processing (Almost) from Scratch\grqq{} , Journal of Machine Learning Research 12, 2011. 
+\bibitem[CHO57]{cho57} Noam Chomsky, \glqq  Syntactic Structures\grqq{} , Mouton \& Co., Feb. 1957.
+\bibitem[WEI89]{wei89}Ralph Weischedel, et al. \glqq  White paper on natural language processing.\grqq{}  Proceedings of the workshop on Speech and Natural Language. Association for Computational Linguistics, 1989.
+\bibitem[HAO14]{hao14}Hao Wu, et al. \glqq  ILLINOISCLOUDNLP: Text Analytics Services in the Cloud.\grqq{}  LREC. 2014.
+\bibitem[WEI66]{wei66}Joseph Weizenbaum, \glqq  ELIZA—a computer program for the study of natural language communication between man and machine.\grqq{}  Communications of the ACM 9.1, 36-45, 1966
+\bibitem[COP04]{cop04}Ann Copestake, University Of Cambridge, \glqq  Natural Language Processing\grqq{} , 2004
+\bibitem[LL94]{ll94} Shalom Lappin, Herbert J. Leass. \glqq  An algorithm for pronominal anaphora resolution.\grqq{}  Computational linguistics 20.4 (1994): 535-561.
+\bibitem[YAR95]{yar95}David Yarowsky, \glqq  Unsupervised word sense disambiguation rivaling supervised methods.\grqq{}  Proceedings of the 33rd annual meeting on Association for Computational Linguistics. Association for Computational Linguistics, 1995.
+\bibitem[ZE00]{ze00}Philip Zeitz, Technische Universität Berlin, \glqq  Parametrisierte $\in_T$-Logik: Eine Theorie der Erweiterung abstrakter Logiken um die Konzepte Wahrheit, Referenz und klassische Negation\grqq{} , Logos Verlag Berlin, 1999.
+\bibitem[ML96]{ml96}Per Martin-Löf, \glqq  On the meanings of the logical constants andthe justifications of the logical laws\grqq{} , Nordic Journal of Philosophical Logic, 1996.
+\bibitem[SWB02]{swb02}Ivan A. Sag, Thomas Wasow, Emily M. Bender, Center For The Study Of Language And Information, \glqq  Syntactic Therory: A Formal Introduction\grqq{} , 2002.
+\bibitem[CAR52]{car52}Rudolf Carnap, \glqq  Meaning Postulates.\grqq{} , Philospohical Studies vol.3 S.65-73, 1952.
+\bibitem[TOU03]{tou03}Kristina Toutanova et al., Stanford University, \glqq  Feature-Rich Part-of-Speech Tagging with a Cyclic Dependency Network\grqq{} , Jun. 2003.
+\bibitem[SHE07]{she07} L. Shen, G. Satta, A. K. Joshi. In Meeting of the Association for Computational Linguistics (ACL), \glqq  Guided learning for bidirectional sequence classification\grqq{} , 2007.
+\bibitem[CLW7]{clw7}University Centre for Computer Corpus Research on Language, Lancaster University, \glqq  CLAWS part-of-speech tagger for English\grqq{} , http://ucrel.lancs.ac.uk/claws/, abgerufen am 19.08.2018 16.43 Uhr.
+\bibitem[ECK13]{eck13}Claudia Eckert, \glqq  IT-Sicherheit: Konzepte-Verfahren-Protokolle\grqq{}  8. Auflage, Walter de Gruyter, 2013.
 \bibitem[SHN10]{shn10}Ben Shneiderman. Designing the user interface: strategies for effective human-computer interaction. Pearson Education India, 2010.
-\bibitem[SB88]{sb88}Muggleton, Stephen, and Wray Buntine. "Machine invention of first-order predicates by inverting resolution." Machine Learning Proceedings 1988. 1988. 339-352
-\bibitem[KN85]{kn85}Kapur, Deepak, and Paliath Narendran. "An equational approach to theorem proving in first-order predicate calculus." ACM SIGSOFT Software Engineering Notes 10.4 (1985): 63-66
-\bibitem[BAL98]{bal98}Balzert, Helmut. "Software-Qualitätssicherung." Lehrbuch der Software-Technik. Spektrum Akadem. Verlag (1998)
+\bibitem[SB88]{sb88}Muggleton, Stephen, and Wray Buntine. \glqq  Machine invention of first-order predicates by inverting resolution.\grqq{}  Machine Learning Proceedings 1988. 1988. 339-352
+\bibitem[KN85]{kn85}Kapur, Deepak, and Paliath Narendran. \glqq  An equational approach to theorem proving in first-order predicate calculus.\grqq{}  ACM SIGSOFT Software Engineering Notes 10.4 (1985): 63-66
+\bibitem[BAL98]{bal98}Balzert, Helmut. \glqq  Software-Qualitätssicherung.\grqq{}  Lehrbuch der Software-Technik. Spektrum Akadem. Verlag (1998)
 \bibitem[CGW95]{cgw95} Hamish Cunningham, Robert J. Gaizauskas, Yorick Wilks. A general architecture for text engineering (GATE): A new approach to language engineering R \& D. University of Sheffield, Department of Computer Science, 1995
-\bibitem[CMB02]{cmb02} Cunningham, Hamish, et al. "GATE: an architecture for development of robust HLT applications." Proceedings of the 40th annual meeting on association for computational linguistics. Association for Computational Linguistics, 2002
+\bibitem[CMB02]{cmb02} Cunningham, Hamish, et al. \glqq  GATE: an architecture for development of robust HLT applications.\grqq{}  Proceedings of the 40th annual meeting on association for computational linguistics. Association for Computational Linguistics, 2002
 \bibitem[GO18]{go18} https://gate.ac.uk/overview.html Offizielle Webseite von GATE (Overview), aufgerufen am 09.10.2018
 \bibitem[GM18]{gm18} https://gate.ac.uk/sale/tao/split.html GATE User Guide, aufgerufen am 09.10.2018
 \bibitem[GT18]{gt18} https://gate.ac.uk/sale/tao/splitap7.html\#x39-743000G, aufgerufen am 09.10.2018
-\bibitem[MIL95]{mil95}Miller, George A. "WordNet: a lexical database for English." Communications of the ACM 38.11 (1995): 39-41.
-\bibitem[CC98]{cc98}Claudia Leacock, Martin Chodorow. "Combining local context and WordNet similarity for word sense identification." WordNet: An electronic lexical database 49.2 (1998): 265-283
-\bibitem[CU97]{cu97}Cunningham, Hamish, et al. "GATE–a TIPSTER-based general architecture for text engineering." Proceedings of the TIPSTER Text Program (Phase III). Vol. 6. 1997
-\bibitem[CU02]{cu02}Cunningham, Hamish. "GATE, a general architecture for text engineering." Computers and the Humanities 36.2 (2002): 223-254.
+\bibitem[MIL95]{mil95}Miller, George A. \glqq   WordNet: a lexical database for English.\grqq{}  Communications of the ACM 38.11 (1995): 39-41.
+\bibitem[CC98]{cc98}Claudia Leacock, Martin Chodorow. \glqq   Combining local context and WordNet similarity for word sense identification.\grqq{}  WordNet: An electronic lexical database 49.2 (1998): 265-283
+\bibitem[CU97]{cu97}Cunningham, Hamish, et al. \glqq   GATE–a TIPSTER-based general architecture for text engineering.\grqq{}  Proceedings of the TIPSTER Text Program (Phase III). Vol. 6. 1997
+\bibitem[CU02]{cu02}Cunningham, Hamish. \glqq   GATE, a general architecture for text engineering.\grqq{}  Computers and the Humanities 36.2 (2002): 223-254.
+\bibitem[DO18]{do18} https://docs.oracle.com/javase/8/docs/technotes/guides/security/overview/jsoverview.html, aufgerufen am 14.10.2018
 \end{thebibliography}
 \end{document}
