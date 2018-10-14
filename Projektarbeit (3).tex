@@ -1224,14 +1224,14 @@ Auch gibt es zufallsbasierte Verfahren für Deutungen, die etwa im Falle von Meh
 \item Informationssicherheit:
 
 Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des Datenschutzes relevant, damit das Programm einerseits keine Sicherheitslücke für andere Systeme schafft und selbst auch sicher arbeitet, sodass verlässliche Resultate erzielt werden. Gemäß \cite{hl13} ist die Informationssicherheit für NLP-Tools dabei von den Administratoren (Systemumgebung) und Entwicklern (Implementierung) zu gewährleisten. Die Manipulationssicherheit und Verifizierbarkeit von Daten muss durch entsprechende Schutzmaßnahmen des Programms gewährleistet sein. Log-Dateien und eindeutige Algorithmen (siehe Punkt 3) erleichtern das Nachvollziehen von Ergebnissen und Fehler durch Manipulation werden kenntlich gemacht. 
-\begin{comment}
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/NLPSystem.jpg}
+\includegraphics[scale=0.5]{GATE_Bilder/NLPSystem.jpg}
 \caption{Usability- und Sicherheitsaspekte aus \cite{hl13}}
 \end{center}
 \end{figure} 
-\end{comment}
+
 Im Sinne der \textit{Informationssicherheit} \cite{eck13} muss bei der Entwicklung ein Fokus auf die folgenden \glqq  Kernschutzziele\grqq{} gelegt werden:
 \begin{enumerate}
 \item \textit{Vertraulichkeit} - Der Datenzugriff durch das Programm darf nur in erforderlichem Maße und nur durch autorisierte Nutzer erfolgen. Das NLP-Tool insgesamt, aber auch die einzelnen Module müssen klar beschränkte Zugriffsrechte für die Quelldaten, aber auch für andere angeschlossene Systeme und Programme haben. Wenn also ein Modul des NLP-Tools unkontrollierte Zugriffsrechte auf das Quelldokument erhält, obwohl dies gar nicht nötig ist, stellt dies eine Verletzung dieses Schutzziels dar. 
@@ -1261,14 +1261,14 @@ GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen u
 \item \textit{GDM - Gate Document Manager}
 
 Der GDM stellt die Sammlung aller Informationen über Texte in einer Datenbank dar. Sämtliche Informationen (d.h. insb. Annotationen) über den Text sind im GDM gespeichert und werden durch diesen zur Verfügung gestellt. Der GDM implementiert den TIPSTER Document Manager \cite{cu97}, der eine Annotations-basierte Umsetzung von NLP-Systemen darstellt (siehe ABSCHNITT??). TIPSTER ergänzt dazu den vorhandenen Text um Annotationen bzw. speichert diese Informationen in einer Datenbank, ohne den Text zu verändern. Annotation-Sets liegen dabei konkret als SGML(Standard Generalized Markup Language) Auszeichnungssprachen (z.B. als XML, html) abgelegt werden (Fig.4.x). Jedem Text wird dabei eine eigene leere Datenbank zugeordnet und bildet zusammen mit dieser separat gespeichert.
-\begin{comment} 
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.5]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/Tipster.jpg}
+\includegraphics[scale=0.5]{GATE_Bilder/Tipster.jpg}
 \caption{Annotationen in TIPSTER-interner Darstellung aus \cite{cu97}}
 \end{center}
 \end{figure} 
-\end{comment}
+
 Der GDM stellt den einzelnen CREOLE-Modulen innerhalb von GATE die Informationen zur Verfügung und empfängt die neu gewonnenen Informationen nach jedem Teilschritt. Das Datenmodell des GDM basiert auf einer Datenbank, die sich lokal auf dem Computer oder im Netzwerk befinden kann. Die Datenbank ist beliebig konfigurierbar und verfügt bei großen Datenmengen über eine API zur Anbindung externer Systeme (siehe 4.2.2 \glqq  Anbindung\grqq{}). 
 \item \textit{GGI - Gate Graphical Interface}
 
@@ -1277,14 +1277,13 @@ Das GGI stellt die GUI von GATE dar. In der Oberfläche kann der Benutzer das Pr
 \item \textit{CREOLE - Collection of Reusable Objects for Language Engineerung}
 
 Die eigentliche Textanalyse mit GATE findet durch einzelne Module aus dem CREOLE-Modulkatalog statt.
-\begin{comment} 
+
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.7]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/CREOLE.jpg}
+\includegraphics[scale=0.7]{GATE_Bilder/CREOLE.jpg}
 \caption{Auflistung der installierten Plugins aus verschiedenen Ordnern}
 \end{center}
 \end{figure} 
-\end{comment}
 
 GATE verfügt direkt nach der Installation über einige Module zur Umsetzung von NLP-Funktionalitäten (folgender Abschnitt). Es lassn sich jedoch auch beliebig viele Werkzeuge nachladen und einbinden. CREOLE bietet auch eine API zur Entwicklung bzw. direkten laden eigener Module in GATE an (siehe FUNKT ANF??) und realisiert somit etwa I/O des Moduls über den GDM. CREOLE-Objekte sind also wrapper für Verarbeitungswerkzeuge \cite{cu02}. 
 Die verschiedenen CREOLE-Objekte sind im GATE-Installationsverzeichnis in einzelnen Ordnern gespeichert. Die Auswahl und Konfiguration der Module erfolgt über ein Fenster innerhalb der GGI (Fig. 4.x).
@@ -1307,16 +1306,12 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 \item orthographic coreference tagger: Der orthographic coreference tagger, auch bekannt als OrthoMatcher, verbindet annotierte Entitäten, welche der semantic tagger finden konnte mit einer Beziehung, um somit eine Koreferenz zu erzeugen.
 \end{enumerate}
 
-\begin{comment}
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.8]{GATE_Bilder/ANNIE2.jpg}
-\caption{Abbildung der unveränderten ANNIE-Verarbeitungskomponenten in GATE}
 \caption{Standard ANNIE-Verarbeitungskomponenten}
-\end{figure}
 \end{center}
 \end{figure}
-\end{comment}
 
 \section{Umsetzung der Anforderungen}
 
@@ -1337,51 +1332,51 @@ Zu 1.: GATE ist als ein übergeordnetes Programm für die Verwaltung verschieden
 
 Zu 2.: GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{ANNIE Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung. Innerhalb der Verarbeitungskette kommunizieren die Mudule die neu gewonnenen Informationen als XML-Dateien an den GDM mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Da es sich grundsätzlich um XML Dateien in Klartext handelt und nicht etwa um verpackte Objekte mit Attributen, lässt sich der Inhalt auch durch Nutzer nachvollziehen.\\
 
-\begin{comment} 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=1.0]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/POSTagger.jpg}
+\includegraphics[scale=1.0]{GATE_Bilder/POSTagger.jpg}
 \caption{Einstellbare Modulparameter des POS-Taggers \\ Hier können etwa Pfade für Input- und Output-Daten angegeben werden}
 \end{center}
 \end{figure} 
-\end{comment}
+
 Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.
 Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.\\
 
 \subsubsection{Plugin-Management}
 Wie bereits unter 4.1.1 - CREOLE beschrieben, kann die Funktionalität quasi beliebig über den \textit{Plugin-Manager} erweitert werden. Somit können auch tagesaktuelle Plugins direkt, sofern sie im Ordner im GATE-Programmverzeichnis liegen, in die Verarbeitungskette geladen werden. jeder Ersteller von CREOLE-Plugins besitzt dort einen einzelnen Ordner, in dem die einzelnen Werkzeuge (CREOLE-Objekte) vorliegen (Figur 4.x). 
-\begin{comment} 
+ 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=1.0]{C:/Users/Nutzer/OneDrive/Studium/Projektarbeit/Projektarbeit/GATE_Bilder/PluginOrdner.jpg}
+\includegraphics[scale=1.0]{GATE_Bilder/PluginOrdner.jpg}
 \caption{Struktur des Dateisystems anhand des OpenNLP-Funktionspaketes}
 \end{center}
 \end{figure} 
-\end{comment}
+
 
 Neben den JAVA-Klassen (\textit{.class}-Dateien) eines jeden Objekts ist dort auch die build.xml abgelegt, die zur Abnindung weiterer Ressourcen des Plugins und auch zur Anbindung an notwendige Schnittstellen des GDM dient. Die \textit{creole.xml} beinhaltet Meta-Informationen über das Plugin wie den Namen und die Version, damit diese im \textit{Plugin-Manager} angezeigt werden können. Diese Dateien können vom User in ihrer Funktionalität angepasst werden, so besteht etwa Zugriff auf die \textit{.class}-Dateien. Der Ordnerzugriff sollte daher im Sinne der \textit{Informationssicherheit} nur autorisierten Nutzern erlaubt werden, da ansonsten auch Änderungen vorgenommen werden können, die nicht direkt sichtbar sind. Eine Prüfsumme des Codes oder sonstige Kontrollmechanismen für den Code gibt es nicht.
 
 \subsubsection{Einbettung in Workflow und andere Programme}
 GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. \glqq  Anbindung\grqq{}). Somit können externe Programme von außen einfach auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Tools mit Abhängigkeits-Management realisiert werden (Maven oder Gradle), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) in das andere Programmverzeichnis kopiert werden. In Figur 4.x wird etwa verdeutlicht, welcher Code dann für die Verwendung des ANNIE-Moduls durch dieses Programm benötigt wird. Anschließend wird dann bei der Kompilierung des Programms in der Entwicklungsumgebung die GATE-Dateien mit integriert bzw. diese können dann dort verwendet werden. 
-\begin{comment} 
+ 
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.8]{GATE_Bilder/Einbettung.jpg}
 \caption{Notwendiger Code für die Verwendung des ANNIE-Systems in externen Programmen}
 \end{center}
 \end{figure}
-\end{comment}
-Auf diese Weise stehen dem Entwickler viele Möglichkeiten zur Anpassung der Dateien wie auch zu deren Nutzung in anderen Programmen offen, solange diese JAVA verwenden können.
+
+Auf diese Weise stehen dem Entwickler viele Möglichkeiten zur Anpassung der Dateien wie auch zu deren Nutzung in anderen Programmen offen, solange diese JAVA verwenden können.\\
+
 Zu 4.: Nachdem in GATE eine Verarbeitungskette ausgeführt ist, wird in dem Hauptfenster der GGI der verarbeitete Text zunächst als Klartext angezeigt. Mögliche Annotationen werden in eine Leiste am rechten Rand als \glqq  Annotation Sets\grqq{} aufgelistet und sind über Checkboxen auswählbar. Die Annotationen sind farbig markiert und hinterlegen den jeweils annotierten Text, sobald die entsprechende Checkbox aktiviert wird.
 In dem Annotation Stack am unteren Fensterrand lassen sich die Annotationen ohne Text betrachten, was vor allem nützlich wird, sobald bestimmte Textstellen mehrfach markiert sind.\\
-\begin{comment}
+
 \begin{figure}
 \begin{center}
 \includegraphics[scale=0.8]{GATE_Bilder/GATE-MarkUp.png}
 \caption{Textdarstellung nach Annotation}
 \end{center}
 \end{figure}
-\end{comment}
+
 
 Zu 5.: Dadurch, dass GATE selbst nicht die Verarbeitung des Textes durchführt, sondern diese an verschiedene CREOLE-Plugins auslagert, wird auch die Erfassung der textuellen Semantik von diesen durchgeführt (sofern implementiert). Der Einsatz von dedizierten Modulen zur Verarbeitung und Interpretation von Semantik ist in GATE über verschiedene Schnittstellen möglich (siehe Nf. Anf. Anbindung, siehe WordNet). GATE unterstützt ebenfalls die Nutzung von Wissensbasen im OWL-Format(Web Ontology Language) über den OWL-Exporter. Unter anderem durch die genannten Erweiterungen lassen sich semantische Probleme wie Doppeldeutigkeiten mit GATE auflösen.
 
@@ -1391,14 +1386,14 @@ In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderunge
 \subsubsection{Design und Benutzeroberfläche}
 
 Die Benutzeroberflächengestaltung von GATE ist sehr simpel gehalten und verzichtet auf großflächigen Einsatz von Farbe komplett. Die am meisten verwendeten Farben sind weiß und helle Grautöne, welche sich jedoch stark genug von einander kontrastieren, um das Unterscheiden verschiedener angrenzender Schaltflächen nicht zu erschweren. Lediglich einige Symbole (etwa die der Komponenten) sind farbig und erhöhen dadurch Übersichtlichkeit und Wiedererkannbarkeit. 
-\begin{comment} 
+
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.8]{GATE_Bilder/GUI-Ausschnitt.jpg}
 \caption{Ausschnitt des GATE-GUI}
 \end{center}
 \end{figure}
-\end{comment}
+
 Wie in Abbildung XY zu sehen ist, wurde die Oberfläche recht übersichtlich gehalten. Die wichtigsten Funktionalitäten sind über Schnellzugriffe, die Projekthierarchie zur linken und über Drop-Down Menüs in der Menu-Bar erreichbar. Wenn eine Verarbeitungslogik eingebunden ist, wird diese im Hauptfenster dargestellt (siehe z.B. ANNIE in Abbildung XY). In dem Hauptfenster können mehrere Ansichten hintereinander liegen, zwischen welchen mit Hilfe von Tabs am oberen Rand des Fensters gewechselt werden kann, sowie es üblicherweise bei Programmierumgebungen zu sehen ist. 
 
 \subsubsection{Anbindung}
@@ -1413,11 +1408,6 @@ Die wichtigste Programmierschnittstelle für Benutzer, welche nicht in GATE prog
 Diese APIs bieten Nutzern bzw. Entwicklern sowohl die Möglichkeit benötigte Erweiterungen in GATE einzufügen, als auch GATE als Programmteil in der Entwicklung anderer Anwendungen zu benutzen und dadurch aufwendige Entwicklungsarbeit einzusparen. 
 
 \subsubsection{Funktionssicherheit}
-Ermöglichung für den User über eine Funktion, Ergebnisse von verschiedenen Verarbeitungsdurchgängen zu vergleichen, um Determinismus sicherzustellen (Funktionale Anforderung).
-\begin{comment}
-Anforderung: Das NLP-Tool sollte den Entwickler bei der Kontrolle von funktionaler Sicherheit unterstützen und ermöglichen das ordnungsgemäße Arbeiten verschiedener Funktionen zu überwachen und zu testen. 
-\end{comment}
-
 GATE bietet dem Benutzer verschiedene Sicherheiten und Möglichkeiten, die verwendeten Programme auf Korrektheit zu überprüfen. 
 Um Funktionssicherheit zu überprüfen, bietet sich Entwicklern die Möglichkeit schnell verschiedene Module auf den gleichen Text anzuwenden (oder das gleiche Modul auf verschiedene Texte anzuwenden) um die Funktionalität der genutzten Komponenten besser nachvollziehen zu können. Des Weiteren ist GATE keineswegs eine Blackbox, also ein Programm, welches einen Input erhält und einen Output zurückgibt, ohne dabei Auskunft über die Verarbeitungslogik zu geben. Zum einen sind die einzelnen Verarbeitungsschritte stets durch die Verarbeitungskomponenten verkörpert abgebildet, zum anderen lassen sich bei dem Modifizieren oder Erstellen eigener CREOLE-Plugins Debugger einbinden, um später Schrittweise das Verhalten des Plugins nachzustellen.
 
