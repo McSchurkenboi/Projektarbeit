@@ -11,6 +11,15 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {3.1}{\ignorespaces UML-Use-Case Diagramm f\IeC {\"u}r allgemeine NLP-Tools\relax }}{53}
 \contentsline {figure}{\numberline {3.2}{\ignorespaces UML-Aktivit\IeC {\"a}tsdiagramm User-Workflow mit dem Tool\relax }}{54}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Usability- und Sicherheitsaspekte aus \cite {hl13}\relax }}{61}
 \addvspace {10\p@ }
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Annotationen in TIPSTER-interner Darstellung aus \cite {cu97}\relax }}{65}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Auflistung der installierten Plugins aus verschiedenen Ordnern\relax }}{66}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten\relax }}{68}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Einstellbare Modulparameter des POS-Taggers Hier k\IeC {\"o}nnen etwa Pfade f\IeC {\"u}r Input- und Output-Daten angegeben werden\relax }}{72}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Struktur des Dateisystems anhand des OpenNLP-Funktionspaketes\relax }}{73}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Notwendiger Code f\IeC {\"u}r die Verwendung des ANNIE-Systems in externen Programmen aus \cite {gt18}\relax }}{74}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Textdarstellung nach Annotation\relax }}{75}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Ausschnitt des GATE-GUI\relax }}{76}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
