@@ -937,12 +937,9 @@ In der Implementierung bedarf es daher Möglichkeiten, auch ohne K.I. überabzä
 
 Nach \cite{car52} existieren bei der Zuordnung einer Semantik eines Satzes in der Welt weitere Probleme, die durch mehrdeutige Semantik verursacht werden. Eines dieser Probleme ist \textit{Polysemy}. 
 
-Das bekannte Beispiel von \textit{Bank} (als Geldinstitut) vs. \textit{Bank} (als Parkbank) kann in der Regel durch die Herleitung der Semantik durch andere Wörter aufgelöst werden, da die Menge der Bedeutungen komplett disjunkt sind. Umso schwieriger wird es, wenn etwa eine dritte Bedeutung \textit{Bank} (als Spielbank im Casino) hinzukommt, deren Bedeutung sich inhaltlich mit der des Geldinstituts überschneidet. 
+Das bekannte Beispiel von \textit{Bank} (als Geldinstitut) vs. \textit{Bank} (als Parkbank) kann in der Regel durch die Herleitung der Semantik durch andere Wörter aufgelöst werden, da die Menge der Bedeutungen komplett disjunkt sind. Umso schwieriger wird es, wenn etwa eine dritte Bedeutung \textit{Bank} (als Spielbank im Casino) hinzukommt, deren Bedeutung sich inhaltlich mit der des Geldinstituts überschneidet (Visualisierung in Abb. 2.8). 
 
-Ein weiteres Beispiel ist etwa \textit{\glqq  Max mag Kartoffeln\grqq{}}, das eine rohe Kartoffel, Salzkartoffeln, Kartoffelpflanzen und mehr meinen kann. Die Spezifizierungen weisen zwar auch Gemeinsamkeiten auf, haben jedoch eine andere Bedeutung. Die Formulierung \textit{Kartoffel} ist also vage.
-Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfache Zusammenhänge. In der Praxis begrenzt man die Semantik jedoch auch auf eine überschaubare Wissensbasis, genannt \textit{\glqq  Ontologie\grqq{}}, sodass der Kontext strikt vorgegeben und somit eindeutiger ist.
-
-\begin{figure}
+\begin{figure}[h!]
 \begin{tikzpicture}
 \draw (3,0) circle (1.5cm) node {Geldinstitut};
 \draw (5.5,0) circle (1.5cm) node {im Casino};
@@ -954,6 +951,9 @@ Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfac
 \end{tikzpicture}
 \caption{mögliche Bedeutungsmengen eines Polysems}
 \end{figure}
+
+Ein weiteres Beispiel ist etwa \textit{\glqq  Max mag Kartoffeln\grqq{}}, das eine rohe Kartoffel, Salzkartoffeln, Kartoffelpflanzen und mehr meinen kann. Die Spezifizierungen weisen zwar auch Gemeinsamkeiten auf, haben jedoch eine andere Bedeutung. Die Formulierung \textit{Kartoffel} ist also vage.
+Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfache Zusammenhänge. In der Praxis begrenzt man die Semantik jedoch auch auf eine überschaubare Wissensbasis, genannt \textit{\glqq  Ontologie\grqq{}}, sodass der Kontext strikt vorgegeben und somit eindeutiger ist.
 
 \subsection{Auflösung von Mehrdeutigkeiten durch Semantiken}
 Wie bereits beschrieben, stellen Mehrdeutigkeiten bei unbegrenzter Anwendungsdomöne ein ernstzunehmendes Problem dar, da schlicht zu viele mögliche Deutungen existieren. In der Praxis sammelt man daher Fachwissen aus der Problemdomäne und speichert es in Form von Ontologien zu Wissensbasen ab.
