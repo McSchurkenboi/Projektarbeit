@@ -117,11 +117,13 @@ Heutige Entwicklungen im Bereich Sprachassistenzsysteme sind alltäglicher Begle
 Bereits bei der Mensch-Mensch-Kommunikation sind  Verständigungsprobleme vorhandenen und treten unwillkürlich auf. Die Intention einer Aussage ist etwa nicht nur abhängig von dem, was tatsächlich gesagt wird, sondern auch von Gestik, Mimik und der Situation, in der kommuniziert wird. Bei der Untersuchung von geschriebenem Text in natürlicher Sprache treten diese Betrachtungen jedoch in den Hintergrund, da der Inhalt im Vordergrund steht und mitunter die Situation des Autoren unklar oder irrelevant ist. Wissen aus der Domäne ist jedoch zwingend für das Verständnis spezifischer Fachbegriffe von Nöten, daher müssen auch automatische NLP-Tools diese einbeziehen können. Zudem gibt es oft Veränderungen der Bedeutung von Sprache die stark kontextabhängig sind, wie zum Beispiel Sarkasmus oder Ironie. Auch verändern Worte im Laufe der Zeit ihre Bedeutung oder durch Rechtschreibreformen ihr Aussehen. Hier soll nicht weiter auf Aspekte der Kommunikationswissenschaften eingegangen werden, jedoch ist beispielsweise die Ambiguität einer Aussage ganz alltäglich und hat gleichsam verschiedene Auswirkungen. Solche Mehrdeutigkeiten können syntaktische und semantische Fehlinterpretationen verursachen. \cite{wei89}
 
 Wo sich Menschen dabei im Zweifel auf Erfahrungen und spezifische Fachkenntnisse verlassen oder bei ihrem Kommunikationspartner nachfragen können, müssen sich Computer allein auf die vorliegenden Dokumente in Schriftform verlassen; sie wissen nichts über den Kontext des Dokuments. Wie später gezeigt wird, kann jedoch etwa Fachwissen durch domänenspezifische Wissensbasen (siehe Abschnitt 2.7.2) simuliert werden. 
+\subsubsection{Probleme für die Implementierung}
 
 Die Frage nach einer intelligenten, algorithmen- und / oder wissensbasierten Auswertung durch Computer stellt sich im Angesicht der aufgezeigten Besonderheiten natürlicher Sprache. Es gilt also, für NLP nicht nur die Probleme zu lösen, die generell mit präziser Automatisierung verbunden sind, sondern zusätzlich so zuverlässig wie möglich die oben genannten und der Sprache inhärenten Komplikationen zu bewältigen. 
-Bereits einfache Anfragen können computergestützte Frage-Antwort-Systeme wie SQL-Datenbanken an ihre Grenzen bringen, wie die verschiedenen Formen von Mehrdeutigkeit zeigen können:
+Bereits einfache Anfragen können computergestützte Frage-Antwort-Systeme wie SQL-Datenbanken an ihre Grenzen bringen, wie die verschiedenen Formen von Mehrdeutigkeit zeigen können.
 
 Schon das Wort \textit{Teekesselchen} kann im deutschen Sprachgebrauch das tatsächliche Teegefäß oder auch ein doppeldeutiges Wort meinen. 
+\subsubsection{Beispiele sprachlicher Besonderheiten}
 
 Der Satz \textit{\glqq   Die Betrachtung des Studenten\grqq{}} kann etwa als Student, der (etwas) betrachtet, oder als ein Student, der (von jemand anderem) betrachtet wird, verstanden werden. Sätze mit solch einem Satzbau (bestehend aus nominalisiertem Verb, Bezugswort und Substantiv) verursachen unwillkürlich zwei mögliche Deutungen aufgrund der unklaren Syntax.
 
@@ -281,7 +283,7 @@ Solche Regelmäßigkeiten werden in Form von sogenannten \textit{corpora} gelief
 
 Die Anwendung eines Corpus auf ein natürlichsprachliches Dokument ermöglicht sogleich auch eine Vorhersage der nächsten Wörter bzw. Sprachbausteine, nachdem schon ein Teilsatz gelesen wurde. Diese \textit{prediction} kann auf Basis bekannter Regelmäßigkeiten also schon vor der Wortanalyse recht genau die nächste grammatikalische Komponente bzw. den Worttyp vorhersagen.
 
-\subsection{N-gram Modelle zur Sprachvorhersage und -modellierung}
+\subsection{N-gram Modelle zur Sprachvorhersage und\\ -modellierung}
 Auf Basis der vorliegenden Corpora existieren eine Vielzahl an Regeln bezüglich des Satzbaus und bekannnter Folgen von Worttypen, wenn ein neues Dokument annotiert werden soll. Zur Veranschaulichung einer möglichen Annotation soll in diesem Abschnitt die Notation \cite{clw7} für Annotationen genutzt werden.
 
 Bei erneuter Betrachtung des obigen Beispiels \textit{\glqq  Ich fahre Fahrrad.\grqq{}} könnte dieses, wenn dieser Satz als minimaler Corpus vorliegt, neben der Regel Subjekt-Prädikat-Objekt eines Satzbaus auch beinhalten, dass der Punkt ein Satzende markiert und das Substantive und Satzanfänge mit einem Großbuchstaben beginnen (\glqq  Fahrrad\grqq{} ist gemäß der Morphologie ein Nomen und ist groß geschrieben). Sprachvorhersage nutzt diese bekannten Regeln und würde etwa aus der obigen Regel herleiten, das, wenn ein Verb gelesen wurde, darauf oft ein Substantiv bzw. das Satzobjekt folgt. POS-Tagging macht sich diese Beobachtungen durch Berechnung von Wahrscheinlichkeiten bei der Annotation von Wortfolgen zunutze. 
@@ -300,7 +302,7 @@ Als Beispiel dazu soll hier zunächst ein Bigramm zur tatsächlichen Wortvorhers
 Zwischen einzelnen Äußerungen wird der Platzhalter <s> als Indikator einer neuen Aussage verwendet, sodass dem Bigramm nun eine Zeichenkette mit den obigen Aussagen getrennt durch \tt <s> \rm zur Verfügung steht. Nun wird die mögliche Wortkombinatorik aus dem Corpus extrahiert, indem Kombinationen gezählt werden. Berechnet werden nun die Wahrscheinlichkeiten des Folgewortes auf Basis der vorherigen, formal ausgedrückt: \begin{align}
 \frac{C(w_{n-1} w_{n})}{\sum{w}{}C(w_{n-1}w)}
 \end{align}
-
+\begin{table}[h!]
 \tt
 \begin{tabular}{lll}
 Sequenz & Anzahl & $P(w_{n}|P(w_{n-1})$ \\
@@ -323,15 +325,17 @@ Morgen <s> & 1 & 1 \\
 Abend & 1 & \\
 Abend <s> & 1 & 1\\
 \end{tabular}
-\captionof{table}{Wahrscheinlichkeitstabelle Bigram zur Wortvorhersage}
 \rm
+\caption{Wahrscheinlichkeitstabelle Bigram zur Wortvorhersage}
+\end{table}
+
 Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Wortes nach einem gelesenen Wort ablesen. Auf \glqq  ich mag\grqq{} folgt insgesamt einmal \glqq  Züge\grqq{} und einmal \glqq  guten\grqq{}. Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes \glqq  Züge\grqq{} mit $P(\glqq  $Züge$\grqq{}|$\glqq  ich mag\grqq{}$)$ = 50\% berechnet werden.
 
 \subsection{Stochastisches POS-tagging}
 Neben der Möglichkeit, einzelne Wörter vorherzusagen, eignen sich n-Gramme wie oben erwähnt auch zur Darstellung der Wahrscheinlichkeiten von Satzbausteinen, also der von Platzhaltern für alle möglichen Wörter einer Kategorie bzw. Komponente. Stochastisches Part-of-speech tagging kann anhand dieser die Wahrscheinlichkeiten vorhersagen, welcher Worttyp folgen wird. Die Trainingsdaten sind, nach Best-Practices aus dem maschinellen Lernen, in der Regel manuell und durch Benutzer markiert worden, damit dem Programm ein korrekter Datensatz zur Verfügung steht. Auf Basis eines Corpus können somit Mehrdeutigkeiten durch den syntaktischen Zusammenhang eindeutig aufgelöst werden. In einem Beispiel mit syntaktischer Ambiguität werden jedoch Wörter zunächst verschieden annotiert.
 Das tagset von CLAWS 7 annotiert Wortkategorien wie folgt:
 
-\begin{table}[h]
+\begin{table}[h!]
 \tt
 \begin{tabular}{ll}
 PPIS2	& 1st person plural subjective personal pronoun \\
@@ -395,38 +399,39 @@ Wie bereits in 2.4 angekündigt befasst sich dieser Abschnitt mit dem Parsen und
 \subsection{Generative Grammatik}
 Der Begriff der generativen Grammatik beruht auf der Arbeit von Chomsky in den 1950er Jahren \cite{cho57}. Man versteht darunter eine formale Grammatik, welche in der Lage ist alle möglichen Sätze einer natürlichen Sprache und nur genau diese zu generieren. Hier ist anzumerken, dass man dem tatsächlichen Entwurf einer solchen Grammatik bisher nicht einmal nahe gekommen ist. Jedoch ist für Linguisten der prinzipielle Aufbau von solchen Grammatiken höchst interessant (vor allem von solchen Grammatiken, welche sich auf alle natürlichen Sprachen anwenden lassen), während sich NLP-Forscher eher mit dem Bau und der Nutzung von möglichst umfangreichen Grammatiken befassen. 
 
-Ähnlich zu der ableitenden Morphologie versucht man hier, Zeichenketten eine interne Struktur zu verleihen, welche es ermöglicht, Informationen zu den einzelnen Bestandteilen zu extrahieren, jedoch tut man dies mit Sätzen (oder Satzteilen) anstelle von einzelnen Wörtern. Darstellen lässt sich diese Struktur beispielsweise durch Klammerung wie folgt:
-
-((the (fisherman)) fishes)
+Ähnlich wie schon bei der ableitenden Morphologie versucht man hier, Zeichenketten eine interne Struktur zu verleihen, welche es ermöglicht, Informationen zu den einzelnen Bestandteilen zu extrahieren. Jedoch bezieht man sich hier auf ganze Sätze oder Satzteilen anstelle von einzelnen Wörtern. Darstellen lässt sich diese Struktur beispielsweise durch eine Klammerung wie folgt:\\
+\tt
+\\((the (fisherman)) fishes)
 ((the (old fisherman)) fishes)
+\\ \rm
 
-Durch das obige Beispiel wird die Bindung der einzelnen Wörter untereinander deutlich: \glqq  old\grqq{} gehört eindeutig zu \glqq  fisherman\grqq{} und das \glqq  the\grqq{} bezieht sich im zweiten Satz auf \glqq  old fisherman\grqq{} zusammen. Die Klammerung (the old) ist also auf keinen Fall möglich, da \glqq  old\grqq{} mit dem \glqq  fisherman\grqq{} eingeklammert ist. 
+Durch das obige Beispiel wird die Bindung der einzelnen Wörter untereinander deutlich: \textit{\glqq  old\grqq{}} gehört eindeutig zu \textit{\glqq  fisherman\grqq{}} und das \textit{\glqq  the\grqq{}} bezieht sich im zweiten Satz auf \textit{\glqq  old fisherman\grqq{}} zusammen. Die Klammerung (\textit{the old}) ist also auf keinen Fall möglich, da \textit{\glqq  old\grqq{}} mit dem \textit{\glqq  fisherman\grqq{}} eingeklammert ist. 
 
-Bei zwei Grammatiken spricht man von schwacher Äquivalenz, falls sie die gleichen Zeichenketten generieren können und von starker Äquivalenz, wenn sie diese auch gleich klammern. 
+Bei zwei Grammatiken spricht man von einer \textit{schwachen Äquivalenz}, falls diese die gleichen Zeichenketten generieren können. \textit{Starke Äquivalenz} liegt dann vor, wenn sie diese auch gleich klammern. 
 
-Die meisten Ansätze verleihen der internen Struktur nun verschiedene Bezeichnungen, abhängig von der oben gezeigten Klammerung. Somit würde man \glqq  the fisherman\grqq{} (ebenso wie \glqq  the old fisherman\grqq{}) im Englischen als \glqq  noun-phrase\grqq{} (NP) bezeichnen. \glqq  fishes\grqq{} würde (zusammen mit jeglichen Zusätzen wie \glqq  fishes very good\grqq{} oder \glqq  fishes fish\grqq{} als \glqq  verb-phrase\grqq{} (VP) gekennzeichnet. Diese Bezeichnungen dienen in kontextfreien Grammatiken als linke Seite von Produktionsregeln, wie im folgenden Abschnitt genauer dargestellt wird.
+Die meisten Ansätze verleihen der internen Struktur nun verschiedene Bezeichnungen, abhängig von der oben gezeigten Klammerung. Somit würde man \textit{\glqq  the fisherman\grqq{}} (ebenso wie \textit{\glqq  the old fisherman\grqq{}}) im Englischen als \textit{\glqq  noun-phrase\grqq{}} (NP) bezeichnen. \textit{\glqq  fishes\grqq{}} würde (zusammen mit jeglichen Zusätzen wie etwa \textit{\glqq  fishes very good\grqq{}} oder \textit{\glqq  fishes fish\grqq{}} als \textit{\glqq  verb-phrase\grqq{}} (VP) gekennzeichnet. Diese Bezeichnungen dienen in kontextfreien Grammatiken als linke Seite von Produktionsregeln, wie im folgenden Abschnitt genauer dargestellt wird.
 
 \subsection{Kontextfreie Grammatiken}
-Kontextfreie Grammatiken stammen aus dem Bereich der Theoretischen Informatik und werden dargestellt durch ein Tupel mit 4 verschiedenen Komponenten:
+Kontextfreie Grammatiken stammen aus dem Bereich der theoretischen Informatik \cite{bw84} und werden durch ein Tupel mit 4 verschiedenen Komponenten dargestellt:
 
 \begin{enumerate}
-\item Eine Menge nicht-terminaler Symbole (wie z.B. NP oder VP aus dem vorherigen Abschnitt)
-\item Eine Menge terminaler Symbole (die Wörter aus denen später die Zeichenkette bestehen wird, also \glqq  the\grqq{}, \glqq  old\grqq{}, \glqq  fisherman\grqq{} und \glqq  fishes\grqq{})
-\item Eine Menge sogenannter Produktionsregeln mit folgenden Eigenschaften:
+\item \textit{Eine Menge nicht-terminaler Symbole} (wie z.B. NP oder VP aus dem vorherigen Abschnitt)
+\item \textit{Eine Menge terminaler Symbole} (die Wörter, aus denen später die Zeichenkette bestehen wird, also \glqq  the\grqq{}, \glqq  old\grqq{}, \glqq  fisherman\grqq{} und \glqq  fishes\grqq{})
+\item \textit{Eine Menge von \glqq Produktionsregeln \grqq{}} mit folgenden Eigenschaften:
 \begin{enumerate}
 \item Eine Regel besteht aus einer linken und einer rechten Seite, getrennt durch einen Pfeil ($\rightarrow$).
 \item Auf der linken Seite befindet sich genau ein nicht-terminales Symbol.
 \item Auf der rechten Seiten befindet sich mindestens ein Symbol (terminal oder nicht-terminal).
 \end{enumerate}
-\item Das Startsymbol (konventionell \glqq  S\grqq{}), welches zu den nicht-terminalen Symbolen gehört
+\item \textit{Das Startsymbol} (konventionell \glqq  S\grqq{}), welches zu den nicht-terminalen Symbolen gehört)
 \end{enumerate}
 
-Es ist zu beachten, dass in kontextfreien Grammatiken generell das leere Wort $\varepsilon$ als terminales Symbol mit eingeschlossen ist. Aus linguistischer Sicht verkompliziert dies jedoch nur die Grammatiken und kann daher bezüglich NLP ausgeschlossen werden (es ließe sich außerdem auch zu jeder kontextfreien Grammatik eine schwach-äquivalente Grammatik erzeugen, welche das leere Wort nicht beinhaltet).
+Es ist zu beachten, dass in kontextfreien Grammatiken generell das leere Wort $\varepsilon$ als terminales Symbol mit eingeschlossen ist. Aus linguistischer Sicht verkompliziert dies jedoch nur die Grammatiken und kann daher bezüglich NLP ausgeschlossen werden. Es ließe sich außerdem auch zu jeder kontextfreien Grammatik eine schwach-äquivalente Grammatik erzeugen, welche das leere Wort nicht beinhaltet)
 
 Man spricht von einer linksbündigen bzw. rechtsbündigen Grammatik, wenn alle nicht-terminalen Symbole ganz links bzw. rechts auf der rechten Seite der Regel stehen (also in der Form \glqq  NT$\rightarrow$NT t\grqq{} bzw \glqq  NT$\rightarrow$t NT\grqq{}). Diese Grammatiken sind jedoch schwach-äquivalent zu regulären Grammatiken, welche sich mit endlichen Automaten implementieren lassen. Dies ist jedoch für den Aufbau von natürlichen Sprachen nicht ausreichend. Der Ansatz, sich auf eine rechts- bzw. linksbündige Grammatik zu beschränken, um damit eine natürliche Sprache zu generieren, entfällt also sofort. 
 
-%\subsubsection{Beispiel einer kontextfreien Grammatik}
-Im folgenden wird die Funktionsweise kontextfreier Grammatiken anhand eines sehr simplen Beispiels dargestellt. Hierzu gelten die folgenden Produktionsregeln P (für spätere Erläuterungen durchnummeriert):
+\subsubsection{Beispiel einer kontextfreien Grammatik}
+Im folgenden wird die Funktionsweise kontextfreier Grammatiken anhand eines Beispiels dargestellt. Hierzu gelten die folgenden Produktionsregeln \textit{P} (für spätere Erläuterungen durchnummeriert):
 \newline
 \\
 \tt
@@ -437,7 +442,7 @@ Im folgenden wird die Funktionsweise kontextfreier Grammatiken anhand eines sehr
 
 \rm
 
-Außerdem stehe ein Lexikon die folgenden Wörter zur Verfügung:
+Außerdem stellt ein Lexikon die folgenden Wörter zur Verfügung:
 \newline
 \\
 \tt
@@ -449,7 +454,7 @@ NP $\rightarrow$ he\\
 NP $\rightarrow$ fishermen\\
 \rm 
 \newline
-Die formale Darstellung dieser Grammatik sieht dann aus wie folgt:
+Die formale Darstellung dieser Grammatik sieht dann wie folgt aus:
 
 \begin{center}
 \tt
@@ -457,9 +462,9 @@ $G=(\lbrace S,VP,NP,\rbrace ,\lbrace can, fish, catch, he, fisherman\rbrace ,\lb
 \rm
 \end{center}
 
-Man beachte, dass \glqq  fish\grqq{} nur einmal bei den terminalen Symbolen auftaucht, obwohl es im Lexikon zwei mal aufgeführt ist (als verb und als noun-phrase). Diese Unterscheidung wird in der Grammatik jedoch lediglich durch die produzierende Regel vorgenommen, das terminale Symbol ist für beide Varianten zunächst gleich.
+Man beachte, dass \textit{\glqq  fish\grqq{}} nur einmal bei den terminalen Symbolen auftaucht, obwohl es im Lexikon zwei mal aufgeführt ist (als \textit{verb} und als \textit{noun-phrase}). Diese Unterscheidung wird in der Grammatik jedoch lediglich durch die produzierende Regel vorgenommen, das terminale Symbol ist für beide Varianten zunächst gleich.
 
-Die Möglichkeiten und Probleme der beschriebene Grammatik werden an den folgenden Beispielsätzen deutlich:
+Die Möglichkeiten und Probleme der beschriebenen Grammatik werden an den folgenden Beispielsätzen deutlich:
 \\
 
 \tt
@@ -468,13 +473,13 @@ Die Möglichkeiten und Probleme der beschriebene Grammatik werden an den folgend
 \glqq  Fishermen can fish fish\grqq{}
 \rm
 
-Klammert man den ersten Satz entsprechend der Grammatik kommt man zu folgendem Ergebnis:\\
+Klammert man den ersten Satz entsprechend der Grammatik, kommt man zu folgendem Ergebnis:\\
 
 \tt 
 (S(NP he)(VP(V can)(VP(V fish))))\\
 \rm
 
-Somit kann man, indem man die Klammern von außen nach innen durchgeht die verwendeten Regeln und ihre Reihenfolge ermitteln, in diesem Fall also 1., 4. und dann 2.. (Dies lässt sich jedoch sehr viel übersichtlicher darstellen, wie in einem späteren Abschnitt aufgezeigt wird.)
+Somit können, indem man die Klammern von außen nach innen durchgeht, die verwendeten Regeln und ihre Reihenfolge ermittelt werden. In diesem Fall ergibt sich 1., 4. und dann 2.. (Dies lässt sich jedoch übersichtlicher darstellen, wie in einem späteren Abschnitt aufgezeigt wird.)
 
 Der gleiche Satz ließe sich aber auch leicht anders klammern:\\
 
@@ -482,10 +487,11 @@ Der gleiche Satz ließe sich aber auch leicht anders klammern:\\
 (S(NP he)(VP(V can)(NP fish)))\\
 \rm
 
-Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass \glqq  fish\grqq{} als noun-phrase statt verb interpretiert wird , was jedoch auf semantischer Ebene keinerlei Sinn ergibt und daher eigentlich nicht möglich sein sollte. Entfernt man die 3. Produktionsregel jedoch aus der Grammatik, so lassen sich andere, durchaus sinnvolle Sätze, wie der zweite Beispielsatz \glqq  He can catch fish\grqq{} nicht mehr herstellen. Dies gilt ebenfalls für den dritten Beispielsatz \glqq  Fishermen can fish fish\grqq{}, welcher nur Sinn ergibt, solange \glqq  fish\grqq{} als verb und als noun-phrase interpretiert werden kann.
+Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass \glqq  fish\grqq{} als \textit{noun-phrase} statt \textit{verb} interpretiert wird, was jedoch auf semantischer Ebene keinerlei Sinn ergibt und daher eigentlich nicht möglich sein sollte. Entfernt man die 3. Produktionsregel jedoch aus der Grammatik, so lassen sich andere, durchaus sinnvolle Sätze, wie der zweite Beispielsatz \textit{\glqq  He can catch fish\grqq{}} nicht mehr herstellen. Dies gilt ebenfalls für den dritten Beispielsatz \textit{\glqq  Fishermen can fish fish\grqq{}}, welcher nur Sinn ergibt, solange \textit{\glqq  fish\grqq{}} als \textit{verb} und als \textit{noun-phrase} interpretiert werden kann.
 
-Die Struktur eines geparsten Satzes lässt sich auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen. Ein Pars-Baum zu dem oben genannten Beispiel sähe beispielsweise aus wie folgt:
-\begin{figure}
+\subsubsection{Pars-Bäume}
+Die Struktur eines geparsten Satzes lässt sich auch übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen. Ein Pars-Baum zu dem oben genannten Beispiel sähe beispielsweise wie folgt aus:
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture}
 \node (a) {S};
@@ -507,35 +513,34 @@ Die Struktur eines geparsten Satzes lässt sich auch etwas übersichtlicher dars
 \draw (f)--(h);
 \draw (h)--(i);
 \end{tikzpicture}
-\caption{Parsbaum von \glqq  He can fish\grqq{}}
+\caption{Parsbaum von \textit{\glqq  He can fish\grqq{}}}
 \end{center}
 \end{figure}
 
-Da auf der linken Seite einer Produktionsregel der kontextfreien Grammatiken immer nur ein nicht-terminales Symbol steht, lässt sich hier eine Regel pro Elternknoten ablesen. Das S wir in NP und VP aufgeteilt, das NP wird widerum zum terminalen Symbol \textit{\glqq  He\grqq{}} usw. entsprechend der definierten Produktionsregeln. Alle Blätter (Knoten ohne Kindknoten) des Baumes sind jeweils ein Wort und bilden somit zusammen den erzeugten Satz \textit{\glqq  He can fish.\grqq{}}. 
+Da auf der linken Seite einer Produktionsregel der kontextfreien Grammatiken immer nur ein nicht-terminales Symbol steht, lässt sich hier eine Regel pro Elternknoten ablesen. Das \textit{S} wird in \textit{NP} und \textit{VP} aufgeteilt, das \textit{NP} wird wiederum zum terminalen Symbol \textit{\glqq  He\grqq{}} usw. entsprechend der definierten Produktionsregeln. Alle Blätter (Knoten ohne Kindknoten) des Baumes sind dann jeweils ein Wort und bilden somit zusammen den erzeugten Satz \textit{\glqq  He can fish.\grqq{}}. 
 
 \subsection{Zufallsgenerierung mit kontextfreien Grammatiken}
-
 Ähnlich zu den endlichen Zustandswandlern sind auch kontextfreie Grammatiken bidirektional und können somit nicht nur zum Parsen, sondern auch für die Generierung von Sätzen verwendet werden. 
 Ein naiver Zufallsalgorithmus könnte dabei auf einer Liste ausgeführt werden und die folgenden Schritte verwenden:
 
 \begin{enumerate}
 \item Wähle ein nicht-terminales Symbol aus der Liste (zufällig oder z.B. der Reihenfolge nach).
 \item Wähle zufällig eine Produktionsregel der Grammatik mit dem gewählten Symbol auf der linken Seite und führe sie aus. 
-\item Ersetze in der Liste das gewählte Symbol durch die rechte Seite der gewählten Produktionsregel
-\item Wiederhole 1., 2. und 3. bis keine nicht-terminalen Symbole übrig sind. 
+\item Ersetze in der Liste das gewählte Symbol durch die rechte Seite der gewählten Produktionsregel.
+\item Wiederhole 1., 2. und 3., bis keine nicht-terminalen Symbole übrig sind. 
 \item Durchlaufe die Liste und speichere die Inhalte der Listenelemente in eine gemeinsame Zeichenkette. Diese Zeichenkette ist der zufällig generierte Satz. 
 \end{enumerate}
 
-Mit dem beschriebenen Verfahren lassen sich zweifellos Sätze generieren, jedoch können diese sowohl Fehler enthalten, als auch in vielen Fällen unendlich lang werden. Dies lässt sich beides mit der in 2.5.3 beschriebenen Grammatik demonstrieren. 
+Mit dem beschriebenen Verfahren lassen sich zweifellos Sätze generieren, jedoch können diese sowohl Fehler enthalten, als auch in vielen Fällen unendlich lang werden. Dies lässt sich beides mit der in 2.5.2 beschriebenen Grammatik demonstrieren. 
 
-Fehlerhafte Generierung: Wegen der Bidirektionalität der kontextfreien Grammatik geht mit der gezeigten Möglichkeit, falsch zu interpretieren, auch die Möglichkeit einher, falsch zu generieren. Man beachte etwa, dass sich der fehlerhafte Satz \glqq  He fish can\grqq{} genauso generieren ließe wie der korrekte Satz \glqq  He can fish\grqq{}.
+\textit{Fehlerhafte Generierung}: Aufgrund der Bidirektionalität der kontextfreien Grammatik geht mit der gezeigten Möglichkeit, falsch zu interpretieren, auch die Möglichkeit einher, falsch zu generieren. Man beachte etwa, dass sich der fehlerhafte Satz \textit{\glqq  He fish can\grqq{}} genauso generieren ließe wie der korrekte Satz \textit{\glqq  He can fish\grqq{}}.
 
-Unbegrenzte Sätze: Wie in der natürlichen Sprache lassen sich theoretisch unendlich lange Sätze formulieren. Bei der Mensch-Mensch-Kommunikation kommt dies nicht vor, kann jedoch die Terminierung eines Zufallsalgorithmus abhängig von den verwendeten Regeln für lange Zeit verhindern. So kann in der verwendeten kontextfreien Grammatik schon allein durch die vierte Produktionsregel eine unendlich lange Folge von Verben generiert werden.
+\textit{Unbegrenzte Sätze}: Wie in der natürlichen Sprache lassen sich theoretisch unendlich lange Sätze formulieren. Bei der Mensch-Mensch-Kommunikation kommt dies nicht vor, kann jedoch die Terminierung eines Zufallsalgorithmus abhängig von den verwendeten Regeln für lange Zeit verhindern. So kann in der verwendeten kontextfreien Grammatik schon allein durch die vierte Produktionsregel eine unendlich lange Folge von Verben generiert werden.
 
 \subsection{Anwendung Chart-Parsing}
-Wie anhand des Parsbaums zu einer zugehörigen Grammatik erkennbar ist, ist es nicht nur möglich, anhand von Produktionsregeln Sätze zu generieren, sondern diese (Teil-)Sätze aufsteigend nach den erzeugenden Regeln aufzuschlüsseln. Aus kontextfreien Grammatiken lassen sich jedoch Sätze erzeugen, die semantisch betrachtet weniger Sinn ergeben, als andere. Auch kann es passieren, dass man in eine Sackgasse läuft, da keine passende Produktionsregel mehr existiert, und dann backtracking erforderlich ist. Der Einsatz und die Konstruktion eines Parsers, der diese Besonderheiten berücksichtigt, werden im Folgenden anhand des bekannten Beispielsatzes \textit{they can fish} erläutert.
+Wie anhand des Parsbaums zu einer zugehörigen Grammatik erkennbar ist, ist es nicht nur möglich, anhand von Produktionsregeln Sätze zu generieren, sondern diese (Teil-)Sätze aufsteigend nach den erzeugenden Regeln aufzuschlüsseln. Aus kontextfreien Grammatiken lassen sich jedoch Sätze erzeugen, die semantisch betrachtet weniger Sinn ergeben, als andere. Auch kann es passieren, dass man in eine Sackgasse läuft, da keine passende Produktionsregel mehr existiert, und dann \textit{backtracking} erforderlich ist. Der Einsatz und die Konstruktion eines Parsers, der diese Besonderheiten berücksichtigt, werden im Folgenden anhand des bekannten Beispielsatzes \textit{they can fish} erläutert.
 
-Da die Anwendung der Produktionsregeln hintereinander erfolgt, muss daher festgehalten werden, welche Regeln bisher zum Einsatz gekommen sind. Für die Implementierung ist diese Speicherung zur Reduzierung der Programmlaufzeit erforderlich. Anhand dieser bekannten Informationen kann dann rekursiv mithilfe von dynamischer Programmierung die Generation von Sätzen erfolgen und alle möglichen Regeln werden erfasst. Es lässt sich daran ein Suchbaum für den Einsatz der Grammatik ableiten. 
+Da die Anwendung der Produktionsregeln hintereinander erfolgt, muss festgehalten werden, welche Regeln bisher zum Einsatz gekommen sind. Für die Implementierung ist diese Speicherung zur Reduzierung der Programmlaufzeit erforderlich. Anhand dieser bekannten Informationen kann dann rekursiv mithilfe von dynamischer Programmierung die Generierung von Sätzen erfolgen und alle möglichen Regeln werden erfasst. Es lässt sich daran ein Suchbaum für den Einsatz der Grammatik ableiten. 
 
 Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Knoten und fügt sukzessive die Regeln zwischen den möglichen Satzteilen in Form von Kanten hinzu. Kanten stellen die bis dahin angewandten Produktionsregeln dar, indem sie diese als \textit{$mother_{category}$} enthalten und können verschieden weit entfernte Knoten links und rechts verbinden. Kanten besagen also, als welche grammatikalischen Komponenten die verbundenen Knoten verstanden werden können. Gemäß \cite{cop04} besteht eine Kante aus:
 \\
@@ -544,8 +549,9 @@ Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Kn
 \rm
 \\
 
-Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: \\
-\begin{figure}
+Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel in Abbildung 2.3.
+
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture}[shorten >=2pt,auto,node distance=4cm]
 	  \node[draw,shape=circle] (a) at (1,0) {1};
@@ -560,7 +566,10 @@ Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Be
 \caption{Initialisierung des kontextfreien Parsings für \glqq  they can fish\grqq{}}
 \end{center}
 \end{figure}
-Initialisiert wird mit einer leeren Menge von Kanten zwischen den bekannten Knoten. Der Algorithmus terminiert, wenn eine Kante zwischen Anfangs- und Endknoten gefunden wurde. Dies bedeutet, dass alle dazwischen liegenden Teilregeln ebenfalls gefunden wurden; der Suchbaum ist dann vollständig. Nach dem Durchlauf liegen dann alle möglichen Kanten, das heißt alle Teil- und Gesamtdeutungen des Satzes, vor. Begonnen wird mit mit den ersten Knoten; diese werden dann mittels Kanten direkt nach den Regeln der Grammatik verbunden und nach und nach kommen weitere Kanten bis zum n-ten Wort hinzu. Wenn mehrere Kanten von erstem zu letztem Wort existieren, deutet dies dann auf eine Mehrdeutigkeit hin, da die Kanten dann verschiedene Produktionsregeln enthalten. Der Algorithmus sieht dann wie folgt aus:
+
+Initialisiert wird mit einer leeren Menge von Kanten zwischen den bekannten Knoten. Der Algorithmus terminiert, wenn eine Kante zwischen Anfangs- und Endknoten gefunden wurde. Dies bedeutet, dass alle dazwischen liegenden Teilregeln ebenfalls gefunden wurden; der Suchbaum ist dann vollständig. Nach dem Durchlauf liegen dann alle möglichen Kanten, das heißt alle Teil- und Gesamtdeutungen des Satzes, vor. 
+
+Begonnen wird mit mit den ersten Knoten; diese werden dann mittels Kanten direkt nach den Regeln der Grammatik verbunden und nach und nach kommen weitere Kanten bis zum n-ten Wort hinzu. Wenn mehrere Kanten von erstem zu letztem Wort existieren, deutet dies dann auf eine Mehrdeutigkeit hin, da die Kanten dann verschiedene Produktionsregeln enthalten. Der Algorithmus sieht wie folgt aus \cite{cop04}:
 \begin{enumerate} \tt
 \item 
 ChartParse: \\
@@ -580,7 +589,7 @@ for each Regel linkeSeite -> $r_{1}-r_{n}$ einer cat aus der Grammatik \\
 zur Verbindung zwischen zwei Knoten enthält, also $to_{1}=from_{2}$ usw.)\tt \\
 \hspace*{.2cm} For each Menge von Kanten, neueKante $from_{1},to,linkeSeite,id_{1}-id$ \rm(also alle Kanten weiter unterteilen)
 \end{enumerate}
-Bei Eingabe des Beispielsatzes würde die Ergebnistabelle aus \cite{cop04} folgende Kanten als Einträge beinhalten:
+Bei Eingabe des Beispielsatzes würde die Ergebnistabelle die folgenden Kanten als Einträge beinhalten:
 
 \begin{center}
 \tt
@@ -602,8 +611,8 @@ $id$ & $knoten_{links}$ & $knoten_{rechts}$ & $mother$ & $daughters$ \\
 \captionof{table}{Parsing-Tabelle gemäß Grammatikregeln aus \cite{cop04}}
 \end{center}
 
-Wie sich nun erkennbar ist, lässt sich anhand der mit S beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jeder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alle möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie folgt visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake \cite{cop04} in Kapitel 4.8):
-\begin{figure}
+Wie sich nun erkennbar ist, lässt sich anhand der mit \textit{S} beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jeder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alle möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie in Abb. 2.4 visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake \cite{cop04} in Kapitel 4.8).
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture} [shorten >=2pt,auto,node distance=4cm]
       \node[state] (q1) {0};
@@ -633,36 +642,39 @@ Wie sich nun erkennbar ist, lässt sich anhand der mit S beginnenden Einträge a
 \end{figure}
 
 \subsection{Mängel kontextfreier Grammatiken}
-Die Umsetzung der Modellierung von Sprache auf Basis kontextfreier Grammatiken ist mit einigen Problemem verbunden. Zunächst scheint es vorteilhaft, wenn durch die Rekursion alle möglichen Teildeutungen erfasst werden. Davon sind jedoch nicht alle sinnvoll und viele redundant. Es fällt auf, dass durch die Zerlegung in Teildeutungen durch Anwendung aller möglichen Regeln aus der Grammatik prinzipiell exponentiell viele Deutungen entstehen könnten. Teilweise würden auch grammatikalisch falsche Sätze akzeptiert, wenn nicht jeder Numerus, Kasus etc. eines Wortes als Terminalsymbol in der Menge an Produktionsregeln repräsentiert wird. In der obigen einfachen Grammatik wird \textit{\glqq  they fish\grqq{}} genau so wie \textit{\glqq  it fish\grqq{}} akzeptiert. 
+Die Umsetzung der Modellierung von Sprache auf Basis kontextfreier Grammatiken ist mit einigen Problemen verbunden. Zunächst scheint es vorteilhaft, wenn durch die Rekursion alle möglichen Teildeutungen erfasst werden. Davon sind jedoch nicht alle sinnvoll und viele redundant. Es fällt auf, dass durch die Zerlegung in Teildeutungen durch Anwendung aller möglichen Regeln aus der Grammatik prinzipiell exponentiell viele Deutungen entstehen könnten (wie oben erwähnt). Teilweise würden auch grammatikalisch falsche Sätze akzeptiert, wenn nicht jeder Numerus, Kasus etc. eines Wortes als Terminalsymbol in der Menge an Produktionsregeln repräsentiert wird. In der obigen einfachen Grammatik wird \textit{\glqq  they fish\grqq{}} genau so wie \textit{\glqq  it fish\grqq{}} akzeptiert. 
 
 Ferner werden Zusammenhänge aus Wörtern, die sich inhaltlich aufeinander beziehen, nicht abgebildet und nicht aus dem Kontext erfasst. Manche Verben erscheinen etwa ohne Berücksichtigung des Satzobjektes für den Menschen eher sinnlos. Der Teilsatz \textit{\glqq  Tom erwartet\grqq{}} scheint unvollständig, die richtige Deutung von Zusammenhängen \textit{\glqq  Tom erwartet Max\grqq{}} schließt den Kontext des Teilsatzes ein.
 
-Eine Möglichkeit zur Lösung wird in Abschnitt 3.6 und 3.7 behandelt, indem die Kongruenz einer Formulierung ebenso wie Ansätze der Semantik bei der Deutung berücksichtigt werden. Dies ist mittels einfacher Produktionsregeln nicht möglich.
+Eine Möglichkeit zur Lösung wird in Abschnitt 2.7 und 2.8 behandelt, indem die Ansätze der Semantik bei der Deutung berücksichtigt werden. Dies ist mittels einfacher Produktionsregeln nicht möglich.
 
 \section{Parsen mit constraint-basierten Grammatiken}
-Wie zuvor an verschiedenen Beispielen demonstriert wurde, weisen die kontextfreien Grammatiken beim Parsen und Generieren einige Schwächen auf. Daher wird im folgenden Abschnitt ein neuer, komplexerer Ansatz vorgestellt, um sich mit den gleichen Problemen zu befassen. Kontextfreie Grammatiken können als constraint-basiert interpretiert werden, diese Bezeichnung ist jedoch üblicherweise mächtigeren Grammatiken vorbehalten. Constraint-basierte Grammatiken sind in NLP weit verbreitet und werden mit sogenannten feature-structures (Eigenschaftsstrukturen) dargestellt, daher auch oft feature-structure (FS) Grammatik genannt. Im folgenden Abschnitt soll die Umsetzung solch einer Grammatik durch FSs demonstriert werden.
+Wie zuvor an verschiedenen Beispielen demonstriert wurde, weisen die kontextfreien Grammatiken beim Parsen und Generieren einige Schwächen auf. Daher wird im folgenden Abschnitt ein neuer, komplexerer Ansatz vorgestellt, um sich mit den gleichen Problemen zu befassen. 
 
-FSs sind Graphen, welche große Ähnlichkeit zu Baumstrukturen aufweisen. Dabei haben sie  folgende Eingenschaften zu erfüllen:
+Kontextfreie Grammatiken können als constraint-basiert interpretiert werden, diese Bezeichnung ist jedoch üblicherweise mächtigeren Grammatiken vorbehalten. Constraint-basierte Grammatiken sind in NLP weit verbreitet und werden mit sogenannten \textit{feature-structures} (Eigenschaftsstrukturen) dargestellt, daher auch oft feature-structure (FS)-Grammatik genannt. Im folgenden Abschnitt soll die Umsetzung solch einer Grammatik durch \textit{FS} demonstriert werden.
+
+FSs sind Graphen, welche große Ähnlichkeit zu Baumstrukturen aufweisen. Dabei haben sie folgende Eingenschaften zu erfüllen:
 
 \begin{enumerate}
-\item Verbundenheit und einzelne Wurzel: jede FS hat genau eine Wurzel und alle anderen Knoten haben mindestens einen Elternknoten.
-\item Einzigartigkeit der Eigenschaften: Knoten können einen beliebigen Ausgangsgrad haben, dabei muss jedoch jede Kante eine einzigartige Eigenschaft beschreiben sein.
-\item Keine Kreise: kein Knoten darf direkt oder indirekt auf einen seiner Elternknoten zeigen. 
-\item Werte: Nur Endknoten, also Knoten mit dem Ausgangsgrad 0, dürfen einen Wert enthalten. 
-\item Endlichkeit: jede FS hat nur eine endliche Anzahl von Knoten.
+\item \textit{Verbundenheit und einzelne Wurzel}: jede FS hat genau eine Wurzel und alle anderen Knoten haben mindestens einen Elternknoten.
+\item \textit{Einzigartigkeit der Eigenschaften}: Knoten können einen beliebigen Ausgangsgrad haben, dabei muss jedoch jede Kante eine einzigartige Eigenschaft beschreiben sein.
+\item \textit{Keine Kreise}: kein Knoten darf direkt oder indirekt auf einen seiner Elternknoten zeigen. 
+\item \textit{Werte}: Nur Endknoten, also Knoten mit dem Ausgangsgrad 0, dürfen einen Wert enthalten. 
+\item \textit{Endlichkeit}: jede FS hat nur eine endliche Anzahl von Knoten.
 \end{enumerate}
 
-Ein Weg entlang von Eigenschaften wird als Pfad bezeichnet. Eigenschaften sind entweder atomar oder zusammengesetzt, abhängig davon, ob sie auf einen Endknoten, oder auf einen weiteren nicht-Endknoten zeigen.
-Eine FS \textit{FS1} ist der FS \textit{FS2} untergeordnet, wenn \textit{FS2} mehr Informationen beinhaltet als \textit{FS1}. Dies wird durch die folgenden zwei Bedingungen sichergestellt:
+Ein Weg entlang von Eigenschaften wird als \textit{Pfad} bezeichnet. Eigenschaften sind entweder atomar oder zusammengesetzt, abhängig davon, ob sie auf einen Endknoten oder auf einen weiteren nicht-Endknoten zeigen.
+Eine FS \textit{FS1} ist der FS \textit{FS2} untergeordnet, wenn \textit{FS2} mehr Informationen beinhaltet als \textit{FS1}. Dies wird durch die folgenden Bedingungen sichergestellt:
 
 \begin{enumerate}
 \item Für jeden Pfad \textit{P} in \textit{FS1} gibt es einen gleichen Pfad \textit{P} in \textit{FS2}. Wenn \textit{P} in \textit{FS1} auf den Wert \textit{v} zeigt, so zeigt er auch in \textit{FS2} auf den Wert \textit{v}.
 \item Jedes Paar von Pfaden \textit{P} und \textit{Q} mit Eintrittsinvarianz in \textit{FS1} habt auch Eintrittsinvarianz in \textit{FS2}.
 \end{enumerate}
 
-Die genaue Bedeutung der oben genannten Eigenschaften und Bedingungen soll anhand von Abbildungen und Beispielen genauer dargestellt werden. 
+Die genaue Bedeutung der oben genannten Eigenschaften und Bedingungen wird nun anhand von Abbildungen und Beispielen genauer dargestellt. 
 
-In dem folgenden, \cite{cop04} entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{\glqq  CAT\grqq{}} für die Wortkategorie und \textit{\glqq  AGR\grqq{}} für agreement (zu deutsch \glqq  Kongruenz\grqq{}), teilt, welche jeweils auf die Endknoten mit den Werten \textit{\glqq  noun\grqq{}} (für Nomen) und \textit{\glqq  sg\grqq{}} (für Singular) zeigen. Die Eigenschaften \textit{\glqq  CAT\grqq{}} und \textit{\glqq  AGR\grqq{}} sind also atomar.
+\subsection{Feature-Structures zur Modellierung}
+In dem folgenden, \cite{cop04} entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{\glqq  CAT\grqq{}} für die Wortkategorie und \textit{\glqq  AGR\grqq{}} für \textit{agreement} (zu deutsch \glqq  Kongruenz\grqq{}), teilt, welche jeweils auf die Endknoten mit den Werten \textit{\glqq  noun\grqq{}} (für Nomen) und \textit{\glqq  sg\grqq{}} (für Singular) zeigen. Die Eigenschaften \textit{\glqq  CAT\grqq{}} und \textit{\glqq  AGR\grqq{}} sind also atomar.
 
 \begin{figure}[h!]
 \begin{center}
@@ -674,7 +686,7 @@ In dem folgenden, \cite{cop04} entnommenen Beispiel ist eine FS abgebildet, die 
 \draw[thick, ->] (a) to node[midway, above] {CAT} (b);
 \draw[thick, ->] (a) to node[midway, above, right] {AGR} (c);
 \end{tikzpicture}
-\caption{FS eines Nomens im Singular \cite{cop04}}
+\caption{FS eines Nomens im Singular nach \cite{cop04}}
 \end{center}
 \end{figure}
 
@@ -693,11 +705,12 @@ Fügt man wie in der nächsten Abbildung vor der Wurzel eine weitere Eigenschaft
 \draw[thick, ->] (a) to node[midway, above, right] {AGR} (c);
 \draw[thick, ->] (d) to node[midway, above] {HEAD} (a);
 \end{tikzpicture}
-\caption{FS eines Nomens im Singular als HEAD zusammengefasst \cite{cop04}}
+\caption{FS eines Nomens im Singular als HEAD zusammengefasst, nach \cite{cop04}}
 \end{center}
 \end{figure}
 
-Solche Strukturen lassen sich kompakter als attribute-value matrices (Attribut-Wert Matrizen, AVMs) aufschreiben. Die oben abgebildeten FSs sind wie folgt abzubilden:
+\subsection{AVM-Notation und Grammatikregeln}
+Solche Strukturen lassen sich auch kompakter als \textit{attribute-value matrices} (Attribut-Wert Matrizen, \textit{AVM}) aufschreiben. Die oben abgebildeten FSs sind wie folgt abzubilden:
 \\
 \begin{figure}[h!]
 \begin{displaymath}
@@ -724,7 +737,7 @@ AGR & []
 
 In FSs ist es möglich, dass mehrere Pfade den gleichen Endknoten erreichen, was als Eintrittsinvarianz bezeichnet wird. Sollte dies bei einem Endknoten zutreffen, so wird dessen Wert durch einen eingeklammerten Integer dargestellt. Der numerische Wert dieses Integers ist irrelevant, da er als Platzhalter für einen tatsächlichen grammatikalischen Wert verwendet wird. Dabei ist zu beachten, dass dann für gleiche Integer auch der gleiche Wert eingesetzt wird.
 
-In der folgenden Abbildung sind Eintrittsinvarianz und FSs als AVMs dargestellt:
+In Abbildung 2.4 sind Eintrittsinvarianz und FSs als AVMs dargestellt.
 \\
 \begin{table}[h]
 \centering
@@ -759,9 +772,9 @@ G & [0]
 \caption{Eintrittsinvarianz als FSs und AVM \cite{cop04}}
 \end{table}
 
-Üblicherweise werden bei dem Umgang mit FSs viele zunächst simple FSs zu größeren vereint, um später aus einzelnen Wörtern korrekte, zusammenhängende Sätze oder Satzteile zu bilden. Diese Vereinigung (oder \textit{unification}) erlaubt es, alle Informationen der einzelnen FSs zu kombinieren. Leere eckige Klammern ([]) stehen dabei für einen bisher nicht spezifizierten Wert, welcher später gewählt und dann konsistent verwendet werden muss. Das genaue Vorgehen soll an dem folgenden Beispiel veranschaulicht werden:
+Üblicherweise werden bei dem Umgang mit FSs viele zunächst simple FSs zu größeren vereint, um später aus einzelnen Wörtern korrekte, zusammenhängende Sätze oder Satzteile zu bilden. Diese Vereinigung (\textit{unification}) erlaubt es, alle Informationen der einzelnen FSs zu kombinieren. Leere eckige Klammern ([]) stehen dabei für einen bisher nicht spezifizierten Wert, welcher später gewählt und dann konsistent verwendet werden muss. Das genaue Vorgehen soll an dem folgenden Beispiel veranschaulicht werden.
 \\
-
+\subsubsection{Beispiel zu Constraint-basierter Grammatik in AVMs}
 Die unten beschriebene constraint-basierte Grammatik fügt zusätzlich zu den Wortkategorien in der in 3.6.2 verwendeten Grammatik die Kongruenz zu den Produktionsregeln hinzu. Somit wird nicht nur auf die entsprechende Kategorie wie Verb oder Nomen, sondern auch auf die Multiplizitäten \textit{singular} und \textit{plural} geachtet. \newline
 \\
 \tt
@@ -806,7 +819,7 @@ CAT & VP \\
 AGR & [1] 
 \end{bmatrix}$ \\
 
-Diese AVM-Darstellung beinhaltet sowohl die erste, als auch die zweite Regel in der oben stehenden Grammatik, abhängig davon, ob der Platzhalter \textit{\glqq  [1]\grqq{}} für den Wert \textit{\glqq  sg\grqq{}} (singular) oder \textit{\glqq  pl\grqq{}} (plural) steht. Das Einsetzen des Werts gilt nur innerhalb der Regel, die [1] kann also problemlos auch in anderen Regeln als Platzhalter verwendet und dort durch andere Werte ersetzt werden.\\
+Diese AVM-Darstellung beinhaltet sowohl die erste, als auch die zweite Regel in der oben stehenden Grammatik, abhängig davon, ob der Platzhalter [1] für den Wert \textit{\glqq  sg\grqq{}} (singular) oder \textit{\glqq  pl\grqq{}} (plural) steht. Das Einsetzen des Werts gilt nur innerhalb der Regel, die [1] kann also problemlos auch in anderen Regeln als Platzhalter verwendet und dort durch andere Werte ersetzt werden.\\
 
 $\begin{bmatrix} 
 CAT & VP \\
@@ -824,7 +837,7 @@ AGR & []
 
 Diese Regel enthält die gleichen Informationen wie die restlichen Produktionsregeln der obigen Grammatik, also 3., 4., 5. und 6., da für alle möglichen AGR-Werte von NP die nötige Produktionsregel existiert, solange die AGR-Werte von VP und V übereinstimmen. Die Regel ist also unabhängig von dem AGR-Wert bei NP, was es erlaubt, diesen Wert komplett unbelegt (\glqq  []\grqq{}) zu lassen.
 
-Die einzelnen Wörter bzw. Lexikoneinträge lassen sich durch simple AVMs wie folgt darstellen:\\
+Die einzelnen Wörter bzw. Lexikoneinträge lassen sich dann durch simple AVMs wie folgt darstellen:\\
 
 $\begin{bmatrix} 
 CAT & NP \\
@@ -851,12 +864,16 @@ AGR & [1]
 Da \textit{\glqq  He\grqq{}} als singular erkannt wird, ist es nötig, dass auch alle anderen Kinder, in diesem Falle also nur \glqq  fishes\grqq{}, ebenfalls die [1] durch den Wert \textit{sg} ersetzen können. Falls dies möglich ist, kann die Vereinigung durchgeführt werden, was dann der [1] der Mutter ebenfalls den Wert \textit{sg} zuweist. Falls mehrere Vereinigungen durchzuführen sind, so macht die Reihenfolge keinen Unterschied, da immer das gleiche Resultat erzielt wird. Das Gleiche gilt für den verwendeten Pars-Algorithmus. Der einzige Unterschied ist, dass hier einige Algorithmen in bestimmten Fällen terminieren und andere nicht. 
 
 Ohne eine entsprechende Produktionsregel wäre eine solche Vereinigung nicht möglich. Dies soll sowohl das Parsen, als auch Generieren von fehlerhaften Sätzen verhindern. In dem vorgestellten Beispiel reicht der Detailgrad der FSs jedoch nicht aus, um komplexere Sätze korrekt verarbeiten zu können.
-Außerdem können mangelnde oder fehlerhafte Informationen in den verwendeten Lexika (und den daraus folgenden Produktionsregeln) für falsche Resultate sorgen. So ist etwa \textit{\glqq  fishes\grqq{}} als singular gekennzeichnet, was es ermöglicht, den fehlerhaften Satz \textit{\glqq  I fishes\grqq{}} zu parsen. Um dies zu verhindern wäre es nötig, nicht nur die Multiplizität, sondern auch die Person zu berücksichtigen. Je komplexer die in den FSs verwendeten Informationen, desto genauer und fehlerfreier lassen sich Sätze damit verarbeiten. Von einer vollständigen Grammatik ist man jedoch wie bereits erwähnt weit entfernt. 
+Außerdem können mangelnde oder fehlerhafte Informationen in den verwendeten Lexika (und den daraus folgenden Produktionsregeln) für falsche Resultate sorgen. So ist etwa \textit{\glqq  fishes\grqq{}} als singular gekennzeichnet, was es ermöglicht, den fehlerhaften Satz \textit{\glqq  I fishes\grqq{}} zu parsen. Um dies zu verhindern ist es dann nötig, nicht nur die Multiplizitäten, sondern auch den Kasus zu berücksichtigen. Je komplexer die in den FSs verwendeten Informationen, desto genauer und fehlerfreier lassen sich Sätze damit verarbeiten. Von der Modellierung einer vollständigen Grammatik sind Linguisten jedoch, wie bereits erwähnt, weit entfernt. 
 
 \section{Lexikalische Semantiken und kontextbasierte Deutungen}
-Mithilfe der im letzten Abschnitt eingeführten FSs wurde eine Möglichkeit vorgestellt, Abhängigkeiten zwischen einzelnen Wörtern abzubilden. Abgesehen von der Syntax, die durch eine möglichst gute Modellierung der zugrundeliegenden Grammatik im Computer darstellbar wird, ist es die Semantik, die den \glqq  Sinn\grqq{} hinter einer Aussage repräsentiert. In NLP-Anwendungen wird dies häufig als \glqq  Logische Form\grqq{} oder \glqq  Logik einer Aussage\grqq{} umrissen (vgl. \cite{swb02}), wenn eine semantische Repräsentation eines Satzes erstellt werden soll. Einen Ansatz, um überhaupt solch einen Sinn abbilden zu können, bieten dabei die schon bekannten Feature Structures. Semantiken können theoretisch allesamt in einem Lexikon abgespeichert werden. Die korrekte Deutung kann dann anhand der bekannten Informationen aus der Semantik anderer Wörter bestimmt werden. Wenn man erneut das Problem von Verben mit und ohne erforderlichem Bezugswort betrachtet, damit diese Sinn ergeben, könnte diese Semantik als Erweiterung der FSs um die Argumente des Verbs erfolgen. Diese Repräsentation ist jedoch nur syntaktisch vollständig, sie erfasst beispielsweise keine der weiter unten genannten semantischen Feinheiten der Deutung. Es werden außerdem, logisch betrachtet, Quantoren benötigt, um das Ausmaß einer Aussage zu erfassen.
+Mithilfe der im letzten Abschnitt eingeführten FSs wurde eine Möglichkeit vorgestellt, Abhängigkeiten zwischen einzelnen Wörtern abzubilden. Abgesehen von der Syntax, die durch eine möglichst gute Modellierung der zugrundeliegenden Grammatik im Computer darstellbar wird, ist es die Semantik, die den \glqq  Sinn\grqq{} hinter einer Aussage repräsentiert. In NLP-Anwendungen wird dies häufig als \textit{\glqq  Logische Form\grqq{}} oder \textit{\glqq  Logik einer Aussage\grqq{}} umrissen (vgl. \cite{swb02}), wenn eine semantische Repräsentation eines Satzes erstellt werden soll. 
 
-Zu starke Spezifizierungen der Semantik führen jedoch auch dazu, dass Mehrdeutigkeiten nicht mehr erfasst werden können. Wenn man die Relationen von Wörtern etwa durch die klassische Aussagenlogik abbildet, müssen diese auch unterschiedliche Semantiken liefern können.
+Einen Ansatz, um überhaupt solch einen Sinn abbilden zu können, bieten dabei die schon bekannten \textit{Feature Structures}. Semantiken können theoretisch allesamt in einem Lexikon abgespeichert werden. Die korrekte Deutung kann dann anhand der bekannten Informationen aus der Semantik anderer Wörter bestimmt werden. 
+
+Wenn man erneut das Problem von Verben mit und ohne erforderlichem Bezugswort betrachtet, damit diese Sinn ergeben, könnte diese Semantik als Erweiterung der FSs um die Argumente des Verbs erfolgen. Diese Repräsentation ist jedoch nur syntaktisch vollständig, sie erfasst beispielsweise keine der weiter unten genannten semantischen Feinheiten der Deutung. Es werden außerdem, logisch betrachtet, Quantoren benötigt, um das Ausmaß einer Aussage zu erfassen.
+
+Zu starke Spezifizierungen der Semantik führen jedoch auch dazu, dass Mehrdeutigkeiten nicht mehr erfasst werden können. Wenn man die Relationen von Wörtern etwa durch die klassische Aussagenlogik abbildet, müssen diese auch unterschiedliche Semantiken liefern können:
 
 \tt
 Every man loves a woman.
@@ -872,16 +889,19 @@ Zu deutsch \textit{\glqq  Jeder Mann liebt...\grqq{}} ist semantisch mehrdeutig 
 Es stellt sich die Frage, ob hier also logisch betrachtet mehrere oder nur eine spezifische Frau gemeint ist. Die Regeln aus Symbolen der Aussagenlogik für die Semantik scheinen jedoch schon für den Menschen schwer erkennbar. In der Implementierung kann die Deutung eingeschränkt werden, wie im nächsten Abschnitt beleuchtet wird.
 
 \subsection{Meaning-Postulates und Vereinfachung}
-Gesamtzusammenhänge werden immer dann offensichtlich, wenn aus einem Teil mehr als nur das übersetzte Wort abgeleitet werden kann. Die Bedeutung wird immer dann klarer, wenn sich eine Aussage über den Zusammenhang treffen lässt. Umgangssprachlich nutzt man beim Herstellen solcher Zusammenhänge bestimmte Metainformationen, also Wissen, dass über die reine Wortbedeutung hinausgeht. Die Schlussfolgerung einer Bedeutung wird somit vereinfacht, da die Möglichkeiten eingeschränkt sind. Für die Abbildung von Semantik auf logische Formeln stellen die in Abschnitt 3.1.5 beschriebenen $\in_T$-Logiken einen Ansatz dar, dies zu formalisieren. Im folgenden werden daher zur Erläuterung Teile dieser Notation benutzt. Der Philosoph Rudolf Carnap hat schon 1952  untersucht, wie man den Sinn hinter dem geschriebenen Wort durch Vereinfachung erfassen kann. 
+Gesamtzusammenhänge werden immer dann offensichtlich, wenn aus einem Textteil mehr als nur das übersetzte Wort abgeleitet werden kann. Die Bedeutung wird immer dann klarer, wenn sich eine Aussage über den Zusammenhang mehrerer Wörter treffen lässt (Abschnitt 2.8). Umgangssprachlich nutzt man beim Herstellen solcher Zusammenhänge bestimmte Metainformationen, also Wissen, dass über die reine Wortbedeutung hinausgeht. Die Schlussfolgerung einer Bedeutung wird somit vereinfacht, da die Möglichkeiten eingeschränkt sind. 
+
+Für die Abbildung von Semantik auf logische Formeln stellen die in Abschnitt 2.1.5 beschriebenen $\in_T$-Logiken einen Ansatz dar, dies zu formalisieren. Im folgenden werden daher zur Erläuterung Teile dieser Notation benutzt. Der Philosoph Rudolf Carnap hat schon 1952  untersucht, wie man den Sinn hinter dem geschriebenen Wort durch Vereinfachung erfassen kann. 
 \begin{enumerate}
 \item \textit{Meaning-Postulates}: A beinhaltet B und C
 
 Mithilfe von \textit{Meaning-Postulates} können Thesen zur Deutung vorgenommen werden, etwa das Beispiel aus \cite{car52}:
 
 $\forall x[bachelor(x)\Rightarrow man(x)\bigwedge unmarried(x)]$
-sinngemäß: Ein Junggeselle ist ein Mann und nicht verheiratet.
 
-Es ist zu beachten, dass diese Thesen nicht allzu vereinfachend ausfallen und deren Korrektheit ist darüber hinaus nicht in jeder Situation gewährleistet. Naiv könnte man davon ausgehen, dass die obige These auch mit Äquivalenz statt nur Implikation eine korrekte Semantik bildet. \cite{car52} beobachtet etwa, dass die Eigenschaften rechts davon zwar auch für den Papst gelten, jedoch scheint die Deutung als Junggeselle recht unpassend.
+sinngemäß: \textit{Ein Junggeselle ist ein Mann und nicht verheiratet}.
+
+Es ist zu beachten, dass diese Thesen nicht allzu vereinfachend bzw. allgemein ausfallen dürfen. Deren Korrektheit ist darüber hinaus nicht in jeder Situation gewährleistet. Naiv könnte man davon ausgehen, dass die obige These auch mit Äquivalenz statt nur Implikation eine korrekte Semantik bildet. \cite{car52} beobachtet jedoch, dass dann die Eigenschaften rechts davon zwar auch für den Papst gelten, jedoch scheint die Deutung als Junggeselle recht unpassend.
 
 \item \textit{Hyponomy}: A ist ein B
 
@@ -890,7 +910,8 @@ Bei der Frage nach Zusammenhängen kommt unwillkürlich die Frage auf, welche Ei
 \tt
 Ein Hund ist ein Tier. 
 \rm
-also hat ein Hund auch alle Eigenschaften eines Tieres.
+
+Also hat ein Hund auch alle Eigenschaften eines Tieres.
 
 Durch Kategorisierung können verschiedene Ausprägungen  der gleichen Sache zusammengefasst werden; Die Erfassung von Hyponomien ist nach \cite{cop04} wesentlich für Semantiken in NLP.
 
@@ -904,26 +925,24 @@ Durch Kategorisierung können verschiedene Ausprägungen  der gleichen Sache zus
 
 Diese Vereinfachungen sind Ansätze zur verbesserten Erfassung der Semantik.  Jedoch stellt sich für die Praxis etwa die Frage, ob diese auch für Verben und Adjektive oder Nomen wie \textit{\glqq  Gedanke\grqq{}}, die sich schlecht verbildlichen lassen, getroffen werden können, ob es \glqq  Mehrfachvererbung\grqq{} (Hund als Haustier und als Vierbeiner) gibt, oder wo der Ursprung aller Kategorien liegt. Wenn Wörter einer Kategorie zugeordnet werden, können feine Nuancen zwischen verschiedenen Wörtern verloren gehen. 
 
-Einen Vorschlag, Wörter derart semantisch zu verknüpfen, stellt das Lexikon WordNet dar, das seit 1985 entwickelt wird \cite{mil95}. Innerhalb von WordNet werden Beziehungen von Wörtern anhand der obigen Kategorien nach Carnap getaggt, zusätzlich sind auch \textit{Troponomy} (Art und Weise) und \textit{Entailment} (Semantische Implikation) möglich. In Wordnet kann somit ein Netz von Wortbedeutungen zwischen allen Wörtern einer Sprache gebildet werden, um Semantiken aufzulösen und zu bewerten. 
+Einen Vorschlag, Wörter derart semantisch zu verknüpfen, stellt das Lexikon \textit{WordNet} dar, das seit 1985 entwickelt wird \cite{mil95}. Dieses beinhaltete ursprünglich nur Englisch, ist jedoch quelloffen und mittlerweile sind auch Deutsch und weitere Sprachen integriert. Innerhalb von WordNet werden Beziehungen von Wörtern anhand der obigen Kategorien nach Carnap getaggt, zusätzlich sind auch \textit{Troponomy} (Art und Weise) und \textit{Entailment} (Semantische Implikation) möglich. Es beinhaltet In Wordnet kann somit ein Netz von Wortbedeutungen zwischen allen Wörtern einer Sprache gebildet werden, um Semantiken aufzulösen und zu bewerten. 
+
+Das im letzten Abschnitt beschriebene NLP-Tool \textit{GATE} kann auf Funktionalitäten aus WordNet zugreifen und damit die Modellierung von Semantik umsetzen.
 
 \subsection{Umgang mit Semantik in der Anwendung}
-Es existieren Ansätze, Semantiken besser als durch einfache FSs zu erfassen, um etwa eine korrekte Negation in der Semantik abzubilden. Vorschläge aus den 1980er Jahren, mithilfe von Theorembeweisern und Model-Checking lexikalische Semantik zu modellieren, sind etwa in \cite{sb88} und \cite{kn85} zu finden. In diesen Arbeiten werden mächtigere logische Modelle zur Modellierung von Semantik skizziert. 
+Es existieren Ansätze, Semantiken besser als durch einfache FSs zu erfassen, um etwa eine korrekte Negation in der Semantik abzubilden. Vorschläge aus den 1980er Jahren, mithilfe von Theorembeweisern und Model-Checking lexikalische Semantik zu modellieren, sind etwa in \cite{sb88} und \cite{kn85} zu finden. In diesen Arbeiten werden mächtige logische Modelle zur Modellierung von Semantik skizziert. 
 
-Bei der korrekten Erfassung von Semantiken ist es nicht nur erforderlich, alle möglichen Semantiken vorher in einem Lexikon abzulegen, sondern auch, auf Basis der Textinformation eine davon als die wahrscheinlich richtige zu identifizieren. Die allgemeine Lösung dieses Problems ist AI-Vollständig. 
+Bei der korrekten Erfassung von Semantiken ist es nicht nur erforderlich, alle möglichen Semantiken vorher in einem Lexikon abzulegen, sondern auch, auf Basis der Textinformation eine davon als die wahrscheinlich richtige zu identifizieren. Die allgemeine Lösung dieses Problems ist AI-Vollständig \cite{cop04}, d.h. eine vollständige Lösung des Problems käme der Existenz einer tatsächlichen künstlichen Intelligenz gleich. 
 
-In der Implementierung bedarf es daher Möglichkeiten, überabzählbare Mehrdeutigkeiten und vage Formulierungen zu verhindern. Mögliche Semantiken müssen dahingehend beschränkt werden, dass das Problem dann nicht mehr AI-Vollständig ist, da immer eine eindeutige Lösung gefunden wird. Es wird also beispielsweise erfasst, in welchen Wortkombinationen ein mehrdeutiges Wort häufig auftritt, um eine Beziehung daraus abzuleiten. 
+In der Implementierung bedarf es daher Möglichkeiten, auch ohne K.I. überabzählbare Mehrdeutigkeiten und vage Formulierungen zu verhindern. Mögliche Semantiken müssen dahingehend beschränkt werden, dass das Problem dann nicht mehr AI-Vollständig ist, da immer eine eindeutige Lösung gefunden wird. Es wird also beispielsweise erfasst, in welchen Wortkombinationen ein mehrdeutiges Wort häufig auftritt, um eine Beziehung daraus abzuleiten, die mit hoher Wahrscheinlichkeit zutrifft. 
 
-Übersetzungsprogramme nutzen dies etwa aus, um eine sinnvolle Deutung des Eingabetextes für die Übersetzung zu erreichen. Taucht in einem Text etwa das Wort \textit{Bank} in Verbindung mit anderen Wörtern aus dem Finanzwesen auf, ist klar, dass ein \textit{Geldinstitut} gemeint ist. Die Deutung als \textit{Bank} als \textit{Sitzgelegenheit} wäre in Verbindung mit diesem Text dann unpassend, aber im Zusammenhang mit \textit{sitzen} naheliegend. 
+Übersetzungsprogramme nutzen dies etwa aus, um eine sinnvolle Deutung des Eingabetextes für die Übersetzung zu erreichen. Taucht in einem Text etwa das Wort \textit{Bank} in Verbindung mit anderen Wörtern aus dem Finanzwesen auf, ist klar, dass ein \textit{Geldinstitut} gemeint ist. Die Deutung als \textit{Bank} als \textit{Sitzgelegenheit} wäre in Verbindung mit diesem Absatz dann unpassend, aber im Zusammenhang mit \textit{sitzen} naheliegend. 
 
 Nach \cite{car52} existieren bei der Zuordnung einer Semantik eines Satzes in der Welt weitere Probleme, die durch mehrdeutige Semantik verursacht werden. Eines dieser Probleme ist \textit{Polysemy}. 
 
-Das bekannte Beispiel von \textit{Bank} (als Geldinstitut) vs. \textit{Bank} (als Parkbank) kann in der Regel durch die Herleitung der Semantik durch andere Wörter aufgelöst werden, da die Menge der Bedeutungen komplett disjunkt sind. Umso schwieriger wird es, wenn etwa eine dritte Bedeutung \textit{Bank} (als Spielbank im Casino) hinzukommt, deren Bedeutung sich inhaltlich mit der des Geldinstituts überschneidet. 
+Das bekannte Beispiel von \textit{Bank} (als Geldinstitut) vs. \textit{Bank} (als Parkbank) kann in der Regel durch die Herleitung der Semantik durch andere Wörter aufgelöst werden, da die Menge der Bedeutungen komplett disjunkt sind. Umso schwieriger wird es, wenn etwa eine dritte Bedeutung \textit{Bank} (als Spielbank im Casino) hinzukommt, deren Bedeutung sich inhaltlich mit der des Geldinstituts überschneidet (Visualisierung in Abb. 2.8). 
 
-Ein weiteres Beispiel ist etwa \textit{\glqq  Max mag Kartoffeln\grqq{}}, das eine rohe Kartoffel, Salzkartoffeln, Kartoffelpflanzen und mehr meinen kann. Die Spezifizierungen weisen zwar auch Gemeinsamkeiten auf, haben jedoch eine andere Bedeutung. Die Formulierung Kartoffel ist also vage.
-Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfache Zusammenhänge. In der Praxis begrenzt man die Semantik jedoch auch auf eine überschaubare Wissensbasis, genannt \textit{\glqq  Ontologie\grqq{}}, sodass der Kontext strikt vorgegeben und somit eindeutiger ist.
-
-\begin{comment}
-\begin{figure}
+\begin{figure}[h!]
 \begin{tikzpicture}
 \draw (3,0) circle (1.5cm) node {Geldinstitut};
 \draw (5.5,0) circle (1.5cm) node {im Casino};
@@ -931,14 +950,18 @@ Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfac
 \node at (0,1) {\glqq   Kontoführung\grqq{}};
 \node at (4.25,-3) {\textbf{Bank}};
 \node at (4.25,2) {\glqq   Gelddepot\grqq{}};
-\node at (9,1) {\glqq   Quelle für Spielchips\grqq{};
+\node at (9,1) {\glqq   Quelle für Spielchips\grqq{}};
 \end{tikzpicture}
 \caption{mögliche Bedeutungsmengen eines Polysems}
 \end{figure}
-\end{comment}
+
+Ein weiteres Beispiel ist etwa \textit{\glqq  Max mag Kartoffeln\grqq{}}, das eine rohe Kartoffel, Salzkartoffeln, Kartoffelpflanzen und mehr meinen kann. Die Spezifizierungen weisen zwar auch Gemeinsamkeiten auf, haben jedoch eine andere Bedeutung. Die Formulierung \textit{Kartoffel} ist also vage.
+Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfache Zusammenhänge. In der Praxis begrenzt man die Semantik jedoch auch auf eine überschaubare Wissensbasis, genannt \textit{\glqq  Ontologie\grqq{}}, sodass der Kontext strikt vorgegeben und somit eindeutiger ist.
 
 \subsection{Auflösung von Mehrdeutigkeiten durch Semantiken}
-Wie bereits beschrieben, stellen Mehrdeutigkeiten bei unbegrenzter Anwendungsdomöne ein ernstzunehmendes Problem dar, da schlicht zu viele mögliche Deutungen existieren. In der Praxis sammelt man daher Fachwissen aus der Problemdomäne und speichert es in Form von Ontologien zu Wissensbasen ab. Der Prozess der Auflösung von Mehrdeutigkeiten wird als Word-Sense-Disambiguation (kurz WSD) bezeichnet. Frühe WSD-Systeme basierten noch auf von Hand eingetragenen Deutungen (vgl. POS-Tagging). Heutige Systeme auf Basis von Machine-Learning können jedoch auf Basis eines kleinen Semantik-Corpus entweder selbstständig neue Bedeutungen erlernen oder verfügen über ein gesondertes Lexikon von ausführlichen Informationen zur Auflösung von Mehrdeutigkeiten. 
+Wie bereits beschrieben, stellen Mehrdeutigkeiten bei unbegrenzter Anwendungsdomöne ein ernstzunehmendes Problem dar, da schlicht zu viele mögliche Deutungen existieren. In der Praxis sammelt man daher Fachwissen aus der Problemdomäne und speichert es in Form von Ontologien zu Wissensbasen ab.
+
+Der Prozess der Auflösung von Mehrdeutigkeiten wird als \textit{Word-Sense-Disambiguation} (kurz \textit{WSD}) bezeichnet. Frühe WSD-Systeme basierten noch auf von Hand eingetragenen Deutungen (vgl. POS-Tagging). Heutige Systeme auf Basis von Machine-Learning-Verfahren können jedoch auf Basis eines kleinen Semantik-Corpus entweder selbstständig neue Bedeutungen erlernen oder verfügen über ein gesondertes Lexikon von ausführlichen Informationen zur Auflösung von Mehrdeutigkeiten. 
 
 Wortkombinationen, in denen mehrdeutige Wörter auftauchen, werden als \textit{Collocation} bezeichnet. Die syntaktische Analyse identifiziert alle Wörter, die auf das mehrdeutige Wort bezogen sind. Mithilfe der syntaktischen Analyse können dann die klaren Bedeutungen zugeordnet werden, wie das Beispiel aus \cite{cop04} zeigt:
 
@@ -950,20 +973,21 @@ Bass guitars are common.
 
 Die Mehrdeutigkeit liegt darin, dass es sich nach dem Lesen des ersten Satzes um gestreifte Barsche, oder um gestreifte Bass(-gitarren) handeln kann. Collocation untersucht nun, ob bass noch in anderen Phrasen auftaucht (bass guitars ist eindeutig).
 
-Für die Erstellung eines Lexikons, mit dessen Hilfe mehrere Bedeutungen zugeordnet werden können, ist Collocation hilfreich. Machine Translation kann damit automatisiert Mehrdeutigkeiten erlernen, jedoch ist die Fehlerquote ohne Einschränkung recht groß und Wörter können auch uneindeutig erscheinen. Yarowsky beschreibt in \cite{yar95} solch ein Verfahren zur Sammlung von Mehrdeutigkeiten, genannt \textit{Unsupervised Learning}, wie folgt: 
+\subsubsection{Algorithmus von Yarowsky zum Erlernen von Collocations}
+Für die Erstellung eines Lexikons, mit dessen Hilfe mehrere Bedeutungen zugeordnet werden können, ist Collocation hilfreich. Machine-Learning kann damit automatisiert Mehrdeutigkeiten erlernen, jedoch ist die Fehlerquote ohne Einschränkung recht groß und Wörter können auch uneindeutig erscheinen. Yarowsky beschreibt in \cite{yar95} grundsätzlich solch ein Verfahren zur Sammlung von Mehrdeutigkeiten, genannt \textit{Unsupervised Learning}, wie folgt: 
 
 \begin{enumerate}
 \item Zunächst werden alle Sätze, indem das mehrdeutige Wort auftaucht, aus dem Text aufgelistet.
-\item Collocations aus dem Wort mit völlig unterschiedlicher Bedeutung des Bezugswortes werden als aufgelöst gekennzeichnet. Die möglichen Deutungen werden in das Lexikon eingetragen. Diese meinen eindeutig immer etwas Anderes, da der Sachzusammenhang anders ist.
-\item Eine decision list wird erstellt, die die noch nicht aufgelösten Stellen, an denen das Wort auftaucht, zu den in 2. ermittelten Bedeutungen einordnet. Dabei wird die Wahrscheinlichkeit der Zugehörigkeit ermittelt. Dies kann etwa der nächste Abstand zu einer eindeutig identifizierten Semantik sein.
+\item Collocations aus dem Wort mit völlig unterschiedlicher Bedeutung des Bezugswortes werden als aufgelöst gekennzeichnet. Die möglichen Deutungen werden in das Lexikon eingetragen. Diese meinen eindeutig immer etwas Anderes, da der Sachzusammenhang anders ist (Bässe und Barsche).
+\item Eine decision list wird erstellt, die die noch nicht aufgelösten Stellen, an denen das Wort auftaucht, zu den in 2. ermittelten Bedeutungen einordnet. Dabei wird die Wahrscheinlichkeit der Zugehörigkeit ermittelt. Dies kann etwa der kleinste Abstand zu einer eindeutig identifizierten Semantik sein.
 \item Die Einträge aus der decision list mit der höchsten Wahrscheinlichkeit werden auf jeden EIntrag angewendet. Dabei wird unterhalb einer Toleranzgrenze festgelegt, die festlegt, ab welcher Abweichung von der Wahrscheinlichkeit die Zuordnung noch nicht eindeutig ist. 
 \item Ab Schritt drei wird solange wiederholt, bis alle Wörter einer Bedeutung zugeordnet wurden.
 \end{enumerate} 
 
-Ähnlich wie die eingangs vorgestellten Corpora zur Sammlung von Syntax, stellt solch ein Lexikon dann eine Ontologie dar, also eine Sammlung von Wissen. Implentierungsbeispiele aus \cite{col11} erläutern, wie die Zuordnung von Bedeutungen zu Wörtern (Semantic Role Labelling) und die Darstellung von Wissensverknüpfungen in Vektoren erfolgt. Allgemeines Wissen über die Welt sollte dabei ebenso Teil der Wissensbasis sein, wie fachspezifisches Wissen aus der Anwendungsdomäne. Dieses tiefere Wissen kann dann zur Auflösung von Mehrdeutigkeiten herangezogen werden.
+Ähnlich wie die eingangs vorgestellten Corpora zur Sammlung von Syntax, stellt solch ein Lexikon dann eine Ontologie dar, also eine Sammlung von Wissen. Implentierungsbeispiele aus \cite{col11} erläutern, wie die Zuordnung von Bedeutungen zu Wörtern (\textit{Semantic Role Labelling}) und die Darstellung von Wissensverknüpfungen in Vektoren erfolgt. Allgemeines Wissen über die Welt sollte dabei ebenso Teil der Wissensbasis sein, wie fachspezifisches Wissen aus der Anwendungsdomäne. Dieses tiefere Wissen kann dann zur Auflösung von Mehrdeutigkeiten herangezogen werden.
 
 \section{Kontext}
-In vielen Fällen ist für ein semantisches Verständnis von natürlicher Sprache der Kontext ausschlaggebend. Der folgende Abschnitt beschäftigt sich mit kontextabhängigen Informationen, deren Auswirkung und Extraktion. 
+In vielen Fällen ist für ein semantisches Verständnis von natürlicher Sprache der Kontext ausschlaggebend. Kontext bezeichnet die Erfassung inhaltlicher Zusammenhänge von Wörtern in einem Text; Wörter können also kontextabhängige Bedeutungen und Belegungen haben. Der folgende Abschnitt beschäftigt sich mit kontextabhängigen Informationen, deren Auswirkung und Extraktion. 
 
 \subsection{Bezugsausdrücke}
 Viele Worte haben selbst keinen klaren semantischen Inhalt, nehmen jedoch Bezug auf andere Worte, über welche sie ihre Bedeutung erhalten. Dazu gehören beispielsweise Pronomen. Der Ausdruck \textit{\glqq  Er\grqq{}} hat keinerlei Ausdrucksstärke, wenn er sich nicht auf eine tatsächliche Instanz wie \textit{\glqq  Max Mustermann\grqq{}} beziehen kann.
@@ -972,29 +996,29 @@ Viele Worte haben selbst keinen klaren semantischen Inhalt, nehmen jedoch Bezug 
 Das ist Max Mustermann. Er ist glücklich.
 \rm
 
-Hier erhält das Pronomen \textit{\glqq  Er\grqq{}} dieselben semantischen Informationen wie \textit{Max Mustermann} und ließe sich ersetzen, ohne dass semantische Informationen verloren gehen. Man weiß also sofort, dass Max Mustermann glücklich ist. Für eine besseres Verständnis der Funktionsweise von Bezugsausdrücken sind zunächst die folgenden Begriffe zu klären:
+Hier erhält das Pronomen \textit{\glqq  Er\grqq{}} dieselben semantischen Informationen wie \textit{Max Mustermann} und ließe sich ersetzen, ohne dass semantische Informationen verloren gehen. Man weiß also sofort, dass Max Mustermann glücklich ist. Für ein besseres Verständnis der Funktionsweise von Bezugsausdrücken sind zunächst die folgenden Begriffe formal zu klären:
 
 \begin{enumerate}
-\item Referent/Bezug: Eine tatsächliche Instanz (in der echten Welt) auf die sich andere Satzteile beziehen (hier eine bestimmte Person)
-\item Beziehender Ausdruck: Ausdruck, der sich auf einen Referent bezieht (hier \glqq  Er\grqq{})
-\item Bezugswort: Teil des Textes auf den sich ein beziehender Ausdruck bezieht (hier Max Mustermann)
-\item Anaphora: Der Bezug auf einen Antezedent (hier würde man \glqq  Er\grqq{} als anaphorisch bezeichnen, da es sich auf den Antezedent Max Mustermann bezieht.) 
+\item \textit{Referent/Bezug}: Eine tatsächliche Instanz (in der echten Welt) auf die sich andere Satzteile beziehen (hier eine bestimmte Person)
+\item \textit{Beziehender Ausdruck}: Ausdruck, der sich auf einen Referent bezieht (hier \glqq  Er\grqq{})
+\item \textit{Bezugswort}: Teil des Textes auf den sich ein beziehender Ausdruck bezieht (hier Max Mustermann)
+\item \textit{Anaphora}: Der Bezug auf einen Antezedent (hier würde man \glqq  Er\grqq{} als anaphorisch bezeichnen, da es sich auf den Antezedent Max Mustermann bezieht.) 
 \end{enumerate}
 
-Üblicherweise wird in einem Text zunächst ein Referent über eine Bezugswort eingeführt und später über beziehende Ausdrücke referenziert. Es ist jedoch auch möglich, erst einen beziehenden Ausdruck zu verwenden und den Referent erst später zu erwähnen:
+Die Semantische Struktur eines Textes, d.h. inhaltliche Bezüge von Wörtern zu anderen wie etwa die Belegung von "Er" gemeint ist "Max", entsteht während des Lesens eines Textes. Üblicherweise wird in einem Text daher zunächst ein Referent über ein Bezugswort eingeführt und später über beziehende Ausdrücke referenziert. Es ist jedoch auch möglich, erst einen beziehenden Ausdruck zu verwenden und den Referenten erst später zu erwähnen:
 
 \tt
 Weil er so glücklich war, musste Max lachen.
 \rm
 
-Es ist für Pronomen möglich auf keinerlei Referent zu verweisen. Diese Pronomen werden als pleonastisch bezeichnet und üblicherweise verwendet und einen generellen Zustand zu beschreiben:
+Es ist für Pronomen auch möglich, auf keinerlei Referenten zu verweisen. Diese Pronomen werden als \textit{pleonastisch} bezeichnet und üblicherweise verwendet, um einen generellen Zustand zu beschreiben:
 
 \tt 
 Es ist schönes Wetter, weil es nicht regnet.
 \rm
 
 \subsection{Kohärenz}
-Sätze müssen eine inhaltliche Verbindung haben um kohärent zu sein. Einzelne Sätze können abgeschlossen sein, jedoch irritieren, wenn sie hintereinander stehen. 
+Sätze müssen eine inhaltliche Verbindung haben, um kohärent (inhaltlich verbunden) zu sein. Einzelne Sätze können zwar einzeln abgeschlossen sein, jedoch irritiert diese Konstellation, wenn sie hintereinander stehen. 
 
 \tt 
 Das ist Max Mustermann. Tom ist glücklich.
@@ -1004,15 +1028,14 @@ Fügt man einen Satz mit verbindender Funktion hinzu, so mag es zwar ungewöhnli
 
 \tt 
 Das ist Max Mustermann. Er hat Tom ein Fahrrad geschenkt. Tom ist glücklich.
-\rm
-
-Kohärenz kann maßgeblich Einfluss auf die Bedeutung eines Satzes nehmen:
+\\ \rm
+Kohärenz kann maßgeblich Einfluss auf die inhaltliche Aussage eines Satzes nehmen, wenn die Bedeutung des einzelnen Teilsatzes unklar ist:
 
 \tt Max ist ein Freund von Tom. Er hat ihm ein Fahrrad geschenkt. 
 
 \rm
 
-Zwei verschiedenen valide Interpretationen sind:
+Zwei verschiedene valide Interpretationen sind:
 
 \begin{enumerate}
 \item Max hat Tom ein Fahrrad geschenkt, weil sie Freunde sind.
@@ -1023,22 +1046,22 @@ Zwei verschiedenen valide Interpretationen sind:
 In vielen Fällen kann ein beziehender Ausdruck auf verschiedene zuvor eingeführte Referenten verweisen. Hierbei sind die folgenden Regeln zu beachten:
 
 \begin{enumerate}
-\item Nähe: Das nähere Bezugswort ist üblicherweise der Referent. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Tom}.\\
-\tt Max hat ein Fahrrad. Tom hat auch ein Fahrrad. Er leiht es manchmal Tim.
+\item \textit{Nähe}: Das nähere Bezugswort ist üblicherweise der Referent. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Tom}.\\
+\tt Max hat ein Fahrrad. Tom hat auch ein Fahrrad. \\Er leiht es manchmal Tim.
 \rm
-\item Grammatikalische Rolle: Man geht von einem Bezug auf Subjekte, dann Objekte und dann erst andere Satzteile aus. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Max}.\\
+\item \textit{Grammatikalische Rolle}: Man geht von einem Bezug auf Subjekte, dann Objekte und dann erst auf andere Satzteile aus. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Max}.\\
 \tt
 Max fährt mit Tom Fahrrad. Er ist sehr schnell.
 \rm
-\item Wiederholtes Erwähnen: Ein wiederholtes Bezugswort ist höchstwahrscheinlich der Referent. \textit{\glqq  Er\grqq{}} bezieht sich also üblicherweise auf \textit{Tom}.\\
+\item \textit{Wiederholtes Erwähnen}: Ein wiederholtes Bezugswort ist höchstwahrscheinlich der Referent. \textit{\glqq  Er\grqq{}} bezieht sich also üblicherweise auf \textit{Tom}.\\
 \tt
 Tom fährt Fahrrad. Max fährt mit Tom. Er ist sehr schnell.
 \rm
-\item Parallelismus: Bezugswörter mit gleicher oder ähnlicher Funktion wie der beziehende Ausdruck werden bevorzugt. \textit{\glqq  ihn\grqq{}} bezieht sich also auf \textit{Tom}. \\
+\item \textit{Parallelismus}: Bezugswörter mit gleicher oder ähnlicher Funktion wie der beziehende Ausdruck werden bevorzugt. \textit{\glqq  ihm\grqq{}} bezieht sich also auf \textit{Tom}. \\
 \tt
-Max fährt mit Tom Fahrrad. Morgen fährt Tim mit ihm Auto.
+Max fährt mit Tom Fahrrad. Tim fährt morgen mit ihm Auto.
 \rm
-\item Kohärenzeffekte: Der Inhalt des Kontextes kann entgegen der obigen Regeln den Bezug auf einen bestimmten Referent nahelegen. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Tom}, da Hilfsbereitschaft als Erklärung dienen kann, warum andere ihn mögen.\\
+\item \textit{Kohärenzeffekte}: Der Inhalt des Kontextes kann entgegen der obigen Regeln den Bezug auf einen bestimmten Referenten nahelegen. \textit{\glqq  Er\grqq{}} bezieht sich also auf \textit{Tom}, da Hilfsbereitschaft als eine Erklärung dienen kann, warum andere \textit{Tom} mögen.\\
 \tt
 Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 \rm
@@ -1296,7 +1319,7 @@ Die eigentliche Textanalyse mit GATE findet durch einzelne Module aus dem CREOLE
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.7]{GATE_Bilder/CREOLE.jpg}
+\includegraphics[scale=0.8]{GATE_Bilder/CREOLE.jpg}
 \caption{Auflistung der installierten Plugins aus verschiedenen Ordnern}
 \end{center}
 \end{figure} 
@@ -1324,7 +1347,7 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.8]{GATE_Bilder/ANNIE2.jpg}
+\includegraphics[scale=0.7]{GATE_Bilder/ANNIE2.jpg}
 \caption{Standard ANNIE-Verarbeitungskomponenten}
 \end{center}
 \end{figure}
@@ -1344,13 +1367,9 @@ GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Vera
 \subsubsection{Konfigurierbarkeit}
 In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Einzelne Module können verschoben, gelöscht oder neu hinzugefügt werden. Innerhalb der Programm-GUI lassen sich direkt einzelne Modulparameter auf einen Wert einstellen. Der Grad der Individualisierbarkeit ist jedoch von Modul zu Modul unterschiedlich, je nach Implementierung und Anwendungsgebiet des Moduls. Beispielsweise benötigt der JAPE-Transducer eine Grammatik aus einer Datei als Eingabe, die anzuwendende Regeln für Taggings enthält. Diese muss dabei bei jedem Programmstart neu ausgewählt werden.
 
-Zu 1.: GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate). Um Text in GATE verarbeiten zu können, muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein leerer Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. GATE verwaltet auf diese Weise dann alle Informationen über den Text mittels des GDM. Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.\\
-
-Zu 2.: GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{ANNIE Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung. Innerhalb der Verarbeitungskette kommunizieren die Mudule die neu gewonnenen Informationen als XML-Dateien an den GDM mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Da es sich grundsätzlich um XML Dateien in Klartext handelt und nicht etwa um verpackte Objekte mit Attributen, lässt sich der Inhalt auch durch Nutzer nachvollziehen.\\
-
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=1.0]{GATE_Bilder/POSTagger.jpg}
+\includegraphics[scale=0.8]{GATE_Bilder/POSTagger.jpg}
 \caption{Einstellbare Modulparameter des POS-Taggers \\ Hier können etwa Pfade für Input- und Output-Daten angegeben werden}
 \end{center}
 \end{figure} 
@@ -1406,7 +1425,7 @@ Die Benutzeroberflächengestaltung von GATE ist sehr simpel gehalten und verzich
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.8]{GATE_Bilder/GUI-Ausschnitt.jpg}
+\includegraphics[scale=1]{GATE_Bilder/GUI-Ausschnitt.jpg}
 \caption{Ausschnitt des GATE-GUI}
 \end{center}
 \end{figure}
@@ -1517,5 +1536,6 @@ Im kommenden Jahr werden wir im Rahmen einer Bachelorarbeit GATE verwenden, um i
 \bibitem[CU97]{cu97}Cunningham, Hamish, et al. \glqq   GATE–a TIPSTER-based general architecture for text engineering.\grqq{}  Proceedings of the TIPSTER Text Program (Phase III). Vol. 6. 1997
 \bibitem[CU02]{cu02}Cunningham, Hamish. \glqq   GATE, a general architecture for text engineering.\grqq{}  Computers and the Humanities 36.2 (2002): 223-254.
 \bibitem[DO18]{do18} https://docs.oracle.com/javase/8/docs/technotes/guides/security/overview/jsoverview.html, aufgerufen am 14.10.2018
+\bibitem[BW84]{bw84} Alan Bundy, Lincoln Wallen. "Context-free grammar." Catalogue of Artificial Intelligence Tools. Springer, Berlin, Heidelberg, 1984. 22-23.
 \end{thebibliography}
 \end{document}
