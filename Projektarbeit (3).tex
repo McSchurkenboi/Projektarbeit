@@ -113,11 +113,13 @@ Heutige Entwicklungen im Bereich Sprachassistenzsysteme sind alltäglicher Begle
 \subsection{NLP als Annäherung an natürlichsprachliche Probleme}
 Bereits bei der Mensch-Mensch-Kommunikation sind  Verständigungsprobleme vorhandenen und treten unwillkürlich auf. Die Intention einer Aussage ist etwa nicht nur abhängig von dem, was tatsächlich gesagt wird, sondern auch etwa von Gestik, Mimik und der Situation, in der kommuniziert wird. Bei der Untersuchung von geschriebenem Text in natürlicher Sprache treten diese Betrachtungen jedoch in den Hintergrund, da der Inhalt im Vordergrund steht und mitunter die Situation des Autoren unklar oder irrelevant ist. Wissen aus der Domäne ist jedoch zwingend für das Verständnis spezifischer Fachbegriffe von Nöten, daher müssen auch automatische NLP-Tools diese einbeziehen können. Zudem gibt es oft Veränderungen der Bedeutung von Sprache die stark kontextabhängig sind, wie zum Beispiel Sarkasmus oder Ironie. Auch verändern Worte im Laufe der Zeit ihre Bedeutung oder durch Rechtschreibreformen ihr Aussehen. Hier soll nicht weiter auf Aspekte der Kommunikationswissenschaften eingegangen werden, jedoch ist beispielsweise die Ambiguität einer Aussage ganz alltäglich und hat gleichsam verschiedene Auswirkungen. Solche Mehrdeutigkeiten können syntaktische und semantische Fehlinterpretationen verursachen. \cite{wei89}
 
+\subsubsection{Probleme für die Implementierung}
 Wo sich Menschen dabei im Zweifel auf Erfahrungen und spezifische Fachkenntnisse verlassen oder bei ihrem Kommunikationspartner nachfragen können, müssen sich Computer allein auf die vorliegenden Dokumente in Schriftform verlassen; sie wissen nichts über den Kontext des Dokuments. Wie später gezeigt wird, kann jedoch etwa Fachwissen durch domänenspezifische Wissensbasen (siehe Abschnitt 3.8.2) simuliert werden. 
 
 Die Frage nach einer intelligenten, algorithmen- und / oder wissensbasierten Auswertung durch Computer stellt sich im Angesicht der aufgezeigten Besonderheiten natürlicher Sprache. Es gilt also, für NLP nicht nur die Probleme zu lösen, die generell mit präziser Automatisierung verbunden sind, sondern zusätzlich so zuverlässig wie möglich die oben genannten und der Sprache inhärenten Komplikationen zu bewältigen. 
-Bereits einfache Anfragen können computergestützte Frage-Antwort-Systeme wie SQL-Datenbanken an ihre Grenzen bringen, wie die verschiedenen Formen von Mehrdeutigkeit zeigen können:
+Bereits einfache Anfragen können computergestützte Frage-Antwort-Systeme wie SQL-Datenbanken an ihre Grenzen bringen, wie die verschiedenen Formen von Mehrdeutigkeit zeigen können.
 
+\subsubsection{Beispiele sprachlicher Besonderheiten}
 Schon das Wort \textit{überblicken} kann das Übersehen von etwas, ebenso wie das im Blick haben (Gegenteil) bedeuten.
 
 Der Satz \textit{\glqq   Die Betrachtung des Studenten\grqq{}} kann etwa als Student, der (etwas) betrachtet, oder als ein Student, der (von jemand anderem) betrachtet wird, verstanden werden. Sätze mit solch einem Satzbau (bestehend aus nominalisiertem Verb, Bezugswort und Substantiv) verursachen unwillkürlich zwei mögliche Deutungen aufgrund der unklaren Syntax.
@@ -209,18 +211,18 @@ Für eine präzise morphologische Analyse bedarf es 3 verschiedener Lexika, um m
 Die Affix-Liste könnte in einen Präfix- und einen Suffix-Teil getrennt werden, welche jeweils das Affix und die oben beschriebenen Informationen als formatierten Text enthalten, in etwa wie folgt (Suffix-Teil):
 \\
 \tt
-ed PAST\_VERB\\
+\\ed PAST\_VERB\\
 ed PSP\_VERB\\
 s PLURAL\_NOUN\\
-\rm
+\\ \rm
 \textit{PAST\_VERB}, \textit{PSP\_VERB} und \textit{PLURAL\_NOUN} beinhalten die durch den jeweiligen Suffix hinzugefügten Informationen über das Wort. 
 
 Ähnlich verhält es sich mit der Auflistung der unregelmäßigen Formen. Das Affix wird hier durch die unregelmäßige Form ersetzt und es ist zu beachten, dass es nötig ist, zu den in 1. vorhandenen Informationen auch den Referenz-Stamm anzugeben, in etwa wie folgt:
 \\
 \tt
-began PAST\_VERB begin\\
+\\began PAST\_VERB begin\\
 begun PSP\_VERB begin\\
-\rm
+\\ \rm
 \textit{\glqq  Began\grqq{}} und \textit{\glqq  begun\grqq{}} sind hier jeweils die \glqq  PAST\_VERB\grqq{}- und \glqq  PSP\_VERB\grqq{} (past participle)-Form des Referenzstammes \textit{\glqq  begin\grqq{}}.
 
 Um unnötige Fehler zu vermeiden ist es ratsam, zusätzlich ein Lexikon mit Wortstämmen zu verwenden, welches die Wortstämme und eine grammatikalische Einordnung beinhaltet. Dies hat hauptsächlich zwei Gründe: 
@@ -278,7 +280,7 @@ Solche Regelmäßigkeiten werden in Form von sogenannten \textit{corpora} gelief
 
 Die Anwendung eines Corpus auf ein natürlichsprachliches Dokument ermöglicht sogleich auch eine Vorhersage der nächsten Wörter bzw. Sprachbausteine, nachdem schon ein Teilsatz gelesen wurde. Diese \textit{prediction} kann auf Basis bekannter Regelmäßigkeiten also schon vor der Wortanalyse recht genau die nächste grammatikalische Komponente bzw. den Worttyp vorhersagen.
 
-\subsection{N-gram Modelle zur Sprachvorhersage und -modellierung}
+\subsection{N-gram Modelle zur Sprachvorhersage und\\ -modellierung}
 Auf Basis der vorliegenden Corpora existieren eine Vielzahl an Regeln bezüglich des Satzbaus und bekannnter Folgen von Worttypen, wenn ein neues Dokument annotiert werden soll. Zur Veranschaulichung einer möglichen Annotation soll in diesem Abschnitt die Notation \cite{clw7} für Annotationen genutzt werden.
 
 Bei erneuter Betrachtung des obigen Beispiels \textit{\glqq  Ich fahre Fahrrad.\grqq{}} könnte dieses, wenn dieser Satz als minimaler Corpus vorliegt, neben der Regel Subjekt-Prädikat-Objekt eines Satzbaus auch beinhalten, dass der Punkt ein Satzende markiert und das Substantive und Satzanfänge mit einem Großbuchstaben beginnen (\glqq  Fahrrad\grqq{} ist gemäß der Morphologie ein Nomen und ist groß geschrieben). Sprachvorhersage nutzt diese bekannten Regeln und würde etwa aus der obigen Regel herleiten, das, wenn ein Verb gelesen wurde, darauf immer ein Substantiv bzw. das Satzobjekt folgt. POS-Tagging macht sich diese Beobachtungen durch Berechnung von Wahrscheinlichkeiten bei der Annotation von Wortfolgen zunutze. 
@@ -297,7 +299,7 @@ Als Beispiel dazu soll hier zunächst ein Bigramm zur tatsächlichen Wortvorhers
 Zwischen einzelnen Äußerungen wird der Platzhalter <s> als Indikator einer neuen Aussage verwendet, sodass dem Bigramm nun eine Zeichenkette mit den obigen Aussagen getrennt durch \tt <s> \rm zur Verfügung steht. Nun wird die mögliche Wortkombinatorik aus dem Corpus extrahiert, indem Kombinationen gezählt werden. Berechnet werden nun die Wahrscheinlichkeiten des Folgewortes auf Basis der vorherigen, formal ausgedrückt: \begin{align}
 \frac{C(w_{n-1} w_{n})}{\sum{w}{}C(w_{n-1}w)}
 \end{align}
-
+\begin{table}[h!]
 \tt
 \begin{tabular}{lll}
 Sequenz & Anzahl & $P(w_{n}|P(w_{n-1})$ \\
@@ -320,15 +322,17 @@ Morgen <s> & 1 & 1 \\
 Abend & 1 & \\
 Abend <s> & 1 & 1\\
 \end{tabular}
-\captionof{table}{Wahrscheinlichkeitstabelle Bigram zur Wortvorhersage}
 \rm
+\caption{Wahrscheinlichkeitstabelle Bigram zur Wortvorhersage}
+\end{table}
+
 Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Wortes nach einem gelesenen Wort ablesen. Auf \glqq  ich mag\grqq{} folgt insgesamt einmal \glqq  Züge\grqq{} und einmal \glqq  guten\grqq{}. Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes \glqq  Züge\grqq{} mit $P(\glqq  $Züge$\grqq{}|$\glqq  ich mag\grqq{}$)$ = 50\% berechnet werden.
 
 \subsection{Stochastisches POS-tagging}
 Neben der Möglichkeit, einzelne Wörter vorherzusagen, eignen sich n-Gramme wie oben erwähnt auch zur Darstellung der Wahrscheinlichkeiten von Satzbausteinen, also der von Platzhaltern für alle möglichen Wörter einer Kategorie bzw. Komponente. Stochastisches Part-of-speech tagging kann anhand dieser die Wahrscheinlichkeiten vorhersagen, welcher Worttyp folgen wird. Die Trainingsdaten sind, nach Best-Practices aus dem maschinellen Lernen, in der Regel manuell und durch Benutzer markiert worden, damit dem Programm ein korrekter Datensatz zur Verfügung steht. Auf Basis eines Corpus können somit Mehrdeutigkeiten durch den syntaktischen Zusammenhang eindeutig aufgelöst werden. In einem Beispiel mit syntaktischer Ambiguität werden jedoch Wörter zunächst verschieden annotiert.
 Das tagset von CLAWS 7 annotiert Wortkategorien wie folgt:
 
-\begin{table}[h]
+\begin{table}[h!]
 \tt
 \begin{tabular}{ll}
 PPIS2	& 1st person plural subjective personal pronoun \\
@@ -482,7 +486,7 @@ Der gleiche Satz ließe sich aber auch leicht anders klammern:\\
 Die Grammatik lässt in diesem Fall durch die 3. Produktionsregel zu, dass \glqq  fish\grqq{} als noun-phrase statt verb interpretiert wird , was jedoch auf semantischer Ebene keinerlei Sinn ergibt und daher eigentlich nicht möglich sein sollte. Entfernt man die 3. Produktionsregel jedoch aus der Grammatik, so lassen sich andere, durchaus sinnvolle Sätze, wie der zweite Beispielsatz \glqq  He can catch fish\grqq{} nicht mehr herstellen. Dies gilt ebenfalls für den dritten Beispielsatz \glqq  Fishermen can fish fish\grqq{}, welcher nur Sinn ergibt, solange \glqq  fish\grqq{} als verb und als noun-phrase interpretiert werden kann.
 
 Die Struktur eines geparsten Satzes lässt sich auch etwas übersichtlicher darstellen. Dies geschieht mit sogenannten Pars-Bäumen. Ein Pars-Baum zu dem oben genannten Beispiel sähe beispielsweise aus wie folgt:
-\begin{figure}
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture}
 \node (a) {S};
@@ -541,8 +545,8 @@ Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Kn
 \rm
 \\
 
-Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel: \\
-\begin{figure}
+Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel in Abb. 2.3. \\
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture}[shorten >=2pt,auto,node distance=4cm]
 	  \node[draw,shape=circle] (a) at (1,0) {1};
@@ -600,7 +604,7 @@ $id$ & $knoten_{links}$ & $knoten_{rechts}$ & $mother$ & $daughters$ \\
 \end{center}
 
 Wie sich nun erkennbar ist, lässt sich anhand der mit S beginnenden Einträge aus der Tabelle der Satz generieren, indem nacheinander die Produktionsregeln aus jeder Zeile angewendet werden. Es lässt sich jede mögliche Deutung ablesen, die die Grammatik zulässt. Der Algorithmus gibt als Ergebnis also alle möglichen Parsbäume in der Tabelle an. Das Ergebnis kann wie folgt visualisiert werden (Ein schrittweises Beispiel findet sich in der Arbeit von Ann Copestake \cite{cop04} in Kapitel 4.8):
-\begin{figure}
+\begin{figure}[h!]
 \begin{center}
 \begin{tikzpicture} [shorten >=2pt,auto,node distance=4cm]
       \node[state] (q1) {0};
@@ -659,6 +663,7 @@ Eine FS \textit{FS1} ist der FS \textit{FS2} untergeordnet, wenn \textit{FS2} me
 
 Die genaue Bedeutung der oben genannten Eigenschaften und Bedingungen soll anhand von Abbildungen und Beispielen genauer dargestellt werden. 
 
+\subsection{Feature-Structures zur Modellierung}
 In dem folgenden, \cite{cop04} entnommenen Beispiel ist eine FS abgebildet, die sich in zwei Eigenschaften, \textit{\glqq  CAT\grqq{}} für die Wortkategorie und \textit{\glqq  AGR\grqq{}} für agreement (zu deutsch \glqq  Kongruenz\grqq{}), teilt, welche jeweils auf die Endknoten mit den Werten \textit{\glqq  noun\grqq{}} (für Nomen) und \textit{\glqq  sg\grqq{}} (für Singular) zeigen. Die Eigenschaften \textit{\glqq  CAT\grqq{}} und \textit{\glqq  AGR\grqq{}} sind also atomar.
 
 \begin{figure}[h!]
@@ -694,6 +699,7 @@ Fügt man wie in der nächsten Abbildung vor der Wurzel eine weitere Eigenschaft
 \end{center}
 \end{figure}
 
+\subsection{AVM-Notation und Grammatikregeln}
 Solche Strukturen lassen sich kompakter als attribute-value matrices (Attribut-Wert Matrizen, AVMs) aufschreiben. Die oben abgebildeten FSs sind wie folgt abzubilden:
 \\
 \begin{figure}[h!]
@@ -947,6 +953,7 @@ Bass guitars are common.
 
 Die Mehrdeutigkeit liegt darin, dass es sich nach dem Lesen des ersten Satzes um gestreifte Barsche, oder um gestreifte Bass(-gitarren) handeln kann. Collocation untersucht nun, ob bass noch in anderen Phrasen auftaucht (bass guitars ist eindeutig).
 
+\subsubsection{Algorithmus von Yarowsky zum Erlernen von Collocations}
 Für die Erstellung eines Lexikons, mit dessen Hilfe mehrere Bedeutungen zugeordnet werden können, ist Collocation hilfreich. Machine Translation kann damit automatisiert Mehrdeutigkeiten erlernen, jedoch ist die Fehlerquote ohne Einschränkung recht groß und Wörter können auch uneindeutig erscheinen. Yarowsky beschreibt in \cite{yar95} solch ein Verfahren zur Sammlung von Mehrdeutigkeiten, genannt \textit{Unsupervised Learning}, wie folgt: 
 
 \begin{enumerate}
@@ -1293,7 +1300,7 @@ Die eigentliche Textanalyse mit GATE findet durch einzelne Module aus dem CREOLE
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.7]{GATE_Bilder/CREOLE.jpg}
+\includegraphics[scale=0.8]{GATE_Bilder/CREOLE.jpg}
 \caption{Auflistung der installierten Plugins aus verschiedenen Ordnern}
 \end{center}
 \end{figure} 
@@ -1321,7 +1328,7 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.8]{GATE_Bilder/ANNIE2.jpg}
+\includegraphics[scale=0.7]{GATE_Bilder/ANNIE2.jpg}
 \caption{Standard ANNIE-Verarbeitungskomponenten}
 \end{center}
 \end{figure}
@@ -1341,13 +1348,9 @@ GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Vera
 \subsubsection{Konfigurierbarkeit}
 In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Einzelne Module können verschoben, gelöscht oder neu hinzugefügt werden. Innerhalb der Programm-GUI lassen sich direkt einzelne Modulparameter auf einen Wert einstellen. Der Grad der Individualisierbarkeit ist jedoch von Modul zu Modul unterschiedlich, je nach Implementierung und Anwendungsgebiet des Moduls. Beispielsweise benötigt der JAPE-Transducer eine Grammatik aus einer Datei als Eingabe, die anzuwendende Regeln für Taggings enthält. Diese muss dabei bei jedem Programmstart neu ausgewählt werden.
 
-Zu 1.: GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate). Um Text in GATE verarbeiten zu können, muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein leerer Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. GATE verwaltet auf diese Weise dann alle Informationen über den Text mittels des GDM. Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.\\
-
-Zu 2.: GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{ANNIE Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung. Innerhalb der Verarbeitungskette kommunizieren die Mudule die neu gewonnenen Informationen als XML-Dateien an den GDM mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Da es sich grundsätzlich um XML Dateien in Klartext handelt und nicht etwa um verpackte Objekte mit Attributen, lässt sich der Inhalt auch durch Nutzer nachvollziehen.\\
-
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=1.0]{GATE_Bilder/POSTagger.jpg}
+\includegraphics[scale=0.8]{GATE_Bilder/POSTagger.jpg}
 \caption{Einstellbare Modulparameter des POS-Taggers \\ Hier können etwa Pfade für Input- und Output-Daten angegeben werden}
 \end{center}
 \end{figure} 
@@ -1403,7 +1406,7 @@ Die Benutzeroberflächengestaltung von GATE ist sehr simpel gehalten und verzich
 
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.8]{GATE_Bilder/GUI-Ausschnitt.jpg}
+\includegraphics[scale=1]{GATE_Bilder/GUI-Ausschnitt.jpg}
 \caption{Ausschnitt des GATE-GUI}
 \end{center}
 \end{figure}

@@ -2,20 +2,20 @@
 \addvspace {10\p@ }
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {2.1}{\ignorespaces Nicht-deterministischer Zustandswandler der able-Regel\relax }}{18}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Parsbaum von \glqq He can fish\grqq {}\relax }}{28}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Parsbaum von \glqq He can fish\grqq {}\relax }}{29}
 \contentsline {figure}{\numberline {2.3}{\ignorespaces Initialisierung des kontextfreien Parsings f\IeC {\"u}r \glqq they can fish\grqq {}\relax }}{31}
 \contentsline {figure}{\numberline {2.4}{\ignorespaces Ermittelte Grammatikregeln durch Parsing zu \glqq they can fish\grqq {}\relax }}{33}
 \contentsline {figure}{\numberline {2.5}{\ignorespaces FS eines Nomens im Singular \cite {cop04}\relax }}{35}
 \contentsline {figure}{\numberline {2.6}{\ignorespaces FS eines Nomens im Singular als HEAD zusammengefasst \cite {cop04}\relax }}{35}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces FSs aus Abb. 2.5 und 2.6 als AVM \cite {cop04}\relax }}{35}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces FSs aus Abb. 2.5 und 2.6 als AVM \cite {cop04}\relax }}{36}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces UML-Use-Case Diagramm f\IeC {\"u}r allgemeine NLP-Tools\relax }}{51}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces UML-Aktivit\IeC {\"a}tsdiagramm User-Workflow mit dem Tool\relax }}{52}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Usability- und Sicherheitsaspekte aus \cite {hl13}\relax }}{59}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces UML-Use-Case Diagramm f\IeC {\"u}r allgemeine NLP-Tools\relax }}{52}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces UML-Aktivit\IeC {\"a}tsdiagramm User-Workflow mit dem Tool\relax }}{53}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Usability- und Sicherheitsaspekte aus \cite {hl13}\relax }}{60}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Annotationen in TIPSTER-interner Darstellung aus \cite {cu97}\relax }}{62}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Auflistung der installierten Plugins aus verschiedenen Ordnern\relax }}{63}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten\relax }}{66}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Annotationen in TIPSTER-interner Darstellung aus \cite {cu97}\relax }}{63}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Auflistung der installierten Plugins aus verschiedenen Ordnern\relax }}{64}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten\relax }}{67}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Einstellbare Modulparameter des POS-Taggers Hier k\IeC {\"o}nnen etwa Pfade f\IeC {\"u}r Input- und Output-Daten angegeben werden\relax }}{69}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Struktur des Dateisystems anhand des OpenNLP-Funktionspaketes\relax }}{70}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Notwendiger Code f\IeC {\"u}r die Verwendung des ANNIE-Systems in externen Programmen aus \cite {gt18}\relax }}{71}
