@@ -48,6 +48,7 @@ Das Ziel dieser Arbeit ist es, eine Anforderungsanalyse für solche Tools durchz
 Zu diesem Zweck werden zunächst ausführlich die Grundlagen zu NLP erläutert. Die Teilschritte der Textverarbeitung werden theoretisch wie praktisch anhand von Implementierungsbeispielen erläutert. Daraufhin können mit Hilfe von Use Cases Anforderungen an diese Tools erhoben werden, auf denen Analyse und Evaluation des GATE-Tools beruhen sollen. Abgeschlossen wird die Arbeit von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen für NLP-relevante Domänen.
 \end{abstract}
 
+\renewcommand{\abstractname}{Abstract}
 \begin{abstract}
 With advancing globalization and ever increasing amounts of transmitted information, the amount of natural language to be processed is also increasing. While this used to be done manually by humans, the sheer volume of data, especially in business contexts and the internet, has gradually made it necessary to computer-process natural language automatically. For instance, this abstract was also translated automatically by Google Translator using language modelling to find the best-fitting translation.
 
@@ -59,6 +60,7 @@ The goal of this work is to perform a requirement analysis for such tools and th
 
 For this purpose, the basics of NLP and its tools are first explained in detail. The sub-steps of word processing are explained theoretically and practically by means of implementation examples. As a result, use cases can be used to set requirements for these tools on which the analysis and evaluation of the GATE tool should be based. The work concludes with a brief summary of the findings, followed by an outlook on possible future work and developments for NLP-relevant domains.
 \end{abstract}
+
 \newpage
 \tableofcontents
 \newpage
@@ -76,8 +78,9 @@ Im Rahmen der voranschreitenden Digitalisierung und Globalsierung steigt die Men
 Die Daten selbst sind jedoch inzwischen kaum noch nur durch den Menschen effizient zu verarbeiten, sodass man nach einer neuen Möglichkeit sucht, dem Menschen diese Arbeit zu erleichtern, oder sogar abzunehmen. Mit dieser Aufgabe beschäftigt sich NLP. Moderne Ansätze aus der Informatik, wie etwa Machine-Learning und dynamische Programmierung, sind dabei eng miteinander verwoben und sind aktuelle relevante Forschungsthemen.
 
 \section{Hypothese}
-Hypothese dieser Arbeit ist, dass NLP ein breit gefächertes Anwendungsgebiet der modernen Informatik ist. Die Abdeckung der Teilbereiche erfolgt durch verschiedene Werkzeuge, an welche besondere Anforderungen aus dem Requirements Engineering erhoben werden müssen.
-Es stellt sich ferner die Frage, wie relevant die semntische Analyse von Texten ist und wie dann Wissen aus der Welt und natürliche Sprache im Computer effizient modelliert werden kann. 
+Hypothese dieser Arbeit ist, dass für Werkzeuge zur Bewältigung von NLP-Problemen besondere Herausforderungen aus der Komplexität von NLP heraus erwachsen. An diese Werkzeuge müssen daher auch spezifische Anforderungen mithilfe von Requirements Engineering erhoben werden. Diese Anforderungen sind außerdem domänenabhängig zu gewichten, je nach Anwendungsgebiet und gewünschtem Abdeckungsgrad der Software.
+
+Ferner ist auch die semantische Erfassung von Text relevant, um dessen inhaltlich korrekte Verarbeitung zu gewährleisten. Dazu ist erforderlich, dass im Computer auch Wissen aus der Welt und natürliche Sprache effizient modelliert werden können.
 
 \section{Methodik}
 Verschiedene Ansätze für die Modellierung natürlicher Sprache werden zunächst erläutert, wodurch der Sinn und Zweck von NLP verdeutlicht wird. Die Teilschritte der Textverarbeitung werden für das Verständnis verschiedener Aspekte der Abläufe theoretisch wie praktisch mittels Implementierungsbeispielen erläutert.
