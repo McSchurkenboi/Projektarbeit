@@ -1,25 +1,25 @@
 \babel@toc {german}{}
 \addvspace {10\p@ }
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {2.1}{\ignorespaces Nicht-deterministischer Zustandswandler der able-Regel\relax }}{19}
-\contentsline {figure}{\numberline {2.2}{\ignorespaces Parsbaum von \textit {\glqq He can fish\grqq {}}\relax }}{30}
-\contentsline {figure}{\numberline {2.3}{\ignorespaces Initialisierung des kontextfreien Parsings für \glqq they can fish\grqq {}\relax }}{32}
-\contentsline {figure}{\numberline {2.4}{\ignorespaces Ermittelte Grammatikregeln durch Parsing zu \glqq they can fish\grqq {}\relax }}{34}
-\contentsline {figure}{\numberline {2.5}{\ignorespaces FS eines Nomens im Singular nach \cite {cop04}\relax }}{36}
-\contentsline {figure}{\numberline {2.6}{\ignorespaces FS eines Nomens im Singular als HEAD zusammengefasst, nach \cite {cop04}\relax }}{37}
-\contentsline {figure}{\numberline {2.7}{\ignorespaces FSs aus Abb. 2.5 und 2.6 als AVM \cite {cop04}\relax }}{37}
-\contentsline {figure}{\numberline {2.8}{\ignorespaces mögliche Bedeutungsmengen eines Polysems\relax }}{44}
+\contentsline {figure}{\numberline {2.1}{\ignorespaces Nicht-deterministischer Zustandswandler der able-Regel [eigene Darstellung]\relax }}{20}
+\contentsline {figure}{\numberline {2.2}{\ignorespaces Parsbaum von \textit {\glqq He can fish\grqq {}} [eigene Darstellung]\relax }}{31}
+\contentsline {figure}{\numberline {2.3}{\ignorespaces Initialisierung des kontextfreien Parsings für \glqq they can fish\grqq {} [eigene Darstellung]\relax }}{33}
+\contentsline {figure}{\numberline {2.4}{\ignorespaces Ermittelte Grammatikregeln durch Parsing zu \glqq they can fish\grqq {} [eigene Darstellung]\relax }}{35}
+\contentsline {figure}{\numberline {2.5}{\ignorespaces FS eines Nomens im Singular nach \cite {cop04}\relax }}{37}
+\contentsline {figure}{\numberline {2.6}{\ignorespaces FS eines Nomens im Singular als HEAD zusammengefasst, nach \cite {cop04}\relax }}{38}
+\contentsline {figure}{\numberline {2.7}{\ignorespaces FSs aus Abb. 2.5 und 2.6 als AVM \cite {cop04}\relax }}{38}
+\contentsline {figure}{\numberline {2.8}{\ignorespaces mögliche Bedeutungsmengen eines Polysems [eigene Darstellung]\relax }}{46}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces UML-Use-Case Diagramm für allgemeine NLP-Tools\relax }}{54}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces UML-Aktivitätsdiagramm User-Workflow mit dem Tool\relax }}{55}
-\contentsline {figure}{\numberline {3.3}{\ignorespaces Usability- und Sicherheitsaspekte aus \cite {hl13}\relax }}{62}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces UML-Use-Case Diagramm für allgemeine NLP-Tools [eigene Darstellung]\relax }}{55}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces UML-Aktivitätsdiagramm User-Workflow mit dem Tool [eigene Darstellung]\relax }}{56}
+\contentsline {figure}{\numberline {3.3}{\ignorespaces Usability- und Sicherheitsaspekte aus \cite {hl13}\relax }}{63}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {4.1}{\ignorespaces Annotationen in TIPSTER-interner Darstellung aus \cite {cu97}\relax }}{65}
-\contentsline {figure}{\numberline {4.2}{\ignorespaces Auflistung der installierten Plugins aus verschiedenen Ordnern\relax }}{66}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten\relax }}{68}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Einstellbare Modulparameter des POS-Taggers Hier können etwa Pfade für Input- und Output-Daten angegeben werden\relax }}{71}
-\contentsline {figure}{\numberline {4.5}{\ignorespaces Struktur des Dateisystems anhand des OpenNLP-Funktionspaketes\relax }}{72}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Notwendiger Code für die Verwendung des ANNIE-Systems in externen Programmen aus \cite {gt18}\relax }}{73}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Textdarstellung nach Annotation\relax }}{74}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Ausschnitt des GATE-GUI\relax }}{75}
+\contentsline {figure}{\numberline {4.1}{\ignorespaces Annotationen in TIPSTER-interner Darstellung aus \cite {cu97}\relax }}{66}
+\contentsline {figure}{\numberline {4.2}{\ignorespaces Auflistung der installierten Plugins aus verschiedenen Ordnern [eigene Darstellung]\relax }}{67}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten [eigene Darstellung]\relax }}{69}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Einstellbare Modulparameter des POS-Taggers Hier können etwa Pfade für Input- und Output-Daten angegeben werden [eigene Darstellung]\relax }}{72}
+\contentsline {figure}{\numberline {4.5}{\ignorespaces Struktur des Dateisystems anhand des OpenNLP-Funktionspaketes [eigene Darstellung]\relax }}{73}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Notwendiger Code für die Verwendung des ANNIE-Systems in externen Programmen aus \cite {gt18}\relax }}{74}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Textdarstellung nach Annotation [eigene Darstellung]\relax }}{75}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Ausschnitt des GATE-GUI [eigene Darstellung]\relax }}{76}
 \addvspace {10\p@ }
