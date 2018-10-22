@@ -27,7 +27,7 @@
 \renewcommand{\arraystretch}{0.6}
 
 \begin{document}
-\title{Grundlagen zu Natural Language Processing und Analyse von GATE als NLP-Tool}
+\title{Analyse aktueller NLP-Methoden und -Tools am Beispiel von GATE}
 \author{Aaron Schul, Felix Ritter}
 %\subtitle{Projektarbeit, Bearbeitungszeitraum Sommersemester 2018\\
 %Fachhochschule Dortmund \\
@@ -89,11 +89,13 @@ Anhand der für NLP relevanten Probleme werden dann generelle und spezifische An
 Das NLP-Tool GATE soll als Beispiel einer Anforderungsanalyse unterzogen werden, welche die zuvor erhobenen Anforderungen auf das Programm bezieht und somit testet wie geeignet GATE als NLP-Tool ist.
 
 \section{Aufbau der Arbeit}
-Beginnend mit einer kurzen Motivation und Historie wird zunächst in das Thema eingeführt. Bekannte Ansätze und Beispiele aus dem Alltag leiten in die Analyse über.
+Beginnend mit einer kurzen Motivation und Historie wird zunächst in Kapitel 2. in das Thema eingeführt. Bekannte Ansätze und Beispiele aus dem Alltag werden vorgestellt, um dem Leser das Thema näher zu bringen. Für die Vermittlung von Wissen aus dem Bereich NLP werden im weiteren Verlauf des Kapitels ausführlich die Grundlagen zu NLP, dessen Aufgaben und Probleme erläutert.
 
-Für die Vermittlung von Wissen aus dem Bereich NLP werden zunächst ausführlich die Grundlagen zu NLP und dessen Aufgaben wie Tools erläutert. Daraufhin können mit Hilfe von Use-Cases Anforderungen an diese Tools erhoben werden, auf denen Analyse und Evaluation des GATE-Tools beruhen sollen. 
+In Kapitel 3 werden die zuvor aufgeführten Probleme als Grundlage zur Erhebung von Anforderungen an NLP-Tools verwendet. Dabei werden generelle und NLP-spezifische Aspekte erläutert um funktionale und nicht-funktionale Anforderungen aufzustellen.
 
-Abgeschlossen wird die Arbeit von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen für NLP-relevante Domänen. 
+In Kapitel 4 wird das NLP-Tool GATE anhand der erhobenen Anforderungen analysiert und basierend auf deren Erfüllung bewertet. 
+
+Abgeschlossen wird die Arbeit in Kapitel 5 von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen von NLP und GATE. 
 
 \chapter{Natural Language Processing}
 \section{Grundlagen und thematische Einordnung}
@@ -238,7 +240,7 @@ Um unnötige Fehler zu vermeiden ist es ratsam, zusätzlich ein Lexikon mit Wort
 \item Mögliche Wortstämme überprüfen zu können ist wichtig, da somit viele Mehrdeutigkeiten ausgeschlossen werden können. So könnte \glqq  bus\grqq{} z.B. als \glqq  bu$\textasciicircum$s\grqq{} (Plural von \glqq  bu\grqq{}) interpretiert werden. Dies ist jedoch nicht möglich, wenn kein Eintrag zu dem Wortstamm \glqq  bu\grqq{} existiert. 
 \end{enumerate}
 
-\subsection{Buchstabierregeln mit endlichen Zustandswandlern}
+\subsection{Buchstabierregeln mit endlichen\\ Zustandswandlern}
 In der Morphologie gibt es eine Vielzahl von Regeln, die bei der Unterteilung, Interpretation und Zusammensetzung von Wörtern zu beachten sind. Wenn man das \glqq  believe\grqq{}-Beispiel aus Abschnitt 2.4 erneut betrachtet, fällt auf, dass bei dem hinzufügen des Suffixes \glqq  -able\grqq{} der letzte Buchstabe des Wortstammes entfällt. Dies ist natürlich kein Tippfehler, sondern beruht auf einer der besagten Regeln. Die oben verwendete Regel lässt sich wie folgt darstellen:
 \tt
 \begin{center}
@@ -275,7 +277,7 @@ Der oben abgebildete Zustandswandler ist in der Lage die beschriebene Regel umzu
 
 Üblicherweise werden für jede Regel eigene Zustandswandler erstellt, welche dann bei der Verarbeitung von Wörtern parallel ablaufen. Dies ist gut für die Performanz, birgt allerdings Probleme. Wenn man mit komplexen Wörtern arbeitet, bei denen mehrere Regeln gleichzeitig anzuwenden sind, können verschiedene valide Ergebnisse erzielt werden. So wäre es etwa problematisch zwischen den Wörtern \glqq  un$\textasciicircum$ion$\textasciicircum$ise$\textasciicircum$ed\grqq{} (Chemie) und \glqq  union$\textasciicircum$ise$\textasciicircum$ed\grqq{} (gewerkschaftlich organisiert) zu unterscheiden. 
 
-\section{Part-of-speech tagging und Wortvorhersage}
+\section[POS tagging und Wortvorhersage]{Part-of-speech tagging und \\Wortvorhersage}
 Dieses Kapitel befasst sich mit der Transformation von Ergebnissen der morphologischen Analyse einzelner Wörter in eine sinnvolle Kategorisierung der Wörter im Sachzusammenhang aus mehreren Wörtern. Part-of-speech tagging klassifiziert einzelne Worte eines Textes so, dass erfasst wird, welche Rolle sie im Satz spielen. Die einzelnen Wörter des Satzes werden im Englischen bezüglich ihrer grammatikalischen Funktion und Anzahl markiert (\textit{annotiert}). Die Identifikation muss so erfolgen, dass sie die syntaktische Umgebung des Satzes erfasst und somit insgesamt Sinn ergibt. Diese Kennzeichnung geht über die Analyse einzelner Wörter hinaus; Sie erfasst auch die Syntax umgebender Wörter eines Satzes. 
 
 Im Deutschen ist es etwa recht wahrscheinlich, dass auf ein Nomen am Satzanfang als nächstes Wort ein Verb folgt, da dies einen typischen Satzbau darstellt. Ein part-of-speech Tagger sollte daher beispielsweise im Satz \textit{\glqq  Ich fahre Fahrrad.\grqq{}} korrekt das \glqq  Ich\grqq{} als Subjekt, das \glqq  fahre\grqq{} als Prädikat und das \glqq  Fahrrad\grqq{} als Akkusativobjekt darstellen; Die isolierte Betrachtung von \textit{\glqq  Fahrrad\grqq{}} ließe aber auch die Kategorisierung als Subjekt zu, da sich die zwei Möglichkeiten bezüglich der Morphologie nicht unterscheiden. Diese Mehrdeutigkeit einzelner Worte im Satz wird durch Analyse des syntaktischen Kontextes eliminiert, sodass POS tagging eine Eindeutigkeit der syntaktischen Deutung erzielt.
@@ -334,7 +336,7 @@ Abend <s> & 1 & 1\\
 
 Es lassen sich nun die Wahrscheinlichkeiten des jeweils nächsten Wortes nach einem gelesenen Wort ablesen. Auf \glqq  ich mag\grqq{} folgt insgesamt einmal \glqq  Züge\grqq{} und einmal \glqq  guten\grqq{}. Daher kann nun genau die Wahrscheinlichkeit des nächsten Wortes \glqq  Züge\grqq{} mit $P(\glqq  $Züge$\grqq{}|$\glqq  ich mag\grqq{}$)$ = 50\% berechnet werden.
 
-\subsection{Stochastisches POS-tagging}
+\subsection{Stochastisches Part-of-speech-tagging}
 Neben der Möglichkeit, einzelne Wörter vorherzusagen, eignen sich n-Gramme wie oben erwähnt auch zur Darstellung der Wahrscheinlichkeiten von Satzbausteinen, also der von Platzhaltern für alle möglichen Wörter einer Kategorie bzw. Komponente. Stochastisches Part-of-speech tagging kann anhand dieser die Wahrscheinlichkeiten vorhersagen, welcher Worttyp folgen wird. Die Trainingsdaten sind, nach Best-Practices aus dem maschinellen Lernen, in der Regel manuell und durch Benutzer markiert worden, damit dem Programm ein korrekter Datensatz zur Verfügung steht. Auf Basis eines Corpus können somit Mehrdeutigkeiten durch den syntaktischen Zusammenhang eindeutig aufgelöst werden. In einem Beispiel mit syntaktischer Ambiguität werden jedoch Wörter zunächst verschieden annotiert.
 Das tagset von CLAWS 7 annotiert Wortkategorien wie folgt:
 
@@ -396,7 +398,7 @@ Dauraus ergibt sich unter Verwendung eines n-Grams umgangssprachlich formuliert,
 
 Abschließend lässt sich daher sagen, dass die Trainingsdaten möglichst repräsentativ für die möglichen Konstruktionen in einer Sprache bzw. in der Anwendungsdomäne des POS-taggers sein müssen, um akkurate Ergebnisse zu erzielen. Dies betrifft sowohl die Qualität der im Corpus enthaltenen Wörter und Sätze, als auch deren Korrektheit im Hinblick auf die quantitative Repräsentation einzelner Konstrukte. Häufig anzutreffende Hauptsatz-Nebensatz-Konstruktionen müssen etwa für die Analyse eines stilistisch einfachen Textes häufiger vorhanden sein, als kompliziert verschachtelte Kausalsätze und eingeschobene Relativsätze mit beispielsweise vielen beschreibenden Aufzählungen.  
 
-\section{Parsen und Generieren mit kontextfreien Grammatiken}
+\section[Parsen und Generieren mit CFGs]{Parsen und Generieren mit kontextfreien Grammatiken}
 Wie bereits in 2.4 angekündigt befasst sich dieser Abschnitt mit dem Parsen und Generieren von Sätzen auf Grundlage der vorhergegangenen Verarbeitungsschritte. Fokus liegt dabei auf der Auflösung von Mehrdeutigkeiten, welche nicht durch die morphologische Analyse und Part-of-Speech-Tagging bewältigt werden konnten. Dies wird anhand verschiedener kontextfreier Grammatiken genauer erläutert. 
 
 \subsection{Generative Grammatik}
@@ -522,7 +524,7 @@ Die Struktur eines geparsten Satzes lässt sich auch übersichtlicher darstellen
 
 Da auf der linken Seite einer Produktionsregel der kontextfreien Grammatiken immer nur ein nicht-terminales Symbol steht, lässt sich hier eine Regel pro Elternknoten ablesen. Das \textit{S} wird in \textit{NP} und \textit{VP} aufgeteilt, das \textit{NP} wird wiederum zum terminalen Symbol \textit{\glqq  He\grqq{}} usw. entsprechend der definierten Produktionsregeln. Alle Blätter (Knoten ohne Kindknoten) des Baumes sind dann jeweils ein Wort und bilden somit zusammen den erzeugten Satz \textit{\glqq  He can fish.\grqq{}}. 
 
-\subsection{Zufallsgenerierung mit kontextfreien Grammatiken}
+\subsection{Zufallsgenerierung mit kontextfreien \\Grammatiken}
 Ähnlich zu den endlichen Zustandswandlern sind auch kontextfreie Grammatiken bidirektional und können somit nicht nur zum Parsen, sondern auch für die Generierung von Sätzen verwendet werden. 
 Ein naiver Zufallsalgorithmus könnte dabei auf einer Liste ausgeführt werden und die folgenden Schritte verwenden:
 
@@ -552,7 +554,7 @@ Dieser bottom-up Ansatz repräsentiert die einzelnen Wörter eines Satzes als Kn
 \rm
 \\
 
-Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel in Abbildung 2.3.
+Die Grundlage für den Algorithmus sind dann die Knoten zwischen Wörtern, im Beispiel in Abbildung 2.3.\\
 
 \begin{figure}[h!]
 \begin{center}
@@ -651,7 +653,7 @@ Ferner werden Zusammenhänge aus Wörtern, die sich inhaltlich aufeinander bezie
 
 Eine Möglichkeit zur Lösung wird in Abschnitt 2.7 und 2.8 behandelt, indem die Ansätze der Semantik bei der Deutung berücksichtigt werden. Dies ist mittels einfacher Produktionsregeln nicht möglich.
 
-\section{Parsen mit constraint-basierten Grammatiken}
+\section[Parsen mit CBGs]{Parsen mit constraint-basierten \\Grammatiken}
 Wie zuvor an verschiedenen Beispielen demonstriert wurde, weisen die kontextfreien Grammatiken beim Parsen und Generieren einige Schwächen auf. Daher wird im folgenden Abschnitt ein neuer, komplexerer Ansatz vorgestellt, um sich mit den gleichen Problemen zu befassen. 
 
 Kontextfreie Grammatiken können als constraint-basiert interpretiert werden, diese Bezeichnung ist jedoch üblicherweise mächtigeren Grammatiken vorbehalten. Constraint-basierte Grammatiken sind in NLP weit verbreitet und werden mit sogenannten \textit{feature-structures} (Eigenschaftsstrukturen) dargestellt, daher auch oft feature-structure (FS)-Grammatik genannt. Im folgenden Abschnitt soll die Umsetzung solch einer Grammatik durch \textit{FS} demonstriert werden.
@@ -869,7 +871,7 @@ Da \textit{\glqq  He\grqq{}} als singular erkannt wird, ist es nötig, dass auch
 Ohne eine entsprechende Produktionsregel wäre eine solche Vereinigung nicht möglich. Dies soll sowohl das Parsen, als auch Generieren von fehlerhaften Sätzen verhindern. In dem vorgestellten Beispiel reicht der Detailgrad der FSs jedoch nicht aus, um komplexere Sätze korrekt verarbeiten zu können.
 Außerdem können mangelnde oder fehlerhafte Informationen in den verwendeten Lexika (und den daraus folgenden Produktionsregeln) für falsche Resultate sorgen. So ist etwa \textit{\glqq  fishes\grqq{}} als singular gekennzeichnet, was es ermöglicht, den fehlerhaften Satz \textit{\glqq  I fishes\grqq{}} zu parsen. Um dies zu verhindern ist es dann nötig, nicht nur die Multiplizitäten, sondern auch den Kasus zu berücksichtigen. Je komplexer die in den FSs verwendeten Informationen, desto genauer und fehlerfreier lassen sich Sätze damit verarbeiten. Von der Modellierung einer vollständigen Grammatik sind Linguisten jedoch, wie bereits erwähnt, weit entfernt. 
 
-\section{Lexikalische Semantiken und kontextbasierte Deutungen}
+\section[Lexikalische Semantiken]{Lexikalische Semantiken und \\kontextbasierte Deutungen}
 Mithilfe der im letzten Abschnitt eingeführten FSs wurde eine Möglichkeit vorgestellt, Abhängigkeiten zwischen einzelnen Wörtern abzubilden. Abgesehen von der Syntax, die durch eine möglichst gute Modellierung der zugrundeliegenden Grammatik im Computer darstellbar wird, ist es die Semantik, die den \glqq  Sinn\grqq{} hinter einer Aussage repräsentiert. In NLP-Anwendungen wird dies häufig als \textit{\glqq  Logische Form\grqq{}} oder \textit{\glqq  Logik einer Aussage\grqq{}} umrissen (vgl. \cite{swb02}), wenn eine semantische Repräsentation eines Satzes erstellt werden soll. 
 
 Einen Ansatz, um überhaupt solch einen Sinn abbilden zu können, bieten dabei die schon bekannten \textit{Feature Structures}. Semantiken können theoretisch allesamt in einem Lexikon abgespeichert werden. Die korrekte Deutung kann dann anhand der bekannten Informationen aus der Semantik anderer Wörter bestimmt werden. 
@@ -961,7 +963,7 @@ Das bekannte Beispiel von \textit{Bank} (als Geldinstitut) vs. \textit{Bank} (al
 Ein weiteres Beispiel ist etwa \textit{\glqq  Max mag Kartoffeln\grqq{}}, das eine rohe Kartoffel, Salzkartoffeln, Kartoffelpflanzen und mehr meinen kann. Die Spezifizierungen weisen zwar auch Gemeinsamkeiten auf, haben jedoch eine andere Bedeutung. Die Formulierung \textit{Kartoffel} ist also vage.
 Man beschränkt sich daher oft nur auf eine flache Semantik, also nur auf einfache Zusammenhänge. In der Praxis begrenzt man die Semantik jedoch auch auf eine überschaubare Wissensbasis, genannt \textit{\glqq  Ontologie\grqq{}}, sodass der Kontext strikt vorgegeben und somit eindeutiger ist.
 
-\subsection{Auflösung von Mehrdeutigkeiten durch Semantiken}
+\subsection{Auflösung von Mehrdeutigkeiten durch \\Semantiken}
 Wie bereits beschrieben, stellen Mehrdeutigkeiten bei unbegrenzter Anwendungsdomöne ein ernstzunehmendes Problem dar, da schlicht zu viele mögliche Deutungen existieren. In der Praxis sammelt man daher Fachwissen aus der Problemdomäne und speichert es in Form von Ontologien zu Wissensbasen ab.
 
 Der Prozess der Auflösung von Mehrdeutigkeiten wird als \textit{Word-Sense-Disambiguation} (kurz \textit{WSD}) bezeichnet. Frühe WSD-Systeme basierten noch auf von Hand eingetragenen Deutungen (vgl. POS-Tagging). Heutige Systeme auf Basis von Machine-Learning-Verfahren können jedoch auf Basis eines kleinen Semantik-Corpus entweder selbstständig neue Bedeutungen erlernen oder verfügen über ein gesondertes Lexikon von ausführlichen Informationen zur Auflösung von Mehrdeutigkeiten. 
@@ -1071,7 +1073,7 @@ Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 \end{enumerate}
 Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in \cite{ll94} von Lappin und Leass vorgestellt.\\
 
-\chapter{Anforderungsanaylse von NLP-Problemen}
+\chapter{Anforderungserhebung an Tools zur Lösung von NLP-Problemen}
 Das folgende Kapitel beschäftigt sich mit der Anfolderungsanalyse von NLP-Tools generell. Dabei gibt es eine Vielzahl von Anforderungen und Anforderungsbereichen die zu berücksichtigen sind. Zunächst sind natürlich alle generellen Anforderungen zu Verarbeitungsprogrammen relevant. Des weiteren erwachsen jedoch aus den Eigenschaften von NLP bestimmte Probleme, welche wiederum speziellere Anforderungen notwendig machen. Dieses Kapitel wird sich nicht auf ein bestimmtes Tool beziehen, sondern durch die Darstellung der besagten Anforderungen eine Grundlage für das nächste Kapitel liefern, in welchem GATE anhand der hier aufgeführten Punkte evaluiert wird. 
 
 Zunächst werden die oben erwähnten Eigenschaften von NLP betrachtet und die resultierenden Probleme aufgezählt. Daraufhin werden die generellen und spezifischen Anforderungen an NLP-Tools ausgeführt. Diese sind in funktionale und nicht-funktionale Anforderungen unterteilt.
@@ -1088,7 +1090,7 @@ In diesem Abschnitt werden die in dem vorherigen Kapitel dargestellten Eigenscha
 
 Die hier nur kurz angerissenen Anforderungen, welche aus diesen Eigenschaft entstehen, werden im folgenden Abschnitt jeweils einzeln genauer behandelt.
 
-\section{Anforderungen für die Entwicklung von NLP-Tools}
+\section[Anforderungen an NLP-Tools]{Anforderungen für die Entwicklung von NLP-Tools}
 Wie bereits im vorigen Abschnitt dargelegt wurde, sind bei der Entwicklung von Tools, die NLP-Algorithmen zur Auswertung von Sprache verwenden, Besonderheiten zu beachten. Daraus ergibt sich besonders im Hinblick auf die korrekte Umsetzung der Funktionalität der Software Handlungsbedarf für die Planung der Entwicklung und das Anforderungsmanagement. Diese Anforderungen lassen sich im Sinne der Softwaretechnik in der Planung der Entwicklung in funktionale und nicht-funktionale Anforderungen an eine Software gliedern. Im Bereich der Softwareentwicklung existieren mittlerweile standardisierte Typen von Anforderungen, die u.a. in DIN 9126 zusammengefasst sind. In \cite{bal98} sind diese zu finden, jedoch fällt die Umsetzung besonders in Anwendungsgebieten, die in denen immer wieder neue Ansätze entstehen, nicht leicht. Da Komponenten für NLP ständig mit neuen Algorithmen implementiert werden können, fehlen mitunter best-practices für deren Entwicklung.
 
 In diesem Abschnitt soll besonderer Fokus auf der Benennung und Einordnung besonders beachtenswerter Anforderungen, die sich bei NLP ergeben, auf der DIN-Norm 9126 gelegt werden. In der Spezifizierung einzelner Anforderungen werden dabei die inhaltlichen Grundlagen aus Kap. 2 genutzt, um die Problematiken zu motivieren und darzulegen. Mögliche Schwachpunkte im Entwicklungsprozess können somit bereits im Vorhinein identifiziert und vermieden werden. Es ist dabei zu beachten, dass durch die hohe Abhängigkeit von NLP zum Anwendungskontext in verschiedenen Domänen noch weitere Anforderungen entstehen können. Wenn etwa die Semantik besonders im Vordergrund steht oder schwer fachspezifisches Wissen erforderlich ist, muss man schon beim Programmentwurf auf diese Besonderheiten eingehen.
@@ -1291,7 +1293,7 @@ Nicht-funktionale Anforderungen erheben üblicherweise Ansprüche an das System 
 
 Wie genau sich ein NLP-Tool anhand der aufgestellten Anforderungen bewerten lässt wird im folgenden Kapitel an dem Beispiel der General Architecture for Text Engineering (GATE) gezeigt. 
 
-\chapter{Analyse und Evaluation von G.A.T.E}
+\chapter{Analyse und Evaluation von GATE}
 Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Tools General Architecture for Text Engineering (GATE). Zunächst werden dazu alle relevanten Aspekte des Tools vorgestellt. Danach werden die in dem vorherigen Kapitel erhobenen Anforderungen einzeln mit GATE abgeglichen und evaluiert. Letztlich wird abhängig von der Relevanz und dem Erfüllungsgrad der einzelnen Anforderungen eine Gesamteinschätzung gegeben.
 
 \section{Einordnung von GATE}
@@ -1347,19 +1349,19 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (A Nearly-New Informatio
 
 \item orthographic coreference tagger: Der orthographic coreference tagger, auch bekannt als OrthoMatcher, verbindet annotierte Entitäten, welche der semantic tagger finden konnte mit einer Beziehung, um somit eine Koreferenz zu erzeugen.
 \end{enumerate}
-
 \begin{figure}[h!]
 \begin{center}
-\includegraphics[scale=0.7]{GATE_Bilder/ANNIE2.jpg}
+\includegraphics[scale=0.65]{GATE_Bilder/ANNIE2.jpg}
 \caption{Standard ANNIE-Verarbeitungskomponenten}
 \end{center}
 \end{figure}
+
 
 \section{Umsetzung der Anforderungen}
 
 \subsection{Repräsentation funktionaler Anforderungen}
 Im folgenden Abschnitt wird die Umsetzung der funktionalen Anforderungen, die in Kapitel 3.2 beschrieben sind, überprüft. Dabei ist zu beachten, dass GATE über eine Vielzahl von Funktionen und Konfigurationen verfügt, die das Verhalten und Aussehen der Software beeinflussen. Daher wird hier, wenn möglich, vom Standard-Lieferumfang ausgegangen, der für diese Arbeit ausreichende Funktionalität und Grundlage für eine Evaluation bietet. An geeigneter Stelle auf weiterführende Programme und Erweiterungen für GATE referenziert, wenn diese dort nicht bereits enthalten sind.
-Im folgenden Abschnitt wird die Umsetzung der funktionalen Anforderungen, die in Kapitel 3.2 beschrieben sind, überprüft. Dabei ist zu beachten, dass GATE über eine Vielzahl von Funktionen und Konfigurationen verfügt, die das Verhalten und Aussehen der Software beeinflussen. Daher wird hier, wenn möglich, vom Standard-Lieferumfang ausgegangen, der für diese Arbeit ausreichende Funktionalität und Grundlage für eine Evaluation bietet. An geeigneter Stelle auf weiterführende Programme und Erweiterungen für GATE referenziert, wenn diese dort nicht bereits enthalten sind.\\
+Im folgenden Abschnitt wird die Umsetzung der funktionalen Anforderungen, die in Kapitel 3.2 beschrieben sind, überprüft. Dabei ist zu beachten, dass GATE über eine Vielzahl von Funktionen und Konfigurationen verfügt, die das Verhalten und Aussehen der Software beeinflussen. Daher wird hier, wenn möglich, vom Standard-Lieferumfang ausgegangen, der für diese Arbeit ausreichende Funktionalität und Grundlage für eine Evaluation bietet. An geeigneter Stelle auf weiterführende Programme und Erweiterungen für GATE referenziert, wenn diese dort nicht bereits enthalten sind.
 
 \subsubsection{Unterstützte Dateitypen}
 GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate). Um Text in GATE verarbeiten zu können, muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein leerer Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. GATE verwaltet auf diese Weise dann alle Informationen über den Text mittels des GDM. Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.
@@ -1390,10 +1392,10 @@ Wie bereits unter 4.1.1 - CREOLE beschrieben, kann die Funktionalität quasi bel
 \end{center}
 \end{figure} 
 
-Neben den JAVA-Klassen (\textit{.class}-Dateien) eines jeden Objekts ist dort auch die build.xml abgelegt, die zur Abnindung weiterer Ressourcen des Plugins und auch zur Anbindung an notwendige Schnittstellen des GDM dient. Die \textit{creole.xml} beinhaltet Meta-Informationen über das Plugin wie den Namen und die Version, damit diese im \textit{Plugin-Manager} angezeigt werden können. Diese Dateien können vom User in ihrer Funktionalität angepasst werden, so besteht etwa Zugriff auf die \textit{.class}-Dateien. Der Ordnerzugriff sollte daher im Sinne der \textit{Informationssicherheit} nur autorisierten Nutzern erlaubt werden, da ansonsten auch Änderungen vorgenommen werden können, die nicht direkt sichtbar sind. Eine Prüfsumme des Codes oder sonstige Kontrollmechanismen für den Code gibt es nicht.
+Neben den JAVA-Klassen (\textit{.class}-Dateien) eines jeden Objekts ist dort auch die build.xml abgelegt, die zur Abnindung weiterer Ressourcen des Plugins und auch zur Anbindung an notwendige Schnittstellen des GDM dient. Die \textit{creole.xml} beinhaltet Meta-Informationen über das Plugin wie den Namen und die Version, damit diese im \textit{Plugin-Manager} angezeigt werden können. Diese Dateien können vom User in ihrer Funktionalität angepasst werden, so besteht etwa Zugriff auf die \textit{.class}-Dateien. Der Ordnerzugriff sollte daher im Sinne der \textit{Informationssicherheit} nur autorisierten Nutzern erlaubt werden, da ansonsten auch Änderungen vorgenommen werden können, die nicht direkt sichtbar sind. Eine Prüfsumme des Codes oder sonstige Kontrollmechanismen für den Code gibt es nicht.\\
 
 \subsubsection{Einbettung in Workflow und andere Programme}
-GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. \glqq  Anbindung\grqq{}). Somit können externe Programme von außen einfach auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Tools mit Abhängigkeits-Management realisiert werden (Maven oder Gradle), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) in das andere Programmverzeichnis kopiert werden. In Figur 4.x wird etwa verdeutlicht, welcher Code dann für die Verwendung des ANNIE-Moduls durch dieses Programm benötigt wird. Anschließend wird dann bei der Kompilierung des Programms in der Entwicklungsumgebung die GATE-Dateien mit integriert bzw. diese können dann dort verwendet werden. 
+GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. \glqq  Anbindung\grqq{}). Somit können externe Programme von außen einfach auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Tools mit Abhängigkeits-Management realisiert werden (Maven oder Gradle), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) in das andere Programmverzeichnis kopiert werden. In Figur 4.6 wird etwa verdeutlicht, welcher Code dann für die Verwendung des ANNIE-Moduls durch dieses Programm benötigt wird. Anschließend wird dann bei der Kompilierung des Programms in der Entwicklungsumgebung die GATE-Dateien mit integriert bzw. diese können dann dort verwendet werden. 
  
 \begin{figure}[h!]
 \begin{center}
@@ -1496,15 +1498,6 @@ Die Entwicklung von NLP in jüngerer Vergangenheit zeigt den Einzug der automati
 Als geeignete Umgebung zur Entwicklung von Verarbeitungsprogrammen wird GATE daher nach wie vor relevant bleiben. Bestimmte Methoden oder Algorithmen können zwar veralten, da GATE jedoch nicht selbst die Verarbeitung vornimmt, ist es von solchen Problemen nicht betroffen. Des Weiteren wird GATE kontinuierlich weiterentwickelt und steht weiterhin an der Spitze als meinst verwendetes NLP-Tool der Welt. \\
 
 Im kommenden Jahr werden wir im Rahmen einer Bachelorarbeit GATE verwenden, um im betrieblichen Kontext ein Programm zu entwickeln, welches bei der automatisierten Verarbeitung von Projektlastenheften unterstützen soll. Die Arbeit wird sich dabei hauptsächlich auf die Verwendung von GATE in Zusammenarbeit mit anderen Werkzeugen konzentrieren. Dazu gehören unter anderem Protégé-OWL zur Nutzung von Ontologien und IBM Rational DOORS als Quelle von Anforderungsdokumenten.
-
-\chapter{Notizen}
-- bsp in 2.1.4 ändern\\
-- Anführungszeichen ändern\\
-- Abschnitt-Angaben überprüfen\\
-- Domänenabhängigkeit in kapitel 2 einbauen und evtl in 3 referenzieren\\
-- funktionale anforderung 3: grafische darstellung eher nicht-funktional?\\
-- 4. wirklich anforderung des tools oder frage des programms?\\
-- quelle für standards bei 3.2.2 1.?\\
 
 
 \newpage
