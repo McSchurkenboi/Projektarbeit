@@ -18,7 +18,12 @@
 \usepackage{verbatim}
 \usepackage{booktabs, tabularx}
 \usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{paralist}
+\usepackage{enumitem}
 \renewcommand\tabularxcolumn[1]{m{#1}}
+\setlist[itemize,1]{label=$\bullet$}
+\setlist[itemize,2]{label=$\bullet$}
 
 \pagenumbering{arabic}
 \pagestyle{fancy}
@@ -66,6 +71,7 @@ For this purpose, the basics of NLP and its tools are first explained in detail.
 \newpage
 \listoftables
 \listoffigures
+\newpage
 
 \newpage
 \chapter{Einführung}
@@ -96,6 +102,105 @@ In Kapitel 3 werden die zuvor aufgeführten Probleme als Grundlage zur Erhebung 
 In Kapitel 4 wird das NLP-Tool GATE anhand der erhobenen Anforderungen analysiert und basierend auf deren Erfüllung bewertet. 
 
 Abgeschlossen wird die Arbeit in Kapitel 5 von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen von NLP und GATE. 
+
+\section{Autorenverzeichnis}
+\begin{multicols}{2}
+\begin{compactitem}
+\item[] \textbf{1.: Ritter, Schul}
+\item[] \textbf{2.: Ritter, Schul}
+
+\begin{compactitem}
+\item[] 2.1: Ritter, Schul
+\begin{compactitem}
+\item[] 2.1.1: Schul
+\item[] 2.1.2: Ritter
+\item[] 2.1.3: Ritter
+\item[] 2.1.4: Ritter
+\item[] 2.1.5: Ritter
+\end{compactitem}
+
+\item[] 2.2: Ritter
+\begin{compactitem}
+\item[] 2.2.1: Ritter
+\end{compactitem}
+
+\item[] 2.3: Schul
+\begin{compactitem}
+\item[] 2.3.1: Schul
+\item[] 2.3.2: Schul
+\item[] 2.3.3: Schul
+\end{compactitem}
+\item[] 2.4: Ritter
+\begin{compactitem}
+\item[] 2.4.1: Ritter
+\item[] 2.4.2: Ritter
+\end{compactitem}
+
+\item[] 2.5: Ritter, Schul
+\begin{compactitem}
+\item[] 2.5.1: Schul
+\item[] 2.5.2: Schul
+\item[] 2.5.3: Schul
+\item[] 2.5.4: Ritter
+\item[] 2.5.5: Ritter
+\end{compactitem}
+
+\item[] 2.6: Schul
+\begin{compactitem}
+\item[] 2.6.1: Schul
+\item[] 2.6.2: Schul
+\end{compactitem}
+
+\item[] 2.7: Ritter
+\begin{compactitem}
+\item[] 2.7.1: Ritter
+\item[] 2.7.2: Ritter
+\item[] 2.7.3: Ritter
+\end{compactitem}
+
+\item[] 2.8: Schul
+\begin{compactitem}
+\item[] 2.8.1: Schul
+\item[] 2.8.2: Schul
+\item[] 2.8.3: Schul
+\end{compactitem}
+\end{compactitem}
+
+\item[] \textbf{3: Ritter, Schul}
+\begin{compactitem}
+\item[] 3.1: Schul
+\item[] 3.2: Ritter, Schul
+\begin{compactitem}
+\item[] 3.2.1: Ritter
+\item[] 3.2.2: Ritter, Schul
+\item[] 3.2.3: Ritter, Schul
+\end{compactitem}
+\item[] 3.3: Schul
+\end{compactitem}
+
+\item[] \textbf{4: Ritter, Schul}
+\begin{compactitem}
+\item[] 4.1: Ritter, Schul
+\begin{compactitem}
+\item[] 4.1.1: Ritter
+\item[] 4.1.2: Schul
+\end{compactitem}
+
+\item[] 4.2: Ritter, Schul
+\begin{compactitem}
+\item[] 4.2.1: Ritter
+\item[] 4.2.2: Schul
+\item[] 4.2.3: Ritter
+\end{compactitem}
+\end{compactitem}
+
+\item[] \textbf{5: Ritter, Schul}
+\begin{compactitem}
+\item[] 5.1: Ritter
+\item[] 5.2: Schul
+\end{compactitem}
+\end{compactitem}
+\end{multicols}
 
 \chapter{Natural Language Processing}
 \section{Grundlagen und thematische Einordnung}
@@ -1073,7 +1178,7 @@ Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 \end{enumerate}
 Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in \cite{ll94} von Lappin und Leass vorgestellt.\\
 
-\chapter{Anforderungserhebung an Tools zur Lösung von NLP-Problemen}
+\chapter[Anforderungserhebung an NLP-Tools]{Anforderungserhebung an Tools zur Lösung von NLP-Problemen}
 Das folgende Kapitel beschäftigt sich mit der Anfolderungsanalyse von NLP-Tools generell. Dabei gibt es eine Vielzahl von Anforderungen und Anforderungsbereichen die zu berücksichtigen sind. Zunächst sind natürlich alle generellen Anforderungen zu Verarbeitungsprogrammen relevant. Des weiteren erwachsen jedoch aus den Eigenschaften von NLP bestimmte Probleme, welche wiederum speziellere Anforderungen notwendig machen. Dieses Kapitel wird sich nicht auf ein bestimmtes Tool beziehen, sondern durch die Darstellung der besagten Anforderungen eine Grundlage für das nächste Kapitel liefern, in welchem GATE anhand der hier aufgeführten Punkte evaluiert wird. 
 
 Zunächst werden die oben erwähnten Eigenschaften von NLP betrachtet und die resultierenden Probleme aufgezählt. Daraufhin werden die generellen und spezifischen Anforderungen an NLP-Tools ausgeführt. Diese sind in funktionale und nicht-funktionale Anforderungen unterteilt.
