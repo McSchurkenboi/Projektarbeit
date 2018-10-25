@@ -16,7 +16,7 @@
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Annotationen in TIPSTER-interner Darstellung aus \cite {cu97}\relax }}{66}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Auflistung der installierten Plugins aus verschiedenen Ordnern [eigene Darstellung]\relax }}{67}
-\contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten [eigene Darstellung]\relax }}{69}
+\contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten [eigene Darstellung]\relax }}{70}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Einstellbare Modulparameter des POS-Taggers Hier können etwa Pfade für Input- und Output-Daten angegeben werden [eigene Darstellung]\relax }}{72}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Textdarstellung nach Annotation [eigene Darstellung]\relax }}{73}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Struktur des Dateisystems anhand des OpenNLP-Funktionspaketes [eigene Darstellung]\relax }}{74}
