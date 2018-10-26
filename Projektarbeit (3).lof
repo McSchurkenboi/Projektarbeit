@@ -19,7 +19,9 @@
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten [eigene Darstellung]\relax }}{70}
 \contentsline {figure}{\numberline {4.4}{\ignorespaces Einstellbare Modulparameter des POS-Taggers Hier können etwa Pfade für Input- und Output-Daten angegeben werden [eigene Darstellung]\relax }}{72}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Textdarstellung nach Annotation [eigene Darstellung]\relax }}{73}
-\contentsline {figure}{\numberline {4.6}{\ignorespaces Struktur des Dateisystems anhand des OpenNLP-Funktionspaketes [eigene Darstellung]\relax }}{74}
-\contentsline {figure}{\numberline {4.7}{\ignorespaces Notwendiger Code für die Verwendung des ANNIE-Systems in externen Programmen aus \cite {gt18}\relax }}{76}
-\contentsline {figure}{\numberline {4.8}{\ignorespaces Ausschnitt des GATE-GUI [eigene Darstellung]\relax }}{76}
+\contentsline {figure}{\numberline {4.6}{\ignorespaces Abbruch-Fenster zur Laufzeit [eigene Darstellung]\relax }}{74}
+\contentsline {figure}{\numberline {4.7}{\ignorespaces Information zum Laufzeit-Abbruch [eigene Darstellung]\relax }}{74}
+\contentsline {figure}{\numberline {4.8}{\ignorespaces Struktur des Dateisystems anhand des OpenNLP-Funktionspaketes [eigene Darstellung]\relax }}{75}
+\contentsline {figure}{\numberline {4.9}{\ignorespaces Notwendiger Code für die Verwendung des ANNIE-Systems in externen Programmen aus \cite {gt18}\relax }}{76}
+\contentsline {figure}{\numberline {4.10}{\ignorespaces Ausschnitt des GATE-GUI [eigene Darstellung]\relax }}{77}
 \addvspace {10\p@ }
