@@ -1035,6 +1035,8 @@ Durch Kategorisierung können verschiedene Ausprägungen  der gleichen Sache zus
 
 Diese Vereinfachungen sind Ansätze zur verbesserten Erfassung der Semantik.  Jedoch stellt sich für die Praxis etwa die Frage, ob diese auch für Verben und Adjektive oder Nomen wie \textit{\glqq  Gedanke\grqq{}}, die sich schlecht verbildlichen lassen, getroffen werden können, ob es \glqq  Mehrfachvererbung\grqq{} (Hund als Haustier und als Vierbeiner) gibt, oder wo der Ursprung aller Kategorien liegt. Wenn Wörter einer Kategorie zugeordnet werden, können feine Nuancen zwischen verschiedenen Wörtern verloren gehen. 
 
+
+\subsubsection{Beispiel \textit{WordNet}}
 Einen Vorschlag, Wörter derart semantisch zu verknüpfen, stellt das Lexikon \textit{WordNet} dar, das seit 1985 entwickelt wird \cite{mil95}. Dieses beinhaltete ursprünglich nur Englisch, ist jedoch quelloffen und mittlerweile sind auch Deutsch und weitere Sprachen integriert. Innerhalb von WordNet werden Beziehungen von Wörtern anhand der obigen Kategorien nach Carnap getaggt, zusätzlich sind auch \textit{Troponomy} (Art und Weise) und \textit{Entailment} (Semantische Implikation) möglich. Es beinhaltet In Wordnet kann somit ein Netz von Wortbedeutungen zwischen allen Wörtern einer Sprache gebildet werden, um Semantiken aufzulösen und zu bewerten. 
 
 Das im letzten Abschnitt beschriebene NLP-Tool \textit{GATE} kann auf Funktionalitäten aus WordNet zugreifen und damit die Modellierung von Semantik umsetzen.
@@ -1472,10 +1474,12 @@ GATE beinhaltet das Informationsgewinnungs-System ANNIE (\textit{A Nearly-New In
 Im folgenden Abschnitt wird die Umsetzung der funktionalen Anforderungen, die in Kapitel 3.2 beschrieben sind, überprüft. Dabei ist zu beachten, dass GATE über eine Vielzahl von Funktionen und Konfigurationen verfügt, die das Verhalten und Aussehen der Software beeinflussen. Daher wird hier, wenn möglich, vom Standard-Lieferumfang ausgegangen, der für diese Arbeit ausreichende Funktionalität und Grundlage für eine Evaluation bietet. An geeigneter Stelle wird auf weiterführende Programme und Erweiterungen für GATE referenziert, wenn diese dort nicht bereits enthalten sind.
 
 \subsubsection{Einlesen von Daten}
-GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung \textit{Processing Resource}. Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate). Um Text in GATE verarbeiten zu können, muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein leerer Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. GATE verwaltet auf diese Weise alle Informationen über den Text mittels des GDM. Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.
+GATE ist als ein übergeordnetes Programm für die Verwaltung verschiedener Quelldaten und Funktionalitäten implementiert. Diese \textit{Ressourcen} können als Text vorliegen (\textit{Language Resource}), oder als Programmmodule zur Textverarbeitung (\textit{Processing Resource}). Standardmäßig unterstützt GATE geschriebenen Text in den Dateiformaten .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate). Um Text in GATE verarbeiten zu können, muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein leerer Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. 
+
+GATE verwaltet auf diese Weise alle Informationen über den Text mittels des GDM. Diese Unterstützung durch kann durch Plug-ins (Punkt 3) beliebig ausgeweitet werden, um beispielsweise \textit{JSON-Objekte} oder Sprachdaten einzulesen.
 
 \subsubsection{Analyse in Modulen}
-GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems \textit{CREOLE-Plugins} aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung (siehe voriger Abschnitt). Innerhalb der Verarbeitungskette kommunizieren die Module die neu gewonnenen Informationen, etwa XML-Dateien, an den GDM mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Die Informationen sind selbst leicht wieder aus diesen Objekten im Klartext extrahierbar, sodass sich der Inhalt auch durch die Nutzer nachvollziehen lässt.
+GATE organisiert, wie bereits oben beschrieben, nicht nur die Umsetzung der Verarbeitung des Textes in Modulen, sondern lagert vielmehr die vollständige Verarbeitungskette in die jeweiligen Module des ANNIE-Systems, die \textit{CREOLE-Plugins}, aus. Diese Plugins stellen eigenständig die Umsetzung der Verarbeitungslogik in GATE dar, sind also unabhängig von GATE selbst und laufen in einem Container innerhalb der ANNIE-Umgebung (siehe voriger Abschnitt). Innerhalb der Verarbeitungskette kommunizieren die Module die neu gewonnenen Informationen, etwa XML-Dateien, an den GDM mit Taggings zu den jeweiligen Textstellen. Somit ist einerseits dokumentiert, welches Modul ein tagging vorgenommen hat,  andererseits ist die Darstellung der Informationen als Tags standardisiert und somit leicht von folgenden Modulen wieder einzulesen. Die Informationen sind selbst leicht wieder aus diesen Objekten im Klartext lesbar, sodass sich der Inhalt auch durch die Nutzer nachvollziehen lässt (Abb. 4.4).
 
 \subsubsection{Konfigurierbarkeit}
 In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Einzelne Module können verschoben, gelöscht oder neu hinzugefügt werden. Innerhalb der Programm-GUI lassen sich direkt einzelne Modulparameter auf einen Wert einstellen. Der Grad der Individualisierbarkeit ist jedoch von Modul zu Modul unterschiedlich, je nach Implementierung und Anwendungsgebiet des Moduls. Beispielsweise benötigt der JAPE-Transducer eine Grammatik aus einer Datei als Eingabe, die anzuwendende Regeln für Taggings enthält. Diese muss dabei bei jedem Programmstart neu ausgewählt werden.
@@ -1488,10 +1492,9 @@ In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Ei
 \end{figure} 
 
 Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.
-Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.\\
 
 \subsubsection{Grafische Darstellung der Ergebnisse}
-Nachdem in GATE eine Verarbeitungskette ausgeführt ist, wird in dem Hauptfenster der GGI der verarbeitete Text zunächst als Klartext angezeigt. Mögliche Annotationen werden in eine Leiste am rechten Rand als \glqq  Annotation Sets\grqq{} aufgelistet und sind über Checkboxen auswählbar. Die Annotationen sind farbig markiert und hinterlegen den jeweils annotierten Text, sobald die entsprechende Checkbox aktiviert wird.
+Nachdem in GATE eine Verarbeitungskette ausgeführt ist, wird in dem Hauptfenster der GGI der verarbeitete Text zunächst als Klartext angezeigt. Mögliche Annotationen werden in eine Leiste am rechten Rand als \textit{\glqq  Annotation Sets\grqq{}} aufgelistet und sind über Checkboxen auswählbar. Die Annotationen sind farbig markiert und hinterlegen den jeweils annotierten Text, sobald die entsprechende Checkbox aktiviert wird.
 In dem Annotation Stack am unteren Fensterrand lassen sich die Annotationen ohne Text betrachten, was vor allem nützlich wird, sobald bestimmte Textstellen mehrfach markiert sind.\\
 
 \begin{figure}
@@ -1503,10 +1506,10 @@ In dem Annotation Stack am unteren Fensterrand lassen sich die Annotationen ohne
 
 
 \subsubsection{Behandlung sprachlicher Probleme} 
-Dadurch, dass GATE selbst nicht die Verarbeitung des Textes durchführt, sondern diese an verschiedene CREOLE-Plugins auslagert, wird auch die Erfassung der textuellen Semantik von diesen durchgeführt (sofern implementiert). Der Einsatz von dedizierten Modulen zur Verarbeitung und Interpretation von Semantik ist in GATE über verschiedene Schnittstellen möglich (siehe Nf. Anf. Anbindung, siehe WordNet). GATE unterstützt ebenfalls die Nutzung von Wissensbasen im OWL-Format(Web Ontology Language) über den OWL-Exporter. Unter anderem durch die genannten Erweiterungen lassen sich semantische Probleme wie Doppeldeutigkeiten mit GATE auflösen.
+Dadurch, dass GATE selbst nicht die Verarbeitung des Textes durchführt, sondern diese an verschiedene CREOLE-Plugins auslagert, wird auch die Erfassung der textuellen Semantik von diesen durchgeführt (sofern implementiert). Der Einsatz von dedizierten Modulen zur Verarbeitung und Interpretation von Semantik ist in GATE über verschiedene Schnittstellen möglich (siehe Nf. Anf. Anbindung und 2.7.1 \textit{WordNet}). GATE unterstützt ebenfalls die Nutzung von Wissensbasen im OWL-Format(Web Ontology Language) über den OWL-Exporter. Unter anderem durch die genannten Erweiterungen lassen sich semantische Probleme wie Doppeldeutigkeiten mit GATE auflösen.
 
 \subsubsection{Laufzeitkontrolle}
-Sobald in GATE die \textit{\glqq Run this Application \grqq} -Schaltfläche betätigt wird (siehe Abb. 4.3) öffnet sich ein kleines Fenster in der Mitte des Hauptfensters. Dieses zeigt, wie viele Dokumente momentan verarbeitet werden und beinhaltet einen \textit{\glqq Stop!\grqq} -Button (siehe Abb. 4.6). \\
+Sobald in GATE die \textit{\glqq Run this Application \grqq} -Schaltfläche betätigt wird (siehe Abb. 4.3) öffnet sich ein kleines Fenster in der Mitte des Hauptfensters. Dieses zeigt, wie viele Dokumente momentan verarbeitet werden und beinhaltet einen \textit{\glqq Stop!\grqq} -Button (siehe Abb. 4.6).
 
 %\begin{comment}
 \begin{figure}[h!]
@@ -1517,7 +1520,7 @@ Sobald in GATE die \textit{\glqq Run this Application \grqq} -Schaltfläche bet�
 \end{figure} 
 %\end{comment}
 
-Wird der \textit{\glqq Stop!\grqq} -Button betätigt, so öffnet sich ein neues Fenster. In diesem wird abgebildet, dass das Programm zur Laufzeit abgebrochen, welche Ausnahme (\textit{Exception}) geworfen und welche Komponente zu diesem Zeitpunkt ausgeführt wurde (siehe Abb. 4.7).\\
+Wird dieser Button betätigt, öffnet sich ein neues Fenster. In diesem wird abgebildet, dass das Programm zur Laufzeit abgebrochen wurde, welche Ausnahme (\textit{Exception}) geworfen und welche Komponente zu diesem Zeitpunkt ausgeführt wurde (siehe Abb. 4.7). Somit ist für den Nutzer der Abbruchpunkt klar erkennbar. \\
 
 %\begin{comment}
 \begin{figure}[h!]
@@ -1528,10 +1531,10 @@ Wird der \textit{\glqq Stop!\grqq} -Button betätigt, so öffnet sich ein neues 
 \end{figure} 
 %\end{comment}
 
-Des Weiteren verfügt das \textit{GGI} über eine Fortschrittsleiste (\textit{progress bar}), welche es dem Benutzer ermöglicht, nachzuvollziehen, in welchem Zustand sich das Programm befindet, auch ohne dieses manuell zu terminieren. \\
+Des Weiteren verfügt das \textit{GGI} über eine Fortschrittsleiste (\textit{progress bar}), welche es dem Benutzer ermöglicht, nachzuvollziehen, in welchem Zustand sich das Programm befindet, auch ohne dieses manuell zu terminieren.
 
 \subsubsection{Plugin-Management}
-Wie bereits unter 4.1.1 - CREOLE beschrieben, kann die Funktionalität quasi beliebig über den \textit{Plugin-Manager} erweitert werden. Somit können auch tagesaktuelle Plugins direkt, sofern sie im Ordner im GATE-Programmverzeichnis liegen, in die Verarbeitungskette geladen werden. jeder Ersteller von CREOLE-Plugins besitzt dort einen einzelnen Ordner, in dem die einzelnen Werkzeuge (CREOLE-Objekte) vorliegen (Figur 4.x). 
+Wie bereits unter 4.1.1 - \textit{CREOLE} beschrieben, kann die Funktionalität quasi beliebig über den \textit{Plugin-Manager} erweitert werden. Somit können auch tagesaktuelle Plugins direkt, sofern sie im Ordner im GATE-Programmverzeichnis liegen, in die Verarbeitungskette geladen werden. jeder Ersteller von CREOLE-Plugins besitzt dort einen einzelnen Ordner, in dem die einzelnen Werkzeuge (CREOLE-Objekte) vorliegen (Figur 4.8). 
  
 \begin{figure}[h!]
 \begin{center}
@@ -1540,10 +1543,12 @@ Wie bereits unter 4.1.1 - CREOLE beschrieben, kann die Funktionalität quasi bel
 \end{center}
 \end{figure} 
 
-Neben den JAVA-Klassen (\textit{.class}-Dateien) eines jeden Objekts ist dort auch die build.xml abgelegt, die zur Abnindung weiterer Ressourcen des Plugins und auch zur Anbindung an notwendige Schnittstellen des GDM dient. Die \textit{creole.xml} beinhaltet Meta-Informationen über das Plugin wie den Namen und die Version, damit diese im \textit{Plugin-Manager} angezeigt werden können. Diese Dateien können vom User in ihrer Funktionalität angepasst werden, so besteht etwa Zugriff auf die \textit{.class}-Dateien. Der Ordnerzugriff sollte daher im Sinne der \textit{Informationssicherheit} nur autorisierten Nutzern erlaubt werden, da ansonsten auch Änderungen vorgenommen werden können, die nicht direkt sichtbar sind. Eine Prüfsumme des Codes oder sonstige Kontrollmechanismen für den Code gibt es nicht.\\
+Neben den JAVA-Klassen (\textit{.class}-Dateien) eines jeden Objekts ist dort auch die build.xml abgelegt, die zur Abnindung weiterer Ressourcen des Plugins und auch zur Anbindung an notwendige Schnittstellen des GDM dient. Die \textit{creole.xml} beinhaltet Meta-Informationen über das Plugin wie den Namen und die Version, damit diese im \textit{Plugin-Manager} angezeigt werden können. Diese Dateien können vom User in ihrer Funktionalität angepasst werden, so besteht etwa Zugriff auf die \textit{.class}-Dateien. Der Ordnerzugriff sollte daher im Sinne der \textit{Informationssicherheit} nur autorisierten Nutzern erlaubt werden, da ansonsten auch Änderungen vorgenommen werden können, die nicht direkt sichtbar sind. Eine Prüfsumme des Codes oder sonstige Kontrollmechanismen für die Dateien, die auf Änderungen hinweisen könnten, gibt es nicht.\\
 
 \subsubsection{Einbettung in Workflow und andere Programme}
-GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. \glqq  Anbindung\grqq{}). Somit können externe Programme von außen einfach auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Tools mit Abhängigkeits-Management realisiert werden (Maven oder Gradle), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) in das andere Programmverzeichnis kopiert werden. In Figur 4.6 wird etwa verdeutlicht, welcher Code dann für die Verwendung des ANNIE-Moduls durch dieses Programm benötigt wird. Anschließend wird dann bei der Kompilierung des Programms in der Entwicklungsumgebung die GATE-Dateien mit integriert bzw. diese können dann dort verwendet werden. 
+GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. \glqq  Anbindung\grqq{}). Somit können externe Programme von außen direkt auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Tools mit Abhängigkeits-Management realisiert werden (Maven, Gradle, etc.), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. 
+
+Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) in das andere Programmverzeichnis kopiert werden. In Figur 4.9 wird etwa verdeutlicht, welcher Code für die Verwendung des ANNIE-Moduls durch dieses Programm benötigt wird.
  
 \begin{figure}[h!]
 \begin{center}
@@ -1552,9 +1557,7 @@ GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Kom
 \end{center}
 \end{figure}
 
-Auf diese Weise stehen dem Entwickler viele Möglichkeiten zur Anpassung der Dateien wie auch zu deren Nutzung in anderen Programmen offen, solange diese JAVA verwenden können.\\
-
-
+Anschließend werden dann bei der Kompilierung des Programms in der Entwicklungsumgebung die GATE-Dateien mit integriert bzw. diese können dann dort verwendet werden. Auf diese Weise stehen dem Entwickler viele Möglichkeiten zur Anpassung der Dateien wie auch zu deren Nutzung in anderen Programmen offen, solange diese JAVA verwenden können.
 
 \subsection{Repräsentation nicht-funktionaler Anforderungen}
 In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderungen an NLP-Tools mit GATE abgeglichen, um entscheiden zu können, inwiefern GATE diese erfüllt. Hierzu werden die Anforderungen erneut einzeln aufgelistet und ihrer Repräsentation in dem Tool, sofern vorhanden, erläutert. 
@@ -1570,57 +1573,61 @@ Die Benutzeroberflächengestaltung von GATE ist sehr simpel gehalten und verzich
 \end{center}
 \end{figure}
 
-Wie in Abbildung XY zu sehen ist, wurde die Oberfläche recht übersichtlich gehalten. Die wichtigsten Funktionalitäten sind über Schnellzugriffe, die Projekthierarchie zur linken und über Drop-Down Menüs in der Menu-Bar erreichbar. Wenn eine Verarbeitungslogik eingebunden ist, wird diese im Hauptfenster dargestellt (siehe z.B. ANNIE in Abbildung XY). In dem Hauptfenster können mehrere Ansichten hintereinander liegen, zwischen welchen mit Hilfe von Tabs am oberen Rand des Fensters gewechselt werden kann, sowie es üblicherweise bei Programmierumgebungen zu sehen ist. 
+Wie in Abbildung 4.10 zu sehen ist, wurde die Oberfläche recht übersichtlich gehalten. Die wichtigsten Funktionalitäten sind über Schnellzugriffe, die Projekthierarchie zur linken und über Drop-Down Menüs in der Menu-Bar erreichbar. Wenn eine Verarbeitungslogik eingebunden ist, wird diese im Hauptfenster dargestellt (siehe z.B. ANNIE in Abbildung 4.3). In dem Hauptfenster können mehrere Ansichten hintereinander liegen, zwischen welchen mit Hilfe von Tabs am oberen Rand des Fensters gewechselt werden kann, sowie es üblicherweise bei Programmierumgebungen zu sehen ist. 
 
 \subsubsection{Anbindung}
 
-Um Text in GATE verarbeiten zu können muss dieser zunächst in einen Korpus eingelesen werden. Dazu lässt sich entweder ein Korpus erstellen, in den dann ein oder mehrere Dokumente eingelesen werden, oder ein Dokument einlesen, um welches dann ein Korpus erstellt wird. Die Dokumente werden als .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate) akzeptiert.
-Nach der Verarbeitung kann annotierter Text als XML-Datei mit allen hinzugefügten Informationen exportiert und anders weiterverwendet werden. Plugins wie der ConfigurableExporter ermöglichen sogar, den verarbeiteten Text abhängig von den vergebenen Annotationen zu manipulieren und direkt in eine bereits vorhandene Datei zu extrahieren. 
 In GATE können Dokumente als .txt, Hyper Text Markup Language (.html), Standard Generalized Markup Language (.sgml), Extensible Markup Language (.xml), Rich Text Format (.rtf), PDF (enthaltener Klartext) und Microsoft Office (einige Formate) eingelesen werden.
 Nach der Verarbeitung kann annotierter Text als XML-Datei mit allen hinzugefügten Informationen exportiert und anders weiterverwendet werden. Plugins wie der ConfigurableExporter ermöglichen sogar, den verarbeiteten Text abhängig von den vergebenen Annotationen zu manipulieren und direkt in eine bereits vorhandene Datei zu extrahieren.\\
 
-GATE verfügt über verschiedene APIs. Eine davon ist die GDM-API, welche als Schnittstelle zwischen den einzelnen Komponenten der Verarbeitungskette fungiert. Diese ist für die Benutzer von GATE besonders wichtig, wenn es darum geht bspw. die Standardkomponenten des ANNIE Plugins für ein spezielles Ziel zu verändern bzw. anzupassen. Des Weiteren hat GATE die CREOLE-API, welche genutzt werden kann, um CREOLE-Plugins zu verändern oder selbst zu entwerfen und in das Programm einzubinden.
-Die wichtigste Programmierschnittstelle für Benutzer, welche nicht in GATE programmieren wollen, sondern die Kernfunktionalitäten von GATE in einem anderen Programm nutzen wollen ist jedoch unter dem Namen GATE Embedded zu finden. GATE Embedded ist eine Ansammlung von Java Archiven (JARs), welche die besagten Funktionalitäten bereitstellen. Es ist nativ in Java und anderen JVM(Java Vitual Machine)-basierten Programmiersprachen verfügbar, kann jedoch auch über Gateways wie JNI (Java Native Interface) auch für andere Sprachen nutzbar gemacht werden.
-Diese APIs bieten Nutzern bzw. Entwicklern sowohl die Möglichkeit benötigte Erweiterungen in GATE einzufügen, als auch GATE als Programmteil in der Entwicklung anderer Anwendungen zu benutzen und dadurch aufwendige Entwicklungsarbeit einzusparen. 
+GATE verfügt über verschiedene APIs. Eine davon ist die GDM-API, welche als Schnittstelle zwischen den einzelnen Komponenten der Verarbeitungskette fungiert. Diese ist für die Benutzer von GATE besonders wichtig, wenn es etwa darum geht, die Standardkomponenten des ANNIE Plugins für ein spezielles Ziel zu verändern bzw. anzupassen. Des Weiteren bietet GATE die CREOLE-API, welche genutzt werden kann, um CREOLE-Plugins zu verändern oder selbst zu entwerfen und in das Programm einzubinden.
+
+Die wichtigste Programmierschnittstelle für Benutzer, welche nicht in GATE programmieren wollen, sondern die Kernfunktionalitäten von GATE in einem anderen Programm nutzen wollen, ist jedoch unter dem Namen GATE Embedded zu finden. GATE Embedded ist eine Ansammlung von Java Archiven (\textit{JARs.jar}-Dateien), welche die besagten Funktionalitäten bereitstellen. Es ist nativ in Java und anderen JVM(Java Vitual Machine)-basierten Programmiersprachen verfügbar, kann jedoch auch über Gateways wie JNI (Java Native Interface) auch für andere Sprachen nutzbar gemacht werden.
+
+Diese APIs bieten Nutzern bzw. Entwicklern sowohl die Möglichkeit, benötigte Erweiterungen in GATE einzufügen, als auch GATE als Programmteil in der Entwicklung anderer Anwendungen zu benutzen. Dadurch kann aufwendige Entwicklungsarbeit eingespart werden. 
 
 \subsubsection{Funktionssicherheit}
-GATE bietet dem Benutzer verschiedene Sicherheiten und Möglichkeiten, die verwendeten Programme auf Korrektheit zu überprüfen. 
-Um Funktionssicherheit zu überprüfen, bietet sich Entwicklern die Möglichkeit schnell verschiedene Module auf den gleichen Text anzuwenden (oder das gleiche Modul auf verschiedene Texte anzuwenden) um die Funktionalität der genutzten Komponenten besser nachvollziehen zu können. Des Weiteren ist GATE keineswegs eine Blackbox, also ein Programm, welches einen Input erhält und einen Output zurückgibt, ohne dabei Auskunft über die Verarbeitungslogik zu geben. Zum einen sind die einzelnen Verarbeitungsschritte stets durch die Verarbeitungskomponenten verkörpert abgebildet, zum anderen lassen sich bei dem Modifizieren oder Erstellen eigener CREOLE-Plugins Debugger einbinden, um später Schrittweise das Verhalten des Plugins nachzustellen.
+GATE bietet dem Benutzer verschiedene Sicherheiten und Möglichkeiten, die verwendeten Programme auf Korrektheit zu prüfen. 
+Um Funktionssicherheit zu überwachen, bietet sich Entwicklern die Möglichkeit, schnell verschiedene Module auf den gleichen Text anzuwenden (oder das gleiche Modul auf verschiedene Texte anzuwenden), um die Funktionalität der genutzten Komponenten besser nachvollziehen zu können. Des Weiteren ist GATE keineswegs eine Blackbox, also ein Programm, welches einen Input erhält und einen Output zurückgibt, ohne dabei Auskunft über die Verarbeitungslogik zu geben. Zum Einen sind die einzelnen Verarbeitungsschritte stets durch die Verarbeitungskomponenten abgebildet. Zum Anderen lassen sich bei dem Modifizieren oder Erstellen eigener CREOLE-Plugins Debugger einbinden, um später Schrittweise das Verhalten des Plugins nachzustellen.
 
 \subsubsection{Informationssicherheit}
 
-Um die Informationssicherheit von GATE genau beurteilen zu können, sind ausführliche, präziser und genau kontrollierte Test nötig, welche den Umfang dieser Arbeit weit überschreiten und daher hier nicht behandelt werden können. Die Suche nach explizierten Forschungsergebnissen zu der Informationssicherheit von GATE blieb ergebnislos, weswegen sich in diesem Bereich keine anderen Werke referenzieren lassen.
+Um die Informationssicherheit von GATE genau beurteilen zu können, sind ausführliche, präziser und genau kontrollierte Tests nötig, welche den Umfang dieser Arbeit weit überschreiten und daher hier nicht behandelt werden. Die Suche nach explizierten Forschungsergebnissen zu der Informationssicherheit von GATE blieb ergebnislos, weswegen sich in diesem Bereich keine anderen Werke referenzieren lassen.
 
 Dennoch ist es möglich die folgenden Aussagen über GATE zu treffen:
-Als JAVA-basiertes Programm erhält GATE die entsprechenden Sicherheitsvorteile, welche unter anderem die folgenden Sicherheitsmaßnahmen beinhalten \cite{do18}:
+Als JAVA-basiertes Programm erhält GATE die entsprechenden Sicherheitsvorteile, welche unter anderem die folgenden Schutzmaßnahmen beinhalten \cite{do18}:
 \begin{enumerate}
-\item Bytecode-Check: Bei dem Compilieren von JAVA-Programmen (der GATE-Launcher verweist auf eine Executable JAR) wird von dem Compiler eine JAVA-Klasse mit Bytecode erzeugt, welche bei jeder Ausführung des Programms auf Malware wie etwa Viren überprüft wird. 
-\item Garbage-Collector: Der JAVA-Garbage-Collector befreit vereinfacht ausgedrückt automatisch Speicherplatz, welcher belegt wird, jedoch nicht mehr darauf zugegriffen werden kann. Dies hat zwei Vorteile: Zum einen erhöht es die Verfügbarkeit, da es die inkorrekte Freigabe von Speicherplatz verhindert, zum anderen hilft es Entwicklern die Integrität während der Ausführung des Programms zu wahren. 
-\item Vermeidung von Pointern: Im Gegensatz zu anderen Programmiersprachen wie C und C++ gibt es in JAVA keine Pointer. Dies kann sich zwar negativ auf die Performanz von JAVA-Programmen auswirken (im Vergleich zu C oder C++ Programmen), schließt dafür jedoch die mit Pointern einhergehende Sicherheitslücke. So können diese beispielsweise missbraucht werden, um mit einem Stackoverflow unbefugt Zugang zu Informationen zu enthalten. 
-\item Ausnahmebehandlung: JAVA unterstützt das sogenannte \textit{exception handling}. Dies ermöglicht es Entwicklern, bei Ausnahmefällen einen Programmsturz zu verhindern und das Programm nach der Fehlerbehandlung weiter arbeiten zu lassen, was sich positiv auf die Verfügbarkeit auswirkt.
- 
+\item \textit{Bytecode-Check}: Bei dem Compilieren von JAVA-Programmen (der GATE-Launcher verweist auf eine Executable \textit{.jar}) wird von dem Compiler eine JAVA-Klasse mit Bytecode erzeugt. Diese wird bei jeder Ausführung des Programms auf Malware wie etwa Viren überprüft. 
+\item \textit{Garbage-Collector}: Der JAVA-Garbage-Collector verwaltet automatisch Speicherplatz und bereinigt Bereiche, welche belegt sind, auf die jedoch nicht mehr zugegriffen werden kann. 
+
+Dies hat zwei Vorteile: Zum Einen erhöht es die Verfügbarkeit, da es die inkorrekte Freigabe von Speicherplatz verhindert, zum Anderen hilft es Entwicklern, die Integrität während der Ausführung des Programms zu wahren. 
+\item \textit{Vermeidung von Pointern}: Im Gegensatz zu anderen Programmiersprachen wie C und C++ gibt es in JAVA keine Pointer. Dies kann sich zwar negativ auf die Performanz von JAVA-Programmen auswirken (im Vergleich zu C oder C++ Programmen), schließt dafür jedoch mit Pointern einhergehende Sicherheitslücken. Pointer können beispielsweise missbraucht werden, um mit einem \glqq Stackoverflow\grqq{} unbefugt Zugang zu Informationen aus dem Programmcode zu erhalten. 
+\\
+\\
+\item \textit{Ausnahmebehandlung}: JAVA unterstützt das sogenannte \textit{exception handling}. Dies ermöglicht es Entwicklern, bei Ausnahmefällen einen Programmabsturz zu verhindern und das Programm nach der Fehlerbehandlung weiter arbeiten zu lassen. Dies wirkt sich positiv auf die Verfügbarkeit aus.
 \end{enumerate}
 
 \subsubsection{Dokumentation}
 
-GATE verfügt über einen ausführlichen User-Guide, welcher direkt über die Webseite zu erreichen ist. Dieser ist aufgeteilt in vier Kapitel: GATE Basics, GATE for Advanced Users, CREOLE Plugins und the GATE Family:Cloud, MIMIR, Teamware. 
-GATE verfügt über einen ausführlichen User-Guide, welcher direkt über die Webseite zu erreichen ist. Dieser ist aufgeteilt in vier Kapitel: GATE Basics, GATE for Advanced Users, CREOLE Plugins und the GATE Family:Cloud, MIMIR, Teamware. wie etwa Viren überprüf
+GATE verfügt über einen ausführlichen User-Guide, welcher direkt über die Webseite erreichbar ist. Dieser ist aufgeteilt in vier Kapitel: GATE Basics, GATE for Advanced Users, CREOLE Plugins und the GATE Family: Cloud, MIMIR, Teamware.
 GATE Basics bietet einen gut verständlichen Einstieg für Benutzer, welche sich noch nicht mit dem Tool auskennen. Dabei stellt es vor allem die Arbeit mit den ANNIE-Komponenten vor.
 GATE for Advanced Users hilft bei fortgeschrittenerer Arbeit mit dem Tool, z.B. wenn es um das manipulieren von Text anhand von Annotationen oder die Entwicklung eigener Plugins geht.
-CREOLE Plugins bietet einen ausführlicheren Blick auf verschiedenste CREOLE-Plugins. Dabei wird vor allem auf die Arbeit mit Ontologien und Gazetteers eingegangen.
-The GATE Family: Cloud, MIMIR, Teamware verweist auf weitere mit GATE verwandte Services wie z.B. das web-basierte Annotations-Tool Teamware.
-Es ist also möglich, alle nötigen Informationen um mit dem Tool arbeiten zu können einheitlich über die Webseite von GATE zu erhalten. \\
+CREOLE Plugins bietet einen ausführlicheren Blick auf verschiedenste CREOLE-Plugins. Dabei wird vordergründig auf die Arbeit mit Ontologien und Gazetteers eingegangen.
+The GATE Family: Cloud, MIMIR, Teamware verweist auf weitere mit GATE verwandte Services wie z.B. das web-basierte Annotations-Tool \textit{Teamware}.
+Es ist also möglich, alle nötigen Informationen, um mit dem Tool arbeiten zu können, einheitlich über die Webseite von GATE zu erhalten.
 
-Die GATE-API kann unter dem Namen GATE Embedded über die offizielle Webseite von GATE eingesehen werden. GATE Embedded ist eine open source Software, welche alle Kernfunktionalitäten von GATE beinhaltet und ist direkt zum Download verlinkt. 
+Auch die GATE-API kann unter dem Namen GATE Embedded über die offizielle Webseite von GATE eingesehen werden. GATE Embedded ist eine open source Software, welche alle Kernfunktionalitäten von GATE beinhaltet (siehe Anbindung) und ist direkt zum Download verlinkt.
  
 \subsection{Evaluation von GATE}
-In den vorherigen Abschnitten wurde die Arbeitsweise von GATE und die Umsetzung der zuvor beschriebenen Anforderungen dargelegt. Zusammenfassend lässt sich auf dieser Basis sagen, dass GATE die funktionalen Anforderungen in hohem Maße und die nicht-funktionalen zufriedenstellend erfüllt, wobei nicht alle nicht-funktionalen im Rahmen dieser Arbeit überprüfbar sind. Die funktionalen Anforderungen und auch die in Kap.2 beschriebenen NLP-Verarbeitungsschritte konnten im Programm bzw. in dessen Modulen und Umgebung eindeutig wiedergefunden werden. Die Auslieferung von GATE als quelloffenes Programm bietet darüber hinaus weiteres Potential zur Weiterentwicklung, wenn noch weitere Anforderungen erhoben werden.
+In den vorherigen Abschnitten wurde die Arbeitsweise von GATE und die Umsetzung der zuvor beschriebenen Anforderungen dargelegt. Zusammenfassend lässt sich auf dieser Basis sagen, dass GATE die funktionalen Anforderungen in hohem Maße und die nicht-funktionalen zufriedenstellend erfüllt, wobei nicht alle nicht-funktionalen im Rahmen dieser Arbeit überprüfbar sind. 
+
+Die funktionalen Anforderungen und auch die in Kap.2 beschriebenen NLP-Verarbeitungsschritte konnten im Programm bzw. in dessen Modulen und Umgebung eindeutig wiedergefunden werden. Die Auslieferung von GATE als quelloffenes Programm bietet darüber hinaus weiteres Potential zur Weiterentwicklung, wenn noch weitere Anforderungen erhoben werden.
 
 \chapter{Fazit}
 \section{Zusammenfassung}
 Natural Language Processing und die Implementierung anhand der \textit{General Architecture For Text Engineering} stellten die Hauptthemen dieser Arbeit dar.
 
-Im Laufe dieser Arbeit wurde eine Einführung in NLP-Grundlagen gegeben und verschiedene Ansätze aus der Logik bis hin zur Automatentheorie vorgestellt. Der Bezug zur Informatik wurde im Anschluss daran durch die Erhebung möglicher Anforderungen anhand von Methoden aus dem Requirements-Engineering hergestellt und Fokuspunkte für die Entwicklung von NLP-Tools wurden beschrieben. Abschließend folgte auf dieser Basis die Vorstellung und Evaluation des weit verbreiteten NLP-Tools GATE. \\
+Im Laufe dieser Arbeit wurde eine Einführung in NLP-Grundlagen gegeben und verschiedene Ansätze aus der Logik bis hin zur Automatentheorie vorgestellt. Der Bezug zur Informatik wurde im Anschluss daran durch die Erhebung möglicher Anforderungen anhand von Methoden aus dem Require-ments-Engineering hergestellt und Fokuspunkte für die Entwicklung von NLP-Tools wurden beschrieben. Abschließend folgte auf dieser Basis die Vorstellung und Evaluation des weit verbreiteten NLP-Tools GATE. \\
 
 Aus den NLP-Grundlagen wurde besonders die hohe Komplexität natürlicher Sprache und der damit begründete hohe Aufwand bei der Modellierung mittels Werkzeugen der Informatik verdeutlicht. Verschiedene Algorithmen, Datenstrukturen und logische Modelle versuchen dabei, Teilbereiche von natürlicher Sprache zu modellieren und decken diese auf verschiedene Weisen ab.
 
@@ -1629,12 +1636,11 @@ Im Teil der Anforderungsanalyse wurde aus Perspektive der Softwaretechnik auf di
 Zuletzt stand die Betrachtung des weit verbreiteten NLP-Tools GATE auf Basis der Anforderungen. GATE stellt eine in hohem Maße konfigurier- und erweiterbare Software auf JAVA-Basis dar, die seit 1995 erhältlich ist und stetig weiterentwickelt wird. GATE bietet dabei eine GUI zur Umsetzung diverser NLP-Funktionalitäten und die Organisation in Modulen an, unterstützt aber auch die Anbindung in und an externe Softwaresysteme. GATE befriedigt insgesamt die erhobenen Anforderungen. Die zu Beginn der Arbeit aufgestellten Hypothesen konnten verifiziert werden.
 
 \section{Ausblick}
-Die Entwicklung von NLP in jüngerer Vergangenheit zeigt den Einzug der automatischen Sprachverarbeitung in immer mehr Bereiche des modernen Lebens. Wir gehen davon aus, dass diese Entwicklung noch nicht an ihrem Ende angelangt ist und NLP auch in den kommenden Jahren weiter an Relevanz gewinnen wird. Daraus folgt logischerweise auch das Bedürfnis nach entsprechenden Tools, um bei der Implementierung von NLP-Funktionen zu unterstützen.\\
+Die Entwicklung von NLP in jüngerer Vergangenheit zeigt den Einzug der automatischen Sprachverarbeitung in immer mehr Bereiche des modernen Lebens. Es besteht also Grund zu der Annahme, dass diese Entwicklung noch nicht an ihrem Ende angelangt ist und NLP auch in den kommenden Jahren weiter an Relevanz gewinnen wird. Daraus folgt logischerweise auch das Bedürfnis nach entsprechenden Tools, um bei der Implementierung von NLP-Funktionen zu unterstützen.\\
 
 Als geeignete Umgebung zur Entwicklung von Verarbeitungsprogrammen wird GATE daher nach wie vor relevant bleiben. Bestimmte Methoden oder Algorithmen können zwar veralten, da GATE jedoch nicht selbst die Verarbeitung vornimmt, ist es von solchen Problemen nicht betroffen. Des Weiteren wird GATE kontinuierlich weiterentwickelt und steht weiterhin an der Spitze als meinst verwendetes NLP-Tool der Welt. \\
 
-Im kommenden Jahr werden wir im Rahmen einer Bachelorarbeit GATE verwenden, um im betrieblichen Kontext ein Programm zu entwickeln, welches bei der automatisierten Verarbeitung von Projektlastenheften unterstützen soll. Die Arbeit wird sich dabei hauptsächlich auf die Verwendung von GATE in Zusammenarbeit mit anderen Werkzeugen konzentrieren. Dazu gehören unter anderem Protégé-OWL zur Nutzung von Ontologien und IBM Rational DOORS als Quelle von Anforderungsdokumenten.
-
+Im kommenden Jahr werden wir im Rahmen einer Bachelorarbeit Funktionen von GATE verwenden, um im betrieblichen Kontext ein Programm zu entwickeln, welches bei der automatisierten Verarbeitung von Projektlastenheften unterstützen soll. Die Arbeit wird sich dabei hauptsächlich auf die Verwendung von GATE in Zusammenarbeit mit anderen Werkzeugen konzentrieren, die in dieser Domäne relevant sind. Dazu gehören unter anderem \textit{Protégé-OWL} zur Nutzung von Ontologien und \textit{IBM Rational DOORS} als Quelle von Anforderungsdokumenten.
 
 \newpage
 \begin{thebibliography}{20}
