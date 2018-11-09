@@ -32,7 +32,7 @@
 \renewcommand{\arraystretch}{0.6}
 
 \begin{document}
-\title{Analyse aktueller NLP-Methoden und -Tools am Beispiel von GATE}
+\title{Analyse aktueller NLP-Methoden und -Werkzeuge am Beispiel von GATE}
 \author{Aaron Schul, Felix Ritter}
 %\subtitle{Projektarbeit, Bearbeitungszeitraum Sommersemester 2018\\
 %Fachhochschule Dortmund \\
@@ -46,11 +46,11 @@ Mit voranschreitender Globalisierung und immer größeren Mengen an übertragene
 
 Die Verarbeitung von natürlicher Sprache durch den Computer bezeichnet man als Natural Language Processing (kurz NLP). Es hilft dabei, Texte beispielsweise nach Schlagworten zu durchsuchen, strukturell zu analysieren, Muster zu erkennen und teilweise sogar die Bedeutung von Geschriebenem zu verstehen und diese Semantiken darzustellen.
 
-Mit dem Aufkommen von NLP steigt auch das Interesse an NLP-Tools, also an Programmen, welche in der Lage sind, die für NLP notwendigen Funktionalitäten übersichtlich und praktikabel bereitzustellen. Eines der bekanntesten NLP-Tools ist das von der University Of Stanford entwickelte GATE, welches eine Vielzahl von Anwendungsbereichen im NLP abdeckt.
+Mit dem Aufkommen von NLP steigt auch das Interesse an NLP-Werkzeugen, also an Programmen, welche in der Lage sind, die für NLP notwendigen Funktionalitäten übersichtlich und praktikabel bereitzustellen. Eines der bekanntesten NLP-Werkzeuge ist das von der University Of Stanford entwickelte GATE, welches eine Vielzahl von Anwendungsbereichen im NLP abdeckt.
 
-Das Ziel dieser Arbeit ist es, eine Anforderungsanalyse für solche Tools durchzuführen und diese dann mit dem GATE-Tool abzugleichen. Somit bietet sich die Möglichkeit GATE zu analysieren und daraufhin kriterienbasiert zu evaluieren. Funktionale wie nicht-funktionale Anforderungen werden definiert.
+Das Ziel dieser Arbeit ist es, eine Anforderungsanalyse für solche Werkzeuge durchzuführen und diese dann mit dem GATE-Tool abzugleichen. Somit bietet sich die Möglichkeit GATE zu analysieren und daraufhin kriterienbasiert zu evaluieren. Funktionale wie nicht-funktionale Anforderungen werden definiert.
 
-Zu diesem Zweck werden zunächst ausführlich die Grundlagen zu NLP erläutert. Die Teilschritte der Textverarbeitung werden theoretisch wie praktisch anhand von Implementierungsbeispielen erläutert. Daraufhin können mit Hilfe von Use Cases Anforderungen an diese Tools erhoben werden, auf denen Analyse und Evaluation des GATE-Tools beruhen sollen. Abgeschlossen wird die Arbeit von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen für NLP-relevante Domänen.
+Zu diesem Zweck werden zunächst ausführlich die Grundlagen zu NLP erläutert. Die Teilschritte der Textverarbeitung werden theoretisch wie praktisch anhand von Implementierungsbeispielen erläutert. Daraufhin können mit Hilfe von Use Cases Anforderungen an diese Werkzeuge erhoben werden, auf denen Analyse und Evaluation des GATE-Tools beruhen sollen. Abgeschlossen wird die Arbeit von einer kurzen Zusammenfassung der gewonnenen Erkenntnisse, gefolgt von einem Ausblick auf mögliche zukünftige Arbeiten und Entwicklungen für NLP-relevante Domänen.
 \end{abstract}
 
 \renewcommand{\abstractname}{Abstract}
@@ -76,7 +76,7 @@ For this purpose, the basics of NLP and its tools are first explained in detail.
 \newpage
 \chapter{Einführung}
 \section{Motivation und Herkunft}
-Jeder Mensch kommuniziert alltäglich mit Anderen mithilfe von natürlicher Sprache. Dies ist bereits seit Jahrtausenden so, jedoch hat sich die Übertragung dieser Sprache mit der Zeit verändert und weiterentwickelt.\cite{wei89}
+Jeder Mensch kommuniziert alltäglich mit Anderen mithilfe von natürlicher Sprache. Dies ist bereits seit Jahrtausenden so, jedoch hat sich die Übertragung dieser Sprache mit der Zeit verändert und weiterentwickelt \cite{wei89}.
 
 Damals lediglich von Mund zu Mund übertragen war der erste große Schritt die Entwicklung der Schrift. Mithilfe von Hieroglyphen, Alphabeten oder anderen Zeichen war man in nun in der Lage, natürliche Sprache über lange Zeit und/oder weite Strecken zu vermitteln. Dies erwies sich als sehr Vorteilhaft und so setzte sich die Entwicklung fort, bis man über das Morsen und das Telefon schließlich die elektronische Nachricht erfand. 
 Im Rahmen der voranschreitenden Digitalisierung und Globalsierung steigt die Menge an übertragener natürlicher Sprache nach wie vor rasant an, sodass heute etwa E-Mails einen wesentlichen Bestandteil der Kommunikation ausmachen. Obgleich die Übertragung durch kabelgebundene oder drahtlose Kommunikation weitgehend automatisiert ist, erfolgt die Auswertung des Inhalts größtenteils manuell durch menschliche Empfänger.
@@ -91,13 +91,13 @@ Ferner ist auch die semantische Erfassung von Text relevant, um dessen inhaltlic
 \section{Methodik}
 Verschiedene Ansätze für die Modellierung natürlicher Sprache werden zunächst erläutert, wodurch der Sinn und Zweck von NLP verdeutlicht wird. Die Teilschritte der Textverarbeitung werden für das Verständnis verschiedener Aspekte der Abläufe theoretisch wie praktisch mittels Implementierungsbeispielen erläutert.
 
-Anhand der für NLP relevanten Probleme werden dann generelle und spezifische Anforderungen an NLP Tools erhoben. 
+Anhand der für NLP relevanten Probleme werden dann generelle und spezifische Anforderungen an NLP Werkzeuge erhoben. 
 Das NLP-Tool GATE soll als Beispiel einer Anforderungsanalyse unterzogen werden, welche die zuvor erhobenen Anforderungen auf das Programm bezieht und somit testet wie geeignet GATE als NLP-Tool ist.
 
 \section{Aufbau der Arbeit}
 Beginnend mit einer kurzen Motivation und Historie wird zunächst in Kapitel 2. in das Thema eingeführt. Bekannte Ansätze und Beispiele aus dem Alltag werden vorgestellt, um dem Leser das Thema näher zu bringen. Für die Vermittlung von Wissen aus dem Bereich NLP werden im weiteren Verlauf des Kapitels ausführlich die Grundlagen zu NLP, dessen Aufgaben und Probleme erläutert.
 
-In Kapitel 3 werden die zuvor aufgeführten Probleme als Grundlage zur Erhebung von Anforderungen an NLP-Tools verwendet. Dabei werden generelle und NLP-spezifische Aspekte erläutert um funktionale und nicht-funktionale Anforderungen aufzustellen.
+In Kapitel 3 werden die zuvor aufgeführten Probleme als Grundlage zur Erhebung von Anforderungen an NLP-Werkzeuge verwendet. Dabei werden generelle und NLP-spezifische Aspekte erläutert um funktionale und nicht-funktionale Anforderungen aufzustellen.
 
 In Kapitel 4 wird das NLP-Tool GATE anhand der erhobenen Anforderungen analysiert und basierend auf deren Erfüllung bewertet. 
 
@@ -212,19 +212,19 @@ NLP ist grob definiert als die automatische oder halb-automatische Verarbeitung 
 NLP überschneidet sich mit vielen wichtigen Bereichen der Wissenschaft. Hauptsächlich sind dies Linguistik und Informatik, allerdings fließen auch Psychologie, Philosophie und Mathematik bzw. Logik stark mit ein. 
 
 \subsection{Ziel und funktionale Einordnung}
-Das Ziel von NLP ist die Extraktion von Informationen aus gegebenen Texten, also aus einem natürlichsprachlichen Input einen Wissensoutput über den Inhalt des Dokuments zu generieren. Dies wird mithilfe von NLP-Tools wie GATE umgesetzt.
+Das Ziel von NLP ist die Extraktion von Informationen aus gegebenen Texten, also aus einer natürlichsprachlichen Eingabe einen Wissensausgabe über den Inhalt des Dokuments zu generieren. Dies wird mithilfe von NLP-Tools wie GATE umgesetzt.
 
-Dazu ist, wie Abschnitt 2.2 beschrieben, die linguistische Analyse der Sprachstruktur der Dokumente in Teilschritten erforderlich. Auf Basis der syntaktischen Analyse kann dann eine semantische Analyse durch Einsatz sogenannter Ontologien (Sammlung von Wissen aus einer Domäne) erfolgen. Letztendlich kann somit tatsächlich Wissen über die Bedeutung aus dem Dokumenteninhalt gewonnen werden.
+Dazu ist, wie Abschnitt 2.2 beschrieben, die linguistische Analyse der Sprachstruktur der Dokumente in Teilschritten erforderlich. Auf Basis der syntaktischen Analyse kann dann eine semantische Analyse durch Einsatz sogenannter Ontologien, das heißt die Sammlung von Wissen aus einer Domäne, erfolgen. Letztendlich kann somit tatsächlich Wissen über die Bedeutung aus dem Dokumenteninhalt gewonnen werden.
 
 \subsection{Beispiele früher Entwicklungen}
-Die Forschungsergebnisse des Linguisten Noam Chomsky seit den 1950er Jahren haben aufgezeigt, dass es grundsätzlich möglich ist, einge Aspekte der Regeln englischer Sprache zu formalisieren. Mit der Kombination von Automaten und generativen Grammatiken (Abschnitt 2.4 und 2.6), welche auch \textit{Chomsky-Hierarchie} genannt wird, wird verdeutlicht, wie Sprache automatisiert aufgefasst und nachvollzogen werden kann. Siehe dazu auch \cite{cho57}. Chomsky schaffte damit zum großen Teil die Grundlagen der Modelle heutiger Sprachanalyse-Tools.
+Die Forschungsergebnisse des Linguisten Noam Chomsky seit den 1950er Jahren haben aufgezeigt, dass es grundsätzlich möglich ist, einge Aspekte der Regeln englischer Sprache zu formalisieren. Mit der Kombination von Automaten und generativen Grammatiken (Abschnitt 2.4 und 2.6), welche auch \textit{Chomsky-Hierarchie} genannt wird, wird verdeutlicht, wie Sprache automatisiert aufgefasst und nachvollzogen werden kann. Siehe dazu auch \cite{cho57}. Chomsky schaffte damit zum großen Teil die Grundlagen der Modelle heutiger Sprachanalyse-Werkzeugen.
 
 Bereits in den 1960er Jahren versuchte man durch Sprachcomputer bzw. Chatbots wie \textit{ELIZA} \cite{wei66} die Mensch-Maschine-Kommunikation umzusetzen, indem die Textnachricht eines Benutzers automatisch durch einen Computer verarbeitet und eine plausible Antwort gegeben wurde, damals jedoch noch ohne echte Wissensbasis. Aus heutiger Sicht kann man ELIZA somit keine Möglichkeit zur \glqq   intelligenten\grqq{} Kommunikation attestieren, da scheinbar der Sinn hinter den Nutzereingaben nicht gänzlich erfasst wird.
 
-Heutige Entwicklungen im Bereich Sprachassistenzsysteme sind alltäglicher Begleiter jedes Smartphone-Nutzers geworden; sie analysieren die Spracheingaben mithilfe von NLP-Techniken bezüglich ihrer Bedeutung in Echtzeit über Clouds. \cite{hao14}
+Heutige Entwicklungen im Bereich Sprachassistenzsysteme sind alltäglicher Begleiter jedes Smartphone-Nutzers geworden; sie analysieren die Spracheingaben mithilfe von NLP-Techniken bezüglich ihrer Bedeutung in Echtzeit über Clouds \cite{hao14}.
 
 \subsection{NLP als Annäherung an natürlichsprachliche Probleme}
-Bereits bei der Mensch-Mensch-Kommunikation sind  Verständigungsprobleme vorhandenen und treten unwillkürlich auf. Die Intention einer Aussage ist etwa nicht nur abhängig von dem, was tatsächlich gesagt wird, sondern auch von Gestik, Mimik und der Situation, in der kommuniziert wird. Bei der Untersuchung von geschriebenem Text in natürlicher Sprache treten diese Betrachtungen jedoch in den Hintergrund, da der Inhalt im Vordergrund steht und mitunter die Situation des Autoren unklar oder irrelevant ist. Wissen aus der Domäne ist jedoch zwingend für das Verständnis spezifischer Fachbegriffe von Nöten, daher müssen auch automatische NLP-Tools diese einbeziehen können. Zudem gibt es oft Veränderungen der Bedeutung von Sprache die stark kontextabhängig sind, wie zum Beispiel Sarkasmus oder Ironie. Auch verändern Worte im Laufe der Zeit ihre Bedeutung oder durch Rechtschreibreformen ihr Aussehen. Hier soll nicht weiter auf Aspekte der Kommunikationswissenschaften eingegangen werden, jedoch ist beispielsweise die Ambiguität einer Aussage ganz alltäglich und hat gleichsam verschiedene Auswirkungen. Solche Mehrdeutigkeiten können syntaktische und semantische Fehlinterpretationen verursachen. \cite{wei89}
+Bereits bei der Mensch-Mensch-Kommunikation sind  Verständigungsprobleme vorhandenen und treten unwillkürlich auf. Die Intention einer Aussage ist etwa nicht nur abhängig von dem, was tatsächlich gesagt wird, sondern auch von Gestik, Mimik und der Situation, in der kommuniziert wird. Bei der Untersuchung von geschriebenem Text in natürlicher Sprache treten diese Betrachtungen jedoch in den Hintergrund, da der Inhalt im Vordergrund steht und mitunter die Situation des Autoren unklar oder irrelevant ist. Wissen aus der Domäne ist jedoch zwingend für das Verständnis spezifischer Fachbegriffe von Nöten, daher müssen auch automatische NLP-Werkzeuge diese einbeziehen können. Zudem gibt es oft Veränderungen der Bedeutung von Sprache die stark kontextabhängig sind, wie zum Beispiel Sarkasmus oder Ironie. Auch verändern Worte im Laufe der Zeit ihre Bedeutung oder durch Rechtschreibreformen ihr Aussehen. Hier soll nicht weiter auf Aspekte der Kommunikationswissenschaften eingegangen werden, jedoch ist beispielsweise die Ambiguität einer Aussage ganz alltäglich und hat gleichsam verschiedene Auswirkungen. Solche Mehrdeutigkeiten können syntaktische und semantische Fehlinterpretationen verursachen \cite{wei89}.
 
 Wo sich Menschen dabei im Zweifel auf Erfahrungen und spezifische Fachkenntnisse verlassen oder bei ihrem Kommunikationspartner nachfragen können, müssen sich Computer allein auf die vorliegenden Dokumente in Schriftform verlassen; sie wissen nichts über den Kontext des Dokuments. Wie später gezeigt wird, kann jedoch etwa Fachwissen durch domänenspezifische Wissensbasen (siehe Abschnitt 2.7.2) simuliert werden. 
 \subsubsection{Probleme für die Implementierung}
@@ -235,7 +235,7 @@ Bereits einfache Anfragen können computergestützte Frage-Antwort-Systeme wie S
 Schon das Wort \textit{Teekesselchen} kann im deutschen Sprachgebrauch das tatsächliche Teegefäß oder auch ein doppeldeutiges Wort meinen. 
 \subsubsection{Beispiele sprachlicher Besonderheiten}
 
-Der Satz \textit{\glqq   Die Betrachtung des Studenten\grqq{}} kann etwa als Student, der (etwas) betrachtet, oder als ein Student, der (von jemand anderem) betrachtet wird, verstanden werden. Sätze mit solch einem Satzbau (bestehend aus nominalisiertem Verb, Bezugswort und Substantiv) verursachen unwillkürlich zwei mögliche Deutungen aufgrund der unklaren Syntax.
+Der Satz \textit{\glqq   Die Betrachtung des Studenten\grqq{}} kann etwa als Student, der (etwas) betrachtet, oder als ein Student, der (von jemand anderem) betrachtet wird, verstanden werden. Sätze mit solch einem Satzbau, bestehend aus nominalisiertem Verb, Bezugswort und Substantiv, verursachen unwillkürlich zwei mögliche Deutungen aufgrund der unklaren Syntax.
 
 Die Frage \textit{\glqq  Verkaufen Sie Handys und Computer von Samsung?\grqq{}} kann als Frage nach allgemeinen Handys und nur Computern, spezifisch von Samsung oder nach Handys und Computern gleichermaßen nur von Samsung verstanden werden. Auch hier entsteht Unklarheit durch zwei mögliche Bezüge des einschränkenden Relativsatzes. Ob eine Aufzählung oder ein Unterschied (zwischen \textit{von Samsung} und \textit{nicht von Samsung} gemacht wird, ist syntaktisch unklar.)
 
@@ -245,7 +245,7 @@ Abgesehen von diesen syntaktischen Uneindeutigkeiten muss NLP auch Hürden der i
 Solche scheinbar simplen Probleme sind für den Menschen recht einfach zu lösen. Wie oben erwähnt existiert NLP bereits seit ca. Mitte des 20. Jahrhunderts, jedoch ist die Behandlung natürlichsprachlicher Probleme auch heute noch problematisch in der Implementierung. Wenn Systeme die oben genannten Beispiele nicht explizit ausschließen, muss die Verarbeitungslogik besondere Rücksicht auf Uneindeutigkeiten nehmen.
 
 \subsection{Konzepte aus der Logik für NLP-Anwendungen}
-Weit vor der Implementierung von NLP mittels Tools haben sich Logiker und Experten aus der theoretischen Informatik mit der Frage beschäftigt, wie man Sprache und Ereignisse aus der echten Welt in logischen Ausdrücken formalisieren kann. Ausgehend von der klassischen Aussagenlogik wurde mit der parametrisierten $\in_T$-Logik nach Zeitz \cite{ze00} ein Ansatz geschaffen, der eine Darstellung von Semantik in propositionalen Logiken ermöglicht. Nach Martin-Löf \cite{ml96} beschreibt eine Proposition den \glqq  Gedanken oder Sachverhalt eines formalen Ausdrucks\grqq{}, die dann in einer $\in_T$-Logik dargestellt werden kann und somit einen Sachverhalt als Symbol abbildet. Ziel ist es, tatsächliche Bedeutungen in Form von Propositionen mittels Formeln aus Symbolen der Logik darzustellen. Abstrakt betrachtet kann man sich mit propositionalen Logiken einer Abbildung von Wissen aus der tatsächlichen Welt annähern. 
+Weit vor der Implementierung von NLP mittels Werkzeugen haben sich Logiker und Experten aus der theoretischen Informatik mit der Frage beschäftigt, wie man Sprache und Ereignisse aus der echten Welt in logischen Ausdrücken formalisieren kann. Ausgehend von der klassischen Aussagenlogik wurde mit der parametrisierten $\in_T$-Logik nach Zeitz \cite{ze00} ein Ansatz geschaffen, der eine Darstellung von Semantik in propositionalen Logiken ermöglicht. Nach Martin-Löf \cite{ml96} beschreibt eine Proposition den \glqq  Gedanken oder Sachverhalt eines formalen Ausdrucks\grqq{}, die dann in einer $\in_T$-Logik dargestellt werden kann und somit einen Sachverhalt als Symbol abbildet. Ziel ist es, tatsächliche Bedeutungen in Form von Propositionen mittels Formeln aus Symbolen der Logik darzustellen. Abstrakt betrachtet kann man sich mit propositionalen Logiken einer Abbildung von Wissen aus der tatsächlichen Welt annähern. 
 
 Die klassische Aussagenlogik kann etwa Wissen mittels ihrer Symbole abbilden, indem Sie Formeln aus diesen Symbolen bildet. Jedem Symbol ist dabei eine Aussage zugeordnet, die dann in einer Formel als Variable auftaucht. Problematisch ist jedoch, dass solch eine Logik bei der Deutung auf reine Wahrheitswerte dieser Formeln beschränkt ist, indem die Symbole logisch wahr oder falsch belegt werden. Eine explizitere, semantische Deutung der Formeln ist jedoch erforderlich, um tatsächlich metasprachliche Aussagen in einer Logik zu formulieren. 
 
@@ -341,7 +341,7 @@ begun PSP\_VERB begin\\
 Um unnötige Fehler zu vermeiden ist es ratsam, zusätzlich ein Lexikon mit Wortstämmen zu verwenden, welches die Wortstämme und eine grammatikalische Einordnung beinhaltet. Dies hat hauptsächlich zwei Gründe: 
 
 \begin{enumerate}
-\item Die Form im Zusammenhang mit vielen syntaktischen (siehe Abschnitt 2.5) und morphologischen Regeln ist wichtig. Die \textit{\glqq  -able\grqq{}}-Anhangsregel kann beispielsweise nur bei Verben verwendet werden, die dann ein Adjektiv darstellen (diese Eigenschaft würde in der Affix-Liste beschrieben).
+\item Die Form im Zusammenhang mit vielen syntaktischen (siehe Abschnitt 2.5) und morphologischen Regeln ist wichtig. Die \textit{\glqq  -able\grqq{}}-Anhangsregel kann beispielsweise nur bei Verben verwendet werden, die dann ein Adjektiv darstellen . Diese Eigenschaft würde in der Affix-Liste beschrieben.
 \item Mögliche Wortstämme überprüfen zu können ist wichtig, da somit viele Mehrdeutigkeiten ausgeschlossen werden können. So könnte \glqq  bus\grqq{} z.B. als \glqq  bu$\textasciicircum$s\grqq{} (Plural von \glqq  bu\grqq{}) interpretiert werden. Dies ist jedoch nicht möglich, wenn kein Eintrag zu dem Wortstamm \glqq  bu\grqq{} existiert. 
 \end{enumerate}
 
@@ -357,7 +357,7 @@ Das \textit{e} ist in dem Falle der in Frage stehende Buchstabe, welcher, symbol
 Solche Regeln lassen sich zu morphologischen Zwecken gut mit endlichen Zustandswandlern (finite state transducers) realisieren, was im Folgenden demonstriert werden soll.
 
 \subsection{Endliche Zustandswandler zur Umsetzung von morphologischen Regeln}
-Ein endlicher Zustandswandler ist ein Graph aus einer endlichen Anzahl von Knoten (Zuständen), welche durch Kanten verbunden sind. Knoten sind unterteilt in einen Start-Knoten, eine beliebige Anzahl an normalen Knoten und mindestens einen Ziel-Knoten. Der Start-Knoten erhällt als Input das zu verarbeitende Wort, welches nun in eine Abbildung der Aufbaustruktur des Wortes übertragen werden soll. Das Erreichen eines Ziel-Knotens heißt, dass das Wort korrekt ist und akzeptiert werden kann. Die Kanten repräsentieren die Abbildung einer Zeichenkette auf eine andere. Dies funktioniert bidirektional, wodurch sie sowohl zum Erstellen, als auch zum Auflösen von Wörtern verwendetet werden können \cite{cop04}. Die Abbildung 2.1 zeigt den endlichen Zustandswandler, der die Umsetzung der besagten \glqq  able\grqq{}-Anhangs-Regel ermöglicht.
+Ein endlicher Zustandswandler ist ein Graph aus einer endlichen Anzahl von Knoten (Zuständen), welche durch Kanten verbunden sind. Knoten sind unterteilt in einen Start-Knoten, eine beliebige Anzahl an normalen Knoten und mindestens einen Ziel-Knoten. Der Start-Knoten erhällt als Eingabe das zu verarbeitende Wort, welches nun in eine Abbildung der Aufbaustruktur des Wortes übertragen werden soll. Das Erreichen eines Ziel-Knotens heißt, dass das Wort korrekt ist und akzeptiert werden kann. Die Kanten repräsentieren die Abbildung einer Zeichenkette auf eine andere. Dies funktioniert bidirektional, wodurch sie sowohl zum Erstellen, als auch zum Auflösen von Wörtern verwendetet werden können \cite{cop04}. Die Abbildung 2.1 zeigt den endlichen Zustandswandler, der die Umsetzung der besagten \glqq  able\grqq{}-Anhangs-Regel ermöglicht.
 \\
 
 \begin{figure}[h!]
@@ -378,7 +378,7 @@ Ein endlicher Zustandswandler ist ein Graph aus einer endlichen Anzahl von Knote
 \end{figure}
 
 
-Der oben abgebildete Zustandswandler ist in der Lage die beschriebene Regel umzusetzen wie folgt: In Zustand 1 erfolgt der Input des eingelesenen Wortes, also in diesem Falle \textit{\glqq  believable\grqq{}}. Über die Schleife mit \textit{\glqq  other:other\grqq{}} ist die Abbildung aller nicht speziell angegebenen Zeichenfolgen auf sich selbst beschrieben. Es kann jederzeit das leere Wort auf ein \textit{\glqq  e\grqq{}} Übertragen werden, dies geschieht jedoch nur, falls auch ein \glqq  -able\grqq{} folgt. In dem Fall wird zuvor noch aus dem leeren Wort ein Affix-Zeichen ($\textasciicircum$) generiert (Es ist anzumerken, dass der Zustandswandler nicht deterministisch ist, sich jedoch über die Potenzmengenkonstruktion immer ein äquivalenter deterministischer Zustandswandler erstellen ließe). So wird also das Wort \glqq  believable\grqq{} durch diesen Automaten als \glqq  believe$\textasciicircum$able\grqq{} Interpretiert, und somit das \glqq  able\grqq{}-Affix erkannt. Andersherum ließe sich aus dem Wortaufbau \glqq  believe$\textasciicircum$able\grqq{} das korrekte Wort \glqq  believable\grqq{} generieren.
+Der oben abgebildete Zustandswandler ist in der Lage die beschriebene Regel umzusetzen wie folgt: In Zustand 1 erfolgt die Eingabe des eingelesenen Wortes, also in diesem Falle \textit{\glqq  believable\grqq{}}. Über die Schleife mit \textit{\glqq  other:other\grqq{}} ist die Abbildung aller nicht speziell angegebenen Zeichenfolgen auf sich selbst beschrieben. Es kann jederzeit das leere Wort auf ein \textit{\glqq  e\grqq{}} Übertragen werden, dies geschieht jedoch nur, falls auch ein \glqq  -able\grqq{} folgt. In dem Fall wird zuvor noch aus dem leeren Wort ein Affix-Zeichen ($\textasciicircum$) generiert. Es ist anzumerken, dass der Zustandswandler nicht deterministisch ist, sich jedoch über die Potenzmengenkonstruktion immer ein äquivalenter deterministischer Zustandswandler erstellen ließe. So wird also das Wort \glqq  believable\grqq{} durch diesen Automaten als \glqq  believe$\textasciicircum$able\grqq{} Interpretiert, und somit das \glqq  able\grqq{}-Affix erkannt. Andersherum ließe sich aus dem Wortaufbau \glqq  believe$\textasciicircum$able\grqq{} das korrekte Wort \glqq  believable\grqq{} generieren.
 
 Üblicherweise werden für jede Regel eigene Zustandswandler erstellt, welche dann bei der Verarbeitung von Wörtern parallel ablaufen. Dies ist gut für die Performanz, birgt allerdings Probleme. Wenn man mit komplexen Wörtern arbeitet, bei denen mehrere Regeln gleichzeitig anzuwenden sind, können verschiedene valide Ergebnisse erzielt werden. So wäre es etwa problematisch zwischen den Wörtern \glqq  un$\textasciicircum$ion$\textasciicircum$ise$\textasciicircum$ed\grqq{} (Chemie) und \glqq  union$\textasciicircum$ise$\textasciicircum$ed\grqq{} (gewerkschaftlich organisiert) zu unterscheiden. 
 
@@ -687,7 +687,7 @@ for each Wort $w_{0-n}$ im Satz, sei \textit{from} der linke \\
 und \textit{to} der rechte Knoten und daughters ds ein w \\
 \hspace*{.2cm} for each möglichen Lexikoneintrag der Kategorie cat von w \\
 \hspace*{.4cm} neueKante \textit{from,to,cat,ds} \\
-output alle aufgespannten Kanten von $w_{0}$ nach $w_{n}$ \\ \rm(gesamter Text wird abgedeckt und mother ist S)\tt
+\dfrac{•}{•} alle aufgespannten Kanten von $w_{0}$ nach $w_{n}$ \\ \rm(gesamter Text wird abgedeckt und mother ist S)\tt
 \item 
 neueKante: \textit{from,to,cat,daughters} \\
 Neue Kante einzeichnen: \textit{id,from,to,cat,ds} \\
@@ -1180,35 +1180,35 @@ Tom wird sehr von Max gemocht. Er ist immer nett und hilfsbereit.
 \end{enumerate}
 Ein verwendeter Algorithmus zur Auflösung von Pronomen-Präferenzen wird in \cite{ll94} von Lappin und Leass vorgestellt.\\
 
-\chapter[Anforderungserhebung an NLP-Tools]{Anforderungserhebung an Tools zur Lösung von NLP-Problemen}
-Das folgende Kapitel beschäftigt sich mit der Anfolderungsanalyse von NLP-Tools generell. Dabei gibt es eine Vielzahl von Anforderungen und Anforderungsbereichen, die zu berücksichtigen sind. Zunächst sind natürlich alle generellen Anforderungen zu Verarbeitungsprogrammen relevant. Des weiteren erwachsen jedoch aus den Eigenschaften von NLP bestimmte Probleme, welche wiederum speziellere Anforderungen notwendig machen. Dieses Kapitel wird sich nicht auf ein bestimmtes Tool beziehen, sondern durch die Darstellung der besagten Anforderungen eine Grundlage für das nächste Kapitel liefern, in welchem GATE anhand der hier aufgeführten Punkte evaluiert wird. 
+\chapter[Anforderungserhebung an NLP-Wekzeuge]{Anforderungserhebung an Werkzeuge zur Lösung von NLP-Problemen}
+Das folgende Kapitel beschäftigt sich mit der Anfolderungsanalyse von NLP-Werkzeugen generell. Dabei gibt es eine Vielzahl von Anforderungen und Anforderungsbereichen, die zu berücksichtigen sind. Zunächst sind natürlich alle generellen Anforderungen zu Verarbeitungsprogrammen relevant. Des weiteren erwachsen jedoch aus den Eigenschaften von NLP bestimmte Probleme, welche wiederum speziellere Anforderungen notwendig machen. Dieses Kapitel wird sich nicht auf ein bestimmtes Programm beziehen, sondern durch die Darstellung der besagten Anforderungen eine Grundlage für das nächste Kapitel liefern, in welchem GATE anhand der hier aufgeführten Punkte evaluiert wird. 
 
-Zunächst werden die oben erwähnten Eigenschaften von NLP betrachtet und die resultierenden Probleme aufgezählt. Daraufhin werden die generellen und spezifischen Anforderungen an NLP-Tools ausgeführt. Diese sind in funktionale und nicht-funktionale Anforderungen unterteilt.
+Zunächst werden die oben erwähnten Eigenschaften von NLP betrachtet und die resultierenden Probleme aufgezählt. Daraufhin werden die generellen und spezifischen Anforderungen an NLP-Werkzeuge ausgeführt. Diese sind in funktionale und nicht-funktionale Anforderungen unterteilt.
 
 \section{Eigenschaften von NLP}
 In diesem Abschnitt werden die in dem vorherigen Kapitel dargestellten Eigenschaften von NLP noch einmal kurz erläutert. Der Fokus liegt dabei auf den Eigenschaften, welche bei der Anforderungsanalyse besonderen Einfluss haben. Eine Auflistung der für uns relevantesten Eigenschaften kann wie folgt aussehen:
 
 \begin{enumerate}
-\item \textit{Ständiger Wandel von Sprache}: natürliche Sprache verändert sich konstant. Dies gilt sowohl für Morphologie, als auch für Syntax, was wiederum zu variierenden Semantiken zweier gleicher Sätze zu einem unterschiedlichen Zeitpunkt führen kann. Dies hat zur Folge, dass Fehler entstehen, wenn NLP-Tools nicht ausreichend wartbar sind oder nicht immer Zugriff auf den aktuellsten Stand der Sprache haben, z.B. über Lexika.
-\item \textit{Vielzahl von Verarbeitungsschritten}: Für eine ausreichende linguistische Analyse von Texten werden viele Arbeitsschritte hintereinander durchgeführt, wie in Abschnitt 2.2.1 beschrieben wird. Im Gegensatz zu vielen Programmierumgebungen reicht es also nicht einfach, ein Programm zu kompilieren. Einige Verarbeitungsschritte werden zudem noch den eigenen Zwecken angepasst um bestimmte Ergebnisse zu erzielen. Dies muss also durch ein NLP-Tool ermöglicht und so gut wie möglich vereinfacht werden.
+\item \textit{Ständiger Wandel von Sprache}: natürliche Sprache verändert sich konstant. Dies gilt sowohl für Morphologie, als auch für Syntax, was wiederum zu variierenden Semantiken zweier gleicher Sätze zu einem unterschiedlichen Zeitpunkt führen kann. Dies hat zur Folge, dass Fehler entstehen, wenn NLP-Werkzeuge nicht ausreichend wartbar sind oder nicht immer Zugriff auf den aktuellsten Stand der Sprache haben, z.B. über Lexika.
+\item \textit{Vielzahl von Verarbeitungsschritten}: Für eine ausreichende linguistische Analyse von Texten werden viele Arbeitsschritte hintereinander durchgeführt, wie in Abschnitt 2.2.1 beschrieben wird. Im Gegensatz zu vielen Programmierumgebungen reicht es also nicht einfach, ein Programm zu kompilieren. Einige Verarbeitungsschritte werden zudem noch den eigenen Zwecken angepasst um bestimmte Ergebnisse zu erzielen. Dies muss also durch ein NLP-Werkzeug ermöglicht und so gut wie möglich vereinfacht werden.
 \item \textit{Hohe Laufzeiten}: Bei der Verarbeitung von Texten kann es zu sehr hohen Laufzeiten kommen. Diese sind beispielsweise abhängig von der Länge des Textes, der Anzahl der Verarbeitungsschritte und den in diesen verwendeten Algorithmen. Ein NLP-Tool sollte also über entsprechende Funktionalitäten verfügen, um die Laufzeit überblicken und evtl. einschränken zu können. 
-\item \textit{Domäne und Präzision}: Bei NLP ist in vielen Fällen abzuwägen zwischen einer präzisen und schnellen Verarbeitung in kleiner Domäne (kleine Lexika, Corpora, semantisches Umfeld usw.) oder einer langsameren, weniger präzisen Verarbeitung in einer dafür größeren bzw. generelleren Domäne. Ein NLP-Tool muss es also ermöglichen, die Verarbeitungsdomäne jedes mal selbst zu wählen.
+\item \textit{Domäne und Präzision}: Bei NLP ist in vielen Fällen abzuwägen zwischen einer präzisen und schnellen Verarbeitung in kleiner Domäne (kleine Lexika, Corpora, semantisches Umfeld usw.) oder einer langsameren, weniger präzisen Verarbeitung in einer dafür größeren bzw. generelleren Domäne. Ein NLP-Werkzeug muss es also ermöglichen, die Verarbeitungsdomäne jedes mal selbst zu wählen.
 \end{enumerate}
 
 Die hier nur kurz angerissenen Anforderungen, welche aus diesen Eigenschaften resultieren, werden im folgenden Abschnitt jeweils einzeln genauer behandelt.
 
-\section[Anforderungen an NLP-Tools]{Anforderungen für die Entwicklung von NLP-Tools}
-Wie bereits im vorigen Abschnitt dargelegt wurde, sind bei der Entwicklung von Tools, die NLP-Algorithmen zur Auswertung von Sprache verwenden, Besonderheiten zu beachten. Daraus ergibt sich besonders im Hinblick auf die korrekte Umsetzung der Funktionalität von Software Handlungsbedarf für die Planung der Entwicklung und das Anforderungsmanagement. Diese Anforderungen lassen sich im Sinne der Softwaretechnik in der Vorentwicklung in funktionale und nicht-funktionale Anforderungen an eine Software gliedern. Im Bereich der Softwareentwicklung existieren mittlerweile standardisierte Typen von Anforderungen, die u.a. in DIN 9126 zusammengefasst sind. In \cite{bal98} sind diese zu finden, jedoch fällt die Umsetzung besonders in Anwendungsgebieten, in denen immer wieder neue Ansätze entstehen, nicht leicht. Da Komponenten für NLP ständig mit neuen Algorithmen implementiert werden können, fehlen mitunter best-practices für deren Entwicklung.
+\section[Anforderungen an NLP-Werkzeuge]{Anforderungen für die Entwicklung von NLP-Werkzeugen}
+Wie bereits im vorigen Abschnitt dargelegt wurde, sind bei der Entwicklung von Programmen, die NLP-Algorithmen zur Auswertung von Sprache verwenden, Besonderheiten zu beachten. Daraus ergibt sich besonders im Hinblick auf die korrekte Umsetzung der Funktionalität von Software Handlungsbedarf für die Planung der Entwicklung und das Anforderungsmanagement. Diese Anforderungen lassen sich im Sinne der Softwaretechnik in der Vorentwicklung in funktionale und nicht-funktionale Anforderungen an eine Software gliedern. Im Bereich der Softwareentwicklung existieren mittlerweile standardisierte Typen von Anforderungen, die u.a. in DIN 9126 zusammengefasst sind. In \cite{bal98} sind diese zu finden, jedoch fällt die Umsetzung besonders in Anwendungsgebieten, in denen immer wieder neue Ansätze entstehen, nicht leicht. Da Komponenten für NLP ständig mit neuen Algorithmen implementiert werden können, fehlen mitunter best-practices für deren Entwicklung.
 
 In diesem Abschnitt soll besonderer Fokus auf der Benennung und Einordnung spezieller Anforderungen, die sich bei NLP ergeben, aus der DIN-Norm 9126 liegen. In der Spezifizierung einzelner Anforderungen werden dabei die inhaltlichen Grundlagen aus Kap. 2 genutzt, um die Problematiken zu motivieren und darzulegen. Mögliche Schwachpunkte im Entwicklungsprozess können somit bereits im Vorhinein identifiziert und vermieden werden. Es ist dabei zu beachten, dass durch die hohe Abhängigkeit von NLP zum Anwendungskontext in verschiedenen Domänen noch weitere Anforderungen entstehen können. Wenn etwa die Semantik besonders im Vordergrund steht oder schwer fachspezifisches Wissen erforderlich ist, muss man schon beim Programmentwurf auf diese Besonderheiten eingehen.
 
-\subsection{User-Interaktion mit NLP-Tools}
+\subsection{User-Interaktion mit NLP-Werkzeugen}
 Die Modellierung der Interaktion von Software mit Usern stellt eine Grundlage für die Erhebung weiterer Anforderungen dar, die nicht die verwendeten Algorithmen für die Sprachanalyse betreffen. In Kapitel 2 wurden diese funktionalen Bestandteile einer NLP-Software bereits ausführlich erläutert.
 Im folgenden Abschnitt soll nun prototypisch die Interaktion von Usern, die ein Programm mit einer generellen NLP-Architektur verwenden, veranschaulicht werden. Damit lassen sich im Anschluss weitere Anforderungen extrahieren und in funktionale und nicht-funktionale Anforderungen kategorisieren.
 
-Zur Definition und Einordnung der späteren Programmnutzer in Gruppen wird im Use-Case-Diagramm in Fig. 3.1 die eher praktische und weniger technische Beschreibung verschiedener User-Anwendungsfälle erstellt. Die unterschiedlichen an NLP-Tools beteiligten Akteure in einem näherungsweise betrieblichen Kontext werden in diesem genauer beschrieben. Aus diesen Use-Cases der verschiedenen Stakeholder können im Anschluss konkrete Anforderungen an die Implementierung extrahiert werden, die nicht die technische Umsetzung der Software betreffen (insb. nicht-funktionale Anforderungen).
+Zur Definition und Einordnung der späteren Programmnutzer in Gruppen wird im Use-Case-Diagramm in Fig. 3.1 die eher praktische und weniger technische Beschreibung verschiedener User-Anwendungsfälle erstellt. Die unterschiedlichen an NLP-Werkzeugen beteiligten Akteure in einem näherungsweise betrieblichen Kontext werden in diesem genauer beschrieben. Aus diesen Use-Cases der verschiedenen Stakeholder können im Anschluss konkrete Anforderungen an die Implementierung extrahiert werden, die nicht die technische Umsetzung der Software betreffen (insb. nicht-funktionale Anforderungen).
 
-Mithilfe des Aktivitätsdiagramms werden einerseits die Arbeitsumgebung, in der NLP-Tools zum Einsatz kommen und andererseits die spezifischen Interaktionspunkte der User mit einem Programm beschrieben. In Fig. 3.2 wird die Vorgehensweise eines Users bei der Verwendung einer NLP-Software dargestellt. Die Darstellung des Workflows soll in dieser Arbeit eher allgemeingültig erfolgen, da jede mögliche Anwendungsdomäne des Tools eigene Spezifika bei der Darstellung ihrer Arbeitsumgebung bereithält. Diese Besonderheiten betreffen dann auch die Darstellung und Abfolge der Interaktionsschritte in solchen Diagrammen und konkretisieren diese etwa auf einen speziellen Dokumententyp hin.
+Mithilfe des Aktivitätsdiagramms werden einerseits die Arbeitsumgebung, in der NLP-Werkzeuge zum Einsatz kommen und andererseits die spezifischen Interaktionspunkte der User mit einem Programm beschrieben. In Fig. 3.2 wird die Vorgehensweise eines Users bei der Verwendung einer NLP-Software dargestellt. Die Darstellung des Workflows soll in dieser Arbeit eher allgemeingültig erfolgen, da jede mögliche Anwendungsdomäne des Werkzeugs eigene Spezifika bei der Darstellung ihrer Arbeitsumgebung bereithält. Diese Besonderheiten betreffen dann auch die Darstellung und Abfolge der Interaktionsschritte in solchen Diagrammen und konkretisieren diese etwa auf einen speziellen Dokumententyp hin.
 
 Die in den Diagrammen enthaltenen Nutzungsszenarien können im folgenden Abschnitt in konkrete Anforderungen überführt werden.
 
@@ -1246,7 +1246,7 @@ Die in den Diagrammen enthaltenen Nutzungsszenarien können im folgenden Abschni
 
 \end{umlsystem} 
 \end{tikzpicture}
-\caption{UML-Use-Case Diagramm für allgemeine NLP-Tools [eigene Darstellung]}
+\caption{UML-Use-Case Diagramm für allgemeine NLP-Werkzeuge [eigene Darstellung]}
 \end{center}
 \end{figure}
 
@@ -1298,12 +1298,12 @@ Die in den Diagrammen enthaltenen Nutzungsszenarien können im folgenden Abschni
 \draw[->] (d4) to (e);
 \draw[->] (e) to (end);
 \end{tikzpicture}
-\caption{UML-Aktivitätsdiagramm User-Workflow mit dem Tool [eigene Darstellung]}
+\caption{UML-Aktivitätsdiagramm User-Workflow mit dem Werkzeug [eigene Darstellung]}
 \end{figure}
 \end{center}
 
 \subsection{Funktionale Anforderungen}
-Im Kontext der Entwicklung von NLP-Tools können konkrete Anforderungen an den Betriebsablauf erhoben werden. Funktionale Anforderungen beschreiben, was das Endprodukt, also hier die hergestellte Software, zweckmäßig tun soll. Obwohl diese Anforderungen in der Regel spezifisch für einen Entwicklungszyklus festgelegt werden, existieren bei NLP auch allgemein besondere funktionale Anforderungen. Die hier skizzierte Liste von Anforderungen dient dabei zunächst zur Orientierung vor der Implementierungsphase, erhebt jedoch keinen Anspruch auf Vollständigkeit und ist für die Entwicklung erweiterbar. Je nach Entwicklungsparadigma und Anwendungskontext können sich die Anforderungen ändern. Aufgrund der in Kap. 2.2 vorgestellten Schritte der Linguistischen Analyse existieren allgemein u.a. folgende Anforderungen an den Funktionsumfang:
+Im Kontext der Entwicklung von NLP-Werkzeugen können konkrete Anforderungen an den Betriebsablauf erhoben werden. Funktionale Anforderungen beschreiben, was das Endprodukt, also hier die hergestellte Software, zweckmäßig tun soll. Obwohl diese Anforderungen in der Regel spezifisch für einen Entwicklungszyklus festgelegt werden, existieren bei NLP auch allgemein besondere funktionale Anforderungen. Die hier skizzierte Liste von Anforderungen dient dabei zunächst zur Orientierung vor der Implementierungsphase, erhebt jedoch keinen Anspruch auf Vollständigkeit und ist für die Entwicklung erweiterbar. Je nach Entwicklungsparadigma und Anwendungskontext können sich die Anforderungen ändern. Aufgrund der in Kap. 2.2 vorgestellten Schritte der Linguistischen Analyse existieren allgemein u.a. folgende Anforderungen an den Funktionsumfang:
 \begin{enumerate}
 \item Die Software muss standardisierte Dateitypen einlesen können.
 
@@ -1319,13 +1319,13 @@ Die Weitergabe der Verarbeitungsergebnisse der Module an das jeweils nächste mu
 
 Je nach gewünschter Funktionalität müssen die einzelnen Module durch den Nutzer weiter konfigurierbar sein, sodass das gewünschte Ergebnis erreicht wird. Bei der Generierung von Taggings benötigt man etwa eine Funktion zum filtern, wenn nach Wörtern mit dem entsprechenden Tagging gesucht werden soll. Auch muss es möglich sein, sich jeden Teilschritt einzeln in einer entsprechenden log-Datei ausgeben zu lassen, um eventuelle Fehler in der Verarbeitung rechtzeitig zu erkennen. Dies könnte etwa wieder eine .txt Datei sein, die entsprechend formatierten Text enthält.
 
-Beim Einsatz von Algorithmen in Modulen ist es teilweise erforderlich, dass domänenspezifische Trainingsdaten verwendet werden (siehe bspw. Abschnitt 2.4). Je nach Anwendungskontext des NLP-Tools enthalten diese Trainingsdaten dann andere Texte bzw. Corpora, damit die Module besser für spezifische Texte eingesetzt werden können. Dazu ist es erforderlich, dass der Nutzer diese Datensätze selbst wählen und in das Programm laden kann.
+Beim Einsatz von Algorithmen in Modulen ist es teilweise erforderlich, dass domänenspezifische Trainingsdaten verwendet werden (siehe bspw. Abschnitt 2.4). Je nach Anwendungskontext des NLP-Werkzeugs enthalten diese Trainingsdaten dann andere Texte bzw. Corpora, damit die Module besser für spezifische Texte eingesetzt werden können. Dazu ist es erforderlich, dass der Nutzer diese Datensätze selbst wählen und in das Programm laden kann.
 
 \item Die Software muss die Sprachauswertung im Ergebnis so darstellen können, dass wesentliche Textstellen und Annotationen markiert sind. 
 
 Durch die sogenannte \textit{Annotation} von Text liegt im Ergebnis der Software ein gekennzeichneter Text vor, der Informationen über die Zusammensetzung des Textes enthält. Die Einordnung von Wörtern und Sätzen anhand von Grammatikregeln muss klar ersichtlich sein. Für den Anwender ist es relevant, dass es dabei standardisierte Darstellungen von Markierungen im Programm gibt; jede Annotation eines Typs muss einheitlich und besonders hervorgehoben sein. Die Ergebnisdarstellung kann dabei grafisch für den Benutzer erfolgen, indem entsprechende Textstellen beispielsweise farbig markiert werden.
 
-Dies ist jedoch nicht notwendigerweise erforderlich, wenn das NLP-Tool etwa nur einen Teil der Verarbeitungskette ausmacht oder dessen Output nicht manuell verifiziert werden soll. Als Ergebnis der Verarbeitung könnte also auch etwa eine XML-Datei, die Taggings zu Textstellen mit der Kategorie der Annotation enthält, vorliegen.
+Dies ist jedoch nicht notwendigerweise erforderlich, wenn das NLP-Werkzeug etwa nur einen Teil der Verarbeitungskette ausmacht oder dessen Ausgabe nicht manuell verifiziert werden soll. Als Ergebnis der Verarbeitung könnte also auch etwa eine XML-Datei, die Taggings zu Textstellen mit der Kategorie der Annotation enthält, vorliegen.
 
 \item Programmverhalten bei sprachlichen Uneindeutigkeiten wird berücksichtigt und definiert.
 
@@ -1343,15 +1343,15 @@ Durch die im vorigen Abschnitt beschriebene Weiterentwicklung von Sprache, aber 
 
 \item Die Software stellt Möglichkeiten zur Erstellung eigener Plug-Ins
 
-Um betriebsabhängig weitere Funktionen im Programm umzusetzen, muss das NLP-Tool Möglichkeiten zur Eigenentwicklung bieten. Dies kann entweder mittels einer eigenen Entwicklungsumgebung (IDE) umgesetzt werden, oder mit einer Schablone für andere Programmierumgebungen für Sprachen wie beispielsweise JAVA. Von dem NLP-Programm aus lässt sich ein Funktionseditor zur Erstellung dieser Plug-Ins aufrufen. Das Tool sollte die Entwicklung in einer Programmiersprache anbieten, die den Entwicklern (siehe Abb. 3.1) bereits bekannt ist. Es sollte als mit dem Programm ermöglicht werden, neue Funktionalitäten beispielsweise in JAVA zu implementieren und diese in eine Verarbeitungslogik einzubinden.
+Um betriebsabhängig weitere Funktionen im Programm umzusetzen, muss das NLP-Programm Möglichkeiten zur Eigenentwicklung bieten. Dies kann entweder mittels einer eigenen Entwicklungsumgebung (IDE) umgesetzt werden, oder mit einer Schablone für andere Programmierumgebungen für Sprachen wie beispielsweise JAVA. Von dem NLP-Programm aus lässt sich ein Funktionseditor zur Erstellung dieser Plug-Ins aufrufen. Das Werkzeug sollte die Entwicklung in einer Programmiersprache anbieten, die den Entwicklern (siehe Abb. 3.1) bereits bekannt ist. Es sollte als mit dem Programm ermöglicht werden, neue Funktionalitäten beispielsweise in JAVA zu implementieren und diese in eine Verarbeitungslogik einzubinden.
 
 \item Die Software kann automatisiert in einen größeren Workflow eingebunden werden
 
-Vor und nach dem Einsatz von NLP-Software müssen die Daten über eine standardisierte Schnittstelle zur Verfügung stehen. Im betrieblichen Kontext kommen meist mehrere Programme in einem Arbeitsprozess zum Einsatz. Nach der Linguistischen Analyse durch ein NLP-Tool kann etwa die weitere Verarbeitung der Ergebnisse durch andere Programme erfolgen. Ergebnisse müssen weiter aufbereitet werden können, etwa zur Visualisierung oder Speicherung. Die Software muss also die Ein- und Ausgabe von Daten aus und an bestimmte Schnittstellen ermöglichen. Funktionalitäten des NLP-Tools lassen sich somit auch extern verwenden. 
+Vor und nach dem Einsatz von NLP-Software müssen die Daten über eine standardisierte Schnittstelle zur Verfügung stehen. Im betrieblichen Kontext kommen meist mehrere Programme in einem Arbeitsprozess zum Einsatz. Nach der Linguistischen Analyse durch ein NLP-Werkzeug kann etwa die weitere Verarbeitung der Ergebnisse durch andere Programme erfolgen. Ergebnisse müssen weiter aufbereitet werden können, etwa zur Visualisierung oder Speicherung. Die Software muss also die Ein- und Ausgabe von Daten aus und an bestimmte Schnittstellen ermöglichen. Funktionalitäten des NLP-Tools lassen sich somit auch extern verwenden. 
 \end{enumerate}
 
 \subsection{Nicht-funktionale Anforderungen}
-Im Vergleich zu den funktionalen Anforderungen sind die hier beschriebenen nicht-funktionalen Anforderungen weniger auf die spezifischen Probleme von NLP bezogen. Diese beschränken sich nicht auf einzelne Funktionalitäten, sondern helfen dabei, den Rahmen der Software festzulegen. Nicht-funktionale Anforderungen sind üblicherweise eher generell gehalten. Somit können etwa folgende nicht-funktionale Anforderungen an NLP-Tools erhoben werden:
+Im Vergleich zu den funktionalen Anforderungen sind die hier beschriebenen nicht-funktionalen Anforderungen weniger auf die spezifischen Probleme von NLP bezogen. Diese beschränken sich nicht auf einzelne Funktionalitäten, sondern helfen dabei, den Rahmen der Software festzulegen. Nicht-funktionale Anforderungen sind üblicherweise eher generell gehalten. Somit können etwa folgende nicht-funktionale Anforderungen an NLP-Werkzeuge erhoben werden:
 
 \begin{enumerate}
 \item Design der Benutzeroberfläche:
@@ -1364,15 +1364,15 @@ Nach \cite{hm13} (Figur 3.3) haben Oberflächen-Designer und die späteren Nutze
 
 \item Anbindung:
 
-Für eine unkomplizierte Interaktion der Komponenten untereinander und mit anderen Programmen sind die von dem NLP-Tool akzeptierten bzw. verwendeten Dateitypen ausschlaggebend. Diese sollten stets universell oder zumindest leicht konvertiertbar sein. 
+Für eine unkomplizierte Interaktion der Komponenten untereinander und mit anderen Programmen sind die von dem NLP-Programm akzeptierten bzw. verwendeten Dateitypen ausschlaggebend. Diese sollten stets universell oder zumindest leicht konvertiertbar sein. 
 
-Die API (\textit{application programming interface}) bzw. Anwendungsprogrammierschnittstelle sollte einfach erreichbar und verwendbar sein. Dies ermöglicht Nutzern das Anbinden an weitere Programme, ohne dabei auf Hilfe der Entwickler des Tools angewiesen zu sein. 
+Die API (\textit{application programming interface}) bzw. Anwendungsprogrammierschnittstelle sollte einfach erreichbar und verwendbar sein. Dies ermöglicht Nutzern das Anbinden an weitere Programme, ohne dabei auf Hilfe der Entwickler des Werkzeugs angewiesen zu sein. 
  
 \item Funktionssicherheit:
 
 In Abschnitt 2 wurde an verschiedenen Stellen angedeutet, dass im Laufe der Zeit Algorithmen unterschiedlicher Präzision und Laufzeit entwickelt wurden. Präzision kann etwa durch gute Heuristiken (siehe funkt. Anf. 4) erreicht werden, eine 100\% korrekte Erfassung von Syntax konnte jedoch auch unter großem Optimierungsaufwand nicht erreicht werden (siehe Beispiele in Abschnitt 2.4).  
 
-Auch gibt es zufallsbasierte Verfahren für Deutungen, die etwa im Falle von Mehrdeutigkeiten zufällig eine plausible Möglichkeit auswählen. Es ist jedoch zwingend nötig, dass die Ergebnisse der NLP-Software reproduzierbar sind und durch den Nutzer nachvollzogen werden können. Die Funktionssicherheit ist daher ein wesentlicher Bestandteil für NLP-Tools, auch wenn die Umsetzung angesichts des Anspruchs an die eindeutige Auswertung von Sprache nicht leicht fällt. Sie kann jedoch größtenteils hergestellt werden, wenn die unter 3.1 genannten Eigenschaften natürlicher Sprache berücksichtigt werden und das Programm entsprechend auf Besonderheiten hin optimiert wird.
+Auch gibt es zufallsbasierte Verfahren für Deutungen, die etwa im Falle von Mehrdeutigkeiten zufällig eine plausible Möglichkeit auswählen. Es ist jedoch zwingend nötig, dass die Ergebnisse der NLP-Software reproduzierbar sind und durch den Nutzer nachvollzogen werden können. Die Funktionssicherheit ist daher ein wesentlicher Bestandteil für NLP-Werkzeuge, auch wenn die Umsetzung angesichts des Anspruchs an die eindeutige Auswertung von Sprache nicht leicht fällt. Sie kann jedoch größtenteils hergestellt werden, wenn die unter 3.1 genannten Eigenschaften natürlicher Sprache berücksichtigt werden und das Programm entsprechend auf Besonderheiten hin optimiert wird.
 
 \item Informationssicherheit:
 
@@ -1387,29 +1387,29 @@ Im betrieblichen Kontext ist das Abdecken von Zielen der Datensicherheit und des
 
 Im Sinne der \textit{Informationssicherheit} \cite{eck13} muss bei der Entwicklung ein Fokus auf die folgenden \glqq  Kernschutzziele\grqq{} gelegt werden:
 \begin{enumerate}
-\item \textit{Vertraulichkeit} - Der Datenzugriff durch das Programm darf nur in erforderlichem Maße und nur durch autorisierte Nutzer erfolgen. Das NLP-Tool insgesamt, aber auch die einzelnen Module müssen klar beschränkte Zugriffsrechte für die Quelldaten, aber auch für andere angeschlossene Systeme und Programme haben. Wenn also ein Modul des NLP-Tools unkontrollierte Zugriffsrechte auf das Quelldokument erhält, obwohl dies gar nicht nötig ist, stellt dies eine Verletzung dieses Schutzziels dar. 
+\item \textit{Vertraulichkeit} - Der Datenzugriff durch das Programm darf nur in erforderlichem Maße und nur durch autorisierte Nutzer erfolgen. Das NLP-Werkzeug insgesamt, aber auch die einzelnen Module müssen klar beschränkte Zugriffsrechte für die Quelldaten, aber auch für andere angeschlossene Systeme und Programme haben. Wenn also ein Modul des NLP-Programm unkontrollierte Zugriffsrechte auf das Quelldokument erhält, obwohl dies gar nicht nötig ist, stellt dies eine Verletzung dieses Schutzziels dar. 
 \item \textit{Integrität} - Das Programmverhalten bei der Textverarbeitung muss nachvollziehbar sein und Änderungen an den Daten dürfen nicht unbemerkt erfolgen. Wie bereits unter Funktionssicherheit angesprochen, muss das Programm eindeutig und nachvollziehbar arbeiten, sodass ein sicheres Verhalten garantiert wird. Auch die Module dürfen keine Möglichkeit für unkontrollierte und nicht überprüfbare Dateizugriffe bieten, indem ihr Anwendungsbereich klar abgedeckt ist und deren Zugriffsrechte verifizierbar sind.
-\item \textit{Verfügbarkeit} - Verhinderung von Systemausfällen und garantierter Zugriff auf Ergebnisse der Textverarbeitung. Innerhalb des Anwendungsgebietes muss das NLP-Tool verlässlich sein, damit eine hohe Verfügbarkeit ohne Ausfälle gewährleistet wird. Dabei ist zu beachten, dass einerseits das Programm generell fehlerfrei arbeiten muss, da ansonsten das Tool ausfällt. Andererseits müssen auch die Programmmodule einzeln fehlerfrei implementiert sein und sprachliche Sonderfälle berücksichtigen, die nicht zu einem unkontrollierten Abbruch führen dürfen. Das Programmverhalten, wenn etwa Mehrdeutigkeiten auftreten, muss hier in der Entwicklungsphase berücksichtigt werden, damit das Programm in diesem Regelfall verfügbar bleibt.
+\item \textit{Verfügbarkeit} - Verhinderung von Systemausfällen und garantierter Zugriff auf Ergebnisse der Textverarbeitung. Innerhalb des Anwendungsgebietes muss das NLP-Programm verlässlich sein, damit eine hohe Verfügbarkeit ohne Ausfälle gewährleistet wird. Dabei ist zu beachten, dass einerseits das Programm generell fehlerfrei arbeiten muss, da ansonsten das Tool ausfällt. Andererseits müssen auch die Programmmodule einzeln fehlerfrei implementiert sein und sprachliche Sonderfälle berücksichtigen, die nicht zu einem unkontrollierten Abbruch führen dürfen. Das Programmverhalten, wenn etwa Mehrdeutigkeiten auftreten, muss hier in der Entwicklungsphase berücksichtigt werden, damit das Programm in diesem Regelfall verfügbar bleibt.
 \end{enumerate} 
 
 \item Dokumentation:\\
-Das Programm sollte über einen gut dokumentierten, einfach erreichbaren und didaktisch wertvollen User-Guide verfügen. Dieser soll neuen Nutzern den Einstieg in die Arbeit mit dem Tool ermöglichen und maßgeblich vereinfachen.
+Das Programm sollte über einen gut dokumentierten, einfach erreichbaren und didaktisch wertvollen User-Guide verfügen. Dieser soll neuen Nutzern den Einstieg in die Arbeit mit dem Werkzeug ermöglichen und maßgeblich vereinfachen.
 \end{enumerate}
 
 \section{Verwendung der Anforderungen}
-Mit den obigen Auflistungen liegt nun das Fundament für die Bewertung eines NLP-Tools vor. Dazu kann man die beschriebenen Anforderungen einzeln auf das Tool beziehen und nachprüfen, ob festgelegte Bedingungen erfüllt sind. Während einige Anforderungen dadurch sehr schnell zu prüfen sind, gestaltet es sich für andere signifikant komplizierter. Generell lässt sich sagen, dass sich die Prüfung nicht-funktionaler Anforderungen schwieriger gestaltet, als die Prüfung von funktionalen Anforderungen\cite{bal98}. Da sich die funktionalen Anforderungen oftmals auf das Vorhandensein bzw. die Art der Ausführung von bestimmten Funktionen beziehen, lassen sich diese manchmal schon durch schnelles Ausprobieren bestätigen. Das Widerlegen bzw. nicht-Erfüllen dieser Anforderungen hingegen ist oftmals aufwändiger, da gezeigt werden soll, dass eine Funktionalität nicht gegeben ist. Jedoch ist davon auszugehen, dass wichtige Funktionen auch schnell und intuitiv zugänglich sind, sofern diese implementiert sind. 
+Mit den obigen Auflistungen liegt nun das Fundament für die Bewertung eines NLP-Tools vor. Dazu kann man die beschriebenen Anforderungen einzeln auf das Werkzeug beziehen und nachprüfen, ob festgelegte Bedingungen erfüllt sind. Während einige Anforderungen dadurch sehr schnell zu prüfen sind, gestaltet es sich für andere signifikant komplizierter. Generell lässt sich sagen, dass sich die Prüfung nicht-funktionaler Anforderungen schwieriger gestaltet, als die Prüfung von funktionalen Anforderungen\cite{bal98}. Da sich die funktionalen Anforderungen oftmals auf das Vorhandensein bzw. die Art der Ausführung von bestimmten Funktionen beziehen, lassen sich diese manchmal schon durch schnelles Ausprobieren bestätigen. Das Widerlegen bzw. nicht-Erfüllen dieser Anforderungen hingegen ist oftmals aufwändiger, da gezeigt werden soll, dass eine Funktionalität nicht gegeben ist. Jedoch ist davon auszugehen, dass wichtige Funktionen auch schnell und intuitiv zugänglich sind, sofern diese implementiert sind. 
 Nicht-funktionale Anforderungen erheben üblicherweise Ansprüche an das System und sind daher oft nicht in der Programmoberfläche überprüfbar. Besonders im Bereich des Usability Enigineering ist die Auffassung des Produkts stark subjektiv. Daher lassen sich diese Anforderungen kaum verifizieren bzw. falsifizieren, ohne dabei eng mit den Benutzern zusammenzuarbeiten. 
 
-Wie genau sich ein NLP-Tool anhand der aufgestellten Anforderungen bewerten lässt, wird im folgenden Kapitel an dem Beispiel der General Architecture for Text Engineering (GATE) gezeigt. 
+Wie genau sich ein NLP-Werkzeug anhand der aufgestellten Anforderungen bewerten lässt, wird im folgenden Kapitel an dem Beispiel der General Architecture for Text Engineering (GATE) gezeigt. 
 
 \chapter{Analyse und Evaluation von GATE}
-Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Tools \textit{General Architecture for Text Engineering} (GATE). Zunächst werden dazu alle relevanten Aspekte des Tools vorgestellt. Danach werden die in dem vorherigen Kapitel erhobenen Anforderungen einzeln mit GATE abgeglichen und evaluiert. Letztlich wird abhängig von der Relevanz und dem Erfüllungsgrad der einzelnen Anforderungen eine Gesamteinschätzung gegeben.
+Dieses Kapitel beschäftigt sich mit der Anforderungsanalyse des NLP-Programms \textit{General Architecture for Text Engineering} (GATE). Zunächst werden dazu alle relevanten Aspekte des Tools vorgestellt. Danach werden die in dem vorherigen Kapitel erhobenen Anforderungen einzeln mit GATE abgeglichen und evaluiert. Letztlich wird abhängig von der Relevanz und dem Erfüllungsgrad der einzelnen Anforderungen eine Gesamteinschätzung gegeben.
 
 \section{Einordnung von GATE}
 Die Entwicklung der General Architecture for Text Engineering begann 1995 an der University of Sheffield und wird permanent fortgesetzt \cite{cgw95}. GATE wurde mit der Programmiersprache Java geschrieben  und ist ein Werkzeug zur Erzeugung und Evaluierung von Sprachverarbeitungsprogrammen. Des Weiteren ermöglicht es den Bau und das Annotieren von Korpora \cite{cmb02}. 
 
 \subsection{GATE-Architektur}
-GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen und die Darstellung der Ergebnisse an. Dem Benutzer wird es ermöglicht, von einer GUI aus Tools zur Textverarbeitung zu starten, in eine Verarbeitungskette zu bringen und Ergebnisse bei unterschiedlichen zum Einsatz gekommenen Verarbeitungswerkzeugen darzustellen. Grundsätzlich unterscheidet GATE dabei \textit{Module} von \textit{Objekten}, das bedeutet Verarbeitungswerkzeuge werden von Text und der Darstellung von Informationen darüber getrennt. GATE bietet somit einen Rahmen für die unten aufgeführten Komponenten. Die drei Kernbausteine des Programms lassen sich laut \cite{cu02} wie folgt darstellen:
+GATE bietet eine Umgebung für das Sammeln von Texten, Verarbeitungswerkzeugen und die Darstellung der Ergebnisse an. Dem Benutzer wird es ermöglicht, von einer GUI aus Werkzeuge zur Textverarbeitung zu starten, in eine Verarbeitungskette zu bringen und Ergebnisse bei unterschiedlichen zum Einsatz gekommenen Verarbeitungswerkzeugen darzustellen. Grundsätzlich unterscheidet GATE dabei \textit{Module} von \textit{Objekten}, das bedeutet Verarbeitungswerkzeuge werden von Text und der Darstellung von Informationen darüber getrennt. GATE bietet somit einen Rahmen für die unten aufgeführten Komponenten. Die drei Kernbausteine des Programms lassen sich laut \cite{cu02} wie folgt darstellen:
 \begin{enumerate}
 \item \textit{GDM - Gate Document Manager}
 
@@ -1444,7 +1444,7 @@ Die verschiedenen CREOLE-Objekte sind im Installationsverzeichnis von GATE in ei
 \end{enumerate}
 
 \subsection{NLP mit GATE}
-GATE beinhaltet das Informationsgewinnungs-System ANNIE (\textit{A Nearly-New Information Extraction System}), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass der Output des Vorgängers als Input des Nachfolgers genutzt wird, um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind in Abb. 4.3 in der Verarbeitungskette dargestellt und lassen sich gemäß \cite{gm18} wie folgt beschreiben:
+GATE beinhaltet das Informationsgewinnungs-System ANNIE (\textit{A Nearly-New Information Extraction System}), welches viele der grundlegenden Komponenten zur Textverarbeitung bereitstellt \cite{go18}. Diese Komponenten bilden eine Verarbeitungskette, das bedeutet, dass die Ausgabe des Vorgängers als Eingabe des Nachfolgers genutzt wird, um somit schrittweise Informationen zu dem Klartext hinzuzufügen. Die Standard ANNIE-Komponenten sind in Abb. 4.3 in der Verarbeitungskette dargestellt und lassen sich gemäß \cite{gm18} wie folgt beschreiben:
 
 \begin{enumerate}
 \item \textit{tokenizer}: Der tokenizer unterteilt den Text oberflächlich in Zeichen oder Zeichenketten, welche als Zahlen, Wörter (Groß- und Kleinschreibung wird unterschieden) und Interpunktion kategorisiert werden. Die Verarbeitung durch den tokenizer soll so effizient wie möglich sein und nur als Grundlage etwa für spätere Grammatikregeln dienen. 
@@ -1487,11 +1487,11 @@ In GATE ist die Anpassung der Verarbeitungskette durch den Benutzer möglich. Ei
 \begin{figure}[h!]
 \begin{center}
 \includegraphics[scale=0.8]{GATE_Bilder/POSTagger.jpg}
-\caption{Einstellbare Modulparameter des POS-Taggers \\ Hier können etwa Pfade für Input- und Output-Daten angegeben werden [eigene Darstellung]}
+\caption{Einstellbare Modulparameter des POS-Taggers \\ Hier können etwa Pfade für Eingabe- und Ausgabe-Daten angegeben werden [eigene Darstellung]}
 \end{center}
 \end{figure} 
 
-Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Output nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Output besteht.
+Im Programm lassen sich weitere Parameter einstellen, etwa der Pfad für eine Log-Datei als Ausgabe nach einem Modul. Es lassen sich dafür auch die Namen der einzelnen XML-Tags für die Annotationen editieren, aus denen der Ausgabe besteht.
 
 \subsubsection{Grafische Darstellung der Ergebnisse}
 Nachdem in GATE eine Verarbeitungskette ausgeführt ist, wird in dem Hauptfenster der GGI der verarbeitete Text zunächst als Klartext angezeigt. Mögliche Annotationen werden in eine Leiste am rechten Rand als \textit{\glqq  Annotation Sets\grqq{}} aufgelistet und sind über Checkboxen auswählbar. Die Annotationen sind farbig markiert und hinterlegen den jeweils annotierten Text, sobald die entsprechende Checkbox aktiviert wird.
@@ -1546,7 +1546,7 @@ Wie bereits unter 4.1.1 - \textit{CREOLE} beschrieben, kann die Funktionalität 
 Neben den JAVA-Klassen (\textit{.class}-Dateien) eines jeden Objekts ist dort auch die build.xml abgelegt, die zur Abnindung weiterer Ressourcen des Plugins und auch zur Anbindung an notwendige Schnittstellen des GDM dient. Die \textit{creole.xml} beinhaltet Meta-Informationen über das Plugin wie den Namen und die Version, damit diese im \textit{Plugin-Manager} angezeigt werden können. Diese Dateien können vom User in ihrer Funktionalität angepasst werden, so besteht etwa Zugriff auf die \textit{.class}-Dateien. Der Ordnerzugriff sollte daher im Sinne der \textit{Informationssicherheit} nur autorisierten Nutzern erlaubt werden, da ansonsten auch Änderungen vorgenommen werden können, die nicht direkt sichtbar sind. Eine Prüfsumme des Codes oder sonstige Kontrollmechanismen für die Dateien, die auf Änderungen hinweisen könnten, gibt es nicht.\\
 
 \subsubsection{Einbettung in Workflow und andere Programme}
-GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. \glqq  Anbindung\grqq{}). Somit können externe Programme von außen direkt auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Tools mit Abhängigkeits-Management realisiert werden (Maven, Gradle, etc.), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. 
+GATE stellt als GATE-Embedded diverse Schnittstellen zu den JAVA-Klassen und Komponenten des Programms zur Verfügung (siehe NF-Anf. \glqq  Anbindung\grqq{}). Somit können externe Programme von außen direkt auf GATE-Ressourcen zugreifen bzw. diese integrieren. Gemäß \cite{gt18} kann die Integration durch eigene Werkzeuge mit Abhängigkeits-Management realisiert werden (Maven, Gradle, etc.), indem diese im Verzeichnis des Programms, dass GATE-Ressourcen verwenden soll, ausgeführt wird. 
 
 Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) in das andere Programmverzeichnis kopiert werden. In Figur 4.9 wird etwa verdeutlicht, welcher Code für die Verwendung des ANNIE-Moduls durch dieses Programm benötigt wird.
  
@@ -1560,7 +1560,7 @@ Alternativ können auch alle GATE-Programmbibliotheken (\textit{.jar}-Dateien) i
 Anschließend werden dann bei der Kompilierung des Programms in der Entwicklungsumgebung die GATE-Dateien mit integriert bzw. diese können dann dort verwendet werden. Auf diese Weise stehen dem Entwickler viele Möglichkeiten zur Anpassung der Dateien wie auch zu deren Nutzung in anderen Programmen offen, solange diese JAVA verwenden können.
 
 \subsection{Repräsentation nicht-funktionaler Anforderungen}
-In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderungen an NLP-Tools mit GATE abgeglichen, um entscheiden zu können, inwiefern GATE diese erfüllt. Hierzu werden die Anforderungen erneut einzeln aufgelistet und ihrer Repräsentation in dem Tool, sofern vorhanden, erläutert. 
+In diesem Abschnitt werden die zuvor definierten nicht-funktionalen Anforderungen an NLP-Werkzeuge mit GATE abgeglichen, um entscheiden zu können, inwiefern GATE diese erfüllt. Hierzu werden die Anforderungen erneut einzeln aufgelistet und ihrer Repräsentation in dem Programm, sofern vorhanden, erläutert. 
 
 \subsubsection{Design und Benutzeroberfläche}
 
@@ -1588,7 +1588,7 @@ Diese APIs bieten Nutzern bzw. Entwicklern sowohl die Möglichkeit, benötigte E
 
 \subsubsection{Funktionssicherheit}
 GATE bietet dem Benutzer verschiedene Sicherheiten und Möglichkeiten, die verwendeten Programme auf Korrektheit zu prüfen. 
-Um Funktionssicherheit zu überwachen, bietet sich Entwicklern die Möglichkeit, schnell verschiedene Module auf den gleichen Text anzuwenden (oder das gleiche Modul auf verschiedene Texte anzuwenden), um die Funktionalität der genutzten Komponenten besser nachvollziehen zu können. Des Weiteren ist GATE keineswegs eine Blackbox, also ein Programm, welches einen Input erhält und einen Output zurückgibt, ohne dabei Auskunft über die Verarbeitungslogik zu geben. Zum Einen sind die einzelnen Verarbeitungsschritte stets durch die Verarbeitungskomponenten abgebildet. Zum Anderen lassen sich bei dem Modifizieren oder Erstellen eigener CREOLE-Plugins Debugger einbinden, um später Schrittweise das Verhalten des Plugins nachzustellen.
+Um Funktionssicherheit zu überwachen, bietet sich Entwicklern die Möglichkeit, schnell verschiedene Module auf den gleichen Text anzuwenden (oder das gleiche Modul auf verschiedene Texte anzuwenden), um die Funktionalität der genutzten Komponenten besser nachvollziehen zu können. Des Weiteren ist GATE keineswegs eine Blackbox, also ein Programm, welches eine Eingabe erhält und eine Ausgabe zurückgibt, ohne dabei Auskunft über die Verarbeitungslogik zu geben. Zum Einen sind die einzelnen Verarbeitungsschritte stets durch die Verarbeitungskomponenten abgebildet. Zum Anderen lassen sich bei dem Modifizieren oder Erstellen eigener CREOLE-Plugins Debugger einbinden, um später Schrittweise das Verhalten des Plugins nachzustellen.
 
 \subsubsection{Informationssicherheit}
 
@@ -1610,11 +1610,11 @@ Dies hat zwei Vorteile: Zum Einen erhöht es die Verfügbarkeit, da es die inkor
 \subsubsection{Dokumentation}
 
 GATE verfügt über einen ausführlichen User-Guide, welcher direkt über die Webseite erreichbar ist. Dieser ist aufgeteilt in vier Kapitel: GATE Basics, GATE for Advanced Users, CREOLE Plugins und the GATE Family: Cloud, MIMIR, Teamware.
-GATE Basics bietet einen gut verständlichen Einstieg für Benutzer, welche sich noch nicht mit dem Tool auskennen. Dabei stellt es vor allem die Arbeit mit den ANNIE-Komponenten vor.
-GATE for Advanced Users hilft bei fortgeschrittenerer Arbeit mit dem Tool, z.B. wenn es um das manipulieren von Text anhand von Annotationen oder die Entwicklung eigener Plugins geht.
+GATE Basics bietet einen gut verständlichen Einstieg für Benutzer, welche sich noch nicht mit dem Programm auskennen. Dabei stellt es vor allem die Arbeit mit den ANNIE-Komponenten vor.
+GATE for Advanced Users hilft bei fortgeschrittenerer Arbeit mit dem Programm, z.B. wenn es um das manipulieren von Text anhand von Annotationen oder die Entwicklung eigener Plugins geht.
 CREOLE Plugins bietet einen ausführlicheren Blick auf verschiedenste CREOLE-Plugins. Dabei wird vordergründig auf die Arbeit mit Ontologien und Gazetteers eingegangen.
 The GATE Family: Cloud, MIMIR, Teamware verweist auf weitere mit GATE verwandte Services wie z.B. das web-basierte Annotations-Tool \textit{Teamware}.
-Es ist also möglich, alle nötigen Informationen, um mit dem Tool arbeiten zu können, einheitlich über die Webseite von GATE zu erhalten.
+Es ist also möglich, alle nötigen Informationen, um mit dem Werkzeug arbeiten zu können, einheitlich über die Webseite von GATE zu erhalten.
 
 Auch die GATE-API kann unter dem Namen GATE Embedded über die offizielle Webseite von GATE eingesehen werden. GATE Embedded ist eine open source Software, welche alle Kernfunktionalitäten von GATE beinhaltet (siehe Anbindung) und ist direkt zum Download verlinkt.
  
@@ -1627,18 +1627,18 @@ Die funktionalen Anforderungen und auch die in Kap.2 beschriebenen NLP-Verarbeit
 \section{Zusammenfassung}
 Natural Language Processing und die Implementierung anhand der \textit{General Architecture For Text Engineering} stellten die Hauptthemen dieser Arbeit dar.
 
-Im Laufe dieser Arbeit wurde eine Einführung in NLP-Grundlagen gegeben und verschiedene Ansätze aus der Logik bis hin zur Automatentheorie vorgestellt. Der Bezug zur Informatik wurde im Anschluss daran durch die Erhebung möglicher Anforderungen anhand von Methoden aus dem Require-ments-Engineering hergestellt und Fokuspunkte für die Entwicklung von NLP-Tools wurden beschrieben. Abschließend folgte auf dieser Basis die Vorstellung und Evaluation des weit verbreiteten NLP-Tools GATE. \\
+Im Laufe dieser Arbeit wurde eine Einführung in NLP-Grundlagen gegeben und verschiedene Ansätze aus der Logik bis hin zur Automatentheorie vorgestellt. Der Bezug zur Informatik wurde im Anschluss daran durch die Erhebung möglicher Anforderungen anhand von Methoden aus dem Require-ments-Engineering hergestellt und Fokuspunkte für die Entwicklung von NLP-Werkzeugen wurden beschrieben. Abschließend folgte auf dieser Basis die Vorstellung und Evaluation des weit verbreiteten NLP-Tools GATE. \\
 
 Aus den NLP-Grundlagen wurde besonders die hohe Komplexität natürlicher Sprache und der damit begründete hohe Aufwand bei der Modellierung mittels Werkzeugen der Informatik verdeutlicht. Verschiedene Algorithmen, Datenstrukturen und logische Modelle versuchen dabei, Teilbereiche von natürlicher Sprache zu modellieren und decken diese auf verschiedene Weisen ab.
 
 Im Teil der Anforderungsanalyse wurde aus Perspektive der Softwaretechnik auf die besonderen Anforderungen für Softwareentwickler beim Entwicklungsprozess entsprechender Werkzeuge hingewiesen. Diese ergeben sich teilweise funktional aus den zuvor beschriebenen Besonderheiten von NLP allgemein, aber auch durch skizzierte Use-Cases für einen betrieblichen Einsatz der Software zur Auswertung von Dokumenten.
 
-Zuletzt stand die Betrachtung des weit verbreiteten NLP-Tools GATE auf Basis der Anforderungen. GATE stellt eine in hohem Maße konfigurier- und erweiterbare Software auf JAVA-Basis dar, die seit 1995 erhältlich ist und stetig weiterentwickelt wird. GATE bietet dabei eine GUI zur Umsetzung diverser NLP-Funktionalitäten und die Organisation in Modulen an, unterstützt aber auch die Anbindung in und an externe Softwaresysteme. GATE befriedigt insgesamt die erhobenen Anforderungen. Die zu Beginn der Arbeit aufgestellten Hypothesen konnten verifiziert werden.
+Zuletzt stand die Betrachtung des weit verbreiteten NLP-Programms GATE auf Basis der Anforderungen. GATE stellt eine in hohem Maße konfigurier- und erweiterbare Software auf JAVA-Basis dar, die seit 1995 erhältlich ist und stetig weiterentwickelt wird. GATE bietet dabei eine GUI zur Umsetzung diverser NLP-Funktionalitäten und die Organisation in Modulen an, unterstützt aber auch die Anbindung in und an externe Softwaresysteme. GATE befriedigt insgesamt die erhobenen Anforderungen. Die zu Beginn der Arbeit aufgestellten Hypothesen konnten verifiziert werden.
 
 \section{Ausblick}
-Die Entwicklung von NLP in jüngerer Vergangenheit zeigt den Einzug der automatischen Sprachverarbeitung in immer mehr Bereiche des modernen Lebens. Es besteht also Grund zu der Annahme, dass diese Entwicklung noch nicht an ihrem Ende angelangt ist und NLP auch in den kommenden Jahren weiter an Relevanz gewinnen wird. Daraus folgt logischerweise auch das Bedürfnis nach entsprechenden Tools, um bei der Implementierung von NLP-Funktionen zu unterstützen.\\
+Die Entwicklung von NLP in jüngerer Vergangenheit zeigt den Einzug der automatischen Sprachverarbeitung in immer mehr Bereiche des modernen Lebens. Es besteht also Grund zu der Annahme, dass diese Entwicklung noch nicht an ihrem Ende angelangt ist und NLP auch in den kommenden Jahren weiter an Relevanz gewinnen wird. Daraus folgt logischerweise auch das Bedürfnis nach entsprechenden Programmen, um bei der Implementierung von NLP-Funktionen zu unterstützen.\\
 
-Als geeignete Umgebung zur Entwicklung von Verarbeitungsprogrammen wird GATE daher nach wie vor relevant bleiben. Bestimmte Methoden oder Algorithmen können zwar veralten, da GATE jedoch nicht selbst die Verarbeitung vornimmt, ist es von solchen Problemen nicht betroffen. Des Weiteren wird GATE kontinuierlich weiterentwickelt und steht weiterhin an der Spitze als meinst verwendetes NLP-Tool der Welt. \\
+Als geeignete Umgebung zur Entwicklung von Verarbeitungsprogrammen wird GATE daher nach wie vor relevant bleiben. Bestimmte Methoden oder Algorithmen können zwar veralten, da GATE jedoch nicht selbst die Verarbeitung vornimmt, ist es von solchen Problemen nicht betroffen. Des Weiteren wird GATE kontinuierlich weiterentwickelt und steht weiterhin an der Spitze als meinst verwendetes NLP-Werkzeugs der Welt. \\
 
 Im kommenden Jahr werden wir im Rahmen einer Bachelorarbeit Funktionen von GATE verwenden, um im betrieblichen Kontext ein Programm zu entwickeln, welches bei der automatisierten Verarbeitung von Projektlastenheften unterstützen soll. Die Arbeit wird sich dabei hauptsächlich auf die Verwendung von GATE in Zusammenarbeit mit anderen Werkzeugen konzentrieren, die in dieser Domäne relevant sind. Dazu gehören unter anderem \textit{Protégé-OWL} zur Nutzung von Ontologien und \textit{IBM Rational DOORS} als Quelle von Anforderungsdokumenten.
 
