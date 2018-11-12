@@ -10,14 +10,14 @@
 \contentsline {figure}{\numberline {2.7}{\ignorespaces FSs aus Abb. 2.5 und 2.6 als AVM \cite {cop04}\relax }}{38}
 \contentsline {figure}{\numberline {2.8}{\ignorespaces mögliche Bedeutungsmengen eines Polysems [eigene Darstellung]\relax }}{46}
 \addvspace {10\p@ }
-\contentsline {figure}{\numberline {3.1}{\ignorespaces UML-Use-Case Diagramm für allgemeine NLP-Tools [eigene Darstellung]\relax }}{55}
-\contentsline {figure}{\numberline {3.2}{\ignorespaces UML-Aktivitätsdiagramm User-Workflow mit dem Tool [eigene Darstellung]\relax }}{56}
+\contentsline {figure}{\numberline {3.1}{\ignorespaces UML-Use-Case Diagramm für allgemeine NLP-Werkzeuge [eigene Darstellung]\relax }}{55}
+\contentsline {figure}{\numberline {3.2}{\ignorespaces UML-Aktivitätsdiagramm User-Workflow mit dem Werkzeug [eigene Darstellung]\relax }}{56}
 \contentsline {figure}{\numberline {3.3}{\ignorespaces Usability- und Sicherheitsaspekte aus \cite {hm13}\relax }}{63}
 \addvspace {10\p@ }
 \contentsline {figure}{\numberline {4.1}{\ignorespaces Annotationen in TIPSTER-interner Darstellung aus \cite {cu97}\relax }}{66}
 \contentsline {figure}{\numberline {4.2}{\ignorespaces Auflistung der installierten Plugins aus verschiedenen Ordnern [eigene Darstellung]\relax }}{67}
 \contentsline {figure}{\numberline {4.3}{\ignorespaces Standard ANNIE-Verarbeitungskomponenten [eigene Darstellung]\relax }}{70}
-\contentsline {figure}{\numberline {4.4}{\ignorespaces Einstellbare Modulparameter des POS-Taggers Hier können etwa Pfade für Input- und Output-Daten angegeben werden [eigene Darstellung]\relax }}{72}
+\contentsline {figure}{\numberline {4.4}{\ignorespaces Einstellbare Modulparameter des POS-Taggers Hier können etwa Pfade für Eingabe- und Ausgabe-Daten angegeben werden [eigene Darstellung]\relax }}{72}
 \contentsline {figure}{\numberline {4.5}{\ignorespaces Textdarstellung nach Annotation [eigene Darstellung]\relax }}{73}
 \contentsline {figure}{\numberline {4.6}{\ignorespaces Abbruch-Fenster zur Laufzeit [eigene Darstellung]\relax }}{74}
 \contentsline {figure}{\numberline {4.7}{\ignorespaces Information zum Laufzeit-Abbruch [eigene Darstellung]\relax }}{74}
